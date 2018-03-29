@@ -30,7 +30,7 @@ result:any;
 
  
 
-    let url="http://localhost:8081/aml/api/account/search3?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
+    let url="http://localhost:8081/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
     +"&AccountOpenDate="+this.accountOpenDate+"&AccountCloseDate="+this.accountCloseDate
                                                                       
     ;
