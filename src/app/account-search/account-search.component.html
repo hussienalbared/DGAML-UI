@@ -1,0 +1,68 @@
+
+<div class="container">
+<form  #accountSearch = "ngForm" (ngSubmit) = "onClickSubmit(accountSearch.value)">
+<div>
+<label for="">Account Number</label>
+<input type="text" name="accountNumber" [(ngModel)]="accountNumber">
+
+</div>
+<div>
+  <label for="">Account Name</label>
+  <input type="text" name="accountName" [(ngModel)]="accountName">
+  
+  </div>
+  <div>
+    <label for="">Account Type</label>
+    <input type="text" name="accountType" [(ngModel)]="accountType">
+    
+    </div>
+    <div>
+      <label for="">Account Open date</label>
+      <input type="date" name="accountOpenDate" [(ngModel)]="accountOpenDate" >
+      
+      </div>
+      <div>
+        <label for="">Account Close date</label>
+        <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate">
+        
+        </div>
+<div> 
+<input type="submit" value="Search">
+
+</div>
+
+</form>
+</div>
+
+<table>
+    <tr>
+        <th>Account Number</th>
+        <th>Account Name</th> 
+        <th>Account Type</th>
+        <th>Account open date</th>
+        <th>Account close date</th>
+      </tr>
+  <tr *ngFor="let item of result">
+      <!-- <td>{{item[0]}}</td> 
+      <td>{{item[1]}}</td>
+      <td>{{item[2]}}</td> 
+    
+    
+    <td>{{item[3]}}</td> 
+   
+    <td>{{item[4]}}</td>  -->
+    <td>{{item.acctNo}}</td> 
+      <td>{{item.acctnm}}</td>
+      <td>{{item.accttydesc}}</td> 
+    
+    
+    <td>{{item.acctopdate}}</td> 
+   
+    <td>{{item.acctcldate}}</td>
+  
+    
+    
+
+  </tr>
+
+</table>
