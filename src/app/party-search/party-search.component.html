@@ -1,0 +1,66 @@
+<div class="container">
+  
+  <form  #partySearch = "ngForm" (ngSubmit) = "onClickSubmit(artySearch.value)">
+  <div class="form-group">
+  <label for="PartyNumber">Party Number</label>
+  <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
+  
+  </div>
+  
+    <div class="form-group">
+      <label for="PartyId">Party Id</label>
+      <input type="text" name="PartyId" [(ngModel)]="PartyId" class="form-control">
+      
+      </div>
+      <div  class="form-group">
+        <label for="PartyName">Party Name</label>
+        <input type="text" name="PartyName" [(ngModel)]="PartyName" class="form-control">
+        
+        </div>
+
+        <div>
+          <label for="PoliticallyExposedPerson">PoliticallyExposedPerson</label>
+          <select name="PoliticallyExposedPerson" [(ngModel)]="PoliticallyExposedPerson"
+          class="form-control" 
+          >
+      <option value="y">Yes</option>
+      <option value="n">No</option>
+      
+      <option value=""></option>
+      
+          </select>
+
+
+          </div>
+
+          <div>
+            <label for="Risk">Risk</label>
+            <select name="Risk" [(ngModel)]="Risk" class="form-control" >
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        
+        <option value="low">Low</option>
+                   </select>
+            </div>
+
+            <div>
+              <label for="PartyStatusDescription">Party status description</label>
+              <select name="PartyStatusDescription"
+               [(ngModel)]="PartyStatusDescription"
+               class="form-control" >
+          <option value="active">Active</option>
+          <option value="dormant">Dormant</option>
+          
+          <option value="closed">Closed</option>
+          <option value="ex-customer">Ex-customer</option>
+                     </select>
+              </div>
+
+
+  <div> 
+  <input type="submit" value="Search">
+  
+  </div>
+  
+  </form>
+  </div>
