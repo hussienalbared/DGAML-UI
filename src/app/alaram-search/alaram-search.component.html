@@ -1,0 +1,92 @@
+
+alarmid:{{AlarmId}}<br>
+{{AlarmStatus}}<br>
+{{MoneyLaunderingRisk}}<br>
+{{CreateDate}}<br>
+{{RunDate}}<br>
+{{ScenarioName}}<br>
+{{ScenarioId}}<br>
+
+
+
+<div class="container">
+  <form  #alarmSearch = "ngForm" (ngSubmit) = "onClickSubmit(alarmSearch.value)">
+  <div>
+  <label for="AlarmId">Alarm ID</label>
+  <input type="text" name="AlarmId" [(ngModel)]="AlarmId">
+  
+  </div>
+  <div>
+    <label for="AlarmStatus">Alarm status</label>
+    <!-- <input type="text" name="AlarmStatus" [(ngModel)]="AlarmStatus"> -->
+    <select name="AlarmStatus" [(ngModel)]="AlarmStatus">
+<option value="act">Active</option>
+<option value="cls">closed</option>
+<option value="sup">suppressed</option>
+<option value=""></option>
+
+    </select>
+    </div>
+    <div>
+      <label for="MoneyLaunderingRisk">Money laundering risk</label>
+      <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk">
+      
+      </div>
+      <div>
+        <label for="CreateDate">Create date</label>
+        <input type="date" name="CreateDate" [(ngModel)]="CreateDate" >
+        
+        </div>
+        <div>
+          <label for="RunDate">Run date</label>
+          <input type="date" name="RunDate" [(ngModel)]="RunDate">
+          
+          </div>
+          <div>
+            <label for="ScenarioName">Scenario name</label>
+            <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName">
+            
+            </div>
+            <div>
+              <label for="ScenarioId">Scenario ID</label>
+              <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId">
+              
+              </div>
+  <div> 
+  <input type="submit" value="Search">
+  
+  </div>
+  
+  </form>
+  </div>
+
+  <table>
+    <tr>
+        <th>Alarm ID</th>
+        <th>Alarm status</th> 
+        <th>Money laundering risk</th>
+        <th>Create date</th>
+        <th>Run date</th>
+        <th>Scenario name</th>
+        <th>Scenario ID</th>
+      </tr>
+  <tr *ngFor="let item of result">
+    
+    <td>{{item.alarm_id}}</td> 
+      <td>{{item.alarm_status_code}}</td>
+      <td>{{item.money_laundering_risk_score}}</td> 
+    
+    
+    <td>{{item.create_date}}</td> 
+   
+    <td>{{item.run_date}}</td>
+    <td>{{item.routine_name}}</td>
+    <td>{{item.routine_id}}</td>
+  
+    
+    
+
+  </tr>
+
+</table>
+
