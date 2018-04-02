@@ -37,6 +37,7 @@ export class AlaramSearchComponent implements OnInit {
   this.result=data;
 
     });
+    console.log(this.result);
     
   
  }

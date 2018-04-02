@@ -1,6 +1,6 @@
 <div class="container">
   
-  <form  #partySearch = "ngForm" (ngSubmit) = "onClickSubmit(artySearch.value)">
+  <form  #partySearch = "ngForm" (ngSubmit) = "onClickSubmit(partySearch.value)">
   <div class="form-group">
   <label for="PartyNumber">Party Number</label>
   <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
@@ -36,10 +36,11 @@
           <div>
             <label for="Risk">Risk</label>
             <select name="Risk" [(ngModel)]="Risk" class="form-control" >
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
+        <option value="3">High</option>
+        <option value="2">Medium</option>
         
-        <option value="low">Low</option>
+        <option value="1">Low</option>
+        <option value=""></option>
                    </select>
             </div>
 
@@ -53,14 +54,45 @@
           
           <option value="closed">Closed</option>
           <option value="ex-customer">Ex-customer</option>
+          <option value=""></option>
                      </select>
               </div>
 
 
   <div> 
-  <input type="submit" value="Search">
+  <input type="submit" value="Search" class="btn btn-success">
   
   </div>
   
   </form>
   </div>
+  <table class="table table-striped">
+    <tr>
+        <th>Party Number</th>
+        <th>Party Id</th> 
+        <th>Party Name</th>
+        <th>Politically exposed person</th>
+        <th>Party risk</th>
+        <th>Party status description</th>
+        
+      </tr>
+  <tr *ngFor="let item of result">
+    
+    <td>{{item.pno}}</td> 
+      <td>{{item.pid}}</td>
+      <td>{{item.pfnm}}</td> 
+    
+    
+    <td>{{item.ppepind}}</td> 
+   
+    <td>{{item.risk_classification}}</td>
+    <td>{{item.pstatds}}</td>
+   
+  
+    
+    
+
+  </tr>
+
+</table>
+
