@@ -7,11 +7,17 @@ import { AccountSearchComponent } from './account-search/account-search.componen
 import { SearchAccountService } from './search-account.service';
 import { HttpModule , Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AlaramSearchComponent } from './alaram-search/alaram-search.component';
+import { PartySearchComponent } from './party-search/party-search.component';
+import { ExternalPartySearchComponent } from './external-party-search/external-party-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountSearchComponent
+    AccountSearchComponent,
+    AlaramSearchComponent,
+    PartySearchComponent,
+    ExternalPartySearchComponent
   ],
   imports: [
     BrowserModule,
