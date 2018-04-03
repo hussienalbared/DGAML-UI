@@ -15,6 +15,7 @@ export class PartySearchComponent implements OnInit {
   Risk:string='';
   PartyStatusDescription:string='';
   result:any;
+  riskValue={1:'low',2:'medium',3:'high'};
   constructor(private http:HttpClient) { }
 
   ngOnInit() {

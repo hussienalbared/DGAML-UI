@@ -1,0 +1,68 @@
+<div class="container">
+  
+  <form  #ExternalPartySearch = "ngForm" (ngSubmit) = "onClickSubmit(ExternalPartySearch.value)">
+  <div class="form-group">
+  <label for="ExtPartynumber">Party Number</label>
+  <input type="text" value="" name="ExtPartynumber" [(ngModel)]="ExtPartynumber" class="form-control">
+  
+  </div>
+  
+    <div class="form-group">
+      <label for="ExtPartyId">Ext Party Id</label>
+      <input type="text" value=" "  name="ExtPartyId" [(ngModel)]="ExtPartyId" class="form-control">
+      
+      </div>
+      <div  class="form-group">
+        <label for="ExtPartyFullName">Ext Party Full Name</label>
+        <input type="text" value=" "  name="ExtPartyFullName" [(ngModel)]="ExtPartyFullName" class="form-control">
+        
+        </div>
+        
+          <div  class="form-group">
+            <label for="ExtPartyIdCountryCode">Ext Party ID country code</label>
+            <input type="text" name="ExtPartyIdCountryCode" [(ngModel)]="ExtPartyIdCountryCode" class="form-control">
+            
+            </div>
+     
+  <div class="form-group"> 
+  <input type="submit" value="Search" class="btn btn-success">
+  
+  </div>
+  
+  </form>
+  </div>
+  <table class="table table-striped">
+    <tr>
+        <th>EXT party name</th>
+        <th>Ext Party Number</th> 
+        <th>Address</th>
+        <th>City Name</th>
+        <th>Date of Birth</th>
+        <th>Citizenship</th>
+        <th>Identification Document</th>
+        <th>Identification Number</th>
+        <th>Telephone</th>
+      </tr>
+  <tr *ngFor="let item of result">
+    
+    <td>{{item.expfullnm}}</td> 
+      <td>{{item.expno}}</td>
+      <td>{{item.expstadd1 }}{{item.expstadd2}}</td> 
+    
+    
+    <td>{{item.expstcinm}}</td> 
+   
+    <td>{{item.expbod}}</td>
+    <td>{{item.expstconm}}</td>
+    <td>{{item.expstconm}}</td>
+   <td> {{item.expidtyds}}</td>
+   <td>{{item.exptel1}}: {{item.exptel2}}</td>
+   
+  
+    
+    
+
+  </tr>
+
+</table>
+
