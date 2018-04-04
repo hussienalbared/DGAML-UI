@@ -1,1 +1,187 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.dropdown-toggle.btn-sm {
+    padding-right: 6px;
+}
+
+.dropdown-toggle.btn-xs {
+    padding-right: 3px;
+}
+
+.btn-default {
+    background-color: #ABB7B7;
+    border-color: #ABB7B7;
+    color: #fff;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+    background-color: #98A3A3;
+    border-color: #98A3A3;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #fff;
+    border: 1px solid #0072b280;
+    color: #0072b2;
+    border-radius: 25px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-color: #0072b280;
+    border-color: transparent;
+    color: #FFFFFF;
+}
+
+.btn-success {
+    background-color: #68C39F;
+    border-color: #68C39F;
+    color: #FFFFFF;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #5CAD8D;
+    border-color: #5CAD8D;
+    color: #FFFFFF;
+}
+
+.btn-info {
+    background-color: #65BBD6;
+    border-color: #65BBD6;
+    color: #FFFFFF;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+    background-color: #5BA9C2;
+    border-color: #5BA9C2;
+    color: #FFFFFF;
+}
+
+.btn-warning {
+    background-color: #FFC052;
+    border-color: #FFC052;
+    color: #FFFFFF;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+    background-color: #F5B84F;
+    border-color: #F5B84F;
+    color: #FFFFFF;
+}
+
+.btn-danger {
+    background-color: #E15554;
+    border-color: #E15554;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+    background-color: #C74B4A;
+    border-color: #C74B4A;
+    color: #FFFFFF;
+}
+
+
+body {
+    background: #E4EAE6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 10px 0;
+}
+
+h1 {
+    line-height: 43px;
+}
+
+h2 {
+    line-height: 35px;
+}
+
+h3 {
+    line-height: 30px;
+}
+
+h4 {
+    line-height: 22px;
+}
+
+h3 small,
+h4 small,
+h5 small {
+    font-family: 'Oswald';
+    font-weight: 300;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald';
+    font-weight: 300;
+    color: #505458;
+}
+
+* {
+    outline: none !important;
+}
+
+a:hover,
+a:active,
+a:focus {
+    outline: 0;
+    text-decoration: none;
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+.label {
+    padding: 0.3em 0.6em;
+}
+
+.container {
+    width: auto;
+}
