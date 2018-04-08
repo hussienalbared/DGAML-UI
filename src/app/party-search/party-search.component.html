@@ -1,99 +1,165 @@
-<div class="container">
-  
-  <form  #partySearch = "ngForm" (ngSubmit) = "onClickSubmit(partySearch.value)">
-  <div class="form-group">
-  <label for="PartyNumber">Party Number</label>
-  <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
-  
-  </div>
-  
-    <div class="form-group">
-      <label for="PartyId">Party Id</label>
-      <input type="text" name="PartyId" [(ngModel)]="PartyId" class="form-control">
-      
+<form #partySearch="ngForm" (ngSubmit)="onClickSubmit(partySearch.value)">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PartyNumber">Party Number</label>
+        <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
+
       </div>
-      <div  class="form-group">
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PartyId">Party Id</label>
+        <input type="text" name="PartyId" [(ngModel)]="PartyId" class="form-control">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
         <label for="PartyName">Party Name</label>
         <input type="text" name="PartyName" [(ngModel)]="PartyName" class="form-control">
-        
-        </div>
 
-        <div>
-          <label for="PoliticallyExposedPerson">PoliticallyExposedPerson</label>
-          <select name="PoliticallyExposedPerson" [(ngModel)]="PoliticallyExposedPerson"
-          class="form-control" 
-          >
-      <option value="y">Yes</option>
-      <option value="n">No</option>
-      
-      <option value=""></option>
-      
-          </select>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PoliticallyExposedPerson">PoliticallyExposedPerson</label>
+        <select name="PoliticallyExposedPerson" [(ngModel)]="PoliticallyExposedPerson" class="form-control">
+          <option value="y">Yes</option>
+          <option value="n">No</option>
+
+          <option value=""></option>
+
+        </select>
 
 
-          </div>
+      </div>
+    </div>
+  </div>
 
-          <div>
-            <label for="Risk">Risk</label>
-            <select name="Risk" [(ngModel)]="Risk" class="form-control" >
-        <option value="3">High</option>
-        <option value="2">Medium</option>
-        
-        <option value="1">Low</option>
-        <option value=""></option>
-                   </select>
-            </div>
 
-            <div>
-              <label for="PartyStatusDescription">Party status description</label>
-              <select name="PartyStatusDescription"
-               [(ngModel)]="PartyStatusDescription"
-               class="form-control" >
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="Risk">Risk</label>
+        <select name="Risk" [(ngModel)]="Risk" class="form-control">
+          <option value="3">High</option>
+          <option value="2">Medium</option>
+
+          <option value="1">Low</option>
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-6">
+
+      <div class="form-group">
+        <label for="PartyStatusDescription">Party status description</label>
+        <select name="PartyStatusDescription" [(ngModel)]="PartyStatusDescription" class="form-control">
           <option value="active">Active</option>
           <option value="dormant">Dormant</option>
-          
+
           <option value="closed">Closed</option>
           <option value="ex-customer">Ex-customer</option>
           <option value=""></option>
-                     </select>
-              </div>
+        </select>
+      </div>
+
+    </div>
+  </div>
 
 
-  <div> 
-  <input type="submit" value="Search" class="btn btn-success">
-  
+
+
+
+  <div>
+    <input type="submit" value="Search" class="btn btn-success">
+
   </div>
-  
-  </form>
-  </div>
-  <table class="table table-striped">
-    <tr>
-        <th>Party Number</th>
-        <th>Party Id</th> 
-        <th>Party Name</th>
-        <th>Politically exposed person</th>
-        <th>Party risk</th>
-        <th>Party status description</th>
-        
-      </tr>
+
+</form>
+<!-- 
+<table class="table table-striped">
+  <tr>
+    <th>Party Number</th>
+    <th>Party Id</th>
+    <th>Party Name</th>
+    <th>Politically exposed person</th>
+    <th>Party risk</th>
+    <th>Party status description</th>
+
+  </tr>
   <tr *ngFor="let item of result">
-    
-    <td>{{item.pno}}</td> 
-      <td>{{item.pid}}</td>
-      <td>{{item.pfnm}}</td> 
-    
-    
-    <td>{{item.ppepind}}</td> 
-   
+
+    <td>{{item.pno}}</td>
+    <td>{{item.pid}}</td>
+    <td>{{item.pfnm}}</td>
+
+
+    <td>{{item.ppepind}}</td>
+
     <td>{{riskValue[item.riskClassification]}}</td>
     <td>{{item.pstatds}}</td>
-    
-   
-  
-    
-    
+
+
+
+
+
 
   </tr>
 
-</table>
+</table> -->
 
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+<div class="example-container mat-elevation-z8">
+    
+  <mat-table #table [dataSource]="dataSource" matSort> 
+
+    <ng-container matColumnDef="pno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Party Number </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.pno}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Party Id </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.pid}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pfnm">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Party Name </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.pfnm}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ppepind">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Politically exposed person </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.ppepind}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="riskClassification">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Party risk </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.riskClassification}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pstatds">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Party status description </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.pstatds}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator #paginator
+    [pageSize]="2"
+    [pageSizeOptions]="[2,5, 10, 20]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+  
+ <!--  <usertable></usertable> -->
+</div>
