@@ -1,40 +1,40 @@
 
 <div class="container">
 <form  #accountSearch = "ngForm" (ngSubmit) = "onClickSubmit(accountSearch.value)">
-<div>
+<div class="form-group">
 <label for="">Account Number</label>
-<input type="text" name="accountNumber" [(ngModel)]="accountNumber">
+<input type="text" name="accountNumber" [(ngModel)]="accountNumber" class="form-control">
 
 </div>
-<div>
+<div class="form-group">
   <label for="">Account Name</label>
-  <input type="text" name="accountName" [(ngModel)]="accountName">
+  <input type="text" name="accountName" [(ngModel)]="accountName" class="form-control">
   
   </div>
-  <div>
+  <div class="form-group">
     <label for="">Account Type</label>
-    <input type="text" name="accountType" [(ngModel)]="accountType">
+    <input type="text" name="accountType" [(ngModel)]="accountType" class="form-control">
     
     </div>
-    <div>
+    <div class="form-group">
       <label for="">Account Open date</label>
-      <input type="date" name="accountOpenDate" [(ngModel)]="accountOpenDate" >
+      <input type="date" name="accountOpenDate" [(ngModel)]="accountOpenDate" class="form-control">
       
       </div>
-      <div>
+      <div class="form-group">
         <label for="">Account Close date</label>
-        <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate">
+        <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate" class="form-control">
         
         </div>
-<div> 
-<input type="submit" value="Search">
+<div class="form-group"> 
+<input type="submit" value="Search" >
 
 </div>
 
 </form>
 </div>
 
-<table>
+<table  class="table table-striped">
     <tr>
         <th>Account Number</th>
         <th>Account Name</th> 

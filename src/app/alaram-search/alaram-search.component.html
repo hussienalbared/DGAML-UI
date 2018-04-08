@@ -1,14 +1,14 @@
 <div class="container">
   <form  #alarmSearch = "ngForm" (ngSubmit) = "onClickSubmit(alarmSearch.value)">
-  <div>
+  <div class="form-group">
   <label for="AlarmId">Alarm ID</label>
-  <input type="text" name="AlarmId" [(ngModel)]="AlarmId">
+  <input type="text" name="AlarmId" [(ngModel)]="AlarmId" class="form-control">
   
   </div>
-  <div>
+  <div class="form-group">
     <label for="AlarmStatus">Alarm status</label>
     <!-- <input type="text" name="AlarmStatus" [(ngModel)]="AlarmStatus"> -->
-    <select name="AlarmStatus" [(ngModel)]="AlarmStatus">
+    <select name="AlarmStatus" [(ngModel)]="AlarmStatus" class="form-control">
 <option value="act">Active</option>
 <option value="cls">closed</option>
 <option value="sup">suppressed</option>
@@ -16,32 +16,32 @@
 
     </select>
     </div>
-    <div>
+    <div class="form-group">
       <label for="MoneyLaunderingRisk">Money laundering risk</label>
-      <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk">
+      <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk" class="form-control">
       
       </div>
-      <div>
+      <div class="form-group">
         <label for="CreateDate">Create date</label>
-        <input type="date" name="CreateDate" [(ngModel)]="CreateDate" >
+        <input type="date" name="CreateDate" [(ngModel)]="CreateDate" class="form-control" >
         
         </div>
-        <div>
+        <div class="form-group">
           <label for="RunDate">Run date</label>
-          <input type="date" name="RunDate" [(ngModel)]="RunDate">
+          <input type="date" name="RunDate" [(ngModel)]="RunDate" class="form-control">
           
           </div>
-          <div>
+          <div class="form-group">
             <label for="ScenarioName">Scenario name</label>
-            <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName">
+            <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName" class="form-control">
             
             </div>
             <div>
               <label for="ScenarioId">Scenario ID</label>
-              <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId">
+              <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId" class="form-control">
               
               </div>
-  <div> 
+  <div class="form-group"> 
   <input type="submit" value="Search">
   
   </div>
@@ -49,7 +49,7 @@
   </form>
   </div>
 
-  <table>
+  <table  class="table table-striped">
     <tr>
         <th>Alarm ID</th>
         <th>Alarm status</th> 
