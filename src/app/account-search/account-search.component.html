@@ -33,7 +33,7 @@
 
 </form>
 </div>
-
+<!-- 
 <table  class="table table-striped">
     <tr>
         <th>Account Number</th>
@@ -43,14 +43,7 @@
         <th>Account close date</th>
       </tr>
   <tr *ngFor="let item of result">
-      <!-- <td>{{item[0]}}</td> 
-      <td>{{item[1]}}</td>
-      <td>{{item[2]}}</td> 
-    
-    
-    <td>{{item[3]}}</td> 
    
-    <td>{{item[4]}}</td>  -->
     <td>{{item.acctno}}</td> 
       <td>{{item.acctnm}}</td>
       <td>{{item.accttydesc}}</td> 
@@ -65,4 +58,49 @@
 
   </tr>
 
-</table>
+</table> -->
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+<div class="example-container mat-elevation-z8">
+  
+<mat-table #table [dataSource]="dataSource" matSort> 
+
+  <ng-container matColumnDef="acctno">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Account Number </mat-header-cell>
+    <mat-cell *matCellDef="let account"> {{account.acctno}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acctnm">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Account Name </mat-header-cell>
+    <mat-cell *matCellDef="let account"> {{account.acctnm}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="accttydesc">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Account Type</mat-header-cell>
+    <mat-cell *matCellDef="let account"> {{account.accttydesc}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acctopdate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Account open date </mat-header-cell>
+    <mat-cell *matCellDef="let account"> {{account.acctopdate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acctcldate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Account close date </mat-header-cell>
+    <mat-cell *matCellDef="let account"> {{account.acctcldate}} </mat-cell>
+  </ng-container>
+ 
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+<mat-paginator #paginator
+  [pageSize]="2"
+  [pageSizeOptions]="[2,5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+</div>
+<!--  <usertable></usertable> -->
