@@ -42,13 +42,13 @@
               
               </div>
   <div class="form-group"> 
-  <input type="submit" value="Search">
+  <input type="submit" value="Search" class="btn btn-primary">
   
   </div>
   
   </form>
   </div>
-
+<!-- 
   <table  class="table table-striped">
     <tr>
         <th>Alarm ID</th>
@@ -78,4 +78,55 @@
   </tr>
 
 </table>
+ -->
+ <div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+<div class="example-container mat-elevation-z8">
+  
+<mat-table #table [dataSource]="dataSource" matSort> 
 
+  <ng-container matColumnDef="alarmId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm ID </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.alarmId}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="alarmStatusCode">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm status </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.alarmStatusCode}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="moneyLaunderingRiskScore">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Money laundering risk</mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.moneyLaunderingRiskScore}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="createDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.createDate}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="runDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.runDate}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="routineName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.routineName}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="routineId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario ID </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.routineId}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+<mat-paginator #paginator
+  [pageSize]="2"
+  [pageSizeOptions]="[2,5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+</div>

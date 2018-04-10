@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Http , Response} from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { MatPaginator, MatTableDataSource ,MatSort} from '@angular/material';
+
 import 'rxjs/add/operator/map';
+import { Observable } from "rxjs/Observable"
+import { alaram } from '../models/alaram.model';
 @Component({
   selector: 'app-alaram-search',
   templateUrl: './alaram-search.component.html',
@@ -15,10 +19,22 @@ export class AlaramSearchComponent implements OnInit {
   RunDate:string='';
   ScenarioName:string='';
   ScenarioId:string='';
-  result:any;
+  result: alaram[];
+  dataSource:any=null;
+
+  displayedColumns = ['alarmId', 'alarmStatusCode', 'moneyLaunderingRiskScore',
+   'createDate', 'runDate', 'routineName','routineId'];
+ 
+   @ViewChild(MatPaginator) paginator: MatPaginator;
+   @ViewChild(MatSort) sort: MatSort;
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
   onClickSubmit(data) {
    
@@ -33,11 +49,14 @@ export class AlaramSearchComponent implements OnInit {
     "&ScenarioId="+this.ScenarioId                                                        
     ;
     
-    this.http.get(url).subscribe(data => {
+    this.http.get<alaram[]>(url).subscribe(data => {
   this.result=data;
+  this.dataSource = new MatTableDataSource(data);
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
 
     });
-    console.log(this.result);
+    
     
   
  }

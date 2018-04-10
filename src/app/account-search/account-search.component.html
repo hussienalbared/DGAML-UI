@@ -33,32 +33,6 @@
 
 </form>
 </div>
-<!-- 
-<table  class="table table-striped">
-    <tr>
-        <th>Account Number</th>
-        <th>Account Name</th> 
-        <th>Account Type</th>
-        <th>Account open date</th>
-        <th>Account close date</th>
-      </tr>
-  <tr *ngFor="let item of result">
-   
-    <td>{{item.acctno}}</td> 
-      <td>{{item.acctnm}}</td>
-      <td>{{item.accttydesc}}</td> 
-    
-    
-    <td>{{item.acctopdate}}</td> 
-   
-    <td>{{item.acctcldate}}</td>
-  
-    
-    
-
-  </tr>
-
-</table> -->
 <div class="example-header">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -103,4 +77,3 @@
   [showFirstLastButtons]="true">
 </mat-paginator>
 </div>
-<!--  <usertable></usertable> -->
