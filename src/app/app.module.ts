@@ -19,10 +19,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
+import { SuspectsComponent } from './components/suspects/suspects.component';
+
+import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief.component';
+import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
+import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
 
 
 @NgModule({
@@ -35,6 +40,13 @@ import { MainContentComponent } from './main-content/main-content.component';
     SideMenuComponent,
     TopBarComponent,
     MainContentComponent,
+    SuspectsComponent,
+  
+    AlarmBriefComponent,
+  
+    TransactionBriefComponent,
+  
+    SuspectDetailsComponent,
  
   ],
   imports: [
@@ -57,6 +69,7 @@ import { MainContentComponent } from './main-content/main-content.component';
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
     RouterModule.forRoot([
       {
         path: 'account',
@@ -75,6 +88,10 @@ import { MainContentComponent } from './main-content/main-content.component';
       {
         path: 'external',
         component: ExternalPartySearchComponent
+      }
+      ,{
+        path:'suspects',
+        component:SuspectsComponent
       }
     ])
   ],
