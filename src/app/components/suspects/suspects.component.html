@@ -1,0 +1,103 @@
+
+<mat-card style="background-color: #c6cad1">
+  <button class="btn btn-primary">
+    <i class="fa fa-share"> </i> Forward</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-chain"></i> Take Ownership</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-chain-broken"></i> Remove Ownership</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-ban"></i> Close</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-eye-slash"></i> Suppress</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-paperclip"></i> Attach</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-comments-o"></i> Add Comments</button>
+  <button class="btn btn-primary">
+    <i class="fa fa-file-text"></i> Report</button>
+
+</mat-card>
+<mat-accordion>
+  <mat-expansion-panel expanded='true'>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Suspects Data
+      </mat-panel-title>
+      <mat-panel-description>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+    <div class="example-container mat-elevation-z8">
+
+
+
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" 
+            [checked]="selection.hasValue() && isAllSelected()" 
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell >
+          <mat-cell *matCellDef="let row" >
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)" >
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="No">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>No </mat-header-cell>
+          <mat-cell *matCellDef="let cIndex = index;"> {{cIndex+1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Number of Alarm">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Alarm </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.alertCount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Suspect Name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.objName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="RIM Number">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>RIM Number</mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.objNumber}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Profile Risk">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Profile Risk </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.riskClassificationCode}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Oldest Alarm">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Oldest Alarm</mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.oldestAlert}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="User">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>User </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.complianceUserid}} </mat-cell>
+
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+             (click)="selection.toggle(row)">
+        </mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+  [pageSize]="1"
+  [pageSizeOptions]="[2,5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+    </div>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
