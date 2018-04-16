@@ -1,3 +1,29 @@
-<p>
-  suspect-details works!
-</p>
+<button class="btn btn-outline-secondary m-3">Suspect Detail</button>
+
+<ul>
+<li>Customer name:{{result.pfnm}}</li>
+<li>Customer Number:{{result.pno}}</li>
+
+<li>Address:{{result.pstadd1}}</li>
+<li>Date of Birth:{{result.pbod}}</li>
+<li>Politically exposed:{{result.ppepind}}</li>
+<li>Citizenship:{{result.pczcocd}}</li>
+<li>Identification Document:{{result.pidtyds}}</li>
+<li>Identification Number:{{result.pid}}</li>
+<li>Identification Issue Date:{{result.pidissuedate}}</li>
+<li>Identification Expiry Date:{{result.pidexpdate}}</li>
+<li>Employer Name:{{result.pascnm}}</li>
+<li>Occupation:{{result.pocuds}}</li>
+<li>Telephone:{{result.ptel1}}--{{result.ptel2}}--{{result.ptel3}}</li>
+<li>Current Risk Classification:{{result.riskClassification}}</li>
+
+<li>Dealing with the bank since date::{{result.pcusdate}}</li>
+<li>
+<ul *ngFor="let account of result.corePartyaccountD">
+<li>{{account.pacctno}}</li>
+
+</ul>
+
+</li>
+
+</ul>

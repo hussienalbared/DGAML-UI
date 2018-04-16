@@ -50,7 +50,7 @@ export class PartySearchComponent {
      this.dataSource.sort = this.sort;
     });
 
-    console.log(this.result);
+   
   
   }
 

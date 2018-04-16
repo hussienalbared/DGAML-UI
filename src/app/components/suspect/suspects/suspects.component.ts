@@ -4,8 +4,9 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
-import { suspect } from '../../models/suspect.model';
+import { suspect } from '../../../models/suspect.model';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -21,7 +22,7 @@ export class SuspectsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -52,5 +53,9 @@ export class SuspectsComponent implements OnInit {
 
     });
   }
+f(ala){
 
+  // alert(ala.id.objKey+" "+ala.id.objLevelCode);
+  this.router.navigate(['suspectDetail/'+ala.id.objKey+"/"+ala.id.objLevelCode+"/"+ala.objNumber]);
+}
 }

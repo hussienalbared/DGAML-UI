@@ -23,11 +23,12 @@ import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
-import { SuspectsComponent } from './components/suspects/suspects.component';
+import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 
 import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief.component';
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
 import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
+import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
 
 
 @NgModule({
@@ -47,6 +48,8 @@ import { SuspectDetailsComponent } from './components/suspect/suspect-details/su
     TransactionBriefComponent,
   
     SuspectDetailsComponent,
+  
+    SuspectDetailUipageComponent,
  
   ],
   imports: [
@@ -92,6 +95,11 @@ import { SuspectDetailsComponent } from './components/suspect/suspect-details/su
       ,{
         path:'suspects',
         component:SuspectsComponent
+      }
+      ,{
+
+        path:'suspectDetail/:obj_key/:obj_level_code/:obj_number',
+        component:SuspectDetailUipageComponent
       }
     ])
   ],

@@ -1,41 +1,46 @@
 <button class="btn btn-outline-secondary m-3">Alarm in Brief</button>
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="datasource2">
+  <mat-table #table [dataSource]="datasource" matSort>
 
     
     <ng-container matColumnDef="alarmId">
-      <mat-header-cell *matHeaderCellDef> ALARM_ID </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.alarmId}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primaryObjLevelCode">
-      <mat-header-cell *matHeaderCellDef> Alarm Level </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm Level </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.primaryObjLevelCode}} </mat-cell>
     </ng-container>
 
    
     <ng-container matColumnDef="routineName">
-      <mat-header-cell *matHeaderCellDef> Scenario Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.routineName}} </mat-cell>
     </ng-container>
 
    
     <ng-container matColumnDef="routineCategoryCode">
-      <mat-header-cell *matHeaderCellDef> Scenario Type </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Type </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.routineCategoryCode}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineDescription">
-      <mat-header-cell *matHeaderCellDef> Scenario Description </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Description </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.routineDescription}}
          
       
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="runDate">
-      <mat-header-cell *matHeaderCellDef> Run Date </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Run Date </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.runDate}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <mat-paginator #paginator
+  [pageSize]="2"
+  [pageSizeOptions]="[2,5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
 </div>

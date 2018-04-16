@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-transaction-brief',
@@ -8,44 +10,48 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TransactionBriefComponent implements OnInit {
   dataSource :any/*= ELEMENT_DATA*/;
+  result: TransactionBrief[];
   displayedColumns = ['ACCTNO', 'TTRN', 'CFDATEKEY', 'CFCURRAMT','transaction_cdi_desc','RTTDS'];
-  
-  constructor(private http:HttpClient) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+   @ViewChild(MatSort) sort: MatSort;
+   applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  constructor(private http:HttpClient,
+    private route: ActivatedRoute,private router: Router
+  ) { }
 
   ngOnInit() {
 
-this.getData("100009572206")
+    this.route.paramMap.subscribe(params => {
+      let number=params.get('obj_number');
+   
+      this.getData(number);  
+    });
   }
-  getData(partyNumber:string){
-    let Url="http://localhost:8081/aml/api/v1/suspectedTransaction/all?partyNumber="+partyNumber;
-    this.http.get(Url).subscribe(data=>{
+  getData(number){
+    let Url="http://localhost:8081/aml/api/v1/suspectedTransaction/all?partyNumber="+number;
+    this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       
           });
 
   }
-  alertF(nn)
-  {
-
-alert('double click'+nn);
-
-  }
+  
 
 }
+export interface TransactionBrief{
+  acctno:string, 
+  ttrn:string,
+   cfdatekey:string, 
+   cfcurramt:string,
+   transaction_cdi_desc:string,
+   rttds:string
 
-// export interface Element {
-//   ACCTNO: string;
-//   TTRN: string;
-//   CFDATEKEY: string;
-//   CFCURRAMT: string;
-//   transaction_cdi_desc:string;
-//   RTTDS:string;
-// }
-
-// const ELEMENT_DATA: Element[] = [
-//   {ACCTNO: '1', TTRN: 'Hydrogen', CFDATEKEY: '1.0079', CFCURRAMT: 'H',transaction_cdi_desc:'abc',RTTDS:'2013'},
-//   {ACCTNO: '2', TTRN: 'Helium', CFDATEKEY: '4.0026', CFCURRAMT: 'He',transaction_cdi_desc:'cde',RTTDS:'2013'},
-//   {ACCTNO: '3', TTRN: 'Lithium', CFDATEKEY: '6.941', CFCURRAMT: 'Li',transaction_cdi_desc:'fgh',RTTDS:'2013'},
-//   {ACCTNO: '4', TTRN: 'Beryllium', CFDATEKEY: '9.0122', CFCURRAMT: 'Be',transaction_cdi_desc:'ijk',RTTDS:'2013'},
-//   ];
+}
