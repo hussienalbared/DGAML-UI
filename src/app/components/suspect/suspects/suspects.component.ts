@@ -116,4 +116,22 @@ removeOwnerShip(){
   )
 
 }
-}
+takeOwnerShip(){
+
+  this.nAllSelected();
+  this.selectedSuspect.forEach(element=>{
+    // console.log(element["objName"]);
+    let code=element["id"]["objLevelCode"];
+    let key=element["id"]["objKey"];
+    let oldcomplianceUserid=element["complianceUserid"];
+    element["complianceUserid"]="Admin";
+    let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
+        "&code=" + code + "&user=" +  element["complianceUserid"];
+    this.http.put(url,[]).subscribe(data=>{}
+    ,error=>{
+      element["complianceUserid"]=oldcomplianceUserid;
+    }
+    );
+  }
+  )
+}}
