@@ -9,6 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ForwardComponent } from '../forward/forward.component';
+import { element, error } from 'protractor';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -96,5 +97,23 @@ openDialog(): void {
   
 );
 }
+removeOwnerShip(){
+ 
+  this.nAllSelected();
+  this.selectedSuspect.forEach(element=>{
+    // console.log(element["objName"]);
+    let code=element["id"]["objLevelCode"];
+    let key=element["id"]["objKey"];
+    let oldcomplianceUserid=element["complianceUserid"];
+    element["complianceUserid"]=null;
+    let url="http://localhost:8081/aml/api/v1/removeOwnerShip?key="+key+"&code="+code;
+    this.http.put(url,[]).subscribe(data=>{}
+    ,error=>{
+      element["complianceUserid"]=oldcomplianceUserid;
+    }
+    );
+  }
+  )
 
+}
 }
