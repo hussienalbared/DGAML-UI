@@ -1,29 +1,54 @@
 <button class="btn btn-outline-secondary m-3">Suspect Detail</button>
 
-<ul>
-<li>Customer name:{{result.pfnm}}</li>
-<li>Customer Number:{{result.pno}}</li>
 
-<li>Address:{{result.pstadd1}}</li>
-<li>Date of Birth:{{result.pbod}}</li>
-<li>Politically exposed:{{result.ppepind}}</li>
-<li>Citizenship:{{result.pczcocd}}</li>
-<li>Identification Document:{{result.pidtyds}}</li>
-<li>Identification Number:{{result.pid}}</li>
-<li>Identification Issue Date:{{result.pidissuedate}}</li>
-<li>Identification Expiry Date:{{result.pidexpdate}}</li>
-<li>Employer Name:{{result.pascnm}}</li>
-<li>Occupation:{{result.pocuds}}</li>
-<li>Telephone:{{result.ptel1}}--{{result.ptel2}}--{{result.ptel3}}</li>
-<li>Current Risk Classification:{{result.riskClassification}}</li>
+<mat-card class="example-card">
 
-<li>Dealing with the bank since date::{{result.pcusdate}}</li>
-<li>
-<ul *ngFor="let account of result.corePartyaccountD">
-<li>{{account.pacctno}}</li>
+    <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <h6>Customer name:</h6>{{result.pfnm}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Customer Number:</h6>{{result.pno}}
+            </mat-list-item>
 
-</ul>
+            <mat-list-item role="listitem">
+                <h6>Address:</h6>{{result.pstadd1}}--{{result.pstadd2}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Date of Birth:</h6>{{result.pbod}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Politically exposed:</h6>{{result.ppepind}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Citizenship:</h6>{{result.pczcocd}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Identification Document:</h6>{{result.pidtyds}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Identification Number:</h6>{{result.pid}}
+            </mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Identification Issue Date:</h6>{{result.pidissuedate}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Identification Expiry Date:</h6>{{result.pidexpdate}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Employer Name:</h6>{{result.pascnm}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Occupation:</h6>{{result.pocuds}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Telephone:</h6>{{result.ptel1}}--{{result.ptel2}}--{{result.ptel3}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Current Risk Classification:</h6>{{result.riskClassification}}</mat-list-item>
 
-</li>
+            <mat-list-item role="listitem">
+                <h6>Dealing with the bank since Date:</h6>{{result.pcusdate}}</mat-list-item>
+            <mat-list-item role="listitem">
+                <h6>Related Accounts</h6>
+                <mat-list role="list" *ngFor="let account of result.corePartyaccountD">
+                    <mat-list-item role="listitem">{{account.pacctno}}</mat-list-item>
 
-</ul>
+                </mat-list>
+
+            </mat-list-item>
+        </mat-list>
+
+    </mat-card-content>
+
+</mat-card>

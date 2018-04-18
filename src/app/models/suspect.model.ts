@@ -6,4 +6,6 @@ export interface suspect{
     riskClassificationCode:string;
     oldestAlert:string;
     complianceUserid:string;
+    id:any;
+    
 }

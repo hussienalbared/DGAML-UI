@@ -23,13 +23,15 @@ import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
-import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
+// import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 
 import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief.component';
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
 import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { ForwardComponent } from './components/suspect/forward/forward.component';
+import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { SuspectDetailUipageComponent } from './components/suspect/suspect-detai
     SuspectDetailsComponent,
   
     SuspectDetailUipageComponent,
+  
+    ForwardComponent,
  
   ],
   imports: [
@@ -73,6 +77,7 @@ import { SuspectDetailUipageComponent } from './components/suspect/suspect-detai
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatDialogModule,
     RouterModule.forRoot([
       {
         path: 'account',
@@ -105,6 +110,6 @@ import { SuspectDetailUipageComponent } from './components/suspect/suspect-detai
   ],
   providers: [SearchAccountService, Http, HttpClient],
   bootstrap: [AppComponent],
-
+   entryComponents:[ForwardComponent],
 })
 export class AppModule { }

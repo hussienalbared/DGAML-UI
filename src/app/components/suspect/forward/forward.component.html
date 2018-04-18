@@ -1,0 +1,22 @@
+<div class="forwardContainer">
+ <div class="titles">
+  <h5>Forward Suspect Data</h5>
+  <h6 *ngIf="data['selected'].length>1">Forward {{numSuspected}} suspected</h6>
+  <h6 *ngIf="data['selected'].length==1">{{data["selected"][0]["objName"]}}</h6>
+</div>
+  <p>Select User:</p>
+  <div class="form-group">
+      <label for="exampleSelect1">Example select</label>
+      <select class="form-control" id="exampleSelect1" [(ngModel)]="name"> 
+        <option>Hussien</option>
+        <option>MFarag</option>
+        <option>Eman gaafar</option>
+        <option>Ahraf</option>
+        <option>Naji</option>
+      </select>
+    </div>
+<div>
+<button class="btn btn-danger" (click)="cancel()">Cancel</button>
+<button class="btn btn-success" (click)="forward()">Forward</button>
+</div>
+</div>

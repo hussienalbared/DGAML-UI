@@ -1,8 +1,8 @@
 
 <mat-card style="background-color: #c6cad1">
-  <button class="btn btn-primary">
-    <i class="fa fa-share"> </i> Forward</button>
-  <button class="btn btn-primary">
+  <button class="btn btn-primary" (click)="openDialog()">
+    <i class="fa fa-share" > </i> Forward</button>
+  <button class="btn btn-primary" (click)="nAllSelected()">
     <i class="fa fa-chain"></i> Take Ownership</button>
   <button class="btn btn-primary">
     <i class="fa fa-chain-broken"></i> Remove Ownership</button>
@@ -59,12 +59,12 @@
         </ng-container>
         <ng-container matColumnDef="Number of Alarm">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Alarm </mat-header-cell>
-          <mat-cell *matCellDef="let alarm" (click)="f(alarm)"> {{alarm.alertCount}} </mat-cell>
+          <mat-cell *matCellDef="let alarm" > {{alarm.alertCount}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Suspect Name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.objName}} </mat-cell>
+          <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)"> {{alarm.objName}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="RIM Number">
