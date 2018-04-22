@@ -1,0 +1,26 @@
+<p>
+ Please select reason for closing alarm 
+</p>
+
+<div class="form-group">
+  <label for="exampleFormControlSelect1">Example select</label>
+  <select class="form-control" id="exampleFormControlSelect1"
+  [(ngModel)]="choose">
+    <option (click)="closeOther()">False</option>
+    <option (click)="closeOther()">Positive</option>
+    <option (click)="closeOther()">investigated</option>
+    <option (click)="closeOther()">report generated</option>
+    <option (click)="openOther()">other</option>
+
+  </select>
+  <div class="form-group" *ngIf="isOther">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+    [(ngModel)]="description" 
+    ></textarea>
+  </div>
+
+
+</div>
+<button type="button" class="btn btn-success" (click)="confirm()">Confirm</button>
+<button type="button" class="btn btn-danger" (click)="close()">Cancel</button>

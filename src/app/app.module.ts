@@ -32,6 +32,7 @@ import { SuspectDetailUipageComponent } from './components/suspect/suspect-detai
 import {MatDialogModule} from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
+import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,8 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
     SuspectDetailUipageComponent,
   
     ForwardComponent,
+  
+    SelectCloseReasonComponent,
  
   ],
   imports: [
@@ -110,6 +113,6 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
   ],
   providers: [SearchAccountService, Http, HttpClient],
   bootstrap: [AppComponent],
-   entryComponents:[ForwardComponent],
+   entryComponents:[ForwardComponent,SelectCloseReasonComponent],
 })
 export class AppModule { }

@@ -1,8 +1,24 @@
 <button class="btn btn-outline-secondary m-3">Alarm in Brief</button>
+<button class="btn btn-primary" (click)="close()">
+  <i class="fa fa-ban"></i> Close</button>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="datasource" matSort>
 
     
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" 
+        [checked]="selection.hasValue() && isAllSelected()" 
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell >
+      <mat-cell *matCellDef="let row" >
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.alarmId}} </mat-cell>

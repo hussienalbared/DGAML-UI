@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
 import 'rxjs/add/operator/map';
@@ -7,7 +7,7 @@ import { Observable } from "rxjs/Observable"
 import { suspect } from '../../../models/suspect.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ForwardComponent } from '../forward/forward.component';
 import { element, error } from 'protractor';
 @Component({
@@ -17,17 +17,17 @@ import { element, error } from 'protractor';
 })
 export class SuspectsComponent implements OnInit {
   result: suspect[];
-  selectedSuspect:suspect[]=[];
+  selectedSuspect: suspect[] = [];
   dataSource: any = null;
   displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
     'Profile Risk', 'Oldest Alarm', 'User'];
   selection = new SelectionModel<suspect>(true, []);
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
-  constructor(private http: HttpClient,private router: Router
-  ,public dialog: MatDialog
+
+  constructor(private http: HttpClient, private router: Router
+    , public dialog: MatDialog
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -36,13 +36,13 @@ export class SuspectsComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  nAllSelected(){
-    this.selectedSuspect=[];
-    this.selection.selected.forEach(a=>
-    this.selectedSuspect.push(a)
+  nAllSelected() {
+    this.selectedSuspect = [];
+    this.selection.selected.forEach(a =>
+      this.selectedSuspect.push(a)
     )
-  
-  } 
+
+  }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -55,7 +55,7 @@ export class SuspectsComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  
+
   ngOnInit() {
     let url = "http://localhost:8081/aml/api/v1/suspectedObject";
     this.http.get<suspect[]>(url).subscribe(data => {
@@ -66,72 +66,130 @@ export class SuspectsComponent implements OnInit {
 
     });
   }
-getSuspectDetail(alarm){
+  getSuspectDetail(alarm) {
 
-  
-  this.router.navigate(['suspectDetail/'+alarm.id.objKey+"/"+alarm.id.objLevelCode+"/"+alarm.objNumber]);
-}
 
-openDialog(): void {
-  const numSelected = this.selection.selected.length;
-  if(numSelected==0)
-  {
-    alert("Select at least one suspect,please");
-  return;
+    this.router.navigate(['suspectDetail/' + alarm.id.objKey + "/" + alarm.id.objLevelCode + "/" + alarm.objNumber]);
   }
-  this.nAllSelected();
-  let dialogRef = this.dialog.open(ForwardComponent, {
-    
+
+  openDialog(): void {
+    const numSelected = this.selection.selected.length;
+    if (numSelected == 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+    this.nAllSelected();
+    let dialogRef = this.dialog.open(ForwardComponent, {
+
       height: '400px',
       width: '600px',
-    
-    data: { selected:this.selectedSuspect }
-  });
 
-  dialogRef.afterClosed().subscribe(result => {
-    // console.log(dialogRef.componentInstance.name);
-//  location.reload();
-  },error=>{
+      data: { selected: this.selectedSuspect }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(dialogRef.componentInstance.name);
+      //  location.reload();
+    }, error => {
+
+    }
+
+    );
+  }
+  removeOwnerShip() {
+
+    this.nAllSelected();
+    this.selectedSuspect.forEach(element => {
+      // console.log(element["objName"]);
+      let code = element["id"]["objLevelCode"];
+      let key = element["id"]["objKey"];
+      let oldcomplianceUserid = element["complianceUserid"];
+      element["complianceUserid"] = null;
+      let url = "http://localhost:8081/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
+      this.http.put(url, []).subscribe(data => { }
+        , error => {
+          element["complianceUserid"] = oldcomplianceUserid;
+        }
+      );
+    }
+    )
 
   }
+  takeOwnerShip() {
+
+    this.nAllSelected();
+    this.selectedSuspect.forEach(element => {
+      // console.log(element["objName"]);
+      let code = element["id"]["objLevelCode"];
+      let key = element["id"]["objKey"];
+      let oldcomplianceUserid = element["complianceUserid"];
+      element["complianceUserid"] = "Admin";
+      let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
+        "&code=" + code + "&user=" + element["complianceUserid"];
+      this.http.put(url, []).subscribe(data => { }
+        , error => {
+          element["complianceUserid"] = oldcomplianceUserid;
+        }
+      );
+    }
+    )
+  }
+ closeAllAlarms() 
+  {
+    this.nAllSelected();
+    this.selectedSuspect.forEach(element => {
+
+      let code = element["id"]["objLevelCode"];
+      let key = element["id"]["objKey"];
+      let oldcomplianceUserid = element["alertCount"];
+      let url = "http://localhost:8081/aml/api/v1/closeAllSuspectAlarms?"
+        + "key=" + key + "&code=" + code;
+        // this.http.get(url).subscribe(data => {
+        //   //set alert count of suspect to zero
+        //           element["alertCount"] = '0';
+        //         }
+        //          )
   
-);
-}
-removeOwnerShip(){
+      element.acAlarm.forEach(aaa=>{
+
+        if(aaa["alarmStatusCode"]==='ACT'){
+          let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+          let event = {
+            "create_user_id": "45",
+            "event_type_code": 'cls',
+            "event_description": "poooo",
+            "alarm_id":aaa["alarmId"]
+          }
+          const httpOptions = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              
+              
+            })
+          }
+         this.http.put(UrlAdd,event).subscribe(data => {
+ console.log(data);
+  
+          },
+          err => {
+            console.log("Error occured");
+          })
+          
+        }
+      })
+      
+
+      
  
-  this.nAllSelected();
-  this.selectedSuspect.forEach(element=>{
-    // console.log(element["objName"]);
-    let code=element["id"]["objLevelCode"];
-    let key=element["id"]["objKey"];
-    let oldcomplianceUserid=element["complianceUserid"];
-    element["complianceUserid"]=null;
-    let url="http://localhost:8081/aml/api/v1/removeOwnerShip?key="+key+"&code="+code;
-    this.http.put(url,[]).subscribe(data=>{}
-    ,error=>{
-      element["complianceUserid"]=oldcomplianceUserid;
-    }
-    );
-  }
-  )
 
+    }
+
+
+    );
+
+  }
+  extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+  }
 }
-takeOwnerShip(){
-
-  this.nAllSelected();
-  this.selectedSuspect.forEach(element=>{
-    // console.log(element["objName"]);
-    let code=element["id"]["objLevelCode"];
-    let key=element["id"]["objKey"];
-    let oldcomplianceUserid=element["complianceUserid"];
-    element["complianceUserid"]="Admin";
-    let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
-        "&code=" + code + "&user=" +  element["complianceUserid"];
-    this.http.put(url,[]).subscribe(data=>{}
-    ,error=>{
-      element["complianceUserid"]=oldcomplianceUserid;
-    }
-    );
-  }
-  )
-}}
