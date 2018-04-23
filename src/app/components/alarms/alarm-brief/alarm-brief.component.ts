@@ -111,8 +111,17 @@ code:string='';
 
     this.datasource = this.processed;
   }
+
+  suppressAlarm(){
+    this.changeAlarmStatus('SUP')
+  }
+  closeAlarm(){
+    console.log('close alarm')
+    this.changeAlarmStatus('CLS')
+  }
+
   //close alarm
-  close() {
+  changeAlarmStatus(eventType:string) {
     const numSelected = this.selection.selected.length;
     if (numSelected == 0) {
       alert("Select at least one suspect,please");
@@ -134,20 +143,21 @@ code:string='';
       this.selection.selected.forEach(
         a=>{
         
-        let url="http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="+a.alarmId
-        this.http.put(url,[]).subscribe(data=>{
+        let url="http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
+        +a.alarmId+"&alarmStatusCode="+eventType
+        this.http.put(url,[],{responseType:"text"}).subscribe(data=>{
       
         });
         let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
         let event = {
           "create_user_id": "45",
-          "event_type_code": 'cls',
+          "event_type_code": eventType,
           "event_description": dialogRef.componentInstance.description,
           "alarm_id":a.alarmId
         }
-        this.http.post(UrlAdd, event).subscribe(data => {
+        this.http.put(UrlAdd, event,{responseType:"text"}).subscribe(data => {
 
-alert(data);
+
         })
   
       })
@@ -163,7 +173,7 @@ alert(data);
       })
     }, 
     error => {
-      alert("ss")
+      alert("Error")
     }
 
     );

@@ -1,6 +1,8 @@
 <button class="btn btn-outline-secondary m-3">Alarm in Brief</button>
-<button class="btn btn-primary" (click)="close()">
+<button class="btn btn-primary" (click)="closeAlarm()">
   <i class="fa fa-ban"></i> Close</button>
+  <button class="btn btn-primary" (click)="suppressAlarm()">
+    <i class="fa fa-ban"></i> Suppress</button>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="datasource" matSort>
 
