@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ForwardComponent } from '../forward/forward.component';
 import { element, error } from 'protractor';
+import { SelectCloseReasonComponent } from '../../alarms/select-close-reason/select-close-reason.component';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -84,7 +85,7 @@ export class SuspectsComponent implements OnInit {
       height: '400px',
       width: '600px',
 
-      data: { selected: this.selectedSuspect }
+      data: { selected: this.selection.selected }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -134,62 +135,92 @@ export class SuspectsComponent implements OnInit {
     }
     )
   }
- closeAllAlarms() 
+  //close all alrams
+  closeAlarms()
   {
-    this.nAllSelected();
-    this.selectedSuspect.forEach(element => {
+console.log("close all alarms")
+this.changeAlarmStatus('CLS');
+  }
+  //suppress all alarms
+  suppressAlarms()
+  {
+    console.log("suppress all alarms")
+    this.changeAlarmStatus('SUP');
+    
+  }
+  //change alarm status(close or supress)
+  changeAlarmStatus(eventType:string) {
+   
+    const numSelected = this.selection.selected.length;
+    if (numSelected == 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+    let dialogRef = this.dialog.open(SelectCloseReasonComponent, {
+
+      height: '400px',
+      width: '600px',
+
+      data: { selected: this.selection.selected }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //reason for close or suppressed an alarms returned from dialog
+    let reason=dialogRef.componentInstance.description;
+     
+
+  this.selection.selected.forEach(element => {
 
       let code = element["id"]["objLevelCode"];
       let key = element["id"]["objKey"];
       let oldcomplianceUserid = element["alertCount"];
       let url = "http://localhost:8081/aml/api/v1/closeAllSuspectAlarms?"
-        + "key=" + key + "&code=" + code;
-        // this.http.get(url).subscribe(data => {
-        //   //set alert count of suspect to zero
-        //           element["alertCount"] = '0';
-        //         }
-        //          )
-  
-      element.acAlarm.forEach(aaa=>{
+        + "key=" + key + "&code=" + code+"&eventType="+eventType;
+      this.http.get(url).subscribe(data => {
+        //set alert count of suspect to zero
+                element["alertCount"] = '0';
+              }
+               )
 
-        if(aaa["alarmStatusCode"]==='ACT'){
+      element.acAlarm.forEach(aaa => {
+
           let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
           let event = {
             "create_user_id": "45",
-            "event_type_code": 'cls',
-            "event_description": "poooo",
-            "alarm_id":aaa["alarmId"]
+            "event_type_code": eventType,
+            "event_description": reason,
+            "alarm_id": aaa["alarmId"]
           }
-          const httpOptions = {
-            headers: new HttpHeaders({
-              'Content-Type':  'application/json',
-              
-              
-            })
-          }
-         this.http.put(UrlAdd,event).subscribe(data => {
- console.log(data);
-  
-          },
-          err => {
-            console.log("Error occured");
-          })
-          
-        }
-      })
-      
+         
+          this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
+            console.log(data);
 
-      
- 
+          },
+            err => {
+              console.log("Error occured");
+            })
+
+        
+      })
+
+
+
+
 
     }
 
 
     );
 
+
+
+    }, error => {
+
+    }
+
+    );
+    
+  
   }
-  extractData(res: Response) {
-    let body = res.json();
-    return body || {};
-  }
+
 }
