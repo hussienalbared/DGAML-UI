@@ -19,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule } from '@angular/material';
+import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule, MatTooltipModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -33,7 +33,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,6 +80,7 @@ import { SelectCloseReasonComponent } from './components/alarms/select-close-rea
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    MatTooltipModule,
     RouterModule.forRoot([
       {
         path: 'account',
