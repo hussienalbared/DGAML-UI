@@ -21,8 +21,8 @@ export class AlarmBriefComponent implements OnInit {
     'routineCategoryCode', 'routineDescription', 'runDate'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-key:string='';
-code:string='';
+  key: string = '';
+  code: string = '';
   selection = new SelectionModel<any>(true, []);
   datasource: any = [];
   processed: Element2[] = [];
@@ -51,8 +51,8 @@ code:string='';
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-    this.key = params.get('obj_key');
-       this.code = params.get('obj_level_code');
+      this.key = params.get('obj_key');
+      this.code = params.get('obj_level_code');
       this.getAlarms();
     });
 
@@ -68,7 +68,7 @@ code:string='';
       this.datasource = new MatTableDataSource(this.datasource);
       this.datasource.sort = this.sort;
       this.datasource.paginator = this.paginator;
-    
+
 
     });
 
@@ -112,22 +112,22 @@ code:string='';
     this.datasource = this.processed;
   }
 
-  suppressAlarm(){
+  suppressAlarm() {
     this.changeAlarmStatus('SUP')
   }
-  closeAlarm(){
-    console.log('close alarm')
+  closeAlarm() {
+    
     this.changeAlarmStatus('CLS')
   }
 
   //close alarm
-  changeAlarmStatus(eventType:string) {
+  changeAlarmStatus(eventType: string) {
     const numSelected = this.selection.selected.length;
     if (numSelected == 0) {
       alert("Select at least one suspect,please");
       return;
     }
-//select reason for close
+    //select reason for close
     let dialogRef = this.dialog.open(SelectCloseReasonComponent, {
 
       height: '400px',
@@ -135,57 +135,72 @@ code:string='';
 
       data: { selected: this.selection.selected }
     });
-    
-    dialogRef.afterClosed().subscribe(result => {
 
-     
-//close alarms
-      this.selection.selected.forEach(
-        a=>{
-        
-        let url="http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
-        +a.alarmId+"&alarmStatusCode="+eventType
-        this.http.put(url,[],{responseType:"text"}).subscribe(data=>{
-      
-        });
-        let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
-        let event = {
-          "create_user_id": "45",
-          "event_type_code": eventType,
-          "event_description": dialogRef.componentInstance.description,
-          "alarm_id":a.alarmId
+    dialogRef.afterClosed().subscribe
+      (
+        result =>
+         
+        {
+
+            if (dialogRef.componentInstance.isConfirmed)
+{
+
+
+          //close alarms
+          this.selection.selected.forEach(
+            a => {
+
+              let url = "http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
+                + a.alarmId + "&alarmStatusCode=" + eventType
+              this.http.put(url, [], { responseType: "text" }).subscribe(data => {
+
+              });
+              let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+              let event = {
+                "create_user_id": "45",
+                "event_type_code": eventType,
+                "event_description": dialogRef.componentInstance.description,
+                "alarm_id": a.alarmId
+              }
+              this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
+
+
+              })
+
+            })
+
+          //update alert count
+
+          let url = "http://localhost:8081/aml/api/alaram/updateAlertCountApi?key="
+            + this.key + "&code=" + this.code;
+
+          this.http.put(url, []).subscribe(data => {
+
+
+          })
         }
-        this.http.put(UrlAdd, event,{responseType:"text"}).subscribe(data => {
+      else{
+        alert('nothing selected')
+      }
+      },
+        error => {
+          alert("Error")
 
+        }
 
-        })
-  
-      })
-
-      //update alert count
+      
+        
     
-      let url="http://localhost:8081/aml/api/alaram/updateAlertCountApi?key="
-      +this.key+"&code="+this.code;
-     
-      this.http.put(url,[]).subscribe(data=>{
+        );
   
-  
-      })
-    }, 
-    error => {
-      alert("Error")
-    }
-
-    );
 
 
-  }
-     
-     }
 
-     
+}
 
 
+
+}
 
 
 

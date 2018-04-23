@@ -138,7 +138,7 @@ export class SuspectsComponent implements OnInit {
   //close all alrams
   closeAlarms()
   {
-console.log("close all alarms")
+
 this.changeAlarmStatus('CLS');
   }
   //suppress all alarms
@@ -166,6 +166,9 @@ this.changeAlarmStatus('CLS');
 
     dialogRef.afterClosed().subscribe(result => {
       //reason for close or suppressed an alarms returned from dialog
+      if (dialogRef.componentInstance.isConfirmed)
+      {
+      
     let reason=dialogRef.componentInstance.description;
      
 
@@ -212,8 +215,10 @@ this.changeAlarmStatus('CLS');
 
     );
 
-
-
+  }
+else{
+  alert('nothing selected')
+}
     }, error => {
 
     }
