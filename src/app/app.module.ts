@@ -33,6 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
+import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,10 @@ import { SelectCloseReasonComponent } from './components/alarms/select-close-rea
     ForwardComponent,
   
     SelectCloseReasonComponent,
+  
+    AlarmDetail1Component,
+  
+   
  
   ],
   imports: [
@@ -109,6 +115,11 @@ import { SelectCloseReasonComponent } from './components/alarms/select-close-rea
         path:'suspectDetail/:obj_key/:obj_level_code/:obj_number',
         component:SuspectDetailUipageComponent
       }
+      ,{
+        path:'alarmDetail-1/:alarmId',
+        component:AlarmDetail1Component
+      }
+      
     ])
   ],
   providers: [SearchAccountService, Http, HttpClient],

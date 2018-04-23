@@ -47,7 +47,7 @@
     </ng-container>
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.alarmId}} </mat-cell>
+      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail-1/{{element.alarmId}}">{{element.alarmId}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primaryObjLevelCode">
