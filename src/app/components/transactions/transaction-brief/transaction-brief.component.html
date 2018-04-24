@@ -1,5 +1,10 @@
+<mat-accordion>
 
-<button class="btn btn-outline-secondary m-3">Transaction in Brief</button>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+          Transaction in Brief
+      </mat-expansion-panel-header>
+
 <div class="example-header">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -51,3 +56,5 @@
   [showFirstLastButtons]="true">
 </mat-paginator>
 </div>
+</mat-expansion-panel>
+</mat-accordion>

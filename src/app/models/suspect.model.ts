@@ -7,5 +7,6 @@ export interface suspect{
     oldestAlert:string;
     complianceUserid:string;
     id:any;
+    acAlarm:any;
     
 }

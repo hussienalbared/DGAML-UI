@@ -1,11 +1,53 @@
-<button class="btn btn-outline-secondary m-3">Alarm in Brief</button>
+
+  <mat-accordion>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          Alarm in Brief
+        </mat-expansion-panel-header>
+    
+       
+    
+     
+  
+
+<!-- <button class="btn btn-primary" (click)="closeAlarm()">
+  <i class="fa fa-ban"></i> Close</button>
+  <button class="btn btn-primary" (click)="suppressAlarm()">
+    <i class="fa fa-ban"></i> Suppress</button>-->
+    <mat-card>
+    <div class="button-row"> 
+ 
+      <button mat-raised-button color="primary" matTooltip="close alarm!"  (click)="closeAlarm()">Close</button>
+      <button mat-raised-button color="accent" matTooltip="suppress alarm!" (click)="suppressAlarm()">Suppress</button>
+      
+      
+      
+    </div>
+  
+  </mat-card>
+ 
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="datasource" matSort>
 
     
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" 
+        [checked]="selection.hasValue() && isAllSelected()" 
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell >
+      <mat-cell *matCellDef="let row" >
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.alarmId}} </mat-cell>
+      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail-1/{{element.alarmId}}">{{element.alarmId}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primaryObjLevelCode">
@@ -44,3 +86,5 @@
   [showFirstLastButtons]="true">
 </mat-paginator>
 </div>
+</mat-expansion-panel>
+</mat-accordion>

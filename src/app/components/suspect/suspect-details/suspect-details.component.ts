@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./suspect-details.component.css']
 })
 export class SuspectDetailsComponent implements OnInit {
-result:any;
+result:any=[];
 // displayedColumns=['PFNM','pno','Pstadd1',
 // 'PBOD','PPEPIND','PCZCOCD','PIDTYDS','PID','PIDISSUEDATE',
 // 'PIDEXPDATE','PASCNN','POCUDS','Telephone',
