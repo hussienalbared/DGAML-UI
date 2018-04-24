@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AccountSearchComponent } from './account-search/account-search.component';
 import { SearchAccountService } from './search-account.service';
-import { HttpModule, Http } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AlaramSearchComponent } from './alaram-search/alaram-search.component';
 import { PartySearchComponent } from './party-search/party-search.component';
@@ -29,11 +28,13 @@ import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
 import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -46,23 +47,25 @@ import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-
     TopBarComponent,
     MainContentComponent,
     SuspectsComponent,
-  
+
     AlarmBriefComponent,
-  
+
     TransactionBriefComponent,
-  
+
     SuspectDetailsComponent,
-  
+
     SuspectDetailUipageComponent,
-  
+
     ForwardComponent,
-  
+
     SelectCloseReasonComponent,
-  
+
     AlarmDetail1Component,
-  
-   
- 
+
+    LoginComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -88,42 +91,18 @@ import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-
     MatDialogModule,
     MatTooltipModule,
     RouterModule.forRoot([
-      {
-        path: 'account',
-        component: AccountSearchComponent
-      },
-      {
-        path: 'alarm',
-        component: AlaramSearchComponent
-      }
-      ,
-      {
-        path: 'party',
-        component: PartySearchComponent
-      }
-      ,
-      {
-        path: 'external',
-        component: ExternalPartySearchComponent
-      }
-      ,{
-        path:'suspects',
-        component:SuspectsComponent
-      }
-      ,{
-
-        path:'suspectDetail/:obj_key/:obj_level_code/:obj_number',
-        component:SuspectDetailUipageComponent
-      }
-      ,{
-        path:'alarmDetail-1/:alarmId',
-        component:AlarmDetail1Component
-      }
-      
+      { path: 'account', component: AccountSearchComponent },
+      { path: 'alarm', component: AlaramSearchComponent },
+      { path: 'party', component: PartySearchComponent },
+      { path: 'external', component: ExternalPartySearchComponent },
+      { path: 'suspects', component: SuspectsComponent },
+      { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
+      { path: 'alarmDetail-1/:alarmId', component: AlarmDetail1Component },
+      { path: 'login', component: LoginComponent }
     ])
   ],
-  providers: [SearchAccountService, Http, HttpClient],
+  providers: [AuthService, SearchAccountService, HttpClient],
   bootstrap: [AppComponent],
-   entryComponents:[ForwardComponent,SelectCloseReasonComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
 export class AppModule { }
