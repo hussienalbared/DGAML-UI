@@ -1,7 +1,7 @@
 
   <mat-accordion>
 
-      <mat-expansion-panel>
+      <mat-expansion-panel expanded='true'>
         <mat-expansion-panel-header>
           Alarm in Brief
         </mat-expansion-panel-header>
@@ -18,10 +18,13 @@
     <mat-card>
     <div class="button-row"> 
  
-      <button mat-raised-button color="primary" matTooltip="close alarm!"  (click)="closeAlarm()">Close</button>
+      <!-- <button mat-raised-button color="primary" matTooltip="close alarm!"  (click)="closeAlarm()">Close</button>
       <button mat-raised-button color="accent" matTooltip="suppress alarm!" (click)="suppressAlarm()">Suppress</button>
-      
-      
+       -->
+      <button class="btn btn-primary" (click)="closeAlarm()">
+          <i class="fa fa-ban"></i> Close</button>
+        <button class="btn btn-primary" (click)="suppressAlarm()">
+          <i class="fa fa-eye-slash"></i> Suppress</button>
       
     </div>
   

@@ -1,13 +1,13 @@
-<mat-accordion >
+<mat-accordion  >
 
-        <mat-expansion-panel  >
+        <mat-expansion-panel  expanded='true'>
           <mat-expansion-panel-header>
                 Suspect Detail
           </mat-expansion-panel-header>
 
 
 
-<mat-card class="example-card">
+<!-- <mat-card class="example-card">
 
     <mat-card-content>
         <mat-list role="list">
@@ -48,7 +48,7 @@
             <mat-list-item role="listitem">
                 <h6>Related Accounts</h6>
                 <mat-list role="list" *ngFor="let account of result.corePartyaccountD">
-                    <mat-list-item role="listitem">{{account.pacctno}}</mat-list-item>
+                    <mat-list-item role="listitem" [routerLink]="['/accountDetail',account.pacctno]">{{account.pacctno}} </mat-list-item>
 
                 </mat-list>
 
@@ -57,6 +57,51 @@
 
     </mat-card-content>
 
-</mat-card>
+</mat-card> -->
+
+<div class="col-lg-6">
+        <!--Card-->
+        <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <!-- <h4 class="card-title">Account Detail</h4> -->
+                <!--Text-->
+                <div class="card-text">
+                    <p>Customer name:{{result.pfnm}}</p>
+                    <p>Customer Number:{{result.pno}}</p>
+                    <p>Address:{{result.pstadd1}}--{{result.pstadd2}}</p>
+                    <p>Date of Birth:{{result.pbod}}</p>
+                    <p>Politically exposed:{{result.ppepind}}</p>
+                    <p>Citizenship:{{result.pczcocd}}</p>
+                    <p>Identification Document:{{result.pidtyds}}</p>
+                    <p>Identification Number:{{result.pid}}</p>
+                    <p>Identification Issue Date:{{result.pidissuedate}}</p>
+                    <p>Identification Expiry Date:{{result.pidexpdate}}</p>
+                    <p>Employer Name:{{result.pascnm}}</p>
+                    <p>Occupation:{{result.pocuds}}</p>
+                    <p>Telephone:{{result.ptel1}}--{{result.ptel2}}--{{result.ptel3}}</p>
+                    <p>Current Risk Classification:{{result.riskClassification}}</p>
+                
+                <p>Dealing with the bank since Date:{{result.pcusdate}}</p>
+                <h6>Related Accounts</h6>
+                <div  *ngFor="let account of result.corePartyaccountD">
+                        <a  [routerLink]="['/accountDetail',account.pacctno,number,obj_key,level_level_code]">{{account.pacctno}} </a>
+    
+                </div>
+                </div>  
+                
+                
+            </div>
+            <!--/.Card content-->
+
+        </div>
+        <!--/.Card-->
+    </div>
+
 </mat-expansion-panel>
 </mat-accordion>
+
+
+<!--  -->

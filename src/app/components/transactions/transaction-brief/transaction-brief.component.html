@@ -1,6 +1,6 @@
 <mat-accordion>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded='true'>
       <mat-expansion-panel-header>
           Transaction in Brief
       </mat-expansion-panel-header>
@@ -25,7 +25,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="TTRN">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction reference number </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[1]}} </mat-cell>
+      <mat-cell *matCellDef="let element">  <a routerLink="/TransactionDeatil/{{element[1]}}">{{element[1]}}</a> </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->

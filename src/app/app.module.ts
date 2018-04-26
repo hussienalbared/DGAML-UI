@@ -34,6 +34,8 @@ import { ForwardComponent } from './components/suspect/forward/forward.component
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
+import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
+import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,10 @@ import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-
     SelectCloseReasonComponent,
   
     AlarmDetail1Component,
+  
+    TransactionDetailsComponent,
+  
+    AccountDetailComponent,
   
    
  
@@ -118,6 +124,16 @@ import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-
       ,{
         path:'alarmDetail-1/:alarmId',
         component:AlarmDetail1Component
+      },
+      {
+        path:'TransactionDeatil/:ttrn',
+        component:TransactionDetailsComponent
+
+      }
+      ,{
+        path:'accountDetail/:accountNumber/:obj_number/:obj_key/:obj_level_code',
+        component:AccountDetailComponent
+
       }
       
     ])

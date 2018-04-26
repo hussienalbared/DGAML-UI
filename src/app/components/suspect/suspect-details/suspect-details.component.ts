@@ -9,10 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SuspectDetailsComponent implements OnInit {
 result:any=[];
-// displayedColumns=['PFNM','pno','Pstadd1',
-// 'PBOD','PPEPIND','PCZCOCD','PIDTYDS','PID','PIDISSUEDATE',
-// 'PIDEXPDATE','PASCNN','POCUDS','Telephone',
-// 'RISK_CLASSIFICATION','PCOSDATE','',]
+number:string='';
+level_level_code:string='';
+obj_key:string='';
+
+
+
 
   constructor(private http:HttpClient,
   
@@ -23,15 +25,17 @@ result:any=[];
    
 
      this.route.paramMap.subscribe(params => {
-      let number=params.get('obj_number');
-   
-      this.getData(number);  
+      this.number=params.get('obj_number');
+      this.obj_key=params.get('obj_key');
+    
+      this.level_level_code=params.get('obj_level_code'); 
+      this.getData(this.number);  
+  
     });
   }
   getData(number){
     let Url="http://localhost:8081/aml/api/party/ByPNO?PartyNumber="+
-    
-  number;
+    number;
     this.http.get(Url).subscribe(data=>{
 
 

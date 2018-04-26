@@ -1,0 +1,15 @@
+
+ 
+<!-- <mat-list role="list" *ngFor="let element of result;let i = index;let x of displayedColumns">
+  
+  <mat-list-item role="listitem">{{result[x]}}:{{element}}</mat-list-item>
+
+</mat-list> -->
+
+
+<ul *ngFor="let x of displayedColumns;">
+
+<li >{{x}}--{{result[0][x]}}</li>
+
+</ul>
+
