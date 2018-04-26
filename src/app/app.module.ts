@@ -19,7 +19,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule, MatTooltipModule } from '@angular/material';
+import {
+  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule,
+  MatInputModule, MatCardModule, MatTooltipModule
+} from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -29,13 +32,20 @@ import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
 import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -48,30 +58,25 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
     TopBarComponent,
     MainContentComponent,
     SuspectsComponent,
-  
     AlarmBriefComponent,
-  
     TransactionBriefComponent,
-  
     SuspectDetailsComponent,
-  
     SuspectDetailUipageComponent,
-  
     ForwardComponent,
-  
     SelectCloseReasonComponent,
-  
     AlarmDetail1Component,
-  
     TransactionDetailsComponent,
-  
     AccountDetailComponent,
-  
-   
- 
   ],
   imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     FormsModule,
     HttpClientModule,
     AngularFontAwesomeModule,
@@ -112,34 +117,32 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
         path: 'external',
         component: ExternalPartySearchComponent
       }
-      ,{
-        path:'suspects',
-        component:SuspectsComponent
+      , {
+        path: 'suspects',
+        component: SuspectsComponent
       }
-      ,{
+      , {
 
-        path:'suspectDetail/:obj_key/:obj_level_code/:obj_number',
-        component:SuspectDetailUipageComponent
+        path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
+        component: SuspectDetailUipageComponent
       }
-      ,{
-        path:'alarmDetail-1/:alarmId',
-        component:AlarmDetail1Component
+      , {
+        path: 'alarmDetail-1/:alarmId',
+        component: AlarmDetail1Component
       },
       {
-        path:'TransactionDeatil/:ttrn',
-        component:TransactionDetailsComponent
+        path: 'TransactionDeatil/:ttrn',
+        component: TransactionDetailsComponent
 
       }
-      ,{
-        path:'accountDetail/:accountNumber/:obj_number/:obj_key/:obj_level_code',
-        component:AccountDetailComponent
-
+      , {
+        path: 'accountDetail/:accountNumber/:obj_number/:obj_key/:obj_level_code',
+        component: AccountDetailComponent
       }
-      
     ])
   ],
   providers: [SearchAccountService, Http, HttpClient],
   bootstrap: [AppComponent],
-   entryComponents:[ForwardComponent,SelectCloseReasonComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
 export class AppModule { }
