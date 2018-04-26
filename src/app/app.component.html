@@ -1,6 +1,4 @@
- 
-
-<div id="wrapper" >
+<div id="wrapper" dir="{{ 'dir' | translate }}" [class.rtl]="('dir' | translate) === 'rtl'">
     <div class="row">
         <div class="col-lg-12">
             <app-top-bar></app-top-bar>
@@ -12,9 +10,8 @@
             <app-side-menu></app-side-menu>
         </div>
 
-        <div class="col-lg-9"  >
-            
+        <div class="col-lg-9">
             <router-outlet></router-outlet>
         </div>
-    </div>  
-    
+    </div>
+</div>
