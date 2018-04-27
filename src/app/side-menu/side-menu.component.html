@@ -40,11 +40,27 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a>
                             <i class="icon-clipboard"></i>
                             <span> Regulatory Reports</span>
                         </a>
                     </li>
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-description routerLink="#">
+                                    Reports
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+
+
+                            <mat-list>
+                                <mat-list-item ><a routerLink="report/sama">SAMA Report</a></mat-list-item>
+                                <mat-divider></mat-divider>
+                            </mat-list>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
 
 
                     <!-- <li><a href="#"><i class="icon-search-1"></i><span>Search</span></a></li>

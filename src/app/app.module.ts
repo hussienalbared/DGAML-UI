@@ -19,7 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule, MatSelectModule, MatRadioButton, MatRadioGroup, MatRadioModule, MatDatepicker, MatDatepickerModule, MatDatepickerToggle, MatDatepickerInput, MatNativeDateModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -74,6 +74,10 @@ import { SamaReportComponent } from './sama-report/sama-report.component';
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+   
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -99,6 +103,10 @@ import { SamaReportComponent } from './sama-report/sama-report.component';
       ,{
         path:'suspects',
         component:SuspectsComponent
+      }
+      ,{
+        path: 'report/sama',
+        component: SamaReportComponent
       }
     ])
   ],
