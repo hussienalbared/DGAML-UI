@@ -40,5 +40,22 @@ export class SuspectsService {
     }
     )
   }
+  addalarmEvent(event)
+  {
+    let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+    this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
+     
+
+    },
+      err => {
+        console.log("Error occured");
+      })
+  }
+  changeAllSuspectAlarms(key,code,eventType){
+    let url = "http://localhost:8081/aml/api/v1/closeAllSuspectAlarms?"
+    + "key=" + key + "&code=" + code+"&eventType="+eventType;
+  return this.http.get(url);
+
+  }
 
 }
