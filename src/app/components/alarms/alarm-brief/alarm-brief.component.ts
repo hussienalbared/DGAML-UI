@@ -9,6 +9,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { alaram } from '../../../models/alaram.model';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
+import { SuspectsService } from '../../../services/suspects.service';
 
 @Component({
   selector: 'app-alarm-brief',
@@ -30,7 +31,8 @@ export class AlarmBriefComponent implements OnInit {
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
     private route: ActivatedRoute, private router: Router,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+  private suspectService:SuspectsService) {
 
 
   }
@@ -150,23 +152,17 @@ export class AlarmBriefComponent implements OnInit {
           this.selection.selected.forEach(
             a => {
 
-              let url = "http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
-                + a.alarmId + "&alarmStatusCode=" + eventType
-              this.http.put(url, [], { responseType: "text" }).subscribe(data => {
-
-              });
-              let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+              this.suspectService.changeAlarmStatuseById(a.alarmId,eventType)
+           
+             
               let event = {
                 "create_user_id": "45",
                 "event_type_code": eventType,
                 "event_description": dialogRef.componentInstance.description,
                 "alarm_id": a.alarmId
               }
-              this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
-
-
-              })
-
+              this.suspectService.addalarmEvent(event)
+             
             })
 
           //update alert count

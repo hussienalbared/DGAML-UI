@@ -57,5 +57,12 @@ export class SuspectsService {
   return this.http.get(url);
 
   }
+  changeAlarmStatuseById(alarmId,eventType){
+    let url = "http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
+    + alarmId + "&alarmStatusCode=" + eventType
+  this.http.put(url, [], { responseType: "text" }).subscribe(data => {
+
+  });
+  }
 
 }
