@@ -31,7 +31,7 @@
   </mat-card>
  
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="datasource" matSort>
+  <mat-table #table [dataSource]="dataSource3" matSort>
 
     
     <ng-container matColumnDef="select">
@@ -67,11 +67,11 @@
    
     <ng-container matColumnDef="routineCategoryCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Type </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.routineCategoryCode}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.acRoutine.routineCategoryCode}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineDescription">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.routineDescription}}
+      <mat-cell *matCellDef="let element"> {{element.acRoutine.routineDescription}}
          
       
       </mat-cell>
