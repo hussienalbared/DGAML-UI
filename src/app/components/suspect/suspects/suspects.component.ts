@@ -11,6 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ForwardComponent } from '../forward/forward.component';
 import { element, error } from 'protractor';
 import { SelectCloseReasonComponent } from '../../alarms/select-close-reason/select-close-reason.component';
+import { SuspectsService } from '../../../services/suspects.service';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -28,7 +29,7 @@ export class SuspectsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient, private router: Router
-    , public dialog: MatDialog
+    , public dialog: MatDialog,private suspectService:SuspectsService
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -58,8 +59,10 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let url = "http://localhost:8081/aml/api/v1/suspectedObject";
-    this.http.get<suspect[]>(url).subscribe(data => {
+    // let url = "http://localhost:8081/aml/api/v1/suspectedObject";
+    // this.http.get<suspect[]>(url).
+this.suspectService.getAllSuspects().
+   subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

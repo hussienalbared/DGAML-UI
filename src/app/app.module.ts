@@ -36,6 +36,7 @@ import { SelectCloseReasonComponent } from './components/alarms/select-close-rea
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
+import { SuspectsService } from './services/suspects.service';
 
 @NgModule({
   declarations: [
@@ -138,7 +139,9 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
       
     ])
   ],
-  providers: [SearchAccountService, Http, HttpClient],
+  providers: [SearchAccountService, Http, HttpClient,
+    SuspectsService],
+  
   bootstrap: [AppComponent],
    entryComponents:[ForwardComponent,SelectCloseReasonComponent],
 })
