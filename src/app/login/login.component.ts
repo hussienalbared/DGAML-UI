@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   invalidLogin: boolean;
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private authService: AuthService) { }
 
   signIn(credentials) {

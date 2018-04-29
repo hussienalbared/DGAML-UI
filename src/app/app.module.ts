@@ -18,7 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule, MatTooltipModule } from '@angular/material';
+import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule,
+  MatCardModule, MatTooltipModule } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -91,6 +92,9 @@ import { AuthService } from './auth.service';
     MatDialogModule,
     MatTooltipModule,
     RouterModule.forRoot([
+      { path: 'login', component: LoginComponent }
+    ]),
+    RouterModule.forRoot([
       { path: 'account', component: AccountSearchComponent },
       { path: 'alarm', component: AlaramSearchComponent },
       { path: 'party', component: PartySearchComponent },
@@ -98,7 +102,6 @@ import { AuthService } from './auth.service';
       { path: 'suspects', component: SuspectsComponent },
       { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
       { path: 'alarmDetail-1/:alarmId', component: AlarmDetail1Component },
-      { path: 'login', component: LoginComponent }
     ])
   ],
   providers: [AuthService, SearchAccountService, HttpClient],
