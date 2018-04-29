@@ -23,5 +23,22 @@ export class SuspectsService {
     "&code=" + code + "&user=" + complianceUserid;
   return this.http.put(url, [])
   }
+  removeOwnerShip(selected){
+    
+    selected.forEach(element => {
+      console.log("hi   "+element["objName"]);
+      let code = element["id"]["objLevelCode"];
+      let key = element["id"]["objKey"];
+      let oldcomplianceUserid = element["complianceUserid"];
+      element["complianceUserid"] = null;
+      let url = "http://localhost:8081/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
+      this.http.put(url, []).subscribe(data => { }
+        , error => {
+          element["complianceUserid"] = oldcomplianceUserid;
+        }
+      );
+    }
+    )
+  }
 
 }

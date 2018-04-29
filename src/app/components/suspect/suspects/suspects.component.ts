@@ -93,23 +93,22 @@ this.suspectService.getAllSuspects().
     );
   }
   removeOwnerShip() {
-
+this.suspectService.removeOwnerShip(this.selection.selected);
    
-    this.selection.selected.forEach(element => {
-      // console.log(element["objName"]);
-      let code = element["id"]["objLevelCode"];
-      let key = element["id"]["objKey"];
-      let oldcomplianceUserid = element["complianceUserid"];
-      element["complianceUserid"] = null;
-      let url = "http://localhost:8081/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
-      this.http.put(url, []).subscribe(data => { }
-        , error => {
-          element["complianceUserid"] = oldcomplianceUserid;
-        }
-      );
-    }
-    )
-
+    // this.selection.selected.forEach(element => {
+    //   console.log("hi   "+element["objName"]);
+    //   let code = element["id"]["objLevelCode"];
+    //   let key = element["id"]["objKey"];
+    //   let oldcomplianceUserid = element["complianceUserid"];
+    //   element["complianceUserid"] = null;
+    //   let url = "http://localhost:8081/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
+    //   this.http.put(url, []).subscribe(data => { }
+    //     , error => {
+    //       element["complianceUserid"] = oldcomplianceUserid;
+    //     }
+    //   );
+    // }
+    // )
   }
   takeOwnerShip() {
 
