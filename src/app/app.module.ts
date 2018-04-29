@@ -39,9 +39,7 @@ import { SelectCloseReasonComponent } from './components/alarms/select-close-rea
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
-<<<<<<< HEAD
 import { SuspectsService } from './services/suspects.service';
-=======
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -49,7 +47,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
->>>>>>> feb869303bccac6c9e0dc7b279a8f3a7157e1595
 
 @NgModule({
   declarations: [

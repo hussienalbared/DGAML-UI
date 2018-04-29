@@ -11,8 +11,8 @@ export class SuspectsService {
     let url = "http://localhost:8081/aml/api/v1/suspectedObject";
    return this.http.get<suspect[]>(url);
   }
-  forwardSuspect(){
-    
+  forwardSuspect(suspectKey,suspectCode){
+
   }
 
 }
