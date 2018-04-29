@@ -19,7 +19,7 @@ import { SuspectsService } from '../../../services/suspects.service';
 })
 export class SuspectsComponent implements OnInit {
   result: suspect[];
-  selectedSuspect: suspect[] = [];
+ 
   dataSource: any = null;
   displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
     'Profile Risk', 'Oldest Alarm', 'User'];
@@ -38,13 +38,7 @@ export class SuspectsComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  nAllSelected() {
-    this.selectedSuspect = [];
-    this.selection.selected.forEach(a =>
-      this.selectedSuspect.push(a)
-    )
-
-  }
+ 
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -59,8 +53,7 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let url = "http://localhost:8081/aml/api/v1/suspectedObject";
-    // this.http.get<suspect[]>(url).
+   
 this.suspectService.getAllSuspects().
    subscribe(data => {
       this.result = data;
@@ -82,7 +75,7 @@ this.suspectService.getAllSuspects().
       alert("Select at least one suspect,please");
       return;
     }
-    this.nAllSelected();
+   
     let dialogRef = this.dialog.open(ForwardComponent, {
 
       height: '400px',
@@ -92,8 +85,7 @@ this.suspectService.getAllSuspects().
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(dialogRef.componentInstance.name);
-      //  location.reload();
+   
     }, error => {
 
     }
@@ -102,8 +94,8 @@ this.suspectService.getAllSuspects().
   }
   removeOwnerShip() {
 
-    this.nAllSelected();
-    this.selectedSuspect.forEach(element => {
+   
+    this.selection.selected.forEach(element => {
       // console.log(element["objName"]);
       let code = element["id"]["objLevelCode"];
       let key = element["id"]["objKey"];
@@ -121,16 +113,17 @@ this.suspectService.getAllSuspects().
   }
   takeOwnerShip() {
 
-    this.nAllSelected();
-    this.selectedSuspect.forEach(element => {
-      // console.log(element["objName"]);
+    
+    this.selection.selected.forEach(
+      element => {
+   
       let code = element["id"]["objLevelCode"];
       let key = element["id"]["objKey"];
       let oldcomplianceUserid = element["complianceUserid"];
       element["complianceUserid"] = "Admin";
-      let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
-        "&code=" + code + "&user=" + element["complianceUserid"];
-      this.http.put(url, []).subscribe(data => { }
+     
+     
+      this.suspectService.takeOwnerShipService(key,code,element["complianceUserid"]).subscribe(data => { }
         , error => {
           element["complianceUserid"] = oldcomplianceUserid;
         }

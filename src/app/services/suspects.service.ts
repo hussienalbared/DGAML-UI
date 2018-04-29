@@ -18,5 +18,10 @@ export class SuspectsService {
     
 
   }
+  takeOwnerShipService(key,code,complianceUserid){
+    let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
+    "&code=" + code + "&user=" + complianceUserid;
+  return this.http.put(url, [])
+  }
 
 }
