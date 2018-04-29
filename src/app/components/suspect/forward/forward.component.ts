@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { SuspectsService } from '../../../services/suspects.service';
 @Component({
   selector: 'app-forward',
   templateUrl: './forward.component.html',
@@ -13,7 +14,7 @@ export class ForwardComponent implements OnInit {
   numSuspected: number = 0;
   constructor(
     public dialogRef: MatDialogRef<ForwardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient
+    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService
 
   ) {
     this.numSuspected = this.data["selected"].length;
@@ -44,9 +45,11 @@ export class ForwardComponent implements OnInit {
       element["complianceUserid"] = this.name;
 
       element["id"]["objKey"]
-      let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + suspectKey +
-        "&code=" + code + "&user=" + this.name;
-      this.http.put(url, []).subscribe(data => {
+      // let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + suspectKey +
+      //   "&code=" + code + "&user=" + this.name;
+      //   this.http.put(url, []).
+        this.suspectService.forwardSuspect(suspectKey,code,this.name)
+      .subscribe(data => {
       }, error => {
         element["complianceUserid"] = oldName;
       }
