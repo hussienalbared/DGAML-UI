@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AccountSearchComponent } from './account-search/account-search.component';
 import { SearchAccountService } from './search-account.service';
@@ -21,7 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {
   MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule,
-  MatInputModule, MatCardModule, MatTooltipModule
+  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatIconModule, MatRadioModule, MatTabsModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -42,6 +42,10 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
 import { SuspectsService } from './services/suspects.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { LayoutComponent } from './components/layout/layout.component';
+import { CdkTableModule } from '@angular/cdk/table';
+
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -68,6 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AlarmDetail1Component,
     TransactionDetailsComponent,
     AccountDetailComponent,
+    LayoutComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -99,6 +105,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatCardModule,
     MatDialogModule,
     MatTooltipModule,
+    MatSidenavModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatRadioModule,
+    MatIconModule,
+    MatMenuModule,
     RouterModule.forRoot([
       {
         path: 'account',
@@ -146,6 +167,40 @@ export function HttpLoaderFactory(http: HttpClient) {
     SuspectsService],
   
   bootstrap: [AppComponent],
+  exports:[ MatIconModule,
+  CdkTableModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
 export class AppModule { }

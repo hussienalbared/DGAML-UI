@@ -1,0 +1,108 @@
+<mat-toolbar color="" class="example-toolbar">
+  <div>
+  <img src="./assets/images/logo.png" alt="Logo" *ngIf="isOn" width="150">
+    <button class="mat-button-menu" mat-button (click)="changeIsOn()">
+        <mat-icon >menu</mat-icon>
+    </button>
+  <!-- </div>
+  <div> -->
+    
+   
+    <h1 style="display:inline;margin-left: 12px;">DataGear Anti-Money Laundering</h1>
+  </div>
+  <div class="divA">
+    <i class="fa fa-bell">
+      <mat-icon>bell</mat-icon>
+      <span>4</span>
+    </i>
+   
+    <i class="fa fa-expand" onclick="javascript:toggle_fullscreen()"></i>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <img src="./assets/images/users/avartar3.png" class="rounded-circle" width="50"> Eman Gaafar
+    </button>
+    <mat-menu #menu="matMenu" overlapTrigger="false">
+      <button mat-menu-item>
+        <span>My Profile</span>
+      </button>
+      <button mat-menu-item>
+        <span>Account Setting</span>
+      </button>
+      <button mat-menu-item>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #sidenav [mode]="mode.value" opened >
+    
+    <mat-nav-list>
+      <mat-list-item>
+        <a routerLink="suspects" class="active">
+          <mat-icon>people</mat-icon>
+          <span *ngIf="isOn"> Suspects</span>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <a>
+          <mat-icon>people</mat-icon>
+          <span *ngIf="isOn"> Risk Profiling</span>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <a>
+          <mat-icon>people</mat-icon>
+          <span *ngIf="isOn"> Regulatory Reports</span>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+        <mat-icon >search</mat-icon>
+      </mat-list-item>
+
+      <mat-accordion *ngIf="isOn" displayMode="flat" >
+        <mat-expansion-panel #fffv>
+          <mat-expansion-panel-header>
+            <mat-icon>search</mat-icon>
+            <span>Search</span>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item>
+              <a routerLink="account">account</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <a routerLink="alarm">Alarm</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <a routerLink="party">Party</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <a routerLink="external">External Party</a>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <a>
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isOn"> Administration</span>
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <script>
+var elemnet=document.getElementById("");
+</script> -->
