@@ -11,7 +11,9 @@ const httpOptions = {
 };
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient
+    // , private helper: JwtHelperService
+  ) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
       JSON.stringify(credentials), httpOptions)
@@ -29,12 +31,15 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    console.log('isLoggedIn');
     const token = localStorage.getItem('token');
+
     if (!token) {
       return null;
     }
+    const helper = new JwtHelperService();
 
-    return new JwtHelperService().isTokenExpired(token);
+    return !helper.isTokenExpired(token);
   }
 
   get currentUser() {
