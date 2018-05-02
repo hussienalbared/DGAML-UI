@@ -1,0 +1,169 @@
+
+mat-sidenav-content {
+    height: 100vh;
+}
+mat-sidenav{
+    background: #22546c;
+}
+mat-divider.divider{
+    border-color: rgba(255, 255, 255, 0.1);
+    width: 90%;
+    margin: 10px 5%;
+    display: block;
+    clear: both;
+}
+.divA{
+    float:right;
+    overflow: hidden;
+    text-align: right;
+    display: flex;
+    /* background-color: aqua; */
+}
+mat-toolbar{
+    /* display: flex; */
+}
+
+mat-toolbar div{
+    /* flex: 1; */
+}
+
+mat-sidenav{
+    /* background-color: aqua; */
+    max-width: 280px;
+    font-family: "Oswald";
+}
+mat-list-item{
+    font-family: "Oswald";
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 1;
+    font-size: 13px;
+    position: relative;
+}
+mat-expansion-panel-header{
+    background: #22546c;
+    font-family: "Oswald";
+    font-size: 18px;
+    color: #e7e7e7;
+    /* text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1); */
+}
+.topbar {
+
+    /* left: 0px; */
+    /* right: 0; */
+    /* top: 0px; */
+    /* height: 50px; */
+    /* display: flex; */
+    z-index: 11;
+    background: #ffffff;
+    /* position: fixed; */
+    /* -webkit-box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.2); */
+    /* added by dev */
+    padding-left: 0px;
+}
+
+.topbar .topbar-left {
+    /* float: left; */
+    display: flex;
+    /* height: 50px; */
+    /* position: relative; */
+    z-index: 1;
+    /* width: 280px; */
+    background: #f5f5f5;
+}
+
+.logo h1 {
+    width: 224px;
+    margin: 0px auto;
+    height: 50px;
+    text-align: center;
+}
+
+.logo h1 img {
+    height: 75%;
+}
+
+.button-menu-mobile{
+    /* position: absolute; */
+    /* right: 0; */
+    /* float: left; */
+    /* top: 0px; */
+    z-index: 2;
+    /* padding: 10px 18px; */
+    /* height: 50px; */
+    /* font-size: 21px; */
+    background: transparent;
+    color: #888;
+    border: none;
+}
+
+.mat-button-menu{
+    min-width: 56px;
+    /* margin: -16px; */
+}
+
+.rounded-image {
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.rounded-image img {
+    width: 100%;
+}
+
+.profile-image {
+    border: 4px double rgba(255, 255, 255, 0.2);
+}
+
+.profile-text {
+    color: #fff;
+    font-family: "Oswald";
+    font-size: 22px;
+}
+
+hr.divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    width: 90%;
+    margin: 10px 5%;
+    display: block;
+    clear: both;
+
+}
+.profile-image-min{
+    height: 50px; 
+    width: 50px;
+}
+.topbar-profile .topbar-profile-image {
+    width: 35px;
+    position: relative;
+    margin-right: 5px;
+    margin-top: -15px;
+    margin-bottom: -12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* 
+.topbar-profile>a {
+    font-family: "Oswald";
+} */
+ 
+.mat-nav-list .mat-list-item {
+    font-size: 18px;
+    color: #e7e7e7;
+    /* text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1); */
+}
+.mat-expanded{
+    background: #22546c;
+}
+
+.mat-expanded .mat-expansion-indicator {
+    color: #e7e7e7;
+    font-size: 25px;
+}

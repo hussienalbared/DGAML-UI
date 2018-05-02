@@ -1,14 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-.dropdown-toggle.btn-sm {
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* .dropdown-toggle.btn-sm {
     padding-right: 6px;
 }
 
 .dropdown-toggle.btn-xs {
     padding-right: 3px;
 }
-
+*/
 .btn-default {
     background-color: #ABB7B7;
     border-color: #ABB7B7;
@@ -108,7 +108,8 @@
 
 
 body {
-    background: #E4EAE6;
+    /* background: #E4EAE6; */
+    background: rgba(0, 0, 0, 0.03);
     margin: 0;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizelegibility;

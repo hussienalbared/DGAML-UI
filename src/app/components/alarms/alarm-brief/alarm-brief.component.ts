@@ -9,6 +9,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { alaram } from '../../../models/alaram.model';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
+import { SuspectsService } from '../../../services/suspects.service';
 
 @Component({
   selector: 'app-alarm-brief',
@@ -24,19 +25,21 @@ export class AlarmBriefComponent implements OnInit {
   key: string = '';
   code: string = '';
   selection = new SelectionModel<any>(true, []);
-  datasource: any = [];
+  // datasource: any = [];
+  dataSource3:any=[];
   processed: Element2[] = [];
   // processed:any=[];
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
     private route: ActivatedRoute, private router: Router,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+  private suspectService:SuspectsService) {
 
 
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.datasource.data.length;
+    const numRows = this.dataSource3.data.length;
     return numSelected === numRows;
   }
 
@@ -45,7 +48,7 @@ export class AlarmBriefComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.datasource.data.forEach(row => this.selection.select(row));
+      this.dataSource3.data.forEach(row => this.selection.select(row));
   }
 
 
@@ -61,13 +64,13 @@ export class AlarmBriefComponent implements OnInit {
   getAlarms() {
     let Url = "http://localhost:8081/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
     this.http.get(Url).subscribe(data => {
-      this.datasource = data["acAlarm"];
-
-
-      this.processData();
-      this.datasource = new MatTableDataSource(this.datasource);
-      this.datasource.sort = this.sort;
-      this.datasource.paginator = this.paginator;
+      // this.datasource = data["acAlarm"];
+      this.dataSource3 = data["acAlarm"];
+console.log(this.dataSource3.length+"fggggggggg")
+      // this.processData();
+      this.dataSource3 = new MatTableDataSource(this.dataSource3);
+      this.dataSource3.sort = this.sort;
+      this.dataSource3.paginator = this.paginator;
 
 
     });
@@ -80,37 +83,37 @@ export class AlarmBriefComponent implements OnInit {
     };
   }
 
-  processData() {
-    this.datasource.forEach((alarm) => {
-      if (alarm.acroutine.length == 0) {
-        var x: Element2 = this.initilizeElment();
-        x.alarmId = alarm.alarmId;
-        x.primaryObjLevelCode = alarm.primaryObjLevelCode;
-        x.routineName = alarm.routineName;
-        x.runDate = alarm.runDate;
+  // processData() {
+  //   this.datasource.forEach((alarm) => {
+  //     if (alarm.acroutine.length == 0) {
+  //       var x: Element2 = this.initilizeElment();
+  //       x.alarmId = alarm.alarmId;
+  //       x.primaryObjLevelCode = alarm.primaryObjLevelCode;
+  //       x.routineName = alarm.routineName;
+  //       x.runDate = alarm.runDate;
 
-        this.processed.push(x);
+  //       this.processed.push(x);
 
-      }
+  //     }
 
-      alarm.acroutine.forEach((ac) => {
-        var x: Element2 = this.initilizeElment();
-        x.routineCategoryCode = ac.routineCategoryCode;
-        x.routineDescription = ac.routineDescription;
+  //     alarm.acroutine.forEach((ac) => {
+  //       var x: Element2 = this.initilizeElment();
+  //       x.routineCategoryCode = ac.routineCategoryCode;
+  //       x.routineDescription = ac.routineDescription;
 
-        x.alarmId = alarm.alarmId;
-        x.primaryObjLevelCode = alarm.primaryObjLevelCode;
-        x.routineName = alarm.routineName;
-        x.runDate = alarm.runDate;
+  //       x.alarmId = alarm.alarmId;
+  //       x.primaryObjLevelCode = alarm.primaryObjLevelCode;
+  //       x.routineName = alarm.routineName;
+  //       x.runDate = alarm.runDate;
 
-        this.processed.push(x);
-      });
+  //       this.processed.push(x);
+  //     });
 
 
-    })
+  //   })
 
-    this.datasource = this.processed;
-  }
+  //   this.datasource = this.processed;
+  // }
 
   suppressAlarm() {
     this.changeAlarmStatus('SUP')
@@ -150,23 +153,17 @@ export class AlarmBriefComponent implements OnInit {
           this.selection.selected.forEach(
             a => {
 
-              let url = "http://localhost:8081/aml/api/alaram/closeAlarmById?alarmId="
-                + a.alarmId + "&alarmStatusCode=" + eventType
-              this.http.put(url, [], { responseType: "text" }).subscribe(data => {
-
-              });
-              let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+              this.suspectService.changeAlarmStatuseById(a.alarmId,eventType)
+           
+             
               let event = {
                 "create_user_id": "45",
                 "event_type_code": eventType,
                 "event_description": dialogRef.componentInstance.description,
                 "alarm_id": a.alarmId
               }
-              this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
-
-
-              })
-
+              this.suspectService.addalarmEvent(event)
+             
             })
 
           //update alert count

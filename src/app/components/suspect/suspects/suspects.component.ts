@@ -19,7 +19,7 @@ import { SuspectsService } from '../../../services/suspects.service';
 })
 export class SuspectsComponent implements OnInit {
   result: suspect[];
-  selectedSuspect: suspect[] = [];
+ 
   dataSource: any = null;
   displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
     'Profile Risk', 'Oldest Alarm', 'User'];
@@ -38,13 +38,7 @@ export class SuspectsComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  nAllSelected() {
-    this.selectedSuspect = [];
-    this.selection.selected.forEach(a =>
-      this.selectedSuspect.push(a)
-    )
-
-  }
+ 
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -59,8 +53,7 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let url = "http://localhost:8081/aml/api/v1/suspectedObject";
-    // this.http.get<suspect[]>(url).
+   
 this.suspectService.getAllSuspects().
    subscribe(data => {
       this.result = data;
@@ -82,7 +75,7 @@ this.suspectService.getAllSuspects().
       alert("Select at least one suspect,please");
       return;
     }
-    this.nAllSelected();
+   
     let dialogRef = this.dialog.open(ForwardComponent, {
 
       height: '400px',
@@ -92,8 +85,7 @@ this.suspectService.getAllSuspects().
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(dialogRef.componentInstance.name);
-      //  location.reload();
+   
     }, error => {
 
     }
@@ -101,36 +93,21 @@ this.suspectService.getAllSuspects().
     );
   }
   removeOwnerShip() {
-
-    this.nAllSelected();
-    this.selectedSuspect.forEach(element => {
-      // console.log(element["objName"]);
-      let code = element["id"]["objLevelCode"];
-      let key = element["id"]["objKey"];
-      let oldcomplianceUserid = element["complianceUserid"];
-      element["complianceUserid"] = null;
-      let url = "http://localhost:8081/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
-      this.http.put(url, []).subscribe(data => { }
-        , error => {
-          element["complianceUserid"] = oldcomplianceUserid;
-        }
-      );
-    }
-    )
-
-  }
+this.suspectService.removeOwnerShip(this.selection.selected);
+     }
   takeOwnerShip() {
 
-    this.nAllSelected();
-    this.selectedSuspect.forEach(element => {
-      // console.log(element["objName"]);
+    
+    this.selection.selected.forEach(
+      element => {
+   
       let code = element["id"]["objLevelCode"];
       let key = element["id"]["objKey"];
       let oldcomplianceUserid = element["complianceUserid"];
       element["complianceUserid"] = "Admin";
-      let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + key +
-        "&code=" + code + "&user=" + element["complianceUserid"];
-      this.http.put(url, []).subscribe(data => { }
+     
+     
+      this.suspectService.takeOwnerShipService(key,code,element["complianceUserid"]).subscribe(data => { }
         , error => {
           element["complianceUserid"] = oldcomplianceUserid;
         }
@@ -147,7 +124,7 @@ this.changeAlarmStatus('CLS');
   //suppress all alarms
   suppressAlarms()
   {
-    console.log("suppress all alarms")
+   
     this.changeAlarmStatus('SUP');
     
   }
@@ -180,9 +157,8 @@ this.changeAlarmStatus('CLS');
       let code = element["id"]["objLevelCode"];
       let key = element["id"]["objKey"];
       let oldcomplianceUserid = element["alertCount"];
-      let url = "http://localhost:8081/aml/api/v1/closeAllSuspectAlarms?"
-        + "key=" + key + "&code=" + code+"&eventType="+eventType;
-      this.http.get(url).subscribe(data => {
+      
+      this.suspectService.changeAllSuspectAlarms(key,code,eventType).subscribe(data => {
         //set alert count of suspect to zero
                 element["alertCount"] = '0';
               }
@@ -190,32 +166,16 @@ this.changeAlarmStatus('CLS');
 
       element.acAlarm.forEach(aaa => {
 
-          let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
           let event = {
             "create_user_id": "45",
             "event_type_code": eventType,
             "event_description": reason,
             "alarm_id": aaa["alarmId"]
           }
+         this.suspectService.addalarmEvent(event)
          
-          this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
-            console.log(data);
-
-          },
-            err => {
-              console.log("Error occured");
-            })
-
-        
       })
-
-
-
-
-
     }
-
-
     );
 
   }
