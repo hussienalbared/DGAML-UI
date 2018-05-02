@@ -19,13 +19,7 @@ mat-divider.divider{
     display: flex;
     /* background-color: aqua; */
 }
-mat-toolbar{
-    /* display: flex; */
-}
 
-mat-toolbar div{
-    /* flex: 1; */
-}
 
 mat-sidenav{
     /* background-color: aqua; */
@@ -60,6 +54,14 @@ mat-expansion-panel-header{
     /* display: flex; */
     z-index: 11;
     background: #ffffff;
+    
+    padding-top: 0;
+    margin-top: 0;
+ 
+ height: auto;;
+   
+ 
+    /* max-height: 50px; */
     /* position: fixed; */
     /* -webkit-box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.2); */
     /* box-shadow: 1px 0 3px 0 rgba(0, 0, 0, 0.2); */
@@ -74,7 +76,19 @@ mat-expansion-panel-header{
     /* position: relative; */
     z-index: 1;
     /* width: 280px; */
-    background: #f5f5f5;
+    background:white;
+}
+.notification{
+    position: relative;
+  
+}
+.notificationValue{
+    position: absolute;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+ right:4px;
+    top: -13px;;
 }
 
 .logo h1 {
@@ -166,4 +180,35 @@ hr.divider {
 .mat-expanded .mat-expansion-indicator {
     color: #e7e7e7;
     font-size: 25px;
+}
+.section2{
+    display: flex;
+    width: 100%;
+  
+    font-family: "Oswald";
+    color: #505458;
+    line-height: 30px;
+}
+ 
+.section2 div{
+    flex: 2;
+    align-self: center;
+}
+.section2 div:last-child{
+    flex: 1;
+}
+.optionsc{
+    display: flex;
+    
+}
+.optionsc div{
+    flex: 1;
+   
+ 
+}
+.optionsc div:last-child{
+    flex: .5;
+   
+    
+ 
 }
