@@ -27,6 +27,7 @@
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^2.0.1",
     "angular-font-awesome": "^3.1.2",
+    "angular-material-badge": "^1.2.9",
     "angular2-csv": "^0.2.5",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",

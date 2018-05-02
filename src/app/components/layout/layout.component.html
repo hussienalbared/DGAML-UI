@@ -1,3 +1,4 @@
+
 <mat-toolbar #img class="topbar">
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
@@ -7,35 +8,64 @@
         </a>
       </h1>
     </div>
-    <button class="mat-button-menu button-menu-mobile" mat-button (click)="changeIsOn()">
+    <!-- class="mat-button-menu button-menu-mobile" -->
+    <button mat-icon-button (click)="changeIsOn()" >
       <mat-icon>menu</mat-icon>
     </button>
   </div>
 
-  <div>
-    <h1 style="display:inline;margin-left: 12px;">DataGear Anti-Money Laundering</h1>
-    <i class="fa fa-bell">
-      <mat-icon>bell</mat-icon>
-      <span>4</span>
-    </i>
+  <div class="section2">
+    <div>
+      <h1 style="margin-left: 16px;"><strong>DataGear</strong>  Anti-Money Laundering</h1>
+    </div>
+    <div class="optionsc">
+      <div >
+      <i class="fa fa-bell notification">
 
-    <i class="fa fa-expand" onclick="javascript:toggle_fullscreen()"></i>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <img src="./assets/images/users/avartar3.png" class="rounded-circle" width="50"> Eman Gaafar
-    </button>
-    <mat-menu #menu="matMenu" overlapTrigger="false">
-      <button mat-menu-item>
-        <span>My Profile</span>
+          <i class="notificationValue">4</i>
+      </i>
+     
+      <i class="fa fa-expand" style="margin-left: 15px;"></i>
+     
+    </div >
+      <div >
+      <button mat-button [matMenuTriggerFor]="menu">
+      
+        <img src="./assets/images/users/avartar3.png" class="rounded-circle"  height="40">
+         Eman Gaafar
+      
       </button>
-      <button mat-menu-item>
-        <span>Account Setting</span>
-      </button>
-      <button mat-menu-item>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
+      <mat-menu #menu="matMenu" overlapTrigger="false">
+        <button mat-menu-item>
+          <span>My Profile</span>
+        </button>
+        <button mat-menu-item>
+          <span>Account Setting</span>
+        </button>
+        <button mat-menu-item>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+      <!--  -->
+      <div>
+      <button mat-button [matMenuTriggerFor]="menu2">
+        English<mat-icon>language</mat-icon>
+        </button>
+        <mat-menu #menu2="matMenu" overlapTrigger="false">
+          <button mat-menu-item>
+            <span>English</span>
+          </button>
+          <button mat-menu-item>
+            <span>Arabic</span>
+          </button>
+       
+        </mat-menu>
+      </div>
+<!--  -->
+
+    </div>
   </div>
-
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container" autosize>
@@ -44,17 +74,17 @@
     <hr class="divider">
     <div class="clearfix"></div>
     <div class="profile-image-min" *ngIf="!isOn">
-        <a href="#" class="rounded-image profile-image">
-          <img src="./assets/images/users/avartar3.png">
-        </a>
-      </div>
+      <a href="#" class="rounded-image profile-image">
+        <img src="./assets/images/users/avartar3.png">
+      </a>
+    </div>
     <div class="profile-info row" *ngIf="isOn">
       <div class="col-4">
         <a href="#" class="rounded-image profile-image">
           <img src="./assets/images/users/avartar3.png">
         </a>
       </div>
-      <div class="col-8" >
+      <div class="col-8">
         <div class="profile-text">Welcome
           <b>Eman Gaafar</b>
         </div>
@@ -81,8 +111,8 @@
       <mat-divider></mat-divider>
       <mat-list-item>
         <a>
-          <mat-icon>people</mat-icon>
-          <span *ngIf="isOn"> Regulatory Reports vdfkdsn df ds </span>
+          <mat-icon>assignment</mat-icon>
+          <span *ngIf="isOn"> Regulatory Reports </span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -129,6 +159,3 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<!-- <script>
-var elemnet=document.getElementById("");
-</script> -->
