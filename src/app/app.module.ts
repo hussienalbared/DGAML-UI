@@ -41,6 +41,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,15 +111,15 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
       },
       { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
       { path: 'alarmDetail-1/:alarmId', component: AlarmDetail1Component },
-    ])
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:8081', 'http://localhost:8081'],
+        blacklistedRoutes: ['localhost:8081/aml/auth/']
+      }
+    }),
   ],
-  // JwtModule.forRoot({
-  //   jwtOptionsProvider: {
-  //     provide: JWT_OPTIONS,
-  //     useFactory: jwtOptionsFactory,
-  //     deps: [TokenService]
-  //   }
-  // }),
   providers: [AuthService, AuthGuardService, JwtHelperService, SearchAccountService, HttpClient],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
