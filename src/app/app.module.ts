@@ -46,7 +46,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CdkTableModule } from '@angular/cdk/table';
 
-
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -120,6 +119,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatRadioModule,
     MatIconModule,
     MatMenuModule,
+    MatSelectModule
+    ,
     RouterModule.forRoot([
       {
         path: 'account',

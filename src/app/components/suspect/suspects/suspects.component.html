@@ -1,5 +1,5 @@
 
-<mat-card style="background-color: #c6cad1">
+<mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
   <button class="btn btn-primary" (click)="openDialog()">
     <i class="fa fa-share" > </i> Forward</button>
   <button class="btn btn-primary" (click)="takeOwnerShip()">
@@ -18,7 +18,7 @@
     <i class="fa fa-file-text"></i> Report</button>
 
 </mat-card>
-<mat-accordion>
+<mat-accordion style="background-color: rgba(0, 0, 0, 0.02)">
   <mat-expansion-panel expanded='true'>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -64,7 +64,10 @@
 
         <ng-container matColumnDef="Suspect Name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
-          <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)"> {{alarm.objName}} </mat-cell>
+          <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)">
+      
+            <a routerLink="suspectDetail/ {{alarm.id.objKey}}/{{alarm.id.objLevelCode}}/{{alarm.objNumber}}"> {{alarm.objName}}</a>
+          </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="RIM Number">

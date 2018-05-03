@@ -1,4 +1,8 @@
-
+<mat-accordion>
+    <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      Search Account
+    </mat-expansion-panel-header>
 <div class="container">
 <form  #accountSearch = "ngForm" (ngSubmit) = "onClickSubmit(accountSearch.value)">
 <div class="form-group">
@@ -77,3 +81,5 @@
   [showFirstLastButtons]="true">
 </mat-paginator>
 </div>
+</mat-expansion-panel>
+</mat-accordion>

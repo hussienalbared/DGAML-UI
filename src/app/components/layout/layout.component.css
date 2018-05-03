@@ -1,16 +1,19 @@
 
-mat-sidenav-content {
+.mat-sidenav-content {
     height: 100vh;
 }
-mat-sidenav{
+.mat-sidenav{
     background: #22546c;
 }
-mat-divider.divider{
-    border-color: rgba(255, 255, 255, 0.1);
-    width: 90%;
-    margin: 10px 5%;
+.mat-divider{
+
+  
     display: block;
     clear: both;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-color:white;
+    opacity: 0.3
+   
 }
 .divA{
     float:right;
@@ -21,12 +24,12 @@ mat-divider.divider{
 }
 
 
-mat-sidenav{
+.mat-sidenav{
     /* background-color: aqua; */
     max-width: 280px;
     font-family: "Oswald";
 }
-mat-list-item{
+.mat-list-item{
     font-family: "Oswald";
     margin: 0;
     padding: 0;
@@ -38,7 +41,7 @@ mat-list-item{
     font-size: 13px;
     position: relative;
 }
-mat-expansion-panel-header{
+.mat-expansion-panel-header{
     background: #22546c;
     font-family: "Oswald";
     font-size: 18px;
@@ -76,7 +79,10 @@ mat-expansion-panel-header{
     /* position: relative; */
     z-index: 1;
     /* width: 280px; */
-    background:white;
+    background-color: #E4EAE6;
+   
+    /* width: 344px; */
+    padding-right: 16px;
 }
 .notification{
     position: relative;
@@ -208,7 +214,22 @@ hr.divider {
 }
 .optionsc div:last-child{
     flex: .5;
-   
-    
- 
+}
+
+.mat-sidenav .mat-expansion-panel-header {
+    padding: 0 16px;
+}
+.mat-sidenav-content{
+    background-color: #E4EAE6;
+    padding: 16px;
+}
+.ProductName{
+    margin-left: 20px;
+    font-family: Oswald;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 30px;   
+}
+.mat-nav-list .mat-list-item:hover{
+    background-color: #4d5252
 }

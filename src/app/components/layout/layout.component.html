@@ -16,7 +16,7 @@
 
   <div class="section2">
     <div>
-      <h1 style="margin-left: 16px;"><strong>DataGear</strong>  Anti-Money Laundering</h1>
+      <h1  class="ProductName"><strong style="font-weight:700;">DataGear</strong>  Anti-Money Laundering</h1>
     </div>
     <div class="optionsc">
       <div >
@@ -25,7 +25,7 @@
           <i class="notificationValue">4</i>
       </i>
      
-      <i class="fa fa-expand" style="margin-left: 15px;"></i>
+      <i class="fa fa-expand" style="margin-left: 15px;" id="fg"  onclick="maxWindow()"></i>
      
     </div >
       <div >
@@ -96,7 +96,7 @@
 
     <mat-nav-list>
       <mat-list-item>
-        <a routerLink="suspects" class="active">
+        <a routerLink="suspects">
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
         </a>
@@ -146,12 +146,13 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
-      <mat-list-item>
+      <mat-list-item >
         <a>
           <mat-icon>settings</mat-icon>
           <span *ngIf="isOn"> Administration</span>
         </a>
       </mat-list-item>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

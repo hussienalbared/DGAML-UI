@@ -1,15 +1,51 @@
+<!--  -->
+<mat-accordion >
+  <mat-expansion-panel expanded=true>
+  <mat-expansion-panel-header>
+      Transaction Detail
+    </mat-expansion-panel-header>
+    <mat-card class="example-card">
+        <mat-card-header>
+          
+          <!-- <mat-card-title>Transaction Detail</mat-card-title> -->
+         
+        </mat-card-header>
+        <img mat-card-image src="assets\images\transaction.png" >
+       <mat-card-content>
+         
+      
+      
+      <h6>Transaction reference number:{{result[0]['ttrn']}}</h6>
+      
+      <h6>Transaction Description:{{result[0]['ttds']}}</h6>
+      <h6>Transaction Amount::{{result[0]['cfcurramt']}}</h6>
+      <h6>Transaction Type:{{result[0]['transactionCdiDesc']}}</h6>
+      <h6>Channel:{{result[0]['mechanismDesc']}}</h6>
+      <h6>Transaction Currency Name:{{result[0]['currencyName']}}</h6>
+      <h6>Transaction Currency Code:{{result[0]['currencyCode']}}</h6>
+      <h6>Amount in base currency:{{result[0]['cfcurramttxnccy']}}</h6>
+      <h6>Amount in account currency:{{result[0]['cfcurramtacctccy']}}</h6>
+      <h6>Associate Name:{{result[0]['ascfnm']}}</h6>
+      <h6>Associate Number:{{result[0]['ascno']}}</h6>
+      
+      <h6>Account Number:{{result[0]['cfacctno']}}</h6>
+      <h6>Secondary account Number:{{result[0]['cf2ndacctno']}}</h6>
+      <h6>Remitter Name:{{result[0]['remitter_Name']}}</h6>
+      <h6>Remitter Number:{{result[0]['remitter_Number']}}</h6>
+      <h6>Beneficiary Name:{{result[0]['beneficiary_Name']}}</h6>
+      <h6>Beneficiary Number:{{result[0]['beneficiary_Number']}}</h6>
+      <h6>Transaction Date:{{result[0]['cfdatekey']}}</h6>
+      <h6>Branch Name:{{result[0]['brnm']}}</h6>
+      <h6>Branch Number:{{result[0]['brno']}}</h6>
+      <h6>Country Name:{{result[0]['countryName']}}</h6>
+      <h6>Country Code:{{result[0]['countryCode3']}}</h6>
+      
+        </mat-card-content>
+      
+      </mat-card>
+      
+  </mat-expansion-panel>
+</mat-accordion>
 
- 
-<!-- <mat-list role="list" *ngFor="let element of result;let i = index;let x of displayedColumns">
-  
-  <mat-list-item role="listitem">{{result[x]}}:{{element}}</mat-list-item>
-
-</mat-list> -->
-
-
-<ul *ngFor="let x of displayedColumns;">
-
-<li >{{x}}--{{result[0][x]}}</li>
-
-</ul>
+<!--  -->
 

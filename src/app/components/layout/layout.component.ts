@@ -18,5 +18,11 @@ export class LayoutComponent implements OnInit {
   }
   changeIsOn() {
     this.isOn = !this.isOn;
+ 
+  
   }
+ 
+  
+
+  
 }

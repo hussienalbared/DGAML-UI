@@ -39,6 +39,7 @@ export class PartySearchComponent {
     this.dataSource.filter = filterValue;
   }
   onClickSubmit(data) {
+ 
     let url = "http://localhost:8081/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
       "&PartyName=" + this.PartyName +
       "&PoliticallyExposedPerson=" + this.PoliticallyExposedPerson +
