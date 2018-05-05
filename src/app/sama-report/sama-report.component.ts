@@ -11,7 +11,7 @@ import { Options } from 'selenium-webdriver/edge';
   templateUrl: './sama-report.component.html',
   styleUrls: ['./sama-report.component.css']
 })
-export class SamaReportComponent implements OnInit {
+export class SamaReportComponent  {
 
   form: FormGroup;
   transactionList: any[];
@@ -20,29 +20,11 @@ export class SamaReportComponent implements OnInit {
   reportForm: FormGroup;
   SamaReport = {};
  
- 
-
-  //formControlName=""
-  /* toppingList = 
-  [{id:1, name: 'medo'},
-  {id:2, name: 'ali'},
-  {id:3, name: 'khalid'}];
-  */
   constructor(private formBuilder: FormBuilder,private http: HttpClient) {
     this.form = this.formBuilder.group({
       transactionControlName: new FormControl()
-     // custoemrId: [null, [Validators.required]]
     });
-
-
    }
-
-  ngOnInit() {
-
-  }
-
-
-
 
   loadTransactionList(customerId: HTMLInputElement){
     this.http.get('http://localhost:8081/report/getTransactions?customerId='+customerId.value)
@@ -58,18 +40,24 @@ export class SamaReportComponent implements OnInit {
    this.http.post(url , this.selectedTransaction).subscribe(response =>{
      this.samaReports = JSON.parse(JSON.stringify(response));
     });
-    this.selectedTransaction = null;
   }
 
   saveReports(SamaReport){
-    //alert(this.reportForm.get('depositeType').value);
-    //'+this.reportForm.get('depositType').value+'
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   // let options = new RequestOptions({ headers: head });
     let url = 'http://localhost:8081/report/saveSamaReport';
     this.http.post(url, SamaReport, {headers: headers}).subscribe(response =>{
-      //'{"depositType": '+this.reportForm.get('depositType').value+'}'
-      //alert(JSON.parse(JSON.stringify(response)));
     });
+  }
+
+  downloadReport(){
+    let url = 'http://localhost:8081/report/printSamaReport?transactionIds='+this.selectedTransaction;
+    let headers = new HttpHeaders();
+    headers = headers.set('Accept', 'application/pdf');
+     this.http.get(url, { headers: headers, responseType: 'blob' }).subscribe(response =>{
+      let file = new Blob([response], { type: 'application/pdf' });            
+      var fileURL = URL.createObjectURL(file);
+      window.open(fileURL);
+    });
+
   }
 }
