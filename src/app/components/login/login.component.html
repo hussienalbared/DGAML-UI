@@ -1,0 +1,54 @@
+<div class="bodyContainer" *ngIf="!isLoggedIn">
+  <div class="container">
+    <div class="ks-page">
+      <div class="ks-page-content">
+        <div class="ks-logo">
+          <img src="./assets/images/login-logo.png" alt="DataGear Anti-Money Laundering">
+        </div>
+
+        <div class="card panel panel-default ks-light ks-panel ks-login animated flipInX">
+          <div class="card-block">
+            <form class="form-container" #userlogin = "ngForm" (ngSubmit) = "login(userlogin.value)" >
+              <div class="form-group">
+                <div class="input-icon icon-left icon-lg icon-color-primary">
+                  <label>Username</label>
+                  <input type="text" class="form-control" name="UserName" placeholder="Username" ngModel>
+                  <span class="icon-addon">
+                    <span class="la la-user fa fa-user"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-icon icon-left icon-lg icon-color-primary">
+                  <label class="pull-left">Password</label>
+                  <a href="#" class="pull-right">Forget Password?</a>
+                  <input type="password" class="form-control" name="Password" placeholder="Password" ngModel>
+                  <span class="icon-addon">
+                    <span class="la la-key fa fa-key"></span>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" >Login</button>
+              </div>
+
+
+
+              <div class="ks-social ks-text-center">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Remember me
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="ks-footer">
+        <span class="ks-copyright">&copy; Copyright © 2018 - DataGear Anti-Money Laundering.</span>
+
+      </div>
+    </div>
+  </div>
+</div>

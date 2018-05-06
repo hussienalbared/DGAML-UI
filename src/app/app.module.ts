@@ -45,6 +45,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CdkTableModule } from '@angular/cdk/table';
+import { LoginComponent } from './components/login/login.component';
+import { MockAuthServiceService } from './services/mock-auth-service.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TransactionDetailsComponent,
     AccountDetailComponent,
     LayoutComponent,
+    LoginComponent,
   
   ],
   imports: [
@@ -162,10 +165,23 @@ export function HttpLoaderFactory(http: HttpClient) {
         path: 'accountDetail/:accountNumber/:obj_number/:obj_key/:obj_level_code',
         component: AccountDetailComponent
       }
+      
+     // {
+      //   path:'home',
+      //   component:LayoutComponent,
+      //    outlet:'first',
+        
+        
+      // },
+      // {
+      //   path:'',
+      //   component:LoginComponent,
+      //   outlet:'first'
+      // }
     ])
   ],
   providers: [SearchAccountService, Http, HttpClient,
-    SuspectsService],
+    SuspectsService,MockAuthServiceService],
   
   bootstrap: [AppComponent],
   exports:[ MatIconModule,

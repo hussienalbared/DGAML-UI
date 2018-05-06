@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
+ import * as $ from 'jquery';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,18 +16,4 @@ export class AppComponent {
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
   }
-
-//    fhhh(z){
-//      alert(z.target.srcElement );
-//    let ss=document.getElementsByClassName("s");
-   
-// for(let i=0;i<ss.length;i++)
-// {
-// console.log(ss[i]);
-// ss[i].classList.remove("red");
-// }
-// z.classList.add("red")
-
-
-// }
 }

@@ -231,5 +231,11 @@ hr.divider {
     line-height: 30px;   
 }
 .mat-nav-list .mat-list-item:hover{
-    background-color: #4d5252
+    background-color: #4d5252 !important;
+  
+
+}
+.accordion1:hover{
+    background-color: #4d5252 !important;
+    
 }
