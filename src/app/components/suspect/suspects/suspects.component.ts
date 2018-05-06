@@ -4,7 +4,6 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { suspect } from '../../../models/suspect.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -12,6 +11,7 @@ import { ForwardComponent } from '../forward/forward.component';
 import { element, error } from 'protractor';
 import { SelectCloseReasonComponent } from '../../alarms/select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
+import { suspect } from '../../models/suspect.model';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',

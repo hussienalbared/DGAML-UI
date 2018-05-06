@@ -4,15 +4,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { AccountSearchComponent } from './account-search/account-search.component';
-import { SearchAccountService } from './search-account.service';
+
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { AlaramSearchComponent } from './alaram-search/alaram-search.component';
-import { PartySearchComponent } from './party-search/party-search.component';
-import { ExternalPartySearchComponent } from './external-party-search/external-party-search.component';
+
+
 import { RouterModule } from '@angular/router';
-import { SideMenuComponent } from './side-menu/side-menu.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,8 +20,6 @@ import {
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { MainContentComponent } from './main-content/main-content.component';
-
 import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief.component';
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
 import { SuspectDetailsComponent } from './components/suspect/suspect-details/suspect-details.component';
@@ -40,15 +34,21 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
 import { SuspectsService } from './services/suspects.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { LoginComponent } from './components/login/login.component';
-import { MockAuthServiceService } from './services/mock-auth-service.service';
-import { AuthService } from './auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AccountSearchComponent } from './components/account-search/account-search.component';
+import { AlaramSearchComponent } from './components/alaram-search/alaram-search.component';
+import { PartySearchComponent } from './components/party-search/party-search.component';
+import { ExternalPartySearchComponent } from './components/external-party-search/external-party-search.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { MainContentComponent } from './components/main-content/main-content.component';
+import { AuthService } from './services/auth.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -145,12 +145,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: [ /^null$/ ],
+        whitelistedDomains: [/^null$/],
         blacklistedRoutes: ['localhost:8081/aml/auth/']
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SearchAccountService],
+  providers: [AuthService, AuthGuardService, JwtHelperService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })

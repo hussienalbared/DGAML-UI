@@ -7,7 +7,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { alaram } from '../../../models/alaram.model';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
 
