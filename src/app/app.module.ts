@@ -126,8 +126,9 @@ export function tokenGetter() {
     MatRadioModule,
     MatIconModule,
     MatMenuModule,
-    MatSelectModule
-    ,
+    MatSelectModule,
+    
+    
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'account', component: AccountSearchComponent },
@@ -150,7 +151,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
