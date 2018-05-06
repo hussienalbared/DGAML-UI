@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AccountSearchComponent } from './account-search/account-search.component';
 import { SearchAccountService } from './search-account.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AlaramSearchComponent } from './alaram-search/alaram-search.component';
 import { PartySearchComponent } from './party-search/party-search.component';
 import { ExternalPartySearchComponent } from './external-party-search/external-party-search.component';
@@ -115,12 +115,12 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8081', 'http://localhost:8081'],
+        whitelistedDomains: [ /^null$/ ],
         blacklistedRoutes: ['localhost:8081/aml/auth/']
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SearchAccountService, HttpClient],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SearchAccountService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })

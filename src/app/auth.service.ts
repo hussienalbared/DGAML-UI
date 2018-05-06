@@ -7,13 +7,10 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   }),
-  // responseType: 'json'
 };
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient
-    // , private helper: JwtHelperService
-  ) { }
+  constructor(private http: HttpClient) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
       JSON.stringify(credentials), httpOptions)
@@ -54,7 +51,5 @@ export class AuthService {
 
 interface UserResponse {
   login: string;
-  bio: string;
-  company: string;
   token: string;
 }
