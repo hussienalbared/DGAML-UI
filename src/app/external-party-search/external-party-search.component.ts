@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 
 import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable"
+import { Observable } from 'rxjs/Observable';
 import { externalParty } from '../models/externalParty.model';
 @Component({
   selector: 'app-external-party-search',
@@ -13,17 +13,16 @@ import { externalParty } from '../models/externalParty.model';
 })
 export class ExternalPartySearchComponent implements OnInit {
 
-  ExtPartynumber: string = "";
-  ExtPartyId: string = "";
-  ExtPartyFullName: string = "";
-  ExtPartyIdCountryCode: string = "";
+  ExtPartynumber: String = '';
+  ExtPartyId: String = '';
+  ExtPartyFullName: String = '';
+  ExtPartyIdCountryCode: String = '';
   result: externalParty[];
   dataSource: any = null;
   displayedColumns = [
     'expfullnm',
     'expno',
     'Address',
-    
     'expstcinm',
     'expbod',
     'expstconm',

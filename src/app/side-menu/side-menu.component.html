@@ -13,8 +13,8 @@
                     </a>
                 </div>
                 <div class="col-8">
-                    <div class="profile-text">Welcome
-                        <b>Eman Gaafar</b>
+                    <div *ngIf="authService.currentUser" class="profile-text">Welcome
+                        <b>{{authService.currentUser.sub}}</b>
                     </div>
                 </div>
             </div>

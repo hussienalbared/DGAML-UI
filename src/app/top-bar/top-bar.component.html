@@ -36,12 +36,30 @@
         </li>
 
         <li class="nav-item dropdown topbar-profile">
-          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" title="My Profile">
+          <a *ngIf="authService.currentUser" href="#" mat-button [matMenuTriggerFor]="menu" class="nav-link dropdown-toggle">
             <span class="rounded-image topbar-profile-image">
               <img src="./assets/images/users/avartar3.png">
-            </span>
-            Eman Gaafar </a>
+            </span >
+            {{authService.currentUser.sub}}
+          </a>
         </li>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <li>
+              <a href="#">My Profile</a>
+            </li>
+          </button>
+          <button mat-menu-item>
+            <li>
+              <a href="#">Account Setting</a>
+            </li>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+              <i class="icon-logout-1"></i> Logout</a>
+          </button>
+        </mat-menu>
 
         <li class="nav-item language_bar dropdown hidden">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">English

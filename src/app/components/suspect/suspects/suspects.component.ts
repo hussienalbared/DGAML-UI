@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
 import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable"
+import { Observable } from 'rxjs/Observable';
 import { suspect } from '../../../models/suspect.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
@@ -53,9 +53,14 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-this.suspectService.getAllSuspects().
-   subscribe(data => {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': +'\'' + localStorage.getItem('token') + '\''
+      }),
+    };
+    console.log('httpOptions:' + httpOptions);
+    let url = "http://localhost:8081/aml/api/v1/suspectedObject";
+    this.http.get<suspect[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
@@ -116,21 +121,19 @@ this.suspectService.removeOwnerShip(this.selection.selected);
     )
   }
   //close all alrams
-  closeAlarms()
-  {
+  closeAlarms() {
 
-this.changeAlarmStatus('CLS');
+    this.changeAlarmStatus('CLS');
   }
   //suppress all alarms
-  suppressAlarms()
-  {
-   
+  suppressAlarms() {
+    console.log("suppress all alarms")
     this.changeAlarmStatus('SUP');
-    
+
   }
   //change alarm status(close or supress)
-  changeAlarmStatus(eventType:string) {
-   
+  changeAlarmStatus(eventType: string) {
+
     const numSelected = this.selection.selected.length;
     if (numSelected == 0) {
       alert("Select at least one suspect,please");
@@ -146,49 +149,65 @@ this.changeAlarmStatus('CLS');
 
     dialogRef.afterClosed().subscribe(result => {
       //reason for close or suppressed an alarms returned from dialog
-      if (dialogRef.componentInstance.isConfirmed)
-      {
-      
-    let reason=dialogRef.componentInstance.description;
-     
+      if (dialogRef.componentInstance.isConfirmed) {
 
-  this.selection.selected.forEach(element => {
+        let reason = dialogRef.componentInstance.description;
 
-      let code = element["id"]["objLevelCode"];
-      let key = element["id"]["objKey"];
-      let oldcomplianceUserid = element["alertCount"];
-      
-      this.suspectService.changeAllSuspectAlarms(key,code,eventType).subscribe(data => {
-        //set alert count of suspect to zero
-                element["alertCount"] = '0';
-              }
-               )
 
-      element.acAlarm.forEach(aaa => {
+        this.selection.selected.forEach(element => {
 
-          let event = {
-            "create_user_id": "45",
-            "event_type_code": eventType,
-            "event_description": reason,
-            "alarm_id": aaa["alarmId"]
+          let code = element["id"]["objLevelCode"];
+          let key = element["id"]["objKey"];
+          let oldcomplianceUserid = element["alertCount"];
+          let url = "http://localhost:8081/aml/api/v1/closeAllSuspectAlarms?"
+            + "key=" + key + "&code=" + code + "&eventType=" + eventType;
+          this.http.get(url).subscribe(data => {
+            //set alert count of suspect to zero
+            element["alertCount"] = '0';
           }
-         this.suspectService.addalarmEvent(event)
-         
-      })
-    }
-    );
+          )
 
-  }
-else{
-  alert('nothing selected')
-}
+          element.acAlarm.forEach(aaa => {
+
+            let UrlAdd = "http://localhost:8081/aml/api/v1/alarmEvent/add";
+            let event = {
+              "create_user_id": "45",
+              "event_type_code": eventType,
+              "event_description": reason,
+              "alarm_id": aaa["alarmId"]
+            }
+
+            this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
+              console.log(data);
+
+            },
+              err => {
+                console.log("Error occured");
+              })
+
+
+          })
+
+
+
+
+
+        }
+
+
+        );
+
+      }
+      else {
+        alert('nothing selected')
+      }
     }, error => {
 
     }
 
     );
-    
-  
+
+
   }
 
 }

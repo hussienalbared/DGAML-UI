@@ -6,8 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AccountSearchComponent } from './account-search/account-search.component';
 import { SearchAccountService } from './search-account.service';
-import { HttpModule, Http } from '@angular/http';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AlaramSearchComponent } from './alaram-search/alaram-search.component';
 import { PartySearchComponent } from './party-search/party-search.component';
 import { ExternalPartySearchComponent } from './external-party-search/external-party-search.component';
@@ -26,7 +25,6 @@ import {
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
-// import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 
 import { AlarmBriefComponent } from './components/alarms/alarm-brief/alarm-brief.component';
 import { TransactionBriefComponent } from './components/transactions/transaction-brief/transaction-brief.component';
@@ -47,12 +45,19 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { LoginComponent } from './components/login/login.component';
 import { MockAuthServiceService } from './services/mock-auth-service.service';
+import { AuthService } from './auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +80,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountDetailComponent,
     LayoutComponent,
     LoginComponent,
-  
   ],
   imports: [
     BrowserModule,
@@ -125,99 +129,29 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule
     ,
     RouterModule.forRoot([
+      { path: 'login', component: LoginComponent },
+      { path: 'account', component: AccountSearchComponent },
+      { path: 'alarm', component: AlaramSearchComponent },
+      { path: 'party', component: PartySearchComponent },
+      { path: 'external', component: ExternalPartySearchComponent },
       {
-        path: 'account',
-        component: AccountSearchComponent
-      },
-      {
-        path: 'alarm',
-        component: AlaramSearchComponent
-      }
-      ,
-      {
-        path: 'party',
-        component: PartySearchComponent
-      }
-      ,
-      {
-        path: 'external',
-        component: ExternalPartySearchComponent
-      }
-      , {
         path: 'suspects',
-        component: SuspectsComponent
-      }
-      , {
-
-        path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
-        component: SuspectDetailUipageComponent
-      }
-      , {
-        path: 'alarmDetail-1/:alarmId',
-        component: AlarmDetail1Component
+        component: SuspectsComponent,
+        canActivate: [AuthGuardService]
       },
-      {
-        path: 'TransactionDeatil/:ttrn',
-        component: TransactionDetailsComponent
-
+      { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
+      { path: 'alarmDetail-1/:alarmId', component: AlarmDetail1Component },
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: [ /^null$/ ],
+        blacklistedRoutes: ['localhost:8081/aml/auth/']
       }
-      , {
-        path: 'accountDetail/:accountNumber/:obj_number/:obj_key/:obj_level_code',
-        component: AccountDetailComponent
-      }
-      
-     // {
-      //   path:'home',
-      //   component:LayoutComponent,
-      //    outlet:'first',
-        
-        
-      // },
-      // {
-      //   path:'',
-      //   component:LoginComponent,
-      //   outlet:'first'
-      // }
-    ])
+    }),
   ],
-  providers: [SearchAccountService, Http, HttpClient,
-    SuspectsService,MockAuthServiceService],
-  
+  providers: [AuthService, AuthGuardService, JwtHelperService, SearchAccountService],
   bootstrap: [AppComponent],
-  exports:[ MatIconModule,
-  CdkTableModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
 export class AppModule { }
