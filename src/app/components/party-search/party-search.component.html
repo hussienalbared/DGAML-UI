@@ -3,6 +3,7 @@
     <mat-expansion-panel-header>
       Search Party
     </mat-expansion-panel-header>
+    <div class="container">
 <form #partySearch="ngForm" (ngSubmit)="onClickSubmit(partySearch.value)">
   <div class="row">
     <div class="col-lg-6">
@@ -87,6 +88,7 @@
   </div>
 
 </form>
+</div>
 <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
 import 'rxjs/add/operator/map';
-import { Observable } from "rxjs/Observable"
+import { Observable } from 'rxjs/Observable';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -19,7 +19,7 @@ import { suspect } from '../../models/suspect.model';
 })
 export class SuspectsComponent implements OnInit {
   result: suspect[];
- 
+
   dataSource: any = null;
   displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
     'Profile Risk', 'Oldest Alarm', 'User'];
@@ -28,8 +28,10 @@ export class SuspectsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient, private router: Router
-    , public dialog: MatDialog,private suspectService:SuspectsService
+  constructor(private http: HttpClient,
+    private router: Router,
+    public dialog: MatDialog,
+    private suspectService: SuspectsService
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -38,7 +40,7 @@ export class SuspectsComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
- 
+
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -53,29 +55,28 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-   
-this.suspectService.getAllSuspects().
-   subscribe(data => {
-      this.result = data;
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
 
-    });
+    this.suspectService.getAllSuspects().
+      subscribe(data => {
+        console.log(data);
+        this.result = data;
+        this.dataSource = new MatTableDataSource(data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+      });
   }
   getSuspectDetail(alarm) {
-
-
     this.router.navigate(['suspectDetail/' + alarm.id.objKey + "/" + alarm.id.objLevelCode + "/" + alarm.objNumber]);
   }
 
   openDialog(): void {
     const numSelected = this.selection.selected.length;
-    if (numSelected == 0) {
+    if (numSelected === 0) {
       alert("Select at least one suspect,please");
       return;
     }
-   
+
     let dialogRef = this.dialog.open(ForwardComponent, {
 
       height: '400px',
@@ -85,7 +86,7 @@ this.suspectService.getAllSuspects().
     });
 
     dialogRef.afterClosed().subscribe(result => {
-   
+
     }, error => {
 
     }
@@ -93,47 +94,45 @@ this.suspectService.getAllSuspects().
     );
   }
   removeOwnerShip() {
-this.suspectService.removeOwnerShip(this.selection.selected);
-     }
+    this.suspectService.removeOwnerShip(this.selection.selected);
+  }
   takeOwnerShip() {
 
-    
+
     this.selection.selected.forEach(
       element => {
-   
-      let code = element["id"]["objLevelCode"];
-      let key = element["id"]["objKey"];
-      let oldcomplianceUserid = element["complianceUserid"];
-      element["complianceUserid"] = "Admin";
-     
-     
-      this.suspectService.takeOwnerShipService(key,code,element["complianceUserid"]).subscribe(data => { }
-        , error => {
-          element["complianceUserid"] = oldcomplianceUserid;
-        }
-      );
-    }
+
+        let code = element["id"]["objLevelCode"];
+        let key = element["id"]["objKey"];
+        let oldcomplianceUserid = element["complianceUserid"];
+        element['complianceUserid'] = 'Admin';
+
+
+        this.suspectService.takeOwnerShipService(key, code, element['complianceUserid']).subscribe(data => { }
+          , error => {
+            element['complianceUserid'] = oldcomplianceUserid;
+          }
+        );
+      }
     )
   }
   //close all alrams
-  closeAlarms()
-  {
+  closeAlarms() {
 
-this.changeAlarmStatus('CLS');
+    this.changeAlarmStatus('CLS');
   }
   //suppress all alarms
-  suppressAlarms()
-  {
-   
+  suppressAlarms() {
+
     this.changeAlarmStatus('SUP');
-    
+
   }
   //change alarm status(close or supress)
-  changeAlarmStatus(eventType:string) {
-   
+  changeAlarmStatus(eventType: string) {
+
     const numSelected = this.selection.selected.length;
     if (numSelected == 0) {
-      alert("Select at least one suspect,please");
+      alert('Select at least one suspect,please');
       return;
     }
     let dialogRef = this.dialog.open(SelectCloseReasonComponent, {
@@ -146,49 +145,48 @@ this.changeAlarmStatus('CLS');
 
     dialogRef.afterClosed().subscribe(result => {
       //reason for close or suppressed an alarms returned from dialog
-      if (dialogRef.componentInstance.isConfirmed)
-      {
-      
-    let reason=dialogRef.componentInstance.description;
-     
+      if (dialogRef.componentInstance.isConfirmed) {
 
-  this.selection.selected.forEach(element => {
+        let reason = dialogRef.componentInstance.description;
 
-      let code = element["id"]["objLevelCode"];
-      let key = element["id"]["objKey"];
-      let oldcomplianceUserid = element["alertCount"];
-      
-      this.suspectService.changeAllSuspectAlarms(key,code,eventType).subscribe(data => {
-        //set alert count of suspect to zero
-                element["alertCount"] = '0';
-              }
-               )
 
-      element.acAlarm.forEach(aaa => {
+        this.selection.selected.forEach(element => {
 
-          let event = {
-            "create_user_id": "45",
-            "event_type_code": eventType,
-            "event_description": reason,
-            "alarm_id": aaa["alarmId"]
+          let code = element['id']['objLevelCode'];
+          let key = element['id']['objKey'];
+          let oldcomplianceUserid = element['alertCount'];
+
+          this.suspectService.changeAllSuspectAlarms(key, code, eventType).subscribe(data => {
+            //set alert count of suspect to zero
+            element['alertCount'] = '0';
           }
-         this.suspectService.addalarmEvent(event)
-         
-      })
-    }
-    );
+          )
 
-  }
-else{
-  alert('nothing selected')
-}
+          element.acAlarm.forEach(aaa => {
+
+            let event = {
+              'create_user_id': '45',
+              'event_type_code': eventType,
+              'event_description': reason,
+              'alarm_id': aaa['alarmId']
+            }
+            this.suspectService.addalarmEvent(event)
+
+          })
+        }
+        );
+
+      }
+      else {
+        alert('nothing selected')
+      }
     }, error => {
 
     }
 
     );
-    
-  
+
+
   }
 
 }

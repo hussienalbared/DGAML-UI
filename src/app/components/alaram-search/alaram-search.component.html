@@ -3,7 +3,7 @@
 <mat-expansion-panel-header>
   Search Alarms
 </mat-expansion-panel-header>
-<div>
+<div class="container">
     <form  #alarmSearch = "ngForm" (ngSubmit) = "onClickSubmit(alarmSearch.value)">
     <div class="form-group">
     <label for="AlarmId">Alarm ID</label>
@@ -41,7 +41,7 @@
               <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName" class="form-control">
               
               </div>
-              <div>
+              <div class="form-group">
                 <label for="ScenarioId">Scenario ID</label>
                 <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId" class="form-control">
                 
