@@ -25,14 +25,14 @@ export class AlarmBriefComponent implements OnInit {
   code: string = '';
   selection = new SelectionModel<any>(true, []);
   // datasource: any = [];
-  dataSource3:any=[];
+  dataSource3: any = [];
   processed: Element2[] = [];
   // processed:any=[];
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
     private route: ActivatedRoute, private router: Router,
     public dialog: MatDialog,
-  private suspectService:SuspectsService) {
+    private suspectService: SuspectsService) {
 
 
   }
@@ -56,6 +56,7 @@ export class AlarmBriefComponent implements OnInit {
       this.key = params.get('obj_key');
       this.code = params.get('obj_level_code');
       this.getAlarms();
+
     });
 
 
@@ -65,12 +66,14 @@ export class AlarmBriefComponent implements OnInit {
     this.http.get(Url).subscribe(data => {
       // this.datasource = data["acAlarm"];
       this.dataSource3 = data["acAlarm"];
-console.log(this.dataSource3.length+"fggggggggg")
+
       // this.processData();
       this.dataSource3 = new MatTableDataSource(this.dataSource3);
       this.dataSource3.sort = this.sort;
       this.dataSource3.paginator = this.paginator;
-
+      console.log("************")
+      console.log(this.dataSource3.length)
+      console.log("************")
 
     });
 
@@ -82,44 +85,21 @@ console.log(this.dataSource3.length+"fggggggggg")
     };
   }
 
-  // processData() {
-  //   this.datasource.forEach((alarm) => {
-  //     if (alarm.acroutine.length == 0) {
-  //       var x: Element2 = this.initilizeElment();
-  //       x.alarmId = alarm.alarmId;
-  //       x.primaryObjLevelCode = alarm.primaryObjLevelCode;
-  //       x.routineName = alarm.routineName;
-  //       x.runDate = alarm.runDate;
-
-  //       this.processed.push(x);
-
-  //     }
-
-  //     alarm.acroutine.forEach((ac) => {
-  //       var x: Element2 = this.initilizeElment();
-  //       x.routineCategoryCode = ac.routineCategoryCode;
-  //       x.routineDescription = ac.routineDescription;
-
-  //       x.alarmId = alarm.alarmId;
-  //       x.primaryObjLevelCode = alarm.primaryObjLevelCode;
-  //       x.routineName = alarm.routineName;
-  //       x.runDate = alarm.runDate;
-
-  //       this.processed.push(x);
-  //     });
-
-
-  //   })
-
-  //   this.datasource = this.processed;
-  // }
-
   suppressAlarm() {
     this.changeAlarmStatus('SUP')
   }
+
   closeAlarm() {
-    
-    this.changeAlarmStatus('CLS')
+    // this.dataSource3.data=     this.dataSource3.data.splice(2,1);
+    // this.dataSource3.data = this.dataSource3.data.filter(item => item !== this.dataSource3.data.splice(2,1));    
+     this.changeAlarmStatus('CLS')
+    // this.selection.selected.forEach(item => {
+    //   this.dataSource3.data.splice(item.position - 1, 1);
+
+    //   this.dataSource3 = new MatTableDataSource<Element>(this.dataSource3.data);
+    // });
+    // this.selection = new SelectionModel<Element>(true, []);
+
   }
 
   //close alarm
@@ -140,21 +120,26 @@ console.log(this.dataSource3.length+"fggggggggg")
 
     dialogRef.afterClosed().subscribe
       (
-        result =>
-         
-        {
+      result => {
 
-            if (dialogRef.componentInstance.isConfirmed)
-{
+        if (dialogRef.componentInstance.isConfirmed) {
 
 
           //close alarms
+          let ids = [];
           this.selection.selected.forEach(
-            a => {
+            a =>
+            {
+              // 
+              this.dataSource3.data.splice(a.position - 1, 1);
 
-              this.suspectService.changeAlarmStatuseById(a.alarmId,eventType)
-           
-             
+              this.dataSource3 = new MatTableDataSource<Element>(this.dataSource3.data);
+              // 
+              this.suspectService.changeAlarmStatuseById(a.alarmId, eventType)
+
+              console.log("hello " + a["alarmId"])
+              ids.push(a["alarmId"])
+
               let event = {
                 "create_user_id": "45",
                 "event_type_code": eventType,
@@ -162,8 +147,9 @@ console.log(this.dataSource3.length+"fggggggggg")
                 "alarm_id": a.alarmId
               }
               this.suspectService.addalarmEvent(event)
-             
+
             })
+            this.selection = new SelectionModel<Element>(true, []);
 
           //update alert count
 
@@ -175,24 +161,24 @@ console.log(this.dataSource3.length+"fggggggggg")
 
           })
         }
-      else{
-        alert('nothing selected')
-      }
-      },
-        error => {
-          alert("Error")
-
+        else {
+          alert('nothing selected')
         }
+      },
+      error => {
+        alert("Error")
 
-      
-        
-    
-        );
-  
-
+      }
 
 
-}
+
+
+      );
+
+
+
+
+  }
 
 
 
