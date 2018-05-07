@@ -5,6 +5,7 @@ import { MatPaginator, MatTableDataSource ,MatSort} from '@angular/material';
 
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-party-search',
   templateUrl: './party-search.component.html',
@@ -27,7 +28,7 @@ export class PartySearchComponent {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route:ActivatedRoute,private router:Router) { }
 
   ngAfterViewInit() {
    
@@ -53,6 +54,18 @@ export class PartySearchComponent {
 
    
   
+  }
+  getParty(partyNumber)
+  {
+  
+    
+    let url="http://localhost:8081/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
+    console.log(url)
+    this.http.get<any[]>(url).subscribe(data=>{
+if(data.length>0)
+ this.router.navigate(["suspectDetail/"+data[0][0]+"/"+data[0][1]+"/"+partyNumber]);
+    })
+
   }
 
 }
