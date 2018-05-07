@@ -1,6 +1,12 @@
+<mat-accordion>
+<mat-expansion-panel expanded>
+<mat-expansion-panel-header>
+  Alaram Detail
+  </mat-expansion-panel-header>
+  
 
 <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource2">
+    <mat-table #table [dataSource]="dataSource">
   
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -18,10 +24,15 @@
       </ng-container>
   
       <!-- Weight Column -->
+     
       <ng-container matColumnDef="RunDate">
         <mat-header-cell *matHeaderCellDef> Run Date </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="alarm message">
+          <mat-header-cell *matHeaderCellDef> alarm message</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element[3]}} </mat-cell>
+        </ng-container>
   
     
   
@@ -31,6 +42,14 @@
   </div>
   <!-- -->
 
+</mat-expansion-panel>
+
+</mat-accordion>
+<mat-accordion>
+    <mat-expansion-panel  expanded>
+    <mat-expansion-panel-header>
+      Alarm Transaction Detail
+      </mat-expansion-panel-header>
   <div class="example-container mat-elevation-z8">
       <mat-table #table [dataSource]="dataSource2">
     
@@ -51,7 +70,7 @@
     
         <!-- Weight Column -->
         <ng-container matColumnDef="cfdatekey">
-          <mat-header-cell *matHeaderCellDef> Transaction Date </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Transaction Date  </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cfcurramount">
@@ -72,4 +91,5 @@
         <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
       </mat-table>
     </div>
-    
+    </mat-expansion-panel>
+    </mat-accordion>

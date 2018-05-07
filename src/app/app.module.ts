@@ -141,7 +141,16 @@ export function tokenGetter() {
         canActivate: [AuthGuardService]
       },
       { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
-      { path: 'alarmDetail-1/:alarmId', component: AlarmDetail1Component },
+      { path: 'alarmDetail/:alarmId', component: AlarmDetail1Component },
+      {
+        path:'accountDetail/:accountNumber',
+        component:AccountDetailComponent
+      },
+      {
+        path:'TransactionDeatil/:ttrn',
+        component:TransactionDetailsComponent
+      }
+
     ]),
     JwtModule.forRoot({
       config: {
