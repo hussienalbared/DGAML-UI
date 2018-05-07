@@ -43,7 +43,8 @@
           <span>Account Setting</span>
         </button>
         <button mat-menu-item>
-          <span>Logout</span>
+          <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+            <i class="icon-logout-1"></i> Logout</a>
         </button>
       </mat-menu>
     </div>
