@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./alarm-detail-1.component.css']
 })
 export class AlarmDetail1Component implements OnInit {
-  displayedColumns=['RoutineName','RoutineDescription','RunDate']
+  displayedColumns=['RoutineName','RoutineDescription','alarm message','RunDate']
   displayedColumns2=['acctno','ttrn','cfdatekey','cfcurramount','transaction_cdi_des','ttds']
   dataSource:any=[];
   dataSource2:any=[];
