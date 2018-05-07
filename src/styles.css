@@ -187,3 +187,12 @@ a:focus {
 .container {
     width: auto;
 }
+.searchButton{
+
+    background-color: rgb(37, 98, 143);;
+    border-radius: 2px;
+    color: rgb(255, 255, 255);
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+ }
