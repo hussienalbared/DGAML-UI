@@ -329,3 +329,11 @@ mat-expansion-panel .mat-expansion-panel-body {
     -webkit-transition: none;
     cursor: pointer;
 }
+.mat-icon-button {
+    height: 50px !important;
+    line-height: 50px !important;
+    width: 46px !important;
+}
+.mat-expansion-indicator::after{
+    color: rgb(231, 231, 231) !important;
+}
