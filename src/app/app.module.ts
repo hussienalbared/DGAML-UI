@@ -19,7 +19,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule } from '@angular/material';
+import {
+  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCardModule,
+  MatGridListModule
+} from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MainContentComponent } from './main-content/main-content.component';
@@ -32,6 +35,7 @@ import { SuspectDetailUipageComponent } from './components/suspect/suspect-detai
 import {MatDialogModule} from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
+import { RiskComponent } from './components/risk/risk.component';
 
 @NgModule({
   declarations: [
@@ -44,17 +48,19 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
     TopBarComponent,
     MainContentComponent,
     SuspectsComponent,
-  
+
     AlarmBriefComponent,
-  
+
     TransactionBriefComponent,
-  
+
     SuspectDetailsComponent,
-  
+
     SuspectDetailUipageComponent,
-  
+
     ForwardComponent,
- 
+
+    RiskComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -78,6 +84,7 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    MatGridListModule,
     RouterModule.forRoot([
       {
         path: 'account',
@@ -89,6 +96,11 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
       }
       ,
       {
+        path: 'risk',
+        component: RiskComponent
+      }
+      ,
+      {
         path: 'party',
         component: PartySearchComponent
       }
@@ -97,19 +109,19 @@ import { SuspectsComponent } from './components/suspect/suspects/suspects.compon
         path: 'external',
         component: ExternalPartySearchComponent
       }
-      ,{
-        path:'suspects',
-        component:SuspectsComponent
+      , {
+        path: 'suspects',
+        component: SuspectsComponent
       }
-      ,{
+      , {
 
-        path:'suspectDetail/:obj_key/:obj_level_code/:obj_number',
-        component:SuspectDetailUipageComponent
+        path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
+        component: SuspectDetailUipageComponent
       }
     ])
   ],
   providers: [SearchAccountService, Http, HttpClient],
   bootstrap: [AppComponent],
-   entryComponents:[ForwardComponent],
+   entryComponents: [ForwardComponent],
 })
 export class AppModule { }
