@@ -102,31 +102,31 @@
 
     <ng-container matColumnDef="pno">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Number </mat-header-cell>
-      <mat-cell *matCellDef="let party" (click)="getParty(party.pno)">  </mat-cell>
+      <mat-cell *matCellDef="let party" (click)="getParty(party.cust_No)"> {{party.cust_No}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="pid">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Id </mat-header-cell>
-      <mat-cell *matCellDef="let party"> {{party.pid}} </mat-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_Ident_Id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="pfnm">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Name </mat-header-cell>
-      <mat-cell *matCellDef="let party"> {{party.pfnm}} </mat-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_FName}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ppepind">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Politically exposed person </mat-header-cell>
-      <mat-cell *matCellDef="let party"> {{party.ppepind}} </mat-cell>
+      <mat-cell *matCellDef="let party"> {{party.political_Exp_Prsn_Ind}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="riskClassification">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Party risk </mat-header-cell>
-      <mat-cell *matCellDef="let party"> {{party.riskClassification}} </mat-cell>
+      <mat-cell *matCellDef="let party"> {{party.risk_Class}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pstatds">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party status description </mat-header-cell>
-      <mat-cell *matCellDef="let party"> {{party.pstatds}} </mat-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_Status_Desc}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

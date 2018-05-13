@@ -1,3 +1,8 @@
+Routine Name :{{dataSource.routine_Name}}<br>
+Routine Description:{{dataSource.acroutine.routine_Desc}}<br>
+Run Date:{{dataSource.run_Date}}<br>
+alarm message:{{dataSource.actual_Value_Txt}}<br>
+<!-- 
 <mat-accordion>
 <mat-expansion-panel expanded>
 <mat-expansion-panel-header>
@@ -8,30 +13,27 @@
 <div class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
   
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Position Column -->
+      
       <ng-container matColumnDef="RoutineName">
         <mat-header-cell *matHeaderCellDef> Routine Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element[0]}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.routine_Name}} </mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
+   
       <ng-container matColumnDef="RoutineDescription">
         <mat-header-cell *matHeaderCellDef> Routine Description </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element[1]}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Desc}} </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
+    
      
       <ng-container matColumnDef="RunDate">
         <mat-header-cell *matHeaderCellDef> Run Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.run_Date}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="alarm message">
-          <mat-header-cell *matHeaderCellDef> alarm message</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element[3]}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> alarm messageC</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.actual_Value_Txt}} </mat-cell>
         </ng-container>
   
     
@@ -40,11 +42,11 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
-  <!-- -->
+
 
 </mat-expansion-panel>
 
-</mat-accordion>
+</mat-accordion> -->
 <mat-accordion>
     <mat-expansion-panel  expanded>
     <mat-expansion-panel-header>
@@ -53,22 +55,18 @@
   <div class="example-container mat-elevation-z8">
       <mat-table #table [dataSource]="dataSource2">
     
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-    
-        <!-- Position Column -->
+      
         <ng-container matColumnDef="acctno">
           <mat-header-cell *matHeaderCellDef> Account Number </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element[0]}} </mat-cell>
         </ng-container>
     
-        <!-- Name Column -->
         <ng-container matColumnDef="ttrn">
           <mat-header-cell *matHeaderCellDef> Transaction reference Number </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element[1]}} </mat-cell>
         </ng-container>
     
-        <!-- Weight Column -->
+     
         <ng-container matColumnDef="cfdatekey">
           <mat-header-cell *matHeaderCellDef>Transaction Date  </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>

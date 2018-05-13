@@ -24,6 +24,8 @@ export class AlarmDetail1Component implements OnInit {
       let url="http://localhost:8081/aml/api/alaram/AlarmDetailSection1?alarmId="+alarmid
       this.http.get(url).subscribe(data=>{
         this.dataSource=data;
+       
+        console.log(this.dataSource);
       })
       let url2="http://localhost:8081/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
       this.http.get(url2).subscribe(data=>{

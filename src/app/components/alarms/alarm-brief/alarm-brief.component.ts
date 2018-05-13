@@ -26,7 +26,7 @@ export class AlarmBriefComponent implements OnInit {
   selection = new SelectionModel<any>(true, []);
   // datasource: any = [];
   dataSource3: any = [];
-  processed: Element2[] = [];
+  // processed: Element2[] = [];
   // processed:any=[];
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
@@ -80,8 +80,8 @@ export class AlarmBriefComponent implements OnInit {
   }
   initilizeElment(): Element2 {
     return {
-      alarmId: 0, primaryObjLevelCode: '', routineCategoryCode: '',
-      routineDescription: '', routineName: '', runDate: ''
+      alarm_Id: 0, prim_Obj_level_Cd: '', routine_Categ_Cd: '',
+      routine_Desc: '', routine_Name: '', run_Date: ''
     };
   }
 
@@ -135,16 +135,16 @@ export class AlarmBriefComponent implements OnInit {
 
               this.dataSource3 = new MatTableDataSource<Element>(this.dataSource3.data);
               // 
-              this.suspectService.changeAlarmStatuseById(a.alarmId, eventType)
+              this.suspectService.changeAlarmStatuseById(a.alarm_Id, eventType)
 
-              console.log("hello " + a["alarmId"])
-              ids.push(a["alarmId"])
+              console.log("hello " + a["alarm_Id"])
+              ids.push(a["alarm_Id"])
 
               let event = {
                 "create_user_id": "45",
                 "event_type_code": eventType,
                 "event_description": dialogRef.componentInstance.description,
-                "alarm_id": a.alarmId
+                "alarm_id": a.alarm_Id
               }
               this.suspectService.addalarmEvent(event)
 
@@ -187,12 +187,12 @@ export class AlarmBriefComponent implements OnInit {
 
 
 export interface Element2 {
-  alarmId: number;
-  primaryObjLevelCode: string;
-  routineName: string;
-  routineCategoryCode: string;
-  routineDescription: string;
-  runDate: string;
+  alarm_Id: number;
+  prim_Obj_level_Cd: string;
+  routine_Name: string;
+  routine_Categ_Cd: string;
+  routine_Desc: string;
+  run_Date: string;
 
 }
 // export interface Element1{

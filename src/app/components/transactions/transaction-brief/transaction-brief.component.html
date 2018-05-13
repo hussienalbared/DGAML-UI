@@ -19,33 +19,33 @@
     <!-- Position Column -->
     <ng-container matColumnDef="ACCTNO" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Account Number </mat-header-cell>
-      <mat-cell *matCellDef="let element" (click)="alertF(element[0])"> {{element[0]}} </mat-cell>
+      <mat-cell *matCellDef="let element" (click)="alertF(element.acct_Key)"> {{element.acct_Key}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="TTRN">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction reference number </mat-header-cell>
-      <mat-cell *matCellDef="let element">  <a routerLink="/TransactionDeatil/{{element[1]}}">{{element[1]}}</a> </mat-cell>
+      <mat-cell *matCellDef="let element">  <a routerLink="/TransactionDeatil/{{element.trans_Ref_No}}">{{element.trans_Ref_No}}</a> </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="CFDATEKEY">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Description</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.trans_Desc}} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="CFCURRAMT" >
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Amount </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[3]}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.ccy_Amt}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="transaction_cdi_desc">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[4]}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.date_Key}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="RTTDS">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Type </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[5]}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.trans_Cr_Db_Ind_Desc}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

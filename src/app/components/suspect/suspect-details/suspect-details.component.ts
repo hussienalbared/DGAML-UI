@@ -44,12 +44,5 @@ this.result=data;
     });
 
   }
-detail={
-  pfnm:'',pno:'',pstadd1:'',pstadd2:'',
-pbod:'',ppepind:'',pczcocd:'',pidtyds:'',
-pid:'',pidissuedate:'',pidexpdate:'',
-pascnn:'',pocuds:'',ptel1:'',ptel2:'',ptel3:'',
 
-risk_classification:'',pcosdate:'',pacctno:''
-}
 }

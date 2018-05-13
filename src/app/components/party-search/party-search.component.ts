@@ -70,12 +70,12 @@ if(data.length>0)
 
 }
 export interface Party {
-  pno: string;
-  pid: string;
-  pfnm: string;
-  ppepind: string;
-  riskClassification: string;
-  pstatds: string;
+  cust_No: string;
+  cust_Ident_Id: string;
+  cust_FName: string;
+  political_Exp_Prsn_Ind: string;
+  risk_Class: string;
+  cust_Status_Desc: string;
 
 
 }

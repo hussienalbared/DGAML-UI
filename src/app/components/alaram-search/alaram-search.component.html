@@ -68,44 +68,44 @@
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm ID </mat-header-cell>
       <mat-cell *matCellDef="let alarm"> 
-      <a routerLink="/alarmDetail/{{alarm.alarmId}}">{{alarm.alarmId}}</a>  
+      <a routerLink="/alarmDetail/{{alarm.alarm_Id}}">{{alarm.alarm_Id}}</a>  
       </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="alarmStatusCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm status </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.alarmStatusCode}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.alarm_Status_Cd}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="moneyLaunderingRiskScore">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Money laundering risk</mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.moneyLaunderingRiskScore}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.ml_Risk_Score}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="createDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.createDate}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.create_Date}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="runDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.runDate}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.run_Date}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.routineName}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Name}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineId">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario ID </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.routineId}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Id}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   
   </mat-table>
   <mat-paginator #paginator
-    [pageSize]="2"
-    [pageSizeOptions]="[2,5, 10, 20]"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
     [showFirstLastButtons]="true">
   </mat-paginator>
   </div>

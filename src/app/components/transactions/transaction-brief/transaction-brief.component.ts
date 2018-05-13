@@ -26,13 +26,13 @@ export class TransactionBriefComponent implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      let number=params.get('obj_number');
+      let number=params.get('obj_key');
    
       this.getData(number);  
     });
   }
   getData(number){
-    let Url="http://localhost:8081/aml/api/v1/suspectedTransaction/all?partyNumber="+number;
+    let Url="http://localhost:8081/aml/api/suspectedTransaction/all?partyNumber="+number;
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;
@@ -47,11 +47,11 @@ export class TransactionBriefComponent implements OnInit {
 
 }
 export interface TransactionBrief{
-  acctno:string, 
-  ttrn:string,
-   cfdatekey:string, 
-   cfcurramt:string,
-   transaction_cdi_desc:string,
-   rttds:string
+  acct_Key:string, 
+  trans_Ref_No:string,
+  date_Key:string, 
+  ccy_Amt:string,
+  trans_Cr_Db_Ind_Desc:string,
+   trans_Desc:string
 
 }

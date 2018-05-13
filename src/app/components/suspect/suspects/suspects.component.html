@@ -59,34 +59,34 @@
         </ng-container>
         <ng-container matColumnDef="Number of Alarm">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Alarm </mat-header-cell>
-          <mat-cell *matCellDef="let alarm" > {{alarm.alertCount}} </mat-cell>
+          <mat-cell *matCellDef="let alarm" > {{alarm.alarms_Count}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Suspect Name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
           <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)">
       
-            <a routerLink="/suspectDetail/{{alarm.id.objKey}}/{{alarm.id.objLevelCode}}/{{alarm.objNumber}}"> {{alarm.objName}}</a>
+            <a routerLink="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}"> {{alarm.alarmed_Obj_Name}}</a>
           </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="RIM Number">
           <mat-header-cell *matHeaderCellDef mat-sort-header>RIM Number</mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.objNumber}} </mat-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.alarmed_Obj_No}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Profile Risk">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Profile Risk </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.riskClassificationCode}} </mat-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.risk_Score_Cd}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="Oldest Alarm">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Oldest Alarm</mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.oldestAlert}} </mat-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.age_Old_Alarm}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="User">
           <mat-header-cell *matHeaderCellDef mat-sort-header>User </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.complianceUserid}} </mat-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.owner_UID}} </mat-cell>
 
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

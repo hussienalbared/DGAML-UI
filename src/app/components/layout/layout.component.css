@@ -25,7 +25,7 @@
 
 
 .mat-sidenav{
-    /* background-color: aqua; */
+   /* background-color: aqua;  */
     max-width: 280px;
     font-family: "Oswald";
 }
@@ -238,4 +238,7 @@ hr.divider {
 .accordion1:hover{
     background-color: #4d5252 !important;
     
+}
+.topbar-left{
+    min-width: 62px;;
 }
