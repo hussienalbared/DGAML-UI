@@ -20,13 +20,13 @@
                     
                     <!--Text-->
                     <div class="card-text">
-                        <p> Account Number:{{result.acctno}}</p>
-                        <p>Open Date:{{result.acctopdate}}</p>
-                        <p>Status:{{result.acctstatdesc}}</p>
-                        <p>Closing Date:{{result.acctcldate}}</p>
-                        <p>Product Type:{{result.acctprodtynm}}</p>
-                        <p>Account Currency:{{result.acctcurrnm}}</p>
-                        <p>Account Owner Name:{{result.acctnm}}</p>
+                        <p> Account Number:{{result.acct_No}}</p>
+                        <p>Open Date:{{result.acct_Open_Date}}</p>
+                        <p>Status:{{result.acct_Status_Desc}}</p>
+                        <p>Closing Date:{{result.acct_Close_Date}}</p>
+                        <p>Product Type:{{result.prod_Type_Name}}</p>
+                        <p>Account Currency:{{result.acct_Ccy_Name}}</p>
+                        <p>Account Owner Name:{{result.acct_Name}}</p>
                      </div>  
                     
                     
@@ -47,10 +47,10 @@
                     <h4 class="card-title">Address</h4>
                     <!--Text-->
                     <div class="card-text">
-                        <p>{{result.acctmailadd1}}</p>
-                        <p>{{result.acctmailadd2}}</p>
-                        <p>{{result.acctmailcinm}}</p>
-                        <p>{{result.acctmailconm}}</p>
+                        <p>{{result.mail_Addr_1}}</p>
+                        <p>{{result.mail_Addr_2}}</p>
+                        <p>{{result.mail_City_Name}}</p>
+                        <p>{{result.mail_Cntry_Name}}</p>
                      </div>  
                     
                     
@@ -72,9 +72,9 @@
                     <h4 class="card-title">Owner Detail</h4>
                     <!--Text-->
                     <div class="card-text">
-                        <div *ngFor="let x of result.corePartyD">
-                            <p>customer Number:{{x.pacctpno}}</p>
-                            <p>Customer Role:{{x.pacctrds}}</p>
+                        <div *ngFor="let x of result.cutomerAccounts">
+                            <p>customer Number:{{x.id.cust_Key}}</p>
+                            <p>Customer Role:{{x.id.role_Key}}</p>
                             
                             </div>
                      </div>  

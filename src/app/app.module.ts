@@ -50,6 +50,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { AuthService } from './services/auth.service';
 
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -80,6 +81,7 @@ export function tokenGetter() {
     AccountDetailComponent,
     LayoutComponent,
     LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,7 @@ export function tokenGetter() {
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    
+  MatProgressSpinnerModule,
     
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
@@ -143,7 +145,7 @@ export function tokenGetter() {
       { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
       { path: 'alarmDetail/:alarmId', component: AlarmDetail1Component },
       {
-        path:'accountDetail/:accountNumber',
+        path:'accountDetail/:accountNumber/:obj_key/:obj_level_code',
         component:AccountDetailComponent
       },
       {

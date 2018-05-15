@@ -24,13 +24,13 @@ export class AlarmBriefComponent implements OnInit {
   key: string = '';
   code: string = '';
   selection = new SelectionModel<any>(true, []);
-  // datasource: any = [];
+  
   dataSource3: any = [];
-  processed: Element2[] = [];
-  // processed:any=[];
+  
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
-    private route: ActivatedRoute, private router: Router,
+    private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog,
     private suspectService: SuspectsService) {
 
@@ -64,24 +64,20 @@ export class AlarmBriefComponent implements OnInit {
   getAlarms() {
     let Url = "http://localhost:8081/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
     this.http.get(Url).subscribe(data => {
-      // this.datasource = data["acAlarm"];
       this.dataSource3 = data["acAlarm"];
 
-      // this.processData();
       this.dataSource3 = new MatTableDataSource(this.dataSource3);
       this.dataSource3.sort = this.sort;
       this.dataSource3.paginator = this.paginator;
-      console.log("************")
-      console.log(this.dataSource3.length)
-      console.log("************")
+   
 
     });
 
   }
   initilizeElment(): Element2 {
     return {
-      alarmId: 0, primaryObjLevelCode: '', routineCategoryCode: '',
-      routineDescription: '', routineName: '', runDate: ''
+      alarm_Id: 0, prim_Obj_level_Cd: '', routine_Categ_Cd: '',
+      routine_Desc: '', routine_Name: '', run_Date: ''
     };
   }
 
@@ -89,16 +85,8 @@ export class AlarmBriefComponent implements OnInit {
     this.changeAlarmStatus('SUP')
   }
 
-  closeAlarm() {
-    // this.dataSource3.data=     this.dataSource3.data.splice(2,1);
-    // this.dataSource3.data = this.dataSource3.data.filter(item => item !== this.dataSource3.data.splice(2,1));    
+  closeAlarm() {  
      this.changeAlarmStatus('CLS')
-    // this.selection.selected.forEach(item => {
-    //   this.dataSource3.data.splice(item.position - 1, 1);
-
-    //   this.dataSource3 = new MatTableDataSource<Element>(this.dataSource3.data);
-    // });
-    // this.selection = new SelectionModel<Element>(true, []);
 
   }
 
@@ -109,47 +97,52 @@ export class AlarmBriefComponent implements OnInit {
       alert("Select at least one suspect,please");
       return;
     }
+  
+    
     //select reason for close
+   
     let dialogRef = this.dialog.open(SelectCloseReasonComponent, {
 
       height: '400px',
       width: '600px',
-
-      data: { selected: this.selection.selected }
+      // selected: this.selection.selected
+      data: {  }
     });
-
-    dialogRef.afterClosed().subscribe
-      (
-      result => {
-
+   
+     dialogRef.afterClosed().subscribe( result => {
+      
+this.dialog.closeAll();
         if (dialogRef.componentInstance.isConfirmed) {
 
 
           //close alarms
-          let ids = [];
+        
           this.selection.selected.forEach(
-            a =>
+          (  a ,index)=>
             {
+            
               // 
-              this.dataSource3.data.splice(a.position - 1, 1);
+            
 
-              this.dataSource3 = new MatTableDataSource<Element>(this.dataSource3.data);
               // 
-              this.suspectService.changeAlarmStatuseById(a.alarmId, eventType)
+             this.suspectService.changeAlarmStatuseById(a.alarm_Id, eventType)
 
-              console.log("hello " + a["alarmId"])
-              ids.push(a["alarmId"])
 
               let event = {
                 "create_user_id": "45",
                 "event_type_code": eventType,
                 "event_description": dialogRef.componentInstance.description,
-                "alarm_id": a.alarmId
+                "alarm_id": a.alarm_Id
               }
-              this.suspectService.addalarmEvent(event)
+              this.dataSource3.data = this.dataSource3.data.filter(item => item !== a);
+              
+              
+             this.suspectService.addalarmEvent(event)
 
             })
-            this.selection = new SelectionModel<Element>(true, []);
+            
+    
+ this.selection = new SelectionModel<Element>(true, []);
 
           //update alert count
 
@@ -187,14 +180,12 @@ export class AlarmBriefComponent implements OnInit {
 
 
 export interface Element2 {
-  alarmId: number;
-  primaryObjLevelCode: string;
-  routineName: string;
-  routineCategoryCode: string;
-  routineDescription: string;
-  runDate: string;
+  alarm_Id: number;
+  prim_Obj_level_Cd: string;
+  routine_Name: string;
+  routine_Categ_Cd: string;
+  routine_Desc: string;
+  run_Date: string;
 
 }
-// export interface Element1{
-//   acAlarm:any;
-// }
+

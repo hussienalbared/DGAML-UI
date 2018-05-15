@@ -50,52 +50,52 @@
 
   <ng-container matColumnDef="expfullnm">
     <mat-header-cell *matHeaderCellDef mat-sort-header>EXT party name </mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expfullnm}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Full_Name}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="expno">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Ext Party Number </mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expno}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Cust_No}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="Address">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Address</mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expstadd1}}--{{alarm.expstadd2}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.addr_1}}--{{alarm.addr_2}} </mat-cell>
   </ng-container>
  
   <ng-container matColumnDef="expstcinm">
     <mat-header-cell *matHeaderCellDef mat-sort-header> City Name </mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expstcinm}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.city_Name}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="expbod">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expbod}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Birth_Date}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="expstconm">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Citizenship </mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expstconm}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.cntry_Name}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="expidtyds">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Identification Document</mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expidtyds}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ident_Type_Desc}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="expid">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Identification Number</mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.expid}} </mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ident_Id}} </mat-cell>
   </ng-container>
  
   <ng-container matColumnDef="TEL">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Telephone</mat-header-cell>
-    <mat-cell *matCellDef="let alarm"> {{alarm.exptel2}} --- {{alarm.exptel1}}</mat-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.tel_No_1}} --- {{alarm.tel_No_2}}</mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 </mat-table>
 <mat-paginator #paginator
-  [pageSize]="2"
-  [pageSizeOptions]="[2,5, 10, 20]"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 20]"
   [showFirstLastButtons]="true">
 </mat-paginator>
 </div>

@@ -24,6 +24,7 @@ export class SelectCloseReasonComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
   openOther() {
     this.isOther = true;

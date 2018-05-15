@@ -39,25 +39,22 @@ export class ForwardComponent implements OnInit {
 
     this.data["selected"].forEach(element => {
 
-      let suspectKey = element["id"]["objKey"]
-      let code = element["id"]["objLevelCode"]
-      let oldName = element["complianceUserid"]
-      element["complianceUserid"] = this.name;
+      let suspectKey = element["id"]["alarmed_Obj_Key"]
+      let code = element["id"]["alarmed_Obj_level_Cd"]
+      let oldName = element["owner_UID"]
+      element["owner_UID"] = this.name;
 
-      element["id"]["objKey"]
-      // let url = "http://localhost:8081/aml/api/v1/updateUser?key=" + suspectKey +
-      //   "&code=" + code + "&user=" + this.name;
-      //   this.http.put(url, []).
+      element["id"]["alarmed_Obj_Key"]
+    
         this.suspectService.forwardSuspect(suspectKey,code,this.name)
       .subscribe(data => {
       }, error => {
-        element["complianceUserid"] = oldName;
+        element["owner_UID"] = oldName;
       }
       );
 
     });
     this.dialogRef.close();
-    // this.router.navigate(['suspects']);
 
 
   }

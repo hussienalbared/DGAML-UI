@@ -1,14 +1,14 @@
 export interface externalParty{
 
-    expfullnm:string;
-    expno:string;
-    expstadd1:string;
-    expstadd2:string;
-    expstcinm:string;
-    expbod:string;
-    expstconm:string;
-    expidtyds:string;
-    expid:string;
-    exptel1:string;
-    exptel2:string;
+    ext_Full_Name:string;
+    ext_Cust_No:string;
+    addr_1:string;
+    addr_2:string;
+    city_Name:string;
+    ext_Birth_Date:string;
+    cntry_Name:string;
+    ident_Type_Desc:string;
+    ident_Id:string;
+    tel_No_1:string;
+    tel_No_2:string;
 }

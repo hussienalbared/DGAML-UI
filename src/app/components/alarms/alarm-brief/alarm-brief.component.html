@@ -1,26 +1,15 @@
 
-  <mat-accordion>
+  <mat-accordion *ngIf="dataSource">
 
       <mat-expansion-panel expanded='true'>
         <mat-expansion-panel-header>
           Alarm in Brief
         </mat-expansion-panel-header>
-    
-       
-    
-     
-  
 
-<!-- <button class="btn btn-primary" (click)="closeAlarm()">
-  <i class="fa fa-ban"></i> Close</button>
-  <button class="btn btn-primary" (click)="suppressAlarm()">
-    <i class="fa fa-ban"></i> Suppress</button>-->
     <mat-card>
     <div class="button-row"> 
  
-      <!-- <button mat-raised-button color="primary" matTooltip="close alarm!"  (click)="closeAlarm()">Close</button>
-      <button mat-raised-button color="accent" matTooltip="suppress alarm!" (click)="suppressAlarm()">Suppress</button>
-       -->
+   
       <button class="btn btn-primary" (click)="closeAlarm()">
           <i class="fa fa-ban"></i> Close</button>
         <button class="btn btn-primary" (click)="suppressAlarm()">
@@ -50,35 +39,35 @@
     </ng-container>
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarmId}}">{{element.alarmId}}</a> </mat-cell>
+      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarm_Id}}">{{element.alarm_Id}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primaryObjLevelCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm Level </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.primaryObjLevelCode}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.prim_Obj_level_Cd}} </mat-cell>
     </ng-container>
 
    
     <ng-container matColumnDef="routineName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.routineName}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.routine_Name}} </mat-cell>
     </ng-container>
 
    
     <ng-container matColumnDef="routineCategoryCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Type </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.acRoutine.routineCategoryCode}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Categ_Cd}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineDescription">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.acRoutine.routineDescription}}
+      <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Desc}}
          
       
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="runDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Run Date </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.runDate}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.run_Date}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

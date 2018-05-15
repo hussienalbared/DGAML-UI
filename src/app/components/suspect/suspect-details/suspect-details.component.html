@@ -1,4 +1,4 @@
-<mat-accordion  >
+<mat-accordion *ngIf="result"  >
 
         <mat-expansion-panel  expanded='true'>
           <mat-expansion-panel-header>
@@ -15,26 +15,26 @@
                 <!--Title-->
                 <!-- <h4 class="card-title">Account Detail</h4> -->
                 <!--Text-->
-                <div class="card-text">
-                    <p>Customer name:{{result.pfnm}}</p>
-                    <p>Customer Number:{{result.pno}}</p>
-                    <p>Address:{{result.pstadd1}}--{{result.pstadd2}}</p>
-                    <p>Date of Birth:{{result.pbod}}</p>
-                    <p>Politically exposed:{{result.ppepind}}</p>
-                    <p>Citizenship:{{result.pczcocd}}</p>
-                    <p>Identification Document:{{result.pidtyds}}</p>
-                    <p>Identification Number:{{result.pid}}</p>
-                    <p>Identification Issue Date:{{result.pidissuedate}}</p>
-                    <p>Identification Expiry Date:{{result.pidexpdate}}</p>
-                    <p>Employer Name:{{result.pascnm}}</p>
-                    <p>Occupation:{{result.pocuds}}</p>
-                    <p>Telephone:{{result.ptel1}}--{{result.ptel2}}--{{result.ptel3}}</p>
-                    <p>Current Risk Classification:{{result.riskClassification}}</p>
+                <div class="card-text" >
+                    <p>Customer name:{{result.cust_FName}}</p>
+                    <p>Customer Number:{{result.cust_No}}</p>
+                    <p>Address:{{result.addr_1}}--{{result.addr_1}}</p>
+                    <p>Date of Birth:{{result.cust_Birth_Date}}</p>
+                    <p>Politically exposed:{{result.political_Exp_Prsn_Ind}}</p>
+                    <p>Citizenship:{{result.citizen_Cntry_Cd}}</p>
+                    <p>Identification Document:{{result.cust_Ident_Type_Desc}}</p>
+                    <p>Identification Number:{{result.cust_Ident_Id}}</p>
+                    <p>Identification Issue Date:{{result.cust_Ident_Iss_Date}}</p>
+                    <p>Identification Expiry Date:{{result.cust_Ident_Exp_Date}}</p>
+                    <p>Employer Name:{{result.empr_Name}}</p>
+                    <p>Occupation:{{result.occup_Desc}}</p>
+                    <p>Telephone:{{result.tel_No_1}}--{{result.tel_No_2}}--{{result.tel_No_3}}</p>
+                    <p>Current Risk Classification:{{result.risk_Class}}</p>
                 
-                <p>Dealing with the bank since Date:{{result.pcusdate}}</p>
+                <p>Dealing with the bank since Date:{{result.cust_Since_Date}}</p>
                 <h6>Related Accounts</h6>
-                <div  *ngFor="let account of result.corePartyaccountD">
-                        <a  [routerLink]="['/accountDetail',account.pacctno,number,obj_key,level_level_code]">{{account.pacctno}} </a>
+                <div  *ngFor="let account of result.customerAccount">
+                        <a  [routerLink]="['/accountDetail',account.acct_No,obj_key,level_level_code]">{{account.acct_No}} </a>
     
                 </div>
                 </div>  
