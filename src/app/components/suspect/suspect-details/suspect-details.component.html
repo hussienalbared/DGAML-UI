@@ -1,4 +1,4 @@
-<mat-accordion  >
+<mat-accordion *ngIf="result"  >
 
         <mat-expansion-panel  expanded='true'>
           <mat-expansion-panel-header>
@@ -15,7 +15,7 @@
                 <!--Title-->
                 <!-- <h4 class="card-title">Account Detail</h4> -->
                 <!--Text-->
-                <div class="card-text">
+                <div class="card-text" >
                     <p>Customer name:{{result.cust_FName}}</p>
                     <p>Customer Number:{{result.cust_No}}</p>
                     <p>Address:{{result.addr_1}}--{{result.addr_1}}</p>

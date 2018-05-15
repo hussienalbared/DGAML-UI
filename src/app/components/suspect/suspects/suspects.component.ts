@@ -19,6 +19,7 @@ import { suspect } from '../../models/suspect.model';
 })
 export class SuspectsComponent implements OnInit {
   result: suspect[];
+  IsLoaded=true;
 
   dataSource: any = null;
   displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
@@ -58,11 +59,12 @@ export class SuspectsComponent implements OnInit {
 
     this.suspectService.getAllSuspects().
       subscribe(data => {
-        console.log(data);
+     
         this.result = data;
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.IsLoaded=false;
 
       });
   }
@@ -102,15 +104,15 @@ export class SuspectsComponent implements OnInit {
     this.selection.selected.forEach(
       element => {
 
-        let code = element["id"]["objLevelCode"];
-        let key = element["id"]["objKey"];
-        let oldcomplianceUserid = element["complianceUserid"];
-        element['complianceUserid'] = 'Admin';
+        let code = element["id"]["alarmed_Obj_level_Cd"];
+        let key = element["id"]["alarmed_Obj_Key"];
+        let oldcomplianceUserid = element["owner_UID"];
+        element['owner_UID'] = 'Admin';
 
 
-        this.suspectService.takeOwnerShipService(key, code, element['complianceUserid']).subscribe(data => { }
+        this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => { }
           , error => {
-            element['complianceUserid'] = oldcomplianceUserid;
+            element['owner_UID'] = oldcomplianceUserid;
           }
         );
       }
@@ -143,7 +145,8 @@ export class SuspectsComponent implements OnInit {
       data: { selected: this.selection.selected }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(
+      result => {
       //reason for close or suppressed an alarms returned from dialog
       if (dialogRef.componentInstance.isConfirmed) {
 
@@ -152,13 +155,14 @@ export class SuspectsComponent implements OnInit {
 
         this.selection.selected.forEach(element => {
 
-          let code = element['id']['objLevelCode'];
-          let key = element['id']['objKey'];
-          let oldcomplianceUserid = element['alertCount'];
+          let code = element['id']['alarmed_Obj_level_Cd'];
+          let key = element['id']['alarmed_Obj_Key'];
+          let oldcomplianceUserid = element['owner_UID'];
+          console.log(code+"&&&&&&"+key+"%%%%"+oldcomplianceUserid)
 
           this.suspectService.changeAllSuspectAlarms(key, code, eventType).subscribe(data => {
             //set alert count of suspect to zero
-            element['alertCount'] = '0';
+            element['alarms_Count'] = '0';
           }
           )
 
@@ -168,7 +172,7 @@ export class SuspectsComponent implements OnInit {
               'create_user_id': '45',
               'event_type_code': eventType,
               'event_description': reason,
-              'alarm_id': aaa['alarmId']
+              'alarm_id': aaa['alarm_Id']
             }
             this.suspectService.addalarmEvent(event)
 

@@ -1,21 +1,21 @@
  <mat-accordion>
     <mat-expansion-panel expanded>
     <mat-expansion-panel-header>
-      Search Party
+      Search Customer
     </mat-expansion-panel-header>
     <div class="container">
 <form #partySearch="ngForm" (ngSubmit)="onClickSubmit(partySearch.value)">
   <div class="row">
     <div class="col-lg-6">
       <div class="form-group">
-        <label for="PartyNumber">Party Number</label>
+        <label for="PartyNumber">Customer Number</label>
         <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
 
       </div>
     </div>
     <div class="col-lg-6">
       <div class="form-group">
-        <label for="PartyId">Party Id</label>
+        <label for="PartyId">Customer Id</label>
         <input type="text" name="PartyId" [(ngModel)]="PartyId" class="form-control">
 
       </div>
@@ -26,7 +26,7 @@
   <div class="row">
     <div class="col-lg-6">
       <div class="form-group">
-        <label for="PartyName">Party Name</label>
+        <label for="PartyName">Customer Name</label>
         <input type="text" name="PartyName" [(ngModel)]="PartyName" class="form-control">
 
       </div>
@@ -64,7 +64,7 @@
     <div class="col-lg-6">
 
       <div class="form-group">
-        <label for="PartyStatusDescription">Party status description</label>
+        <label for="PartyStatusDescription">Customer status description</label>
         <select name="PartyStatusDescription" [(ngModel)]="PartyStatusDescription" class="form-control">
           <option value="active">Active</option>
           <option value="dormant">Dormant</option>

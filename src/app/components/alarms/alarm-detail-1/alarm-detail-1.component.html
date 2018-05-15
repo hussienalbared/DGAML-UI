@@ -1,52 +1,40 @@
-Routine Name :{{dataSource.routine_Name}}<br>
-Routine Description:{{dataSource.acroutine.routine_Desc}}<br>
-Run Date:{{dataSource.run_Date}}<br>
-alarm message:{{dataSource.actual_Value_Txt}}<br>
-<!-- 
+
+
+
 <mat-accordion>
-<mat-expansion-panel expanded>
-<mat-expansion-panel-header>
-  Alaram Detail
-  </mat-expansion-panel-header>
-  
 
-<div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
-  
-      
-      <ng-container matColumnDef="RoutineName">
-        <mat-header-cell *matHeaderCellDef> Routine Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.routine_Name}} </mat-cell>
-      </ng-container>
-  
-   
-      <ng-container matColumnDef="RoutineDescription">
-        <mat-header-cell *matHeaderCellDef> Routine Description </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Desc}} </mat-cell>
-      </ng-container>
-  
-    
+
+<mat-expansion-panel expanded=true>
+  <mat-expansion-panel-header>
+      Alarm Detail
+    </mat-expansion-panel-header>
+    <mat-card class="example-card">
+        <mat-card-header>
+          
+          <!-- <mat-card-title>Transaction Detail</mat-card-title> -->
+         
+        </mat-card-header>
      
-      <ng-container matColumnDef="RunDate">
-        <mat-header-cell *matHeaderCellDef> Run Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.run_Date}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="alarm message">
-          <mat-header-cell *matHeaderCellDef> alarm messageC</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.actual_Value_Txt}} </mat-cell>
-        </ng-container>
-  
-    
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+       <mat-card-content>
+         
+      
+        <h6>Routine Name :{{dataSource.routine_Name}}</h6>
+        <h6>Routine Description:{{dataSource.acroutine.routine_Desc}}</h6>
+        <h6>Run Date:{{dataSource.run_Date}}</h6>
+        <h6> alarm message:{{dataSource.actual_Value_Txt}}</h6>
+      
+      
+        </mat-card-content>
+      
+      </mat-card>
+      
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!--  -->
 
 
-</mat-expansion-panel>
 
-</mat-accordion> -->
 <mat-accordion>
     <mat-expansion-panel  expanded>
     <mat-expansion-panel-header>
@@ -58,30 +46,30 @@ alarm message:{{dataSource.actual_Value_Txt}}<br>
       
         <ng-container matColumnDef="acctno">
           <mat-header-cell *matHeaderCellDef> Account Number </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element[0]}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.acct_Key}} </mat-cell>
         </ng-container>
     
         <ng-container matColumnDef="ttrn">
           <mat-header-cell *matHeaderCellDef> Transaction reference Number </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element[1]}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.trans_Ref_No}} </mat-cell>
         </ng-container>
     
      
         <ng-container matColumnDef="cfdatekey">
           <mat-header-cell *matHeaderCellDef>Transaction Date  </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element[2]}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.date_Key}} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="cfcurramount">
             <mat-header-cell *matHeaderCellDef> Transaction Amount  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element[3]}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.ccy_Amt}} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="transaction_cdi_des">
               <mat-header-cell *matHeaderCellDef> Transaction Type </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element[4]}} </mat-cell>
+              <mat-cell *matCellDef="let element"> {{element.trans_Cr_Db_Ind_Desc}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="ttds">
                 <mat-header-cell *matHeaderCellDef> Transaction Description </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element[5]}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.trans_Desc}} </mat-cell>
               </ng-container>
       
     
