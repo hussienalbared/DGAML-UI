@@ -49,6 +49,10 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { AuthService } from './services/auth.service';
+import { AccountAlarmInBriefComponent } from './components/accounts/account-alarm-in-brief/account-alarm-in-brief.component';
+import { AccountsService } from './services/accounts.service';
+import { Section3Component } from './components/accounts/section3/section3.component';
+import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 
 
 // AoT requires an exported function for factories
@@ -81,6 +85,12 @@ export function tokenGetter() {
     AccountDetailComponent,
     LayoutComponent,
     LoginComponent,
+    AccountAlarmInBriefComponent,
+   
+    Section3Component,
+   
+    AccountDetailSearchComponent,
+    
     
   ],
   imports: [
@@ -144,9 +154,15 @@ export function tokenGetter() {
       },
       { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
       { path: 'alarmDetail/:alarmId', component: AlarmDetail1Component },
+      
+   
       {
         path:'accountDetail/:accountNumber/:obj_key/:obj_level_code',
         component:AccountDetailComponent
+      },
+      {
+        path:'accountDetailSearch/:accountNumber/:account_Key',
+        component:AccountDetailSearchComponent
       },
       {
         path:'TransactionDeatil/:ttrn',
@@ -162,7 +178,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
