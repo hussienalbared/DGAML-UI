@@ -34,7 +34,7 @@
                 <p>Dealing with the bank since Date:{{result.cust_Since_Date}}</p>
                 <h6>Related Accounts</h6>
                 <div  *ngFor="let account of result.customerAccount">
-                        <a  [routerLink]="['/accountDetail',account.acct_No,obj_key,level_level_code]">{{account.acct_No}} </a>
+                        <a  [routerLink]="['/accountDetailSearch',account.acct_No,account.id.acct_Key]">{{account.acct_No}} </a>
     
                 </div>
                 </div>  
