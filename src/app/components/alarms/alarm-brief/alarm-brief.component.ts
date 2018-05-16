@@ -63,9 +63,12 @@ export class AlarmBriefComponent implements OnInit {
   }
   getAlarms() {
     let Url = "http://localhost:8081/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
+  
     this.http.get(Url).subscribe(data => {
       this.dataSource3 = data["acAlarm"];
-
+      console.log("&&&&&&&&&&&&&&&&&")
+      console.log(this.dataSource3)
+      console.log("&&&&&&&&&&&&&&&&&")  
       this.dataSource3 = new MatTableDataSource(this.dataSource3);
       this.dataSource3.sort = this.sort;
       this.dataSource3.paginator = this.paginator;
