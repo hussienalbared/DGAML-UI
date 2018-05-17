@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SuspectsService } from '../../../services/suspects.service';
+import { FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-forward',
   templateUrl: './forward.component.html',
@@ -12,6 +15,8 @@ import { SuspectsService } from '../../../services/suspects.service';
 export class ForwardComponent implements OnInit {
   name: string = '';
   numSuspected: number = 0;
+  users:string[]=[];
+  myControl: FormControl = new FormControl();
   constructor(
     public dialogRef: MatDialogRef<ForwardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService
@@ -29,8 +34,13 @@ export class ForwardComponent implements OnInit {
     this.dialogRef.close();
 
   }
+  isNameComplete(name){
+    console.log(name)
+   return this.users.indexOf(name)
+
+  }
   forward() {
-    if (this.name === '') {
+    if (this.name === ''||this.users.indexOf(this.name)<0) {
       console.log("please select user");
       this.dialogRef.close();
       return;
@@ -59,6 +69,25 @@ export class ForwardComponent implements OnInit {
 
   }
   ngOnInit() {
+    let url="http://localhost:8081/aml/api/user/users";
+    this.http.get<string[]>(url).subscribe(data=>{
+this.users=data;
+console.log(this.users)
+this.filteredOptions = this.myControl.valueChanges
+.pipe(
+  startWith(''),
+  map(val => this.filter(val))
+);
+    })
+  }
+  
+  filteredOptions: Observable<string[]>;
+
+
+
+  filter(val: string): string[] {
+    return this.users.filter(option =>
+      option.toLowerCase().includes(val.toLowerCase()));
   }
 
 }

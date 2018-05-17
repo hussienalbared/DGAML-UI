@@ -141,6 +141,7 @@ export function tokenGetter() {
     MatMenuModule,
     MatSelectModule,
   MatProgressSpinnerModule,
+  MatAutocompleteModule,
     
     MatGridListModule,
     RouterModule.forRoot([
