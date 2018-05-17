@@ -96,17 +96,17 @@
     <div class="clearfix"></div>
 
     <mat-nav-list>
-      <mat-list-item>
+      <mat-list-item (click)="navItem('suspects')">
         <a routerLink="suspects">
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item>
+      <mat-list-item (click)="navItem('risk')">
         <a>
           <mat-icon>people</mat-icon>
-          <span *ngIf="isOn"> Risk Profiling</span>
+          <a routerLink="/risk" *ngIf="isOn"> Risk Profiling</a>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -128,19 +128,19 @@
             <span>Search</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item>
+            <mat-list-item (click)="navItem('account')">
               <a routerLink="account">Account</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>
+            <mat-list-item  (click)="navItem('alarm')">
               <a routerLink="alarm">Alarm</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>
+            <mat-list-item  (click)="navItem('party')">
               <a routerLink="party">Customer</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>
+            <mat-list-item (click)="navItem('external')">
               <a routerLink="external">External Customer</a>
             </mat-list-item>
           </mat-list>

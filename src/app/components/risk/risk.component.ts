@@ -46,7 +46,7 @@ export class RiskComponent implements OnInit {
     this.riskId = row.riskAssessmentId;
     this.customerName = row.partyName;
     this.customerNumber = row.partyNumber;
-    this.createDate = row.createDate;
+    this.createDate = row.create_Date;
   }
 
   ngOnInit() {
@@ -58,7 +58,7 @@ export class RiskComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
 
-    this.getDataSecondTable();
+     this.getDataSecondTable();
 
   }
 

@@ -1,7 +1,10 @@
-<br/>
-<br/>
-<div class="container">
-<div class="example-container mat-elevation-z8">
+<mat-accordion>
+  <mat-expansion-panel expanded>
+  <mat-expansion-panel-header class="riskSectionTitle">
+  Risk
+  </mat-expansion-panel-header>
+<!-- <div class="container"> -->
+<!-- <div class="example-container mat-elevation-z8"> -->
 
   <mat-table #table [dataSource]="dataSource" matSort>
 
@@ -49,70 +52,98 @@
                  [pageSizeOptions]="[2,5, 10, 20]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
-</div>
-</div>
-<br/>
-<mat-list class="nav-link">
-  <a mat-list-item href="risk.component.html" >
-    General Information
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+<!-- </div> -->
+<!-- </div> -->
+</mat-expansion-panel>
+</mat-accordion>
 
-</mat-list>
-<mat-grid-list cols="4" rowHeight="3:1">
+
+<!-- <mat-grid-list cols="4" rowHeight="3:1">
   <mat-grid-tile class="lead">Details</mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
 
-<div class="list-group">
+<!-- <div class="list-group">
   <a href="#" class="list-group-item"> Risk Assisment Id : {{riskId}}</a>
   <a href="#" class="list-group-item">Customer Name : {{customerName}}</a>
   <a href="#" class="list-group-item">Customer Name : {{customerNumber}} </a>
   <a href="#" class="list-group-item">Created Date : {{createDate}} </a>
-</div>
+</div> -->
+<br>
+<mat-card class="example-card">
+  <h5 class="riskSectionTitle">
+    <!-- <mat-list class="nav-link">
+            <a mat-list-item href="risk.component.html" > -->
+              General Information
+              <!-- <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          
+    </mat-list> -->
+ </h5>
 
-<mat-list>
-<mat-grid-list cols="4" rowHeight="3:1">
+ <mat-card-content>
+   
+
+  <h6>Risk Assisment Id : <span style="font-weight:normal">  {{riskId}}</span></h6>
+  <h6>Customer Name : <span>{{customerName}}</span></h6>
+  <h6>Customer Name :<span> {{customerNumber}}</span></h6>
+  <h6> Created Date : <span>{{createDate}}</span> </h6>
+
+
+  </mat-card-content>
+
+</mat-card>
+<br>
+<!-- <mat-list> -->
+<!-- <mat-grid-list cols="4" rowHeight="3:1">
   <mat-grid-tile class="lead">Risk Classifier</mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+<mat-accordion>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header class="riskSectionTitle">
+        Risk Classifier
+      </mat-expansion-panel-header>
+      <mat-table [dataSource]="dataSourceTable2" matSort>
 
-  <mat-table [dataSource]="dataSourceTable2" matSort>
-
-    <ng-container matColumnDef="riskClassifierId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.riskClassifierId}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="riskClassifierName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Risk Classifier Name </mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.riskClassifierName}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="riskClassifierDesc">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Describition </mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.riskClassifierDesc}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier Wieght </mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.weight}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="classifierThreshold">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier ThreeShold </mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.classifierThreshold}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="createDate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  Create Date </mat-header-cell>
-      <mat-cell *matCellDef="let class"> {{class.createDate}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumnsforClassfirerTable"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumnsforClassfirerTable;" (click)="getRecord(row)"></mat-row>
-
-  </mat-table>
-  <mat-paginator #paginator
-                 [pageSize]="5"
-                 [pageSizeOptions]="[2,5, 10, 20]"
-                 [showFirstLastButtons]="true">
-  </mat-paginator>
+          <ng-container matColumnDef="riskClassifierId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.risk_Class_Id}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="riskClassifierName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Risk Classifier Name </mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.risk_Class_Name}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="riskClassifierDesc">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Describition </mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.risk_Class_Desc}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier Wieght </mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.weight}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="classifierThreshold">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier ThreeShold </mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.class_Limit}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="createDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  Create Date </mat-header-cell>
+            <mat-cell *matCellDef="let class"> {{class.create_Date}} </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumnsforClassfirerTable"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumnsforClassfirerTable;" (click)="getRecord(row)"></mat-row>
+      
+        </mat-table>
+        <mat-paginator #paginator
+                       [pageSize]="5"
+                       [pageSizeOptions]="[2,5, 10, 20]"
+                       [showFirstLastButtons]="true">
+        </mat-paginator>
+      
+  </mat-expansion-panel>
+</mat-accordion>
+  
