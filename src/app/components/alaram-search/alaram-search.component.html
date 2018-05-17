@@ -84,12 +84,12 @@
   
     <ng-container matColumnDef="createDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.create_Date}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.create_Date| date:'MM/dd/yyyy'}} </mat-cell>
     </ng-container>
   
     <ng-container matColumnDef="runDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.run_Date}} </mat-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.run_Date | date:'MM/dd/yyyy'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
