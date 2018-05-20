@@ -13,7 +13,7 @@ export class LayoutComponent implements OnInit {
   mode = new FormControl('side');
   isOn = true;
   elemen: any;
-  isActive = false;
+//  isActive = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -25,9 +25,9 @@ export class LayoutComponent implements OnInit {
 
   layoutItem(e){
     
-    for (var _i = 0; _i < document.getElementsByClassName("mat_item_a").length; _i++) {
-      document.getElementsByClassName("mat_item_a")[_i].classList.remove("active");
-      document.getElementsByClassName("mat-list-item-content")[_i].classList.remove("active");
+    for (var _i = 0; _i < $(".mat_item_a").length; _i++) {
+      $(".mat_item_a")[_i].classList.remove("active");
+      $(".mat-list-item-content")[_i].classList.remove("active");
     }
     $(e.target).addClass('active');
     $(e.target).closest('.mat_item_a').addClass('active');
