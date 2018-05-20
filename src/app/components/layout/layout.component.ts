@@ -37,7 +37,7 @@ export class LayoutComponent implements OnInit {
     //  $(e.target).addClass("active");
     
     //
-      console.log(" = " + $(e.target).attr("class"));
+      //console.log(" = " + $(e.target).attr("class"));
     }
   /* --- */
 }   
