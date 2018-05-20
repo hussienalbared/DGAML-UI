@@ -337,3 +337,35 @@ mat-expansion-panel .mat-expansion-panel-body {
 .mat-expansion-indicator::after{
     color: rgb(231, 231, 231) !important;
 }
+
+/***/
+
+.mat-list-item.active,
+.mat-list-item.active.subdrop {
+    color: #fff;
+    background: #F0843F !important;
+    border-left: 5px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+}
+
+.mat-list-item.open:after,
+.mat-list-item-content.active:after,
+.mat-list-item.active:after {
+    border-color: rgba(0, 0, 0, 0) #E4EAE6 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 15px 11px 15px 0;
+    content: " ";
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 0;
+    z-index: 2;
+}
+
+.mat_item_a.active,.mat-list-item-content.active{
+    color: #fff;
+    background: #F0843F !important;
+    border-left: 5px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+}
