@@ -251,7 +251,7 @@ mat-sidenav .row {
 }
 .mat-nav-list .mat-expansion-panel-body .mat-list-item-content{
     padding: 0 36px !important;
-    background: #114158a3;
+    /*background: #114158a3;*/
 }
 .mat-nav-list .mat-icon {
     height: 30px;
@@ -363,9 +363,13 @@ mat-expansion-panel .mat-expansion-panel-body {
     z-index: 2;
 }
 
-.mat_item_a.active,.mat-list-item-content.active{
+.mat_item_a.active,.mat-list-item-content.active .mat-list-item-content,
+.mat-list-item-content.active{
     color: #fff;
     background: #F0843F !important;
     border-left: 5px solid rgba(0, 0, 0, 0.3);
     padding-left: 5px;
+}
+.mat-nav-list[_ngcontent-c1] .mat-list-item.active[_ngcontent-c1]:hover{
+    background: #F0843F !important;
 }

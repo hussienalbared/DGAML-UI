@@ -30,6 +30,7 @@ export class LayoutComponent implements OnInit {
       document.getElementsByClassName("mat-list-item-content")[_i].classList.remove("active");
     }
     $(e.target).addClass('active');
+    $(e.target).closest('.mat_item_a').addClass('active');
     //$(e.target).css({ "display": "block !important","background-color": "#F0843F !important"});
     // this.isActive = true;
     // // e.target.addClass("active")
