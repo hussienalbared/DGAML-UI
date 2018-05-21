@@ -23,13 +23,7 @@
   </div>
 
 <div class="row">
-  <div class="col-6">
-      <div class="form-group">
-          <label for="">Account Type</label>
-          <input type="text" name="accountType" [(ngModel)]="accountType" class="form-control">
-          
-          </div>
-  </div>
+ 
   <div class="col-6">
       <div class="form-group">
           <label for="">Account Open date</label>
@@ -37,16 +31,24 @@
           
           </div>
   </div>
+  <div class="col-6">
+    <div class="form-group">
+        <label for="">Account Close date</label>
+        <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate" class="form-control">
+        
+        </div>
+ </div>
 </div>
   
    <div class="row">
+   
      <div class="col-6">
-        <div class="form-group">
-            <label for="">Account Close date</label>
-            <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate" class="form-control">
-            
-            </div>
-     </div>
+      <div class="form-group">
+          <label for="">Account Type</label>
+          <input type="text" name="accountType" [(ngModel)]="accountType" class="form-control">
+          
+          </div>
+  </div>
    </div>
      
 <!-- <div class="form-group"> 
