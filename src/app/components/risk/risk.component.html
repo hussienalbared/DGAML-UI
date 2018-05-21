@@ -1,3 +1,17 @@
+<!-- -->
+<mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
+  <button class="btn btn-primary" (click)="openDialog()">
+    <i class="fa fa-share" > </i> Forward</button>
+  <button class="btn btn-primary" (click)="takeOwnerShip()">
+    <i class="fa fa-chain"></i> Take Ownership</button>
+  <button class="btn btn-primary" (click)="removeOwnerShip()">
+    <i class="fa fa-chain-broken" ></i> Remove Ownership</button>
+  <button class="btn btn-primary" (click)="approveRisk()">
+    <i class="fa fa-ban"></i> Approve</button>
+  <button class="btn btn-primary" (click)="declineRisk()">
+    <i class="fa fa-eye-slash"></i> Decline</button>
+</mat-card>
+<!-- -->
 <mat-accordion>
   <mat-expansion-panel expanded>
   <mat-expansion-panel-header class="riskSectionTitle">
@@ -6,7 +20,24 @@
 <!-- <div class="container"> -->
 <!-- <div class="example-container mat-elevation-z8"> -->
 
-  <mat-table #table [dataSource]="dataSource" matSort>
+  <mat-table [dataSource]="dataSource" #sort="matSort" matSort>
+
+     <!-- selection checkbox -->
+     <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" 
+        [checked]="selection.hasValue() && isAllSelected()" 
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell >
+      <mat-cell *matCellDef="let row" >
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <!-- -->
 
     <ng-container matColumnDef="riskAssessmentId">
       <mat-header-cell *matHeaderCellDef mat-sort-header>  Risk Id </mat-header-cell>
@@ -83,10 +114,13 @@
  <mat-card-content>
    
 
-  <h6>Risk Assisment Id : <span style="font-weight:normal">  {{riskId}}</span></h6>
-  <h6>Customer Name : <span>{{customerName}}</span></h6>
-  <h6>Customer Name :<span> {{customerNumber}}</span></h6>
-  <h6> Created Date : <span>{{createDate}}</span> </h6>
+  <h6>Risk ID : <span style="font-weight:normal">  {{this.riskId}}</span></h6>
+  <h6>Customer Name : <span>{{this.customerName}}</span></h6>
+  <h6>Customer Number :<span> {{customerNumber}}</span></h6>
+  <h6>Current Classification : <span>{{currentClassification}}</span> </h6>
+  <h6>Suggested Classification : <span>{{suggestedClassification}}</span> </h6>
+  <h6>Created Date : <span>{{createDate}}</span> </h6>
+  <h6>User : <span>{{user}}</span> </h6>
 
 
   </mat-card-content>
@@ -102,8 +136,9 @@
     <mat-expansion-panel-header class="riskSectionTitle">
         Risk Classifier
       </mat-expansion-panel-header>
-      <mat-table [dataSource]="dataSourceTable2" matSort>
+      <mat-table [dataSource]="dataSourceTable2" #sortClassifier="matSort" matSort>
 
+       
           <ng-container matColumnDef="riskClassifierId">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.risk_Class_Id}} </mat-cell>
@@ -138,11 +173,12 @@
           <mat-row *matRowDef="let row; columns: displayedColumnsforClassfirerTable;" (click)="getRecord(row)"></mat-row>
       
         </mat-table>
-        <mat-paginator #paginator
-                       [pageSize]="5"
-                       [pageSizeOptions]="[2,5, 10, 20]"
-                       [showFirstLastButtons]="true">
-        </mat-paginator>
+        
+        <mat-paginator #paginatorClassifier
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 20]"
+        [showFirstLastButtons]="true">
+</mat-paginator>
       
   </mat-expansion-panel>
 </mat-accordion>

@@ -8,6 +8,14 @@
 }
 span{
   font-weight:normal;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 14px;
+}
+.mat-card-content[_ngcontent-c13] h6[_ngcontent-c13]{
+  font: inherit;
+  font-weight: bold;
+  letter-spacing: 0;
+  font-size: 15px;
 }
 /* .riskSectionTitle{
   font-size: 16px;

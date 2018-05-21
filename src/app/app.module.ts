@@ -32,6 +32,9 @@ import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
 import { SuspectsService } from './services/suspects.service';
+
+import { RiskService } from './services/risk.service';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -185,7 +188,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })
