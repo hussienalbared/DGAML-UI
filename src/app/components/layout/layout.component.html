@@ -157,6 +157,19 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <!-- <div class="links"></div> -->
+    <mat-chip-list >
+        <mat-chip class="searchActiveLink" *ngFor="let link of links.links" [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(link)"
+        
+         >
+          <a #chipList routerLink="{{link}}">{{link}}</a>
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        
+      </mat-chip-list>
+      
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -75,7 +75,8 @@
     <mat-cell *matCellDef="let account"> 
     
        
-       <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}">{{account.acct_No}}</a>
+       <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}" 
+       (click)="addLink('/accountDetailSearch/'+account.acct_No+'/'+account.acct_Key)">{{account.acct_No}}</a>
        </mat-cell>
   </ng-container>
 

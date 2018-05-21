@@ -337,3 +337,16 @@ mat-expansion-panel .mat-expansion-panel-body {
 .mat-expansion-indicator::after{
     color: rgb(231, 231, 231) !important;
 }
+.searchActiveLink{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+  
+   
+}
+.searchActiveLink2{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+    background-color: red;
+  
+   
+}

@@ -6,6 +6,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
 import { alaram } from '../models/alaram.model';
+import { ActiveLinkssService } from '../../services/active-linkss.service';
 @Component({
   selector: 'app-alaram-search',
   templateUrl: './alaram-search.component.html',
@@ -30,7 +31,7 @@ export class AlaramSearchComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private links:ActiveLinkssService) { }
 
   ngOnInit() {
   }
@@ -57,4 +58,8 @@ export class AlaramSearchComponent implements OnInit {
     });
 
   }
+  addLink(link)
+ {this.links.links.push(link)
+
+ }
 }
