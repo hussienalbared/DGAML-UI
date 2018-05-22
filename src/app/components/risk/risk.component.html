@@ -17,6 +17,11 @@
   <mat-expansion-panel-header class="riskSectionTitle">
   Risk
   </mat-expansion-panel-header>
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
 <!-- <div class="container"> -->
 <!-- <div class="example-container mat-elevation-z8"> -->
 

@@ -130,7 +130,7 @@ export class RiskComponent implements OnInit {
 
   //forward
   openDialog(){
-
+    console.log("openDialog");
   }
   takeOwnerShip(){
     //need id of the logged user
