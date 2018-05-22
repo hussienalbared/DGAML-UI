@@ -53,6 +53,7 @@ import { AccountAlarmInBriefComponent } from './components/accounts/account-alar
 import { AccountsService } from './services/accounts.service';
 import { Section3Component } from './components/accounts/section3/section3.component';
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
+import { TabsServiceService } from './services/tabs-service.service';
 
 
 // AoT requires an exported function for factories
@@ -180,7 +181,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,TabsServiceService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })

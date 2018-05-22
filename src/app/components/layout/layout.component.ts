@@ -4,6 +4,8 @@ import { FormControl } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
+import { TabsServiceService } from '../../services/tabs-service.service';
+import { tab } from '../models/tab.model';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -13,8 +15,8 @@ export class LayoutComponent implements OnInit {
   mode = new FormControl('side');
   isOn = true;
   elemen: any;
-//  isActive = false;
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService,private Tab:TabsServiceService) { }
 
   ngOnInit() {
   } 
@@ -23,7 +25,7 @@ export class LayoutComponent implements OnInit {
   } 
   /* --- */
 
-  layoutItem(e){
+  layoutItem(e,path,label){
     
     for (var _i = 0; _i < $(".mat_item_a").length; _i++) {
       $(".mat_item_a")[_i].classList.remove("active");
@@ -38,6 +40,15 @@ export class LayoutComponent implements OnInit {
     
     //
       //console.log(" = " + $(e.target).attr("class"));
+      let tab:tab={path:path,label:label}
+this.Tab.addTab(tab);
     }
   /* --- */
-}   
+  addTab(){
+
+  }
+  removeTab(index){
+
+    this.Tab.removeTab(index);
+  }
+}

@@ -1,4 +1,3 @@
-
 <mat-toolbar #img class="topbar">
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
@@ -9,49 +8,50 @@
       </h1>
     </div>
     <!-- class="mat-button-menu button-menu-mobile" -->
-    <button mat-icon-button (click)="changeIsOn()" >
+    <button mat-icon-button (click)="changeIsOn()">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
 
   <div class="section2">
     <div>
-      <h1  class="ProductName"><strong style="font-weight:700;">DataGear</strong>  Anti-Money Laundering</h1>
+      <h1 class="ProductName">
+        <strong style="font-weight:700;">DataGear</strong> Anti-Money Laundering</h1>
     </div>
     <div class="optionsc">
-      <div >
-      <i class="fa fa-bell notification">
+      <div>
+        <i class="fa fa-bell notification">
 
           <!-- <i class="notificationValue">4</i> -->
-      </i>
-     
-      <i class="fa fa-expand" style="margin-left: 15px;" id="fg"  onclick="javascript:toggle_fullscreen()"></i>
-     
-    </div >
-      <div >
-      <button mat-button [matMenuTriggerFor]="menu">
-      
-        <img src="./assets/images/users/avartar3.png" class="rounded-circle"  height="40">
-         Eman Gaafar
-      
-      </button>
-      <mat-menu #menu="matMenu" overlapTrigger="false">
-        <button mat-menu-item>
-          <span>My Profile</span>
+        </i>
+
+        <i class="fa fa-expand" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>
+
+      </div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+
+          <img src="./assets/images/users/avartar3.png" class="rounded-circle" height="40"> Eman Gaafar
+
         </button>
-        <button mat-menu-item>
-          <span>Account Setting</span>
-        </button>
-        <button mat-menu-item>
-          <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
-            <i class="icon-logout-1"></i> Logout</a>
-        </button>
-      </mat-menu>
-    </div>
+        <mat-menu #menu="matMenu" overlapTrigger="false">
+          <button mat-menu-item>
+            <span>My Profile</span>
+          </button>
+          <button mat-menu-item>
+            <span>Account Setting</span>
+          </button>
+          <button mat-menu-item>
+            <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+              <i class="icon-logout-1"></i> Logout</a>
+          </button>
+        </mat-menu>
+      </div>
       <!--  -->
       <div>
-      <button mat-button [matMenuTriggerFor]="menu2">
-        English<mat-icon>language</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu2">
+          English
+          <mat-icon>language</mat-icon>
         </button>
         <mat-menu #menu2="matMenu" overlapTrigger="false">
           <button mat-menu-item>
@@ -60,10 +60,10 @@
           <button mat-menu-item>
             <span>Arabic</span>
           </button>
-       
+
         </mat-menu>
       </div>
-<!--  -->
+      <!--  -->
 
     </div>
   </div>
@@ -96,7 +96,7 @@
     <div class="clearfix"></div>
 
     <mat-nav-list>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+      <mat-list-item (click)="layoutItem($event,'/suspects','Suspects')" class="mat_item_a">
         <a routerLink="suspects">
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
@@ -121,33 +121,33 @@
         <mat-icon>search</mat-icon>
       </mat-list-item>
 
-      <mat-accordion *ngIf="isOn" displayMode="flat" >
-        <mat-expansion-panel #fffv >
+      <mat-accordion *ngIf="isOn" displayMode="flat">
+        <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">
             <mat-icon>search</mat-icon>
             <span>Search</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event,'/account','Account')" class="mat_item_a">
               <a routerLink="account">Account</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event,'/alarm','Alarm')" class="mat_item_a">
               <a routerLink="alarm">Alarm</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event,'/party','Customer')" class="mat_item_a">
               <a routerLink="party">Customer</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event,'/external','External Customer')" class="mat_item_a">
               <a routerLink="external">External Customer</a>
             </mat-list-item>
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
-      <mat-list-item  (click)="layoutItem($event)" class="mat_item_a" >
+      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
         <a>
           <mat-icon>settings</mat-icon>
           <span *ngIf="isOn"> Administration</span>
@@ -157,8 +157,18 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link
+         *ngFor="let link of Tab.tabs;let index"
+         [routerLink]="link.path"
+         routerLinkActive #rla="routerLinkActive">
+        {{link.label}}<mat-icon matChipRemove (click)="removeTab(index)" >cancel</mat-icon>
+
+      </a>
+      
+    </nav>
+   
 
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

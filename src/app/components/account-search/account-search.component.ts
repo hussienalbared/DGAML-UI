@@ -7,6 +7,8 @@ import { MatPaginator, MatTableDataSource ,MatSort} from '@angular/material';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
 import { account } from '../models/account.model';
+import { TabsServiceService } from '../../services/tabs-service.service';
+import { tab } from '../models/tab.model';
 
 @Component({
   selector: 'app-account-search',
@@ -25,7 +27,7 @@ dataSource:any=null;
 displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'];
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private Tab:TabsServiceService) { }
 
   ngOnInit() {
     // this.accountType=this.myservice.showTodayDate();
@@ -55,6 +57,10 @@ displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'
     });
     
   
+ }
+ addTab(path,label){
+   let tab:tab={label:label,path:path}
+   this.Tab.addTab(tab);
  }
  resetFields()
  {this.accountCloseDate='';
