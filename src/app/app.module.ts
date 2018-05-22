@@ -26,6 +26,7 @@ import { SuspectDetailsComponent } from './components/suspect/suspect-details/su
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
+
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
@@ -58,6 +59,7 @@ import { Section3Component } from './components/accounts/section3/section3.compo
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 
 import { RiskComponent } from './components/risk/risk.component';
+import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,6 +97,7 @@ export function tokenGetter() {
   
     AccountDetailSearchComponent,
     RiskComponent,
+    RiskForwardComponent,
     
   ],
   imports: [
@@ -190,6 +193,6 @@ export function tokenGetter() {
   ],
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService],
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
 })
 export class AppModule { }

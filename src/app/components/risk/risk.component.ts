@@ -1,3 +1,5 @@
+import { element } from 'protractor';
+import { RiskForwardComponent } from './risk-forward/risk-forward.component';
 import { RiskService } from './../../services/risk.service';
 import { risk } from './../../models/risk.model';
 
@@ -7,6 +9,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {classifier} from '../../models/classifier.model';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -46,6 +49,7 @@ export class RiskComponent implements OnInit {
   @ViewChild('sortClassifier') sortClassifier: MatSort;
 
   constructor(private http: HttpClient,
+    public dialog: MatDialog,
               private riskService: RiskService) {
   }
 
@@ -131,6 +135,27 @@ export class RiskComponent implements OnInit {
   //forward
   openDialog(){
     console.log("openDialog");
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    let dialogRef = this.dialog.open(RiskForwardComponent, {
+
+      height: '400px',
+      width: '600px',
+
+      data: { selected: this.selection.selected }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    }, error => {
+
+    }
+
+    );
   }
   takeOwnerShip(){
     //need id of the logged user
@@ -159,11 +184,16 @@ export class RiskComponent implements OnInit {
     });
   }
   approveRisk(){
+    
     this.selection.selected.forEach((element,index) => {
-      this.dataSource.data.splice(index-1,1);
+      console.log(this.selection.selected.pop);
+      console.log("=");
+      console.log(index);
+      
+      //this.dataSource.data.splice(index-1,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
-      this.riskService.approveRisk(element["risk_Assmnt_Id"]).subscribe(data => { },
+      this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => { },
         error => {
           
         }
@@ -172,11 +202,11 @@ export class RiskComponent implements OnInit {
   }
   declineRisk(){
     this.selection.selected.forEach((element,index) => {
-      console.log(index);
+      //console.log(index);
       this.dataSource.data.splice(index-1,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
-      console.log(this.dataSource.data);
+      //console.log(this.dataSource.data);
       this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => { },
         error => {
           
