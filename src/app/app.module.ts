@@ -16,7 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {
   MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule,
-  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatIconModule, MatRadioModule, MatTabsModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule
+  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatIconModule, MatRadioModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule, MatTabsModule
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -139,6 +139,8 @@ export function tokenGetter() {
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
+    MatTabsModule,
+    
   MatProgressSpinnerModule,
     
     RouterModule.forRoot([
