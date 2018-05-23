@@ -84,7 +84,7 @@ export class RiskComponent implements OnInit {
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
-      console.log(this.sort);
+      //console.log(this.sort);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -132,7 +132,7 @@ export class RiskComponent implements OnInit {
     //this.dataSource.sort = this.sort;
   }
 
-  //forward
+  //Forward
   openDialog(){
     console.log("openDialog");
     const numSelected = this.selection.selected.length;
@@ -158,6 +158,12 @@ export class RiskComponent implements OnInit {
     );
   }
   takeOwnerShip(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
     //need id of the logged user
     let loggedUser = "test-loggedUser" ;
 
@@ -173,6 +179,12 @@ export class RiskComponent implements OnInit {
     });
   }
   removeOwnerShip(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
     this.selection.selected.forEach(element => {
       let prev_owner = element["owner_User_Long_Id"];
       element["owner_User_Long_Id"] = null;
@@ -184,13 +196,15 @@ export class RiskComponent implements OnInit {
     });
   }
   approveRisk(){
-    
-    this.selection.selected.forEach((element,index) => {
-      console.log(this.selection.selected.pop);
-      console.log("=");
-      console.log(index);
-      
-      //this.dataSource.data.splice(index-1,1);
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    var tindex = this.getSelectedIndex();
+    this.selection.selected.forEach(element => {
+      this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
       this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => { },
@@ -201,18 +215,40 @@ export class RiskComponent implements OnInit {
     });
   }
   declineRisk(){
-    this.selection.selected.forEach((element,index) => {
-      //console.log(index);
-      this.dataSource.data.splice(index-1,1);
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    var tindex = this.getSelectedIndex();
+    this.selection.selected.forEach(element => {
+      this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
-      //console.log(this.dataSource.data);
       this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => { },
         error => {
           
         }
       );
     });
+  }
+
+  getSelectedIndex(){
+    var sd = "";
+    this.selection.selected.forEach(element => {
+      sd = element["risk_Assmnt_Id"];
+    });
+    // console.log("=");
+    var tindex = 0;
+    this.dataSource.data.forEach((element,index) => {
+      if(element["risk_Assmnt_Id"] == sd ){
+        tindex = index;
+      }
+    });
+    // console.log("selected index:");
+    // console.log(tindex);
+    return tindex;
   }
 
 }
