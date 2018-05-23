@@ -1,117 +1,159 @@
 <mat-accordion>
-<mat-expansion-panel expanded>
-<mat-expansion-panel-header>
-  Search Alarms
-</mat-expansion-panel-header>
-<div class="container">
-    <form  #alarmSearch = "ngForm" (ngSubmit) = "onClickSubmit(alarmSearch.value)">
-    <div class="form-group">
-    <label for="AlarmId">Alarm ID</label>
-    <input type="text" name="AlarmId" [(ngModel)]="AlarmId" class="form-control">
-    
-    </div>
-    <div class="form-group">
-      <label for="AlarmStatus">Alarm status</label>
-      <!-- <input type="text" name="AlarmStatus" [(ngModel)]="AlarmStatus"> -->
-      <select name="AlarmStatus" [(ngModel)]="AlarmStatus" class="form-control">
-  <option value="act">Active</option>
-  <option value="cls">closed</option>
-  <option value="sup">suppressed</option>
-  <option value=""></option>
-  
-      </select>
-      </div>
-      <div class="form-group">
-        <label for="MoneyLaunderingRisk">Money laundering risk</label>
-        <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk" class="form-control">
-        
-        </div>
-        <div class="form-group">
-          <label for="CreateDate">Create date</label>
-          <input type="date" name="CreateDate" [(ngModel)]="CreateDate" class="form-control" >
-          
-          </div>
-          <div class="form-group">
-            <label for="RunDate">Run date</label>
-            <input type="date" name="RunDate" [(ngModel)]="RunDate" class="form-control">
-            
-            </div>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      Search Alarms
+    </mat-expansion-panel-header>
+    <div class="container">
+      <form #alarmSearch="ngForm" (ngSubmit)="onClickSubmit(alarmSearch.value)">
+        <div class="row">
+          <div class="col-6">
             <div class="form-group">
-              <label for="ScenarioName">Scenario name</label>
-              <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName" class="form-control">
-              
-              </div>
+              <label for="AlarmId">Alarm ID</label>
+              <input type="text" name="AlarmId" [(ngModel)]="AlarmId" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="AlarmStatus">Alarm status</label>
+              <!-- <input type="text" name="AlarmStatus" [(ngModel)]="AlarmStatus"> -->
+              <select name="AlarmStatus" [(ngModel)]="AlarmStatus" class="form-control">
+                <option value="act">Active</option>
+                <option value="cls">closed</option>
+                <option value="sup">suppressed</option>
+                <option value=""></option>
+
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="MoneyLaunderingRisk">Money laundering risk</label>
+              <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="CreateDateFrom"> Start Create date</label>
+              <input type="date" name="CreateDateFrom" [(ngModel)]="CreateDateFrom" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="CreateDateTo">End Create date</label>
+              <input type="date" name="CreateDateTo" [(ngModel)]="CreateDateTo" class="form-control">
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
               <div class="form-group">
+                  <label for="RunDateFrom">Start Run date</label>
+                  <input type="date" name="RunDateFrom" [(ngModel)]="RunDateFrom" class="form-control">
+        
+                </div>
+          </div>
+          <div class="col-6">
+              <div class="form-group">
+                  <label for="RunDateTo">End Run date</label>
+                  <input type="date" name="RunDateTo" [(ngModel)]="RunDateTo" class="form-control">
+        
+                </div>
+          </div>
+        </div>
+       
+       <div class="row">
+         <div class="col-6">
+            <div class="form-group">
+                <label for="ScenarioName">Scenario name</label>
+                <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName" class="form-control">
+      
+              </div>
+         </div>
+         <div class="col-6">
+            <div class="form-group">
                 <label for="ScenarioId">Scenario ID</label>
                 <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId" class="form-control">
-                
-                </div>
-    <!-- <div class="form-group"> 
+      
+              </div>
+         </div>
+       </div>
+        
+       
+        <!-- <div class="form-group"> 
     <input type="submit" value="Search" class="btn btn-primary">
     
     </div> -->
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary  searchButton btn-block"  >Search</button>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary  searchButton btn-block">Search</button>
+        </div>
+
+      </form>
     </div>
-    
-    </form>
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
     </div>
-   <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-  </div>
-  <div class="example-container mat-elevation-z8">
-    
-  <mat-table #table [dataSource]="dataSource" matSort> 
-  
-    <ng-container matColumnDef="alarmId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm ID </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> 
-      <a routerLink="/alarmDetail/{{alarm.alarm_Id}}">{{alarm.alarm_Id}}</a>  
-      </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="alarmStatusCode">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm status </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.alarm_Status_Cd}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="moneyLaunderingRiskScore">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Money laundering risk</mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.ml_Risk_Score}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="createDate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.create_Date}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="runDate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.run_Date}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="routineName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="routineId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario ID </mat-header-cell>
-      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Id}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  
-  </mat-table>
-  <mat-paginator #paginator
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 20]"
-    [showFirstLastButtons]="true">
-  </mat-paginator>
-  </div>
-  
-</mat-expansion-panel>
+    <div class="example-container mat-elevation-z8">
+
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="alarmId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm ID </mat-header-cell>
+          <mat-cell *matCellDef="let alarm">
+            <a routerLink="/alarmDetail/{{alarm.alarm_Id}}" (click)="addLink('/alarmDetail/'+alarm.alarm_Id)">{{alarm.alarm_Id}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="alarmStatusCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm status </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.alarm_Status_Cd}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="moneyLaunderingRiskScore">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Money laundering risk</mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.ml_Risk_Score}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="createDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.create_Date| date:'MM/dd/yyyy'}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="runDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.run_Date | date:'MM/dd/yyyy'}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="routineName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.routine_Name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="routineId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario ID </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.routine_Id}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+
+  </mat-expansion-panel>
 
 </mat-accordion>
-
-

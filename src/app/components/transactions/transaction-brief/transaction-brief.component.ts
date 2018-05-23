@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActiveLinkssService } from '../../../services/active-linkss.service';
 
 @Component({
   selector: 'app-transaction-brief',
@@ -20,7 +21,8 @@ export class TransactionBriefComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   constructor(private http:HttpClient,
-    private route: ActivatedRoute,private router: Router
+    private route: ActivatedRoute,private router: Router,
+    private links:ActiveLinkssService
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,9 @@ export class TransactionBriefComponent implements OnInit {
       
           });
 
+  }
+  add(link){
+    this.links.add(link);
   }
   
 

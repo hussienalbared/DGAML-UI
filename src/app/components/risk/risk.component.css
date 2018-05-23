@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.mat-card-content h6{
+  font-weight:bold;
+  letter-spacing: 1px;
+}
+span{
+  font-weight:normal;
+}
+/* .riskSectionTitle{
+  font-size: 16px;
+font-weight: bold;
+color: #22546C;
+
+font-family: inherit;
+} */

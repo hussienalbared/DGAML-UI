@@ -54,6 +54,8 @@ import { AccountsService } from './services/accounts.service';
 import { Section3Component } from './components/accounts/section3/section3.component';
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 
+import { RiskComponent } from './components/risk/risk.component';
+import { ActiveLinkssService } from './services/active-linkss.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,9 +90,9 @@ export function tokenGetter() {
     AccountAlarmInBriefComponent,
    
     Section3Component,
-   
+  
     AccountDetailSearchComponent,
-    
+    RiskComponent,
     
   ],
   imports: [
@@ -140,7 +142,9 @@ export function tokenGetter() {
     MatMenuModule,
     MatSelectModule,
   MatProgressSpinnerModule,
-    
+  MatAutocompleteModule,
+  MatChipsModule,
+    MatGridListModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'account', component: AccountSearchComponent },
@@ -167,6 +171,10 @@ export function tokenGetter() {
       {
         path:'TransactionDeatil/:ttrn',
         component:TransactionDetailsComponent
+      },
+      {
+        path: 'risk',
+        component: RiskComponent
       }
 
     ]),
@@ -178,7 +186,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,ActiveLinkssService],
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent],
 })

@@ -5,31 +5,52 @@
     </mat-expansion-panel-header>
 <div class="container">
 <form  #accountSearch = "ngForm" (ngSubmit) = "onClickSubmit(accountSearch.value)">
-<div class="form-group">
-<label for="">Account Number</label>
-<input type="text" name="accountNumber" [(ngModel)]="accountNumber" class="form-control">
-
-</div>
-<div class="form-group">
-  <label for="">Account Name</label>
-  <input type="text" name="accountName" [(ngModel)]="accountName" class="form-control">
-  
-  </div>
-  <div class="form-group">
-    <label for="">Account Type</label>
-    <input type="text" name="accountType" [(ngModel)]="accountType" class="form-control">
-    
-    </div>
+  <div class="row">
+    <div class="col-6"
+    >
     <div class="form-group">
-      <label for="">Account Open date</label>
-      <input type="date" name="accountOpenDate" [(ngModel)]="accountOpenDate" class="form-control">
-      
-      </div>
+        <label for="">Account Number</label>
+        <input type="text" name="accountNumber" [(ngModel)]="accountNumber" class="form-control">
+        
+        </div></div>
+    <div class="col-6">
+        <div class="form-group">
+            <label for="">Account Name</label>
+            <input type="text" name="accountName" [(ngModel)]="accountName" class="form-control">
+            
+            </div>
+    </div>
+  </div>
+
+<div class="row">
+ 
+  <div class="col-6">
       <div class="form-group">
+          <label for="">Account Open date</label>
+          <input type="date" name="accountOpenDate" [(ngModel)]="accountOpenDate" class="form-control">
+          
+          </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group">
         <label for="">Account Close date</label>
         <input type="date" name="accountCloseDate" [(ngModel)]="accountCloseDate" class="form-control">
         
         </div>
+ </div>
+</div>
+  
+   <div class="row">
+   
+     <div class="col-6">
+      <div class="form-group">
+          <label for="">Account Type</label>
+          <input type="text" name="accountType" [(ngModel)]="accountType" class="form-control">
+          
+          </div>
+  </div>
+   </div>
+     
 <!-- <div class="form-group"> 
 <input type="submit" value="Search" >
 
@@ -54,7 +75,8 @@
     <mat-cell *matCellDef="let account"> 
     
        
-       <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}">{{account.acct_No}}</a>
+       <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}" 
+       (click)="addLink('/accountDetailSearch/'+account.acct_No+'/'+account.acct_Key)">{{account.acct_No}}</a>
        </mat-cell>
   </ng-container>
 
@@ -70,12 +92,12 @@
 
   <ng-container matColumnDef="acctopdate">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Account open date </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Open_Date}} </mat-cell>
+    <mat-cell *matCellDef="let account"> {{account.acct_Open_Date|date:'MM/dd/yyyy'}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="acctcldate">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Account close date </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Close_Date}} </mat-cell>
+    <mat-cell *matCellDef="let account"> {{account.acct_Close_Date|date:'MM/dd/yyyy'}} </mat-cell>
   </ng-container>
  
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

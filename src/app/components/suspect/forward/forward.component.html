@@ -7,13 +7,31 @@
   <p>Select User:</p>
   <div class="form-group">
       <label for="exampleSelect1">Example select</label>
-      <select class="form-control" id="exampleSelect1" [(ngModel)]="name"> 
-        <option>Hussien</option>
+      <!-- <select class="form-control" id="exampleSelect1" [(ngModel)]="name" >  -->
+        <!-- <option>Hussien</option>
         <option>MFarag</option>
         <option>Eman gaafar</option>
         <option>Ahraf</option>
-        <option>Naji</option>
-      </select>
+        <option>Naji</option> -->
+        <!-- <mat-form-field>
+            <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of users">{{user}}
+          </mat-option>
+        </mat-autocomplete> -->
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto"  [(ngModel)]="name">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </form>
+          
+      <!-- </select> -->
     </div>
 <div>
 <button class="btn btn-danger" (click)="cancel()">Cancel</button>
