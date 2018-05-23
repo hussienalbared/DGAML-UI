@@ -60,6 +60,7 @@ import { AccountDetailSearchComponent } from './components/accounts/account-deta
 
 import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
+import { ActiveLinkssService } from './services/active-linkss.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -148,7 +149,7 @@ export function tokenGetter() {
     MatSelectModule,
   MatProgressSpinnerModule,
   MatAutocompleteModule,
-    
+  MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
@@ -191,7 +192,8 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService,ActiveLinkssService],
+              
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
 })

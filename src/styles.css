@@ -371,5 +371,17 @@ mat-expansion-panel .mat-expansion-panel-body {
     padding-left: 5px;
 }
 .mat-nav-list[_ngcontent-c1] .mat-list-item.active[_ngcontent-c1]:hover{
-    background: #F0843F !important;
+    background: #F0843F !important;}
+.searchActiveLink{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+  
+   
+}
+.searchActiveLink2{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+    background-color: red;
+  
+   
 }
