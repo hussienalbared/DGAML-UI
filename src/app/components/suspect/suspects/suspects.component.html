@@ -68,7 +68,8 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
           <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)">
       
-            <a routerLink="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}"> {{alarm.alarmed_Obj_Name}}</a>
+            <a routerLink="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}" appAddTab
+             path="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}"> {{alarm.alarmed_Obj_Name}}</a>
           </mat-cell>
         </ng-container>
 

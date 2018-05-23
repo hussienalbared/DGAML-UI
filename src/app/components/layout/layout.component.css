@@ -250,5 +250,6 @@ hr.divider {
 /* .mat-nav-list[_ngcontent-c1] .mat-list-item[_ngcontent-c1]:hover{
     background-color: #F0843F !important
 } */
-
-
+.mat-icon{
+    margin-top: 10px;
+}
