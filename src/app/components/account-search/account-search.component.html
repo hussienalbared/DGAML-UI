@@ -70,12 +70,12 @@
 
   <ng-container matColumnDef="acctopdate">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Account open date </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Open_Date}} </mat-cell>
+    <mat-cell *matCellDef="let account"> {{account.acct_Open_Date|date:'MM/dd/yyyy'}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="acctcldate">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Account close date </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Close_Date}} </mat-cell>
+    <mat-cell *matCellDef="let account"> {{account.acct_Close_Date|date:'MM/dd/yyyy'}} </mat-cell>
   </ng-container>
  
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

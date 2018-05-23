@@ -26,12 +26,16 @@ import { SuspectDetailsComponent } from './components/suspect/suspect-details/su
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
+
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
 import { SuspectsService } from './services/suspects.service';
+
+import { RiskService } from './services/risk.service';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -54,6 +58,8 @@ import { AccountsService } from './services/accounts.service';
 import { Section3Component } from './components/accounts/section3/section3.component';
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 
+import { RiskComponent } from './components/risk/risk.component';
+import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -88,9 +94,10 @@ export function tokenGetter() {
     AccountAlarmInBriefComponent,
    
     Section3Component,
-   
+  
     AccountDetailSearchComponent,
-    
+    RiskComponent,
+    RiskForwardComponent,
     
   ],
   imports: [
@@ -140,7 +147,9 @@ export function tokenGetter() {
     MatMenuModule,
     MatSelectModule,
   MatProgressSpinnerModule,
+  MatAutocompleteModule,
     
+    MatGridListModule,
     RouterModule.forRoot([
       { path: 'login', component: LoginComponent },
       { path: 'account', component: AccountSearchComponent },
@@ -167,6 +176,10 @@ export function tokenGetter() {
       {
         path:'TransactionDeatil/:ttrn',
         component:TransactionDetailsComponent
+      },
+      {
+        path: 'risk',
+        component: RiskComponent
       }
 
     ]),
@@ -178,8 +191,8 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService],
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
 })
 export class AppModule { }

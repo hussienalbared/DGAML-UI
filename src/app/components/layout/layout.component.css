@@ -82,7 +82,7 @@
     background-color: #E4EAE6;
    
     /* width: 344px; */
-    padding-right: 16px;
+    padding-right: 10px;
 }
 .notification{
     position: relative;
@@ -239,8 +239,9 @@ hr.divider {
     background-color: #4d5252 !important;
     
 }
-.topbar-left{
+/* .topbar-left{
     min-width: 62px;;
+<<<<<<< HEAD
 }
 
 /***/
@@ -248,4 +249,6 @@ hr.divider {
 
 /* .mat-nav-list[_ngcontent-c1] .mat-list-item[_ngcontent-c1]:hover{
     background-color: #F0843F !important
+=======
+>>>>>>> updateRiskNames
 } */
