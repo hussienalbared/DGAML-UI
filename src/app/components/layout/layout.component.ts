@@ -57,4 +57,10 @@ export class LayoutComponent implements OnInit {
 let Tab:tab={path:path,label:label}
     this.TabService.removeTab(Tab);
   }
+
+  // navItem(url:string){
+  //   this.router.navigate(["/"+url]);
+
+  // }
 }
+

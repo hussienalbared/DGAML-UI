@@ -1,9 +1,16 @@
-import {risk} from '../../models/risk.model';
+import { element } from 'protractor';
+import { RiskForwardComponent } from './risk-forward/risk-forward.component';
+import { RiskService } from './../../services/risk.service';
+import { risk } from './../../models/risk.model';
+
 import {ViewChild, OnInit, Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {classifier} from '../../models/classifier.model';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
   selector: 'app-risk',
@@ -30,37 +37,66 @@ export class RiskComponent implements OnInit {
   classifierThreshold = '';
   weight = '';
 
-  displayedColumns = ['riskAssessmentId', 'partyName', 'partyNumber', 'riskClassification', 'proposedRiskClassification', 'createDate', 'ownerUserLongId'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) msort: MatSort;
+
+  displayedColumns = ['select','riskAssessmentId', 'partyName', 'partyNumber', 'riskClassification', 'proposedRiskClassification', 'createDate', 'ownerUserLongId'];
+  selection = new SelectionModel<risk>(true, []);
+  @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild('sort') sort: MatSort;
 
   displayedColumnsforClassfirerTable = ['riskClassifierId', 'riskClassifierName', 'createDate', 'riskClassifierDesc', 'classifierThreshold' , 'weight'];
-  @ViewChild(MatPaginator) paginatorClassifier: MatPaginator;
-  @ViewChild(MatSort) sortClassifier: MatSort;
+  @ViewChild('paginatorClassifier') paginatorClassifier: MatPaginator;
+  @ViewChild('sortClassifier') sortClassifier: MatSort;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    public dialog: MatDialog,
+              private riskService: RiskService) {
   }
+
+/*----------------*/
+   /** Whether the number of selected elements matches the total number of rows. */
+   isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+    this.selection.clear() :
+    this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+/*----------------*/
 
   getRecord(row: any) {
     console.log(row);
-    this.riskId = row.riskAssessmentId;
-    this.customerName = row.partyName;
-    this.customerNumber = row.partyNumber;
+    this.riskId = row.risk_Assmnt_Id;
+    this.customerName = row.cust_Name;
+    this.customerNumber = row.cust_No;
     this.createDate = row.create_Date;
+    this.currentClassification = row.risk_Class;
+    this.suggestedClassification = row.proposed_Risk_Class;
+    this.user = row.owner_User_Long_Id;
   }
 
   ngOnInit() {
-    const url = 'http://localhost:8081/aml/api/accountriskassigment';
+    const url = 'http://localhost:8081/aml/api/accountriskassigment/getObject';
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
+      //console.log(this.sort);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
-
      this.getDataSecondTable();
 
   }
+
+  // ngAfterViewInit() {
+  //   console.log("ngAfterViewInit");
+  //   this.sort = this.msort;
+  //   this.sortClassifier = this.msort;
+  // }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -85,12 +121,134 @@ export class RiskComponent implements OnInit {
 
   getDataSecondTable() {
     const url = 'http://localhost:8081/aml/api/acriskclassifier';
-    this.http.get<classifier[]>(url).subscribe(data => {
-      this.result2 = data;
-      this.dataSourceTable2 = new MatTableDataSource(data);
-      this.dataSourceTable2.paginatorClassifier = this.paginatorClassifier;
+    this.http.get<classifier[]>(url).subscribe(data2 => {
+      this.result2 = data2;
+      this.dataSourceTable2 = new MatTableDataSource(data2);
+      console.log(this.sortClassifier);
+      this.dataSourceTable2.paginator = this.paginatorClassifier;
       this.dataSourceTable2.sort = this.sortClassifier;
+      
     });
+    //this.dataSource.sort = this.sort;
+  }
+
+  //Forward
+  openDialog(){
+    console.log("openDialog");
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    let dialogRef = this.dialog.open(RiskForwardComponent, {
+
+      height: '400px',
+      width: '600px',
+
+      data: { selected: this.selection.selected }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    }, error => {
+
+    }
+
+    );
+  }
+  takeOwnerShip(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    //need id of the logged user
+    let loggedUser = "test-loggedUser" ;
+
+    this.selection.selected.forEach(element => {
+      let prev_owner = element["owner_User_Long_Id"];
+      element["owner_User_Long_Id"] = loggedUser;
+      console.log(element["risk_Assmnt_Id"]);
+      this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => { },
+        error => {
+          element["owner_User_Long_Id"] = prev_owner;
+        }
+      );
+    });
+  }
+  removeOwnerShip(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    this.selection.selected.forEach(element => {
+      let prev_owner = element["owner_User_Long_Id"];
+      element["owner_User_Long_Id"] = null;
+      this.riskService.removeOwnerShip(element["risk_Assmnt_Id"]).subscribe(data => { },
+        error => {
+          element["owner_User_Long_Id"] = prev_owner;
+        }
+      );
+    });
+  }
+  approveRisk(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    var tindex = this.getSelectedIndex();
+    this.selection.selected.forEach(element => {
+      this.dataSource.data.splice(tindex,1);
+      this.dataSource = new MatTableDataSource(this.dataSource.data);
+      this.selection = new SelectionModel<risk>(true, []);
+      this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => { },
+        error => {
+          
+        }
+      );
+    });
+  }
+  declineRisk(){
+    const numSelected = this.selection.selected.length;
+    if (numSelected === 0) {
+      alert("Select at least one suspect,please");
+      return;
+    }
+
+    var tindex = this.getSelectedIndex();
+    this.selection.selected.forEach(element => {
+      this.dataSource.data.splice(tindex,1);
+      this.dataSource = new MatTableDataSource(this.dataSource.data);
+      this.selection = new SelectionModel<risk>(true, []);
+      this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => { },
+        error => {
+          
+        }
+      );
+    });
+  }
+
+  getSelectedIndex(){
+    var sd = "";
+    this.selection.selected.forEach(element => {
+      sd = element["risk_Assmnt_Id"];
+    });
+    // console.log("=");
+    var tindex = 0;
+    this.dataSource.data.forEach((element,index) => {
+      if(element["risk_Assmnt_Id"] == sd ){
+        tindex = index;
+      }
+    });
+    // console.log("selected index:");
+    // console.log(tindex);
+    return tindex;
   }
 
 }

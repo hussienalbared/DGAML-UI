@@ -241,7 +241,11 @@ hr.divider {
 }
 /* .topbar-left{
     min-width: 62px;;
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> dcb062410f6fd68e9b7207022ac364bafec9c0f2
 }
 
 
@@ -249,6 +253,11 @@ hr.divider {
 
 /* .mat-nav-list[_ngcontent-c1] .mat-list-item[_ngcontent-c1]:hover{
     background-color: #F0843F !important
+<<<<<<< HEAD
+=======
+>>>>>>> updateRiskNames
+} */
+/* =======
 } */
 .mat-icon{
     margin-top: 10px;
