@@ -54,6 +54,7 @@ import { AccountsService } from './services/accounts.service';
 import { Section3Component } from './components/accounts/section3/section3.component';
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 import { TabsServiceService } from './services/tabs-service.service';
+import { AddTabDirective } from './directives/add-tab.directive';
 
 
 // AoT requires an exported function for factories
@@ -91,6 +92,8 @@ export function tokenGetter() {
     Section3Component,
    
     AccountDetailSearchComponent,
+   
+    AddTabDirective,
     
     
   ],

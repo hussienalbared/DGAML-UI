@@ -10,12 +10,13 @@ tabs:tab[]=[]
     this.tabs.push(Tab)
 
   }
-  removeTab(index){
+  removeTab(Tab:tab){
+    let index=this.tabs.findIndex(t=>(t.label==Tab.label&&t.path==Tab.path))
     
 
 
   
-
+if(index>-1)
   this.tabs.splice(index, 1);
 
   }

@@ -6,6 +6,8 @@ import { MatPaginator, MatTableDataSource ,MatSort} from '@angular/material';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
 import { ActivatedRoute, Router } from '@angular/router';
+import { TabsServiceService } from '../../services/tabs-service.service';
+import { tab } from '../models/tab.model';
 @Component({
   selector: 'app-party-search',
   templateUrl: './party-search.component.html',
@@ -28,7 +30,7 @@ export class PartySearchComponent {
 
 
 
-  constructor(private http: HttpClient,private route:ActivatedRoute,private router:Router) { }
+  constructor(private http: HttpClient,private route:ActivatedRoute,private router:Router,private tabService:TabsServiceService) { }
 
   ngAfterViewInit() {
    
@@ -55,7 +57,7 @@ export class PartySearchComponent {
    
   
   }
-  getParty(partyNumber)
+  getParty(partyNumber,PartyName)
   {
   
     
@@ -63,7 +65,13 @@ export class PartySearchComponent {
     console.log(url)
     this.http.get<any[]>(url).subscribe(data=>{
 if(data.length>0)
- this.router.navigate(["suspectDetail/"+data[0][0]+"/"+data[0][1]+"/"+partyNumber]);
+{
+  let path="suspectDetail/"+data[0][0]+"/"+data[0][1]+"/"+partyNumber;
+  let Tab:tab={path:path,label:PartyName}
+  this.tabService.addTab(Tab);
+  console.log("tab"+Tab.label+Tab.path)
+ this.router.navigate([path]);
+}
     })
 
   }

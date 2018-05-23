@@ -1,6 +1,6 @@
-<mat-accordion *ngIf="result"  >
+<mat-accordion *ngIf="result" >
 
-        <mat-expansion-panel  expanded='true'>
+        <mat-expansion-panel  expanded>
           <mat-expansion-panel-header>
                 Suspect Detail
           </mat-expansion-panel-header>
@@ -34,7 +34,7 @@
                 <p>Dealing with the bank since Date:{{result.cust_Since_Date}}</p>
                 <h6>Related Accounts</h6>
                 <div  *ngFor="let account of result.customerAccount">
-                        <a  [routerLink]="['/accountDetailSearch',account.acct_No,account.id.acct_Key]">{{account.acct_No}} </a>
+                        <a  [routerLink]="['/accountDetailSearch',account.acct_No,account.id.acct_Key]" appAddTab path="/accountDetailSearch/{{account.acct_No}}/{{account.id.acct_Key}}">{{account.acct_No}} </a>
     
                 </div>
                 </div>  

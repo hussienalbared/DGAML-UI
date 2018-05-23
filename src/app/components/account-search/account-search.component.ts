@@ -27,7 +27,7 @@ dataSource:any=null;
 displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'];
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-  constructor(private http : HttpClient,private Tab:TabsServiceService) { }
+  constructor(private http : HttpClient) { }
 
   ngOnInit() {
     // this.accountType=this.myservice.showTodayDate();
@@ -58,10 +58,7 @@ displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'
     
   
  }
- addTab(path,label){
-   let tab:tab={label:label,path:path}
-   this.Tab.addTab(tab);
- }
+ 
  resetFields()
  {this.accountCloseDate='';
  this.accountName='';

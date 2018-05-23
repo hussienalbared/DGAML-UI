@@ -96,14 +96,14 @@
     <div class="clearfix"></div>
 
     <mat-nav-list>
-      <mat-list-item (click)="layoutItem($event,'/suspects','Suspects')" class="mat_item_a">
-        <a routerLink="suspects">
+      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+        <a routerLink="suspects" appAddTab path="/suspects">
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+      <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/risk">
         <a>
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Risk Profiling</span>
@@ -128,19 +128,19 @@
             <span>Search</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item (click)="layoutItem($event,'/account','Account')" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/account">
               <a routerLink="account">Account</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event,'/alarm','Alarm')" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/alarm">
               <a routerLink="alarm">Alarm</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event,'/party','Customer')" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/party">
               <a routerLink="party">Customer</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event,'/external','External Customer')" class="mat_item_a">
+            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/external">
               <a routerLink="external">External Customer</a>
             </mat-list-item>
           </mat-list>
@@ -158,15 +158,20 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <nav mat-tab-nav-bar>
+      <div *ngFor="let link of TabService.tabs" style="display: inline-block">
       <a mat-tab-link
-         *ngFor="let link of Tab.tabs;let index"
+         
          [routerLink]="link.path"
          routerLinkActive #rla="routerLinkActive">
-        {{link.label}}<mat-icon matChipRemove (click)="removeTab(index)" >cancel</mat-icon>
+         {{link.label}}
 
       </a>
-      
+      <mat-icon matChipRemove (click)="removeTab(link.path,link.label)" >cancel</mat-icon>
+
+    </div>
     </nav>
+    
+    
    
 
     <router-outlet></router-outlet>

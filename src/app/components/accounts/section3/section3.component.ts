@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TabsServiceService } from '../../../services/tabs-service.service';
 
 @Component({
   selector: 'app-section3',
@@ -44,7 +45,7 @@ export class Section3Component implements OnInit {
           });
 
   }
-  
+
 
 }
 export interface TransactionBrief{

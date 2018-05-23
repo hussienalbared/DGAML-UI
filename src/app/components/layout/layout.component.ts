@@ -16,7 +16,7 @@ export class LayoutComponent implements OnInit {
   isOn = true;
   elemen: any;
 
-  constructor(private authService: AuthService,private Tab:TabsServiceService) { }
+  constructor(private authService: AuthService,private TabService:TabsServiceService) { }
 
   ngOnInit() {
   } 
@@ -25,7 +25,7 @@ export class LayoutComponent implements OnInit {
   } 
   /* --- */
 
-  layoutItem(e,path,label){
+  layoutItem(e){
     
     for (var _i = 0; _i < $(".mat_item_a").length; _i++) {
       $(".mat_item_a")[_i].classList.remove("active");
@@ -40,15 +40,14 @@ export class LayoutComponent implements OnInit {
     
     //
       //console.log(" = " + $(e.target).attr("class"));
-      let tab:tab={path:path,label:label}
-this.Tab.addTab(tab);
+
     }
   /* --- */
   addTab(){
 
   }
-  removeTab(index){
-
-    this.Tab.removeTab(index);
+  removeTab(path,label){
+let Tab:tab={path:path,label:label}
+    this.TabService.removeTab(Tab);
   }
 }

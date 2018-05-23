@@ -40,12 +40,12 @@
   </ng-container>
   <ng-container matColumnDef="alarmId">
     <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
-    <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarm_Id}}">{{element.alarm_Id}}</a> </mat-cell>
+    <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarm_Id}}" appAddTab path="/alarmDetail/{{element.alarm_Id}}" >{{element.alarm_Id}}</a> </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="primaryObjLevelCode">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm Level </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.prim_Obj_level_Cd}} </mat-cell>
+    <mat-cell *matCellDef="let element" > {{element.prim_Obj_level_Cd}} </mat-cell>
   </ng-container>
 
  
