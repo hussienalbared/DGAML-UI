@@ -103,56 +103,7 @@
 
       </form>
     </div>
-    <div class="example-header">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
-    </div>
-    <div class="example-container mat-elevation-z8">
-
-      <mat-table #table [dataSource]="dataSource" matSort>
-
-        <ng-container matColumnDef="alarmId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm ID </mat-header-cell>
-          <mat-cell *matCellDef="let alarm">
-            <a routerLink="/alarmDetail/{{alarm.alarm_Id}}" (click)="addLink('/alarmDetail/'+alarm.alarm_Id)">{{alarm.alarm_Id}}</a>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="alarmStatusCode">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Alarm status </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.alarm_Status_Cd}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="moneyLaunderingRiskScore">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Money laundering risk</mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.ml_Risk_Score}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="createDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.create_Date| date:'MM/dd/yyyy'}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="runDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Run date </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.run_Date | date:'MM/dd/yyyy'}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="routineName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario name </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.routine_Name}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="routineId">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Scenario ID </mat-header-cell>
-          <mat-cell *matCellDef="let alarm"> {{alarm.routine_Id}} </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-      </mat-table>
-      <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-      </mat-paginator>
-    </div>
+    
    <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
