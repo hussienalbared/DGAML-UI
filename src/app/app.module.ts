@@ -63,6 +63,7 @@ import { AddTabDirective } from './directives/add-tab.directive';
 import { RiskComponent } from './components/risk/risk.component';
 
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
+import { NgProgressModule } from 'ngx-progressbar';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -153,6 +154,7 @@ export function tokenGetter() {
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
+    NgProgressModule,
    
   MatProgressSpinnerModule,
   MatAutocompleteModule,
