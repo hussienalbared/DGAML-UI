@@ -17,8 +17,8 @@ import { SuspectsService } from '../../../services/suspects.service';
 })
 export class AlarmBriefComponent implements OnInit {
 
-  displayedColumns = ['select', 'alarmId', 'primaryObjLevelCode', 'routineName',
-    'routineCategoryCode', 'routineDescription', 'runDate'];
+  displayedColumns = ['select', 'alarm_Id', 'prim_Obj_level_Cd', 'routine_Name',
+    'acroutine.routine_Categ_Cd}', 'acroutine.routine_Desc', 'run_Date'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   key: string = '';

@@ -39,7 +39,7 @@ export class RiskComponent implements OnInit {
 
   @ViewChild(MatSort) msort: MatSort;
 
-  displayedColumns = ['select','riskAssessmentId', 'partyName', 'partyNumber', 'riskClassification', 'proposedRiskClassification', 'createDate', 'ownerUserLongId'];
+  displayedColumns = ['select','risk_Assmnt_Id', 'cust_Name', 'cust_No', 'risk_Class', 'proposed_Risk_Class', 'create_Date', 'owner_User_Long_Id'];
   selection = new SelectionModel<risk>(true, []);
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild('sort') sort: MatSort;
