@@ -14,7 +14,7 @@ export class TransactionBriefComponent implements OnInit {
   result: TransactionBrief[];
   displayedColumns = ['acct_Key', 'trans_Ref_No', 'trans_Desc', 'ccy_Amt','date_Key','trans_Cr_Db_Ind_Desc'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
-   @ViewChild(MatSort) sort: MatSort;
+   @ViewChild("transsort") transsort: MatSort;
    applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -39,7 +39,7 @@ export class TransactionBriefComponent implements OnInit {
       this.dataSource=data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.sort = this.transsort;
       
           });
 
