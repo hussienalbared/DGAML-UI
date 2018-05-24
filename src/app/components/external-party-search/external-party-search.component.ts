@@ -20,14 +20,14 @@ export class ExternalPartySearchComponent implements OnInit {
   result: externalParty[];
   dataSource: any = null;
   displayedColumns = [
-    'expfullnm',
-    'expno',
+    'ext_Full_Name',
+    'ext_Cust_No',
     'Address',
-    'expstcinm',
-    'expbod',
-    'expstconm',
-    'expidtyds',
-    'expid',
+    'city_Name',
+    'ext_Birth_Date',
+    'cntry_Name',
+    'ident_Type_Desc',
+    'ident_Id',
     // 'exptel1',
     'TEL'
   ];

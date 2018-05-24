@@ -26,8 +26,8 @@ export class AlaramSearchComponent implements OnInit {
   result: alaram[];
   dataSource: any = null;
 
-  displayedColumns = ['alarmId', 'alarmStatusCode', 'moneyLaunderingRiskScore',
-    'createDate', 'runDate', 'routineName', 'routineId'];
+  displayedColumns = ['alarm_Id', 'alarm_Status_Cd', 'ml_Risk_Score',
+    'create_Date', 'run_Date', 'routine_Name', 'routine_Id'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

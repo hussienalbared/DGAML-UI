@@ -64,12 +64,12 @@
   
 <mat-table #table [dataSource]="dataSource" matSort> 
 
-  <ng-container matColumnDef="expfullnm">
+  <ng-container matColumnDef="ext_Full_Name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>EXT party name </mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.ext_Full_Name}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="expno">
+  <ng-container matColumnDef="ext_Cust_No">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Ext Party Number </mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.ext_Cust_No}} </mat-cell>
   </ng-container>
@@ -79,24 +79,24 @@
     <mat-cell *matCellDef="let alarm"> {{alarm.addr_1}}--{{alarm.addr_2}} </mat-cell>
   </ng-container>
  
-  <ng-container matColumnDef="expstcinm">
+  <ng-container matColumnDef="city_Name">
     <mat-header-cell *matHeaderCellDef mat-sort-header> City Name </mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.city_Name}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="expbod">
+  <ng-container matColumnDef="ext_Birth_Date">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth </mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.ext_Birth_Date | date:'MM/dd/yyyy'}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="expstconm">
+  <ng-container matColumnDef="cntry_Name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Citizenship </mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.cntry_Name}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="expidtyds">
+  <ng-container matColumnDef="ident_Type_Desc">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Identification Document</mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.ident_Type_Desc}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="expid">
+  <ng-container matColumnDef="ident_Id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Identification Number</mat-header-cell>
     <mat-cell *matCellDef="let alarm"> {{alarm.ident_Id}} </mat-cell>
   </ng-container>
