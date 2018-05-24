@@ -45,30 +45,30 @@
       <mat-table #table [dataSource]="dataSource2" *ngIf="dataSource2">
     
       
-        <ng-container matColumnDef="acctno">
+        <ng-container matColumnDef="acct_Key">
           <mat-header-cell *matHeaderCellDef> Account Number </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.acct_Key}} </mat-cell>
         </ng-container>
     
-        <ng-container matColumnDef="ttrn">
+        <ng-container matColumnDef="trans_Ref_No">
           <mat-header-cell *matHeaderCellDef> Transaction reference Number </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.trans_Ref_No}} </mat-cell>
         </ng-container>
     
      
-        <ng-container matColumnDef="cfdatekey">
+        <ng-container matColumnDef="date_Key">
           <mat-header-cell *matHeaderCellDef>Transaction Date  </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.date_Key}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="cfcurramount">
+        <ng-container matColumnDef="ccy_Amt">
             <mat-header-cell *matHeaderCellDef> Transaction Amount  </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.ccy_Amt}} </mat-cell>
           </ng-container>
-          <ng-container matColumnDef="transaction_cdi_des">
+          <ng-container matColumnDef="trans_Cr_Db_Ind_Desc">
               <mat-header-cell *matHeaderCellDef> Transaction Type </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.trans_Cr_Db_Ind_Desc}} </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="ttds">
+            <ng-container matColumnDef="trans_Desc">
                 <mat-header-cell *matHeaderCellDef> Transaction Description </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.trans_Desc}} </mat-cell>
               </ng-container>
