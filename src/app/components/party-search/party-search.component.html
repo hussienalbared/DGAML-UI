@@ -100,31 +100,31 @@
     
   <mat-table #table [dataSource]="dataSource" matSort> 
 
-    <ng-container matColumnDef="pno">
+    <ng-container matColumnDef="cust_No">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Number </mat-header-cell>
       <mat-cell *matCellDef="let party" (click)="getParty(party.cust_No,party.cust_FName)"> {{party.cust_No}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="pid">
+    <ng-container matColumnDef="cust_Ident_Id">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Id </mat-header-cell>
       <mat-cell *matCellDef="let party"> {{party.cust_Ident_Id}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="pfnm">
+    <ng-container matColumnDef="cust_FName">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party Name </mat-header-cell>
       <mat-cell *matCellDef="let party"> {{party.cust_FName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="ppepind">
+    <ng-container matColumnDef="political_Exp_Prsn_Ind">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Politically exposed person </mat-header-cell>
       <mat-cell *matCellDef="let party"> {{party.political_Exp_Prsn_Ind}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="riskClassification">
+    <ng-container matColumnDef="risk_Class">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Party risk </mat-header-cell>
       <mat-cell *matCellDef="let party"> {{party.risk_Class}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="pstatds">
+    <ng-container matColumnDef="cust_Status_Desc">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Party status description </mat-header-cell>
       <mat-cell *matCellDef="let party"> {{party.cust_Status_Desc}} </mat-cell>
     </ng-container>

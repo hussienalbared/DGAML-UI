@@ -23,7 +23,7 @@ export class PartySearchComponent {
   result: Party[];
   dataSource:any=null;
   riskValue = { 1: 'low', 2: 'medium', 3: 'high' };
-  displayedColumns = ['pno', 'pid', 'pfnm', 'ppepind', 'riskClassification', 'pstatds'];
+  displayedColumns = ['cust_No', 'cust_Ident_Id', 'cust_FName', 'political_Exp_Prsn_Ind', 'risk_Class', 'cust_Status_Desc'];
  
    @ViewChild(MatPaginator) paginator: MatPaginator;
    @ViewChild(MatSort) sort: MatSort;

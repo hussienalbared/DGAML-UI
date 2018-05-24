@@ -24,7 +24,7 @@ accountType:string='';
 result: account[];
 dataSource:any=null;
 
-displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'];
+displayedColumns = ['acct_No', 'acct_Name', 'acct_Type_Desc', 'acct_Open_Date', 'acct_Close_Date'];
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
   constructor(private http : HttpClient) { }
