@@ -7,7 +7,8 @@ import { MatPaginator, MatTableDataSource ,MatSort} from '@angular/material';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
 import { account } from '../models/account.model';
-import { ActiveLinkssService } from '../../services/active-linkss.service';
+import { TabsServiceService } from '../../services/tabs-service.service';
+import { tab } from '../models/tab.model';
 
 @Component({
   selector: 'app-account-search',
@@ -26,7 +27,7 @@ dataSource:any=null;
 displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'];
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-  constructor(private http : HttpClient,private links:ActiveLinkssService) { }
+  constructor(private http : HttpClient) { }
 
   ngOnInit() {
     // this.accountType=this.myservice.showTodayDate();
@@ -57,6 +58,7 @@ displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'
     
   
  }
+ 
  resetFields()
  {this.accountCloseDate='';
  this.accountName='';
@@ -66,8 +68,5 @@ displayedColumns = ['acctno', 'acctnm', 'accttydesc', 'acctopdate', 'acctcldate'
  
    
  }
- addLink(link)
- {this.links.links.push(link)
 
- }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActiveLinkssService } from '../../../services/active-linkss.service';
+import { TabsServiceService } from '../../../services/tabs-service.service';
 
 @Component({
   selector: 'app-section3',
@@ -23,7 +23,7 @@ export class Section3Component implements OnInit {
   }
   constructor(private http:HttpClient,
     private route: ActivatedRoute,private router: Router,
-    private links:ActiveLinkssService
+   
   ) { }
 
   ngOnInit() {
@@ -46,11 +46,6 @@ export class Section3Component implements OnInit {
           });
 
   }
-  //add link to active links
-  add(link){
-this.links.add(link)
-  }
-  
 
 }
 export interface TransactionBrief{

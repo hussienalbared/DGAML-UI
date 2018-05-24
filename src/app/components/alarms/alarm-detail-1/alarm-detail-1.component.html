@@ -18,8 +18,9 @@
        <mat-card-content *ngIf="dataSource">
          
       
-        <h6>Routine Name :{{dataSource.routine_Name}}</h6>
-        <h6>Routine Description:{{dataSource.acroutine.routine_Desc}}</h6>
+        <h6>Routine Name : {{dataSource.routine_Name}}
+          </h6>
+        <h6>Routine Description: <span *ngIf="dataSource.acroutine">{{dataSource.acroutine.routine_Desc}}</span></h6>
         <h6>Run Date:{{dataSource.run_Date}}</h6>
         <h6> alarm message:{{dataSource.actual_Value_Txt}}</h6>
       

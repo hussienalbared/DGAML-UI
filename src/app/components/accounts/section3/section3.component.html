@@ -31,7 +31,7 @@
   <ng-container matColumnDef="TTRN">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction reference number </mat-header-cell>
     <mat-cell *matCellDef="let element">  <a routerLink="/TransactionDeatil/{{element.trans_Ref_No}}"
-      (click)="add('/TransactionDeatil/'+element.trans_Ref_No)"
+      appAddTab path="/TransactionDeatil/{{element.trans_Ref_No}}"
       >{{element.trans_Ref_No}}</a> </mat-cell>
   </ng-container>
 

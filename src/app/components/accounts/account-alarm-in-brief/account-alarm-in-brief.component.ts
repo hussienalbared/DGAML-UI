@@ -3,6 +3,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { AccountsService } from '../../../services/accounts.service';
+import { TabsServiceService } from '../../../services/tabs-service.service';
 
 @Component({
   selector: 'app-account-alarm-in-brief',

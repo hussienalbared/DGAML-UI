@@ -39,7 +39,7 @@
     </ng-container>
     <ng-container matColumnDef="alarmId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ALARM_ID </mat-header-cell>
-      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarm_Id}}">{{element.alarm_Id}}</a> </mat-cell>
+      <mat-cell *matCellDef="let element"> <a routerLink="/alarmDetail/{{element.alarm_Id}}" appAddTab path="/alarmDetail/{{element.alarm_Id}}">{{element.alarm_Id}}</a> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="primaryObjLevelCode">
@@ -56,11 +56,11 @@
    
     <ng-container matColumnDef="routineCategoryCode">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Type </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Categ_Cd}} </mat-cell>
+      <mat-cell *matCellDef="let element" > <span *ngIf="element.acroutine">{{element.acroutine.routine_Categ_Cd}}</span>  </mat-cell>
     </ng-container>
     <ng-container matColumnDef="routineDescription">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Scenario Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.acroutine.routine_Desc}}
+      <mat-cell *matCellDef="let element"> <span *ngIf="element.acroutine">{{element.acroutine.routine_Desc}}</span>
          
       
       </mat-cell>

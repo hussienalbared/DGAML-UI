@@ -16,7 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {
   MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule,
-  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatIconModule, MatRadioModule, MatTabsModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule
+  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatRadioModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule, MatTabsModule, MatIconModule
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -57,10 +57,12 @@ import { AccountAlarmInBriefComponent } from './components/accounts/account-alar
 import { AccountsService } from './services/accounts.service';
 import { Section3Component } from './components/accounts/section3/section3.component';
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
+import { TabsServiceService } from './services/tabs-service.service';
+import { AddTabDirective } from './directives/add-tab.directive';
 
 import { RiskComponent } from './components/risk/risk.component';
+
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
-import { ActiveLinkssService } from './services/active-linkss.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -98,6 +100,9 @@ export function tokenGetter() {
   
     AccountDetailSearchComponent,
     RiskComponent,
+   
+    AddTabDirective,
+    
     RiskForwardComponent,
     
   ],
@@ -144,9 +149,11 @@ export function tokenGetter() {
     MatInputModule,
     MatTooltipModule,
     MatRadioModule,
-    MatIconModule,
+    
     MatMenuModule,
     MatSelectModule,
+    MatTabsModule,
+   
   MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatChipsModule,
@@ -192,7 +199,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService,ActiveLinkssService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService,TabsServiceService],
               
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
