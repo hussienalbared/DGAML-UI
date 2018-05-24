@@ -96,21 +96,21 @@
     <div class="clearfix"></div>
 
     <mat-nav-list>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
-        <a routerLink="suspects" appAddTab path="/suspects">
+      <mat-list-item (click)="layoutItem($event);navItem('/suspects')" class="mat_item_a" appAddTab path="/suspects">
+        <a routerLink="suspects" >
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/risk">
+      <mat-list-item (click)="layoutItem($event);navItem('/risk')" class="mat_item_a" appAddTab path="/risk">
         <a>
           <mat-icon>people</mat-icon>
           <a routerLink="/risk" *ngIf="isOn"> Risk Profiling</a>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+      <mat-list-item (click)="layoutItem($event);navItem('/external')" class="mat_item_a">
         <a>
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isOn"> Regulatory Reports </span>
@@ -128,19 +128,19 @@
             <span>Search</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/account">
+            <mat-list-item (click)="layoutItem($event);navItem('/account')" class="mat_item_a" appAddTab path="/account">
               <a routerLink="account">Account</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/alarm">
+            <mat-list-item (click)="layoutItem($event);navItem('/alarm')" class="mat_item_a" appAddTab path="/alarm">
               <a routerLink="alarm">Alarm</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/party">
+            <mat-list-item (click)="layoutItem($event);navItem('/party')" class="mat_item_a" appAddTab path="/party">
               <a routerLink="party">Customer</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event)" class="mat_item_a" appAddTab path="/external">
+            <mat-list-item (click)="layoutItem($event);navItem('/external')" class="mat_item_a" appAddTab path="/external">
               <a routerLink="external">External Customer</a>
             </mat-list-item>
           </mat-list>

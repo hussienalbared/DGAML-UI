@@ -19,7 +19,7 @@ export class LayoutComponent implements OnInit {
   isOn = true;
   elemen: any;
 
-  constructor(private authService: AuthService,private TabService:TabsServiceService) { }
+  constructor(private authService: AuthService,private TabService:TabsServiceService,private router:Router) { }
 
   ngOnInit() {
   } 
@@ -49,6 +49,15 @@ export class LayoutComponent implements OnInit {
       //console.log(" = " + $(e.target).attr("class"));
 
     }
+    navItem(url){
+    this.router.navigate(["/"+url]);
+    let y="/"+url;
+
+
+  
+    
+
+  }
   /* --- */
   addTab(){
 
