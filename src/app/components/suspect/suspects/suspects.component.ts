@@ -22,8 +22,8 @@ export class SuspectsComponent implements OnInit {
   IsLoaded=true;
 
   dataSource: any = null;
-  displayedColumns = ['select', 'No', 'Number of Alarm', 'Suspect Name', 'RIM Number',
-    'Profile Risk', 'Oldest Alarm', 'User'];
+  displayedColumns = ['select', 'No', 'alarms_Count', 'alarmed_Obj_Name', 'alarmed_Obj_No',
+    'risk_Score_Cd', 'age_Old_Alarm', 'owner_UID'];
   selection = new SelectionModel<suspect>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

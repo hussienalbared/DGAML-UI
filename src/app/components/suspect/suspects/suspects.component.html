@@ -59,12 +59,12 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header>No </mat-header-cell>
           <mat-cell *matCellDef="let cIndex = index;"> {{cIndex+1}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="Number of Alarm">
+        <ng-container matColumnDef="alarms_Count">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Number of Alarm </mat-header-cell>
           <mat-cell *matCellDef="let alarm" > {{alarm.alarms_Count}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="Suspect Name">
+        <ng-container matColumnDef="alarmed_Obj_Name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Suspect Name </mat-header-cell>
           <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)">
       
@@ -73,21 +73,21 @@
           </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="RIM Number">
+        <ng-container matColumnDef="alarmed_Obj_No">
           <mat-header-cell *matHeaderCellDef mat-sort-header>RIM Number</mat-header-cell>
           <mat-cell *matCellDef="let alarm"> {{alarm.alarmed_Obj_No}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="Profile Risk">
+        <ng-container matColumnDef="risk_Score_Cd">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Profile Risk </mat-header-cell>
           <mat-cell *matCellDef="let alarm"> {{alarm.risk_Score_Cd}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="Oldest Alarm">
+        <ng-container matColumnDef="age_Old_Alarm">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Oldest Alarm</mat-header-cell>
           <mat-cell *matCellDef="let alarm"> {{alarm.age_Old_Alarm}} </mat-cell>
         </ng-container>
-        <ng-container matColumnDef="User">
+        <ng-container matColumnDef="owner_UID">
           <mat-header-cell *matHeaderCellDef mat-sort-header>User </mat-header-cell>
           <mat-cell *matCellDef="let alarm"> {{alarm.owner_UID}} </mat-cell>
 
