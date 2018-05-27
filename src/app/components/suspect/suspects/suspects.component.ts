@@ -12,6 +12,7 @@ import { element, error } from 'protractor';
 import { SelectCloseReasonComponent } from '../../alarms/select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
 import { suspect } from '../../models/suspect.model';
+import { NgProgress } from 'ngx-progressbar';
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -32,7 +33,7 @@ export class SuspectsComponent implements OnInit {
   constructor(private http: HttpClient,
     private router: Router,
     public dialog: MatDialog,
-    private suspectService: SuspectsService
+    private suspectService: SuspectsService,public ngProgress: NgProgress
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -56,7 +57,7 @@ export class SuspectsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+this.ngProgress.start();
     this.suspectService.getAllSuspects().
       subscribe(data => {
      
@@ -65,6 +66,7 @@ export class SuspectsComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.IsLoaded=false;
+        this.ngProgress.done();
 
       });
   }
