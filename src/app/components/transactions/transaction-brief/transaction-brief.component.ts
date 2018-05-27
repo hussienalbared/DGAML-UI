@@ -10,7 +10,7 @@ import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
   styleUrls: ['./transaction-brief.component.css']
 })
 export class TransactionBriefComponent implements OnInit {
-  dataSource :any/*= ELEMENT_DATA*/;
+  dataSource :any=[]/*= ELEMENT_DATA*/;
   result: TransactionBrief[];
   displayedColumns = ['acct_Key', 'trans_Ref_No', 'trans_Desc', 'ccy_Amt','date_Key','trans_Cr_Db_Ind_Desc'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
