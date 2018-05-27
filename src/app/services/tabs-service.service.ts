@@ -7,6 +7,8 @@ tabs:tab[]=[]
   constructor() { }
 
   addTab(Tab:tab){
+    let index=this.tabs.findIndex(t=>(t.label==Tab.label&&t.path==Tab.path))
+    if(index==-1)
     this.tabs.push(Tab)
 
   }
