@@ -1,51 +1,94 @@
 <!--  -->
-<mat-accordion >
+<mat-accordion>
   <mat-expansion-panel expanded=true>
-  <mat-expansion-panel-header>
+    <mat-expansion-panel-header>
       Transaction Detail
     </mat-expansion-panel-header>
     <mat-card class="example-card">
-        <mat-card-header>
-          
-          <!-- <mat-card-title>Transaction Detail</mat-card-title> -->
-         
-        </mat-card-header>
-        <img mat-card-image src="assets\images\transaction.png" >
-       <mat-card-content *ngIf="result[0]">
-         
-      
-      
-      <h6>Transaction reference number:{{result[0]['trans_Ref_No']}}</h6>
-      
-      <h6>Transaction Description:{{result[0]['trans_Desc']}}</h6>
-      <h6>Transaction Amount::{{result[0]['ccy_Amt']}}</h6>
-      <h6>Transaction Type:{{result[0]['trans_Cr_Db_Ind_Desc']}}</h6>
-      <h6>Channel:{{result[0]['mech_Desc']}}</h6>
-      <h6>Transaction Currency Name:{{result[0]['curr_Name']}}</h6>
-      <h6>Transaction Currency Code:{{result[0]['curr_Cd']}}</h6>
-      <h6>Amount in base currency:{{result[0]['ccy_Amt_In_Trans_Ccy']}}</h6>
-      <h6>Amount in account currency:{{result[0]['ccy_Amt_In_Acct_Ccy']}}</h6>
-      <h6>Associate Name:{{result[0]['emp_FName']}}</h6>
-      <h6>Associate Number:{{result[0]['emp_No']}}</h6>
-      
-      <h6>Account Number:{{result[0]['acct_Key']}}</h6>
-      <h6>Secondary account Number:{{result[0]['sec_Acct_Key']}}</h6>
-      <h6>Remitter Name:{{result[0]['remitter_Name']}}</h6>
-      <h6>Remitter Number:{{result[0]['remitter_Number']}}</h6>
-      <h6>Beneficiary Name:{{result[0]['beneficiary_Name']}}</h6>
-      <h6>Beneficiary Number:{{result[0]['beneficiary_Number']}}</h6>
-      <h6>Transaction Date:{{result[0]['date_Key']}}</h6>
-      <h6>Branch Name:{{result[0]['branch_Name']}}</h6>
-      <h6>Branch Number:{{result[0]['branch_No']}}</h6>
-      <h6>Country Name:{{result[0]['cntry_Name']}}</h6>
-      <h6>Country Code:{{result[0]['cntry_CD_3']}}</h6>
-      
-        </mat-card-content>
-      
-      </mat-card>
-      
+      <mat-card-header>
+
+        <!-- <mat-card-title>Transaction Detail</mat-card-title> -->
+
+      </mat-card-header>
+      <!-- <img mat-card-image src="assets\images\transaction.png"> -->
+      <mat-card-content *ngIf="result[0]">
+
+
+        <div>
+          <div class="row">
+            <div class="col-lg-5">
+
+              <h6>
+                <span class="font-weight-bold">Transaction reference number:</span>{{result[0]['trans_Ref_No']}}</h6>
+
+              <h6>
+                <span class="font-weight-bold">Transaction Description:</span>{{result[0]['trans_Desc']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Transaction Amount::</span>{{result[0]['ccy_Amt']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Transaction Type:</span>{{result[0]['trans_Cr_Db_Ind_Desc']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Transaction Date:</span>{{result[0]['date_Key']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Transaction Currency Name:</span>{{result[0]['curr_Name']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Transaction Currency Code:</span>{{result[0]['curr_Cd']}}</h6>
+
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+
+
+              <h6>
+                <span class="font-weight-bold">Channel:</span>{{result[0]['mech_Desc']}}</h6>
+
+              <h6>
+                <span class="font-weight-bold">Amount in base currency:</span>{{result[0]['ccy_Amt_In_Trans_Ccy']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Amount in account currency:</span>{{result[0]['ccy_Amt_In_Acct_Ccy']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Associate Name:</span>{{result[0]['emp_FName']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Associate Number:</span>{{result[0]['emp_No']}}</h6>
+
+              <h6>
+                <span class="font-weight-bold">Account Number:</span>{{result[0]['acct_Key']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Secondary account Number:</span>{{result[0]['sec_Acct_Key']}}</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+
+              <h6>
+                <span class="font-weight-bold">Remitter Name:</span>{{result[0]['remitter_Name']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Remitter Number:</span>{{result[0]['remitter_Number']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Beneficiary Name:</span>{{result[0]['beneficiary_Name']}}</h6>
+              <h6>
+                <span class="font-weight-bold">Beneficiary Number:</span>{{result[0]['beneficiary_Number']}}</h6>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+
+              
+        <h6>
+          <span class="font-weight-bold">Branch Name:</span>{{result[0]['branch_Name']}}</h6>
+        <h6>
+          <span class="font-weight-bold">Branch Number:</span>{{result[0]['branch_No']}}</h6>
+        <h6>
+          <span class="font-weight-bold">Country Name:</span>{{result[0]['cntry_Name']}}</h6>
+        <h6>
+          <span class="font-weight-bold">Country Code:</span>{{result[0]['cntry_CD_3']}}</h6>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+    </mat-card>
+
   </mat-expansion-panel>
 </mat-accordion>
 
 <!--  -->
-
