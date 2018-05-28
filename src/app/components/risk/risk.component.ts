@@ -10,7 +10,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {classifier} from '../../models/classifier.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-risk',
@@ -50,12 +50,10 @@ export class RiskComponent implements OnInit {
 
   constructor(private http: HttpClient,
     public dialog: MatDialog,
-              private riskService: RiskService) {
+              private riskService: RiskService,
+              public translate: TranslateService) {
   }
 
-  changeLang(targLang:string){
-    console.log("Risk");
-  }
 /*----------------*/
    /** Whether the number of selected elements matches the total number of rows. */
    isAllSelected() {
@@ -159,6 +157,13 @@ export class RiskComponent implements OnInit {
     }
 
     );
+    this.en_ar_Dialog();
+  }
+  en_ar_Dialog(){
+    //  console.log("lllll");
+    //  console.log($('.selected_Language').text());
+     if($('.selected_Language').text() != "English")
+         $('.forwardContainer').css('text-align', 'right' );
   }
   takeOwnerShip(){
     const numSelected = this.selection.selected.length;

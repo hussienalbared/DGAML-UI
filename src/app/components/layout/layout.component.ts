@@ -97,6 +97,7 @@ changeLang(targLang:string){
     $('.selected_Language').text("اللغة العربية");
     $('.all_container').css('text-align', 'right' );
     $('.topbar').css('padding-right', '0' );
+    $('.full_icon_fg').css('margin-right', '15px' );
   }
   
   // $('.all_container').css('text-align', '{{ "text_align" | translate }}' );
