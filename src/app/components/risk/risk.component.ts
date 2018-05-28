@@ -53,6 +53,9 @@ export class RiskComponent implements OnInit {
               private riskService: RiskService) {
   }
 
+  changeLang(targLang:string){
+    console.log("Risk");
+  }
 /*----------------*/
    /** Whether the number of selected elements matches the total number of rows. */
    isAllSelected() {
@@ -252,3 +255,4 @@ export class RiskComponent implements OnInit {
   }
 
 }
+

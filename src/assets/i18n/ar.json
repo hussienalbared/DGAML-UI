@@ -1,3 +1,16 @@
 {
-    "dir":"rtl"
+    "dir":"rtl",
+    "text_align": "right",
+    "Suspect":{
+        "sec_title": "بيانات الشمتبه بهم"
+    },
+
+    "Risk":{
+        "sec_title": "",
+        "risk_table":{
+            "riskId": "",
+            "customerName": "اسم العميل",
+            "customerNumber":"رقم العميل"
+        }
+    }
 }

@@ -1,3 +1,15 @@
 {
-    "dir":"ltr"
+    "dir":"ltr",
+    "text_align": "left",
+    "Suspect":{
+        "sec_title": "Suspects Data"
+    },
+    "Risk":{
+        "sec_title": "",
+        "risk_table":{
+            "riskId": "",
+            "customerName": "Customer Name",
+            "customerNumber":"Customer Number"
+        }
+    }
 }
