@@ -73,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -196,8 +197,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: [/^null$/],
-        blacklistedRoutes: ['localhost:8081/aml/auth/']
+        whitelistedDomains: ['localhost:8081'],
+        blacklistedRoutes: ['http://localhost:8081/aml/auth']
       }
     }),
   ],
