@@ -4,7 +4,10 @@ import { FormControl } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
+// import { ChangeLangService } from '../../services/change-lang.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import {TranslateService} from '@ngx-translate/core';
 
 import { TabsServiceService } from '../../services/tabs-service.service';
 import { tab } from '../models/tab.model';
@@ -19,10 +22,12 @@ export class LayoutComponent implements OnInit {
   isOn = true;
   elemen: any;
 
-  constructor(private authService: AuthService,private TabService:TabsServiceService,private router:Router) { }
+  constructor(private authService: AuthService,/*private changeLangService: ChangeLangService,*/
+              private TabService:TabsServiceService,private router:Router,public translate: TranslateService) { }
 
   ngOnInit() {
   } 
+
   changeIsOn() {
     this.isOn = !this.isOn;
     if(this.isOn)
@@ -71,5 +76,29 @@ let Tab:tab={path:path,label:label}
   //   this.router.navigate(["/"+url]);
 
   // }
+
+changeLang(targLang:string){
+  // console.log("Layout");
+  
+  // this.changeLangService.changeLang();
+  this.translate.use(targLang);
+  
+  $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
+
+  //forwaed dialog
+  $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
+  
+  if(targLang == 'en'){
+    $('.selected_Language').text("ُEnglish");
+      $('.all_container').css('text-align', 'left' );
+  }
+  else{
+    $('.selected_Language').text("اللغة العربية");
+    $('.all_container').css('text-align', 'right' );
+    $('.topbar').css('padding-right', '0' );
+    $('.full_icon_fg').css('margin-right', '15px' );
+  }
+}
+
 }
 

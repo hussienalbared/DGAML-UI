@@ -25,7 +25,7 @@
           <!-- <i class="notificationValue">4</i> -->
         </i>
 
-        <i class="fa fa-expand" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>
+        <i class="fa fa-expand full_icon_fg" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>
 
       </div>
       <div>
@@ -50,17 +50,21 @@
       <!--  -->
       <div>
         <button mat-button [matMenuTriggerFor]="menu2">
-          English
+          <span class="selected_Language">English</span>
           <mat-icon>language</mat-icon>
         </button>
         <mat-menu #menu2="matMenu" overlapTrigger="false">
-          <button mat-menu-item>
-            <span>English</span>
-          </button>
-          <button mat-menu-item>
-            <span>Arabic</span>
-          </button>
-
+          <!-- <select #langSelect (change)="translate.use(langSelect.value)"> -->
+            <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> 
+                {{ lang }}  
+            </option> -->
+            <button mat-menu-item (click) = "changeLang('en');">
+              <span>English</span>
+            </button>
+            <button mat-menu-item (click) = "changeLang('ar');">
+              <span>Arabic</span>
+            </button>
+          <!-- </select> -->
         </mat-menu>
       </div>
       <!--  -->
@@ -69,7 +73,8 @@
   </div>
 </mat-toolbar>
 
-<mat-sidenav-container class="example-container" autosize>
+<!-- <div dir="rtl"> -->
+<mat-sidenav-container class="example-container main_contain" autosize>
   <mat-sidenav #sidenav [mode]="mode.value" opened>
     <div class="clearfix"></div>
     <hr class="divider">
@@ -156,7 +161,7 @@
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="main_middle_content">
     <nav mat-tab-nav-bar>
       <div *ngFor="let link of TabService.tabs" style="display: inline-block">
       <a mat-tab-link
@@ -177,3 +182,4 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<!-- </div> -->

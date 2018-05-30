@@ -13,6 +13,8 @@ import { SelectCloseReasonComponent } from '../../alarms/select-close-reason/sel
 import { SuspectsService } from '../../../services/suspects.service';
 import { suspect } from '../../models/suspect.model';
 import { NgProgress } from 'ngx-progressbar';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -33,6 +35,7 @@ export class SuspectsComponent implements OnInit {
   constructor(private http: HttpClient,
     private router: Router,
     public dialog: MatDialog,
+    public translate: TranslateService,
     private suspectService: SuspectsService,public ngProgress: NgProgress
   ) { }
 
@@ -96,6 +99,11 @@ this.ngProgress.start();
     }
 
     );
+    this.en_ar_Dialog();
+  }
+  en_ar_Dialog(){
+     if($('.selected_Language').text() != "English")
+         $('.forwardContainer').css('text-align', 'right' );
   }
   removeOwnerShip() {
     this.suspectService.removeOwnerShip(this.selection.selected);
