@@ -78,20 +78,19 @@ let Tab:tab={path:path,label:label}
   // }
 
 changeLang(targLang:string){
-  console.log("Layout");
+  // console.log("Layout");
   
   // this.changeLangService.changeLang();
   this.translate.use(targLang);
   
   $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
+
+  //forwaed dialog
   $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
-  // $('.topbar').css("text-align", "{{ 'text_align' | translate }}" );
-  // console.log("zzzzzz=");
   
   if(targLang == 'en'){
     $('.selected_Language').text("ُEnglish");
       $('.all_container').css('text-align', 'left' );
-      // $('.forwardContainer').css('text-align', 'left' );
   }
   else{
     $('.selected_Language').text("اللغة العربية");
@@ -99,8 +98,6 @@ changeLang(targLang:string){
     $('.topbar').css('padding-right', '0' );
     $('.full_icon_fg').css('margin-right', '15px' );
   }
-  
-  // $('.all_container').css('text-align', '{{ "text_align" | translate }}' );
 }
 
 }

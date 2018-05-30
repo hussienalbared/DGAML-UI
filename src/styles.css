@@ -382,6 +382,7 @@ mat-expansion-panel .mat-expansion-panel-body {
     /* background-color: black !important; */
     border-radius: 10px 10px 0px 0px !important;
     background-color: red;
-  
    
 }
+/**/
+.mat-drawer-content{position: initial !important}
