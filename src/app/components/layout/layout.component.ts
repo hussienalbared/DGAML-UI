@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
 import { TabsServiceService } from '../../services/tabs-service.service';
+import * as $ from 'jquery';
 import { tab } from '../models/tab.model';
 @Component({
   selector: 'app-layout',
