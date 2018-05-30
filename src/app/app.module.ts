@@ -164,59 +164,59 @@ export function tokenGetter() {
     RouterModule.forRoot([
       {
         path: 'login',
-        component: LoginComponent, 
-        canActivate: [AuthGuardService]
+        component: LoginComponent
+        // ,canActivate: [AuthGuardService]
       },
       { path: 'account', 
         component: AccountSearchComponent
-        , canActivate: [AuthGuardService] 
+        // , canActivate: [AuthGuardService] 
       },
       { path: 'alarm', 
         component: AlaramSearchComponent
-        , canActivate: [AuthGuardService] 
+        // , canActivate: [AuthGuardService] 
       },
       { path: 'party', 
         component: PartySearchComponent
-        , canActivate: [AuthGuardService] 
+        // , canActivate: [AuthGuardService] 
       },
       { path: 'external', 
         component: ExternalPartySearchComponent
-        , canActivate: [AuthGuardService] 
+        // , canActivate: [AuthGuardService] 
       },
       {
         path: 'suspects',
-        component: SuspectsComponent,
-        canActivate: [AuthGuardService]
+        component: SuspectsComponent
+        ,canActivate: [AuthGuardService]
       },
       {
         path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
         component: SuspectDetailUipageComponent
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       },
       {
         path: 'alarmDetail/:alarmId',
         component: AlarmDetail1Component
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       },
       {
         path: 'accountDetail/:accountNumber/:obj_key/:obj_level_code',
         component: AccountDetailComponent
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       },
       {
         path: 'accountDetailSearch/:accountNumber/:account_Key',
         component: AccountDetailSearchComponent
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       },
       {
         path: 'TransactionDeatil/:ttrn',
         component: TransactionDetailsComponent
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       },
       {
         path: 'risk',
         component: RiskComponent
-        , canActivate: [AuthGuardService]
+        // , canActivate: [AuthGuardService]
       }
 
     ]),
