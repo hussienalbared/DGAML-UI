@@ -97,16 +97,16 @@ export function tokenGetter() {
     LayoutComponent,
     LoginComponent,
     AccountAlarmInBriefComponent,
-   
+
     Section3Component,
-  
+
     AccountDetailSearchComponent,
     RiskComponent,
-   
+
     AddTabDirective,
-    
+
     RiskForwardComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -151,46 +151,72 @@ export function tokenGetter() {
     MatInputModule,
     MatTooltipModule,
     MatRadioModule,
-    
+
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
     NgProgressModule,
-   
-  MatProgressSpinnerModule,
-  MatAutocompleteModule,
-  MatChipsModule,
+
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
-      { path: 'login', component: LoginComponent },
-      { path: 'account', component: AccountSearchComponent },
-      { path: 'alarm', component: AlaramSearchComponent },
-      { path: 'party', component: PartySearchComponent },
-      { path: 'external', component: ExternalPartySearchComponent },
+      {
+        path: 'login',
+        component: LoginComponent, 
+        canActivate: [AuthGuardService]
+      },
+      { path: 'account', 
+        component: AccountSearchComponent
+        , canActivate: [AuthGuardService] 
+      },
+      { path: 'alarm', 
+        component: AlaramSearchComponent
+        , canActivate: [AuthGuardService] 
+      },
+      { path: 'party', 
+        component: PartySearchComponent
+        , canActivate: [AuthGuardService] 
+      },
+      { path: 'external', 
+        component: ExternalPartySearchComponent
+        , canActivate: [AuthGuardService] 
+      },
       {
         path: 'suspects',
         component: SuspectsComponent,
         canActivate: [AuthGuardService]
       },
-      { path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number', component: SuspectDetailUipageComponent },
-      { path: 'alarmDetail/:alarmId', component: AlarmDetail1Component },
-      
-   
       {
-        path:'accountDetail/:accountNumber/:obj_key/:obj_level_code',
-        component:AccountDetailComponent
+        path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
+        component: SuspectDetailUipageComponent
+        , canActivate: [AuthGuardService]
       },
       {
-        path:'accountDetailSearch/:accountNumber/:account_Key',
-        component:AccountDetailSearchComponent
+        path: 'alarmDetail/:alarmId',
+        component: AlarmDetail1Component
+        , canActivate: [AuthGuardService]
       },
       {
-        path:'TransactionDeatil/:ttrn',
-        component:TransactionDetailsComponent
+        path: 'accountDetail/:accountNumber/:obj_key/:obj_level_code',
+        component: AccountDetailComponent
+        , canActivate: [AuthGuardService]
+      },
+      {
+        path: 'accountDetailSearch/:accountNumber/:account_Key',
+        component: AccountDetailSearchComponent
+        , canActivate: [AuthGuardService]
+      },
+      {
+        path: 'TransactionDeatil/:ttrn',
+        component: TransactionDetailsComponent
+        , canActivate: [AuthGuardService]
       },
       {
         path: 'risk',
         component: RiskComponent
+        , canActivate: [AuthGuardService]
       }
 
     ]),
@@ -202,8 +228,8 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService,AccountsService,RiskService,TabsServiceService],
-              
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService],
+
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
 })
