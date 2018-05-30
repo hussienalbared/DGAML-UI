@@ -31,7 +31,7 @@
       <div>
         <button mat-button [matMenuTriggerFor]="menu">
 
-          <img src="./assets/images/users/avartar3.png" class="rounded-circle" height="40"> Eman Gaafar
+          <img src="./assets/images/users/avartar3.png" class="rounded-circle" height="40"> {{userName}}
 
         </button>
         <mat-menu #menu="matMenu" overlapTrigger="false">
@@ -92,7 +92,7 @@
       </div>
       <div class="col-8">
         <div class="profile-text">Welcome
-          <b>Eman Gaafar</b>
+          <b>{{userName}}</b>
         </div>
       </div>
     </div>

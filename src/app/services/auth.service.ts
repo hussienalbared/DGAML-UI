@@ -17,6 +17,7 @@ export class AuthService {
       .map(data => {
         if (data && data.hasOwnProperty('token')) {
           localStorage.setItem('token', data.token);
+          localStorage.setItem('name', credentials.username);
           return true;
         }
         return false;
