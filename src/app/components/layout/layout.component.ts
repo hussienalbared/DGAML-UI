@@ -22,11 +22,16 @@ export class LayoutComponent implements OnInit {
   mode = new FormControl('side');
   isOn = true;
   elemen: any;
+  userName:string='';
 
   constructor(private authService: AuthService,/*private changeLangService: ChangeLangService,*/
               private TabService:TabsServiceService,private router:Router,public translate: TranslateService) { }
 
   ngOnInit() {
+    if(localStorage.getItem('name')!== null)
+    {
+      this.userName=localStorage.getItem('name')
+    }
   } 
 
   changeIsOn() {
