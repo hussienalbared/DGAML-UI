@@ -17,7 +17,16 @@ export class AuthService {
       .map(data => {
         if (data && data.hasOwnProperty('token')) {
           localStorage.setItem('token', data.token);
-          localStorage.setItem('name', credentials.username);
+          let myRawToken=data.token;
+          const helper = new JwtHelperService();
+          let decodedToken = helper.decodeToken(myRawToken);
+          localStorage.setItem('name', decodedToken.firstName);
+        
+          
+      
+          console.log(decodedToken)
+
+
           return true;
         }
         return false;

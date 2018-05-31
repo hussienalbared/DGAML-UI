@@ -165,58 +165,59 @@ export function tokenGetter() {
       {
         path: 'login',
         component: LoginComponent, 
-        canActivate: [AuthGuardService]
+        
       },
       { path: 'account', 
         component: AccountSearchComponent
-        , canActivate: [AuthGuardService] 
+        ,  
       },
       { path: 'alarm', 
         component: AlaramSearchComponent
-        , canActivate: [AuthGuardService] 
+        ,  
       },
       { path: 'party', 
         component: PartySearchComponent
-        , canActivate: [AuthGuardService] 
+        ,  
       },
       { path: 'external', 
         component: ExternalPartySearchComponent
-        , canActivate: [AuthGuardService] 
+        ,  
       },
       {
         path: 'suspects',
         component: SuspectsComponent,
-        canActivate: [AuthGuardService]
+        canActivate:[AuthGuardService]
+        
       },
       {
         path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
         component: SuspectDetailUipageComponent
-        , canActivate: [AuthGuardService]
+        , 
       },
       {
         path: 'alarmDetail/:alarmId',
         component: AlarmDetail1Component
-        , canActivate: [AuthGuardService]
+        , 
       },
       {
         path: 'accountDetail/:accountNumber/:obj_key/:obj_level_code',
         component: AccountDetailComponent
-        , canActivate: [AuthGuardService]
+        , 
       },
       {
         path: 'accountDetailSearch/:accountNumber/:account_Key',
         component: AccountDetailSearchComponent
-        , canActivate: [AuthGuardService]
+        , 
       },
       {
         path: 'TransactionDeatil/:ttrn',
         component: TransactionDetailsComponent
-        , canActivate: [AuthGuardService]
+        , 
       },
       {
         path: 'risk',
         component: RiskComponent
-        , canActivate: [AuthGuardService]
+        , 
       }
 
     ]),

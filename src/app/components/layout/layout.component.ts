@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
               private TabService:TabsServiceService,private router:Router,public translate: TranslateService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('name'))
+    if(localStorage.getItem('name')!== null)
     {
       this.userName=localStorage.getItem('name')
     }
