@@ -14,6 +14,7 @@ import { SuspectsService } from '../../../services/suspects.service';
 import { suspect } from '../../models/suspect.model';
 import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-suspects',
@@ -33,6 +34,7 @@ export class SuspectsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient,
+  private authService: AuthService,
     private router: Router,
     public dialog: MatDialog,
     public translate: TranslateService,
@@ -117,7 +119,7 @@ this.ngProgress.start();
         let code = element["id"]["alarmed_Obj_level_Cd"];
         let key = element["id"]["alarmed_Obj_Key"];
         let oldcomplianceUserid = element["owner_UID"];
-        element['owner_UID'] = 'Admin';
+        element['owner_UID'] = this.authService.userName;
 
 
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => { }

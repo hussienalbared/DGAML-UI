@@ -1,6 +1,7 @@
 import { element } from 'protractor';
 import { RiskForwardComponent } from './risk-forward/risk-forward.component';
 import { RiskService } from './../../services/risk.service';
+import { AuthService } from '../../services/auth.service';
 import { risk } from './../../models/risk.model';
 
 import {ViewChild, OnInit, Component} from '@angular/core';
@@ -50,6 +51,7 @@ export class RiskComponent implements OnInit {
 
   constructor(private http: HttpClient,
     public dialog: MatDialog,
+    private authService: AuthService,
               private riskService: RiskService,
               public translate: TranslateService) {
   }
@@ -173,7 +175,7 @@ export class RiskComponent implements OnInit {
     }
 
     //need id of the logged user
-    let loggedUser = "test-loggedUser" ;
+    let loggedUser = this.authService.userName ;
 
     this.selection.selected.forEach(element => {
       let prev_owner = element["owner_User_Long_Id"];
