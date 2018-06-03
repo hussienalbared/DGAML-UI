@@ -64,6 +64,7 @@ import { RiskComponent } from './components/risk/risk.component';
 
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule } from 'ngx-progressbar';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -106,6 +107,8 @@ export function tokenGetter() {
     AddTabDirective,
 
     RiskForwardComponent,
+
+    WelcomeComponent,
 
   ],
   imports: [
@@ -162,6 +165,16 @@ export function tokenGetter() {
     MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
+        {
+        path: '',
+        component: WelcomeComponent
+        ,canActivate: [AuthGuardService]
+      },
+      {
+        path: 'welcome',
+        component: WelcomeComponent
+        // ,canActivate: [AuthGuardService]
+      },
       {
         path: 'login',
         component: LoginComponent

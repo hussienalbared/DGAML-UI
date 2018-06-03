@@ -1,4 +1,4 @@
-<mat-toolbar #img class="topbar">
+<mat-toolbar #img class="topbar"  *ngIf="authService.userName">
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
       <h1>
@@ -74,8 +74,8 @@
 </mat-toolbar>
 
 <!-- <div dir="rtl"> -->
-<mat-sidenav-container class="example-container main_contain" autosize>
-  <mat-sidenav #sidenav [mode]="mode.value" opened>
+<mat-sidenav-container class="example-container main_contain" autosize >
+  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName">
     <div class="clearfix"></div>
     <hr class="divider">
     <div class="clearfix"></div>
