@@ -10,6 +10,7 @@ const httpOptions = {
 };
 @Injectable()
 export class AuthService {
+  userName:string='';
   constructor(private http: HttpClient) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
@@ -21,7 +22,7 @@ export class AuthService {
           const helper = new JwtHelperService();
           let decodedToken = helper.decodeToken(myRawToken);
           localStorage.setItem('name', decodedToken.firstName);
-        
+        this.userName=decodedToken.firstName;
           
       
           console.log(decodedToken)
