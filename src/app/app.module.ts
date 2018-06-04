@@ -35,6 +35,7 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
 import { SuspectsService } from './services/suspects.service';
 
 import { RiskService } from './services/risk.service';
+import { UserService } from './services/user.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -65,6 +66,8 @@ import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { UserComponent } from './components/user/user.component';
+import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,6 +112,10 @@ export function tokenGetter() {
     RiskForwardComponent,
 
     WelcomeComponent,
+
+    UserComponent,
+
+    AddNewUserComponent,
 
   ],
   imports: [
@@ -230,8 +237,11 @@ export function tokenGetter() {
         path: 'risk',
         component: RiskComponent
         , canActivate: [AuthGuardService]
+      },
+      { path: 'user', 
+        component: UserComponent
+        , canActivate: [AuthGuardService] 
       }
-
     ]),
     JwtModule.forRoot({
       config: {
@@ -241,9 +251,9 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService],
 
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent],
 })
 export class AppModule { }
