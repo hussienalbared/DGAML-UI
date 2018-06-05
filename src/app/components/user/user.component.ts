@@ -15,17 +15,18 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class UserComponent implements OnInit {
 
-  id : number;
-  username: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  enabled: boolean;
-  lastPasswordResetDate: Date;
+  // id : number;
+  // username: string;
+  // password: string;
+  // firstname: string;
+  // lastname: string;
+  // email: string;
+  // enabled: boolean;
+  // lastPasswordResetDate: Date;
 
   result: user[];
   IsLoaded=true;
+  
   dataSource: any = null;
   displayedColumns = ['select','id', 'firstname', 'lastname', 'email', 'enabled', 'lastPasswordResetDate'];
   selection = new SelectionModel<user>(true, []);  
@@ -54,19 +55,19 @@ export class UserComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  getRecord(row: any) {
-    this.id = row.id;
-    // this.username = row.username;
-    this.password = row.password;
-    this.firstname = row.firstname;
-    this.lastname = row.lastname;
-    this.email = row.email;
-    this.enabled = row.enabled;
-    this.lastPasswordResetDate = row.lastPasswordResetDate;
-  }
+  // getRecord(row: any) {
+  //   this.id = row.id;
+  //   // this.username = row.username;
+  //   this.password = row.password;
+  //   this.firstname = row.firstname;
+  //   this.lastname = row.lastname;
+  //   this.email = row.email;
+  //   this.enabled = row.enabled;
+  //   this.lastPasswordResetDate = row.lastPasswordResetDate;
+  // }
 
   ngOnInit() {
-    this.ngProgress.start();
+    // this.ngProgress.start();
     this.userService.getAllUsers().
       subscribe(data => {
         this.result = data;
@@ -74,7 +75,7 @@ export class UserComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.IsLoaded=false;
-        this.ngProgress.done();
+        // this.ngProgress.done();
 
       });
   }
@@ -86,11 +87,15 @@ export class UserComponent implements OnInit {
     }
 
     this.selection.selected.forEach(element => {
-      let user_id_ = element['id'];
-      let u_enable = element["enabled"];
+      // let user_id_ = element['id'];
+      let user_id_ = element[0];
+      // let u_enable = element["enabled"];
+      let u_enable = element[4];
+      element[4] = true;
       this.userService.enableUser(user_id_).subscribe(data => { },
         error => {
-          element["enabled"] = u_enable;
+          // element["enabled"] = u_enable;
+          element[4] = u_enable;
         }
       );;
     });
@@ -102,11 +107,15 @@ export class UserComponent implements OnInit {
       return;
     }
     this.selection.selected.forEach(element => {
-      let user_id_ = element['id'];
-      let u_enable = element["enabled"];
+      // let user_id_ = element['id'];
+      let user_id_ = element[0];
+      // let u_enable = element["enabled"];
+      let u_enable = element[4]
+      element[4] = false;
       this.userService.disableUser(user_id_).subscribe(data => { },
         error => {
-          element["enabled"] = u_enable;
+          // element["enabled"] = u_enable;
+          element[4] = u_enable;
         }
       );;
     });
@@ -117,8 +126,14 @@ export class UserComponent implements OnInit {
       alert("Select at least one user,please");
       return;
     }
+    var tindex = this.getSelectedIndex();
     this.selection.selected.forEach(element => {
-      let user_id_ = element['id'];
+      // let user_id_ = element['id'];
+      let user_id_ = element[0];
+      this.dataSource.data.splice(tindex,1);
+      this.dataSource = new MatTableDataSource(this.dataSource.data);
+      this.selection = new SelectionModel<user>(true, []);
+
       this.userService.deleteUser(user_id_).subscribe(data => { },
         error => {
           
@@ -126,6 +141,21 @@ export class UserComponent implements OnInit {
       );;
     });
   }
+  
+  getSelectedIndex(){
+    var sd = "";
+    this.selection.selected.forEach(element => {
+      sd = element[0];
+    });
+    var tindex = 0;
+    this.dataSource.data.forEach((element,index) => {
+      if(element[0] == sd ){
+        tindex = index;
+      }
+    });
+    return tindex;
+  }
+
   addUser(){
     let dialogRef = this.dialog.open(AddNewUserComponent, {
 

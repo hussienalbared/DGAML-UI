@@ -9,6 +9,8 @@
     <i class="fa fa-chain-broken" ></i> Add New User</button>
 </mat-card>
 
+<!-- <span>{{ dataSource.data[0].firstname }}</span> -->
+
 <mat-accordion style="background-color: rgba(0, 0, 0, 0.02)" >
   <mat-expansion-panel expanded='true'>
     <mat-expansion-panel-header>
@@ -25,11 +27,7 @@
         </mat-form-field>
       </div>
     <div class="example-container mat-elevation-z8">
-
-
-
       <mat-table #table [dataSource]="dataSource" matSort>
-
         <ng-container matColumnDef="select">
           <mat-header-cell *matHeaderCellDef>
             <mat-checkbox (change)="$event ? masterToggle() : null" 
@@ -44,42 +42,46 @@
             </mat-checkbox>
           </mat-cell>
         </ng-container>
-         <ng-container matColumnDef="id">
+        
+        <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-          <mat-cell *matCellDef="let user" > {{user.id}} </mat-cell>
+          <mat-cell *matCellDef="let user" > {{user[0]}} </mat-cell>
         </ng-container>
+
         <ng-container matColumnDef="firstname">
           <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-          <mat-cell *matCellDef="let user" > {{user.firstname}} </mat-cell>
+          <mat-cell *matCellDef="let user" > {{user[1]}} </mat-cell>
         </ng-container>
+        
         <ng-container matColumnDef="lastname">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user[2]}} </mat-cell>
         </ng-container>
+        
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user[3]}} </mat-cell>
         </ng-container>
+        
         <ng-container matColumnDef="enabled">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.enabled}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user[4]}} </mat-cell>
         </ng-container>
+        
         <ng-container matColumnDef="lastPasswordResetDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header>lastPasswordResetDate </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.lastPasswordResetDate}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user[5]}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"
-             (click)="getRecord(row)"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></mat-row>
       </mat-table>
-      <mat-paginator #paginator
-  [pageSize]="20"
-  [pageSizeOptions]="[2,5, 10, 20]"
-  [showFirstLastButtons]="true">
-</mat-paginator>
+
+      <mat-paginator #paginator 
+        [pageSize]="20"
+        [pageSizeOptions]="[2,5, 10, 20]"
+        [showFirstLastButtons]="true">
+      </mat-paginator>
     </div>
-
-
-  </mat-expansion-panel>
+</mat-expansion-panel>
 </mat-accordion>

@@ -33,12 +33,16 @@ export class AddNewUserComponent implements OnInit {
   }
 
   addUser(){
-    this.userService.addNewUser(this.password,this.firstname,this.lastname,this.email).subscribe(data => {
-      }, error => {
+    // this.userService.addNewUser(this.password,this.firstname,this.lastname,this.email).subscribe(data => {
+    //   }, error => {
         
-      }
-      );
-    this.dialogRef.close();
+    //   }
+    //   );
+    // this.dialogRef.close();
+    console.log(this.firstname);
+    console.log(this.lastname);
+    console.log(this.email);
+    console.log(this.password);
   }
 
 }
