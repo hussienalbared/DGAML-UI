@@ -65,6 +65,9 @@ import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AddGroupComponent } from './components/group/add-group/add-group.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
+import { GroupService } from './services/group.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,6 +112,10 @@ export function tokenGetter() {
     RiskForwardComponent,
 
     WelcomeComponent,
+
+    AddGroupComponent,
+
+    EditGroupComponent,
 
   ],
   imports: [
@@ -165,11 +172,11 @@ export function tokenGetter() {
     MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
-        {
-        path: '',
-        component: WelcomeComponent
-        ,canActivate: [AuthGuardService]
-      },
+      //   {
+      //   path: '',
+      //   component: WelcomeComponent
+      //   ,canActivate: [AuthGuardService]
+      // },
       {
         path: 'welcome',
         component: WelcomeComponent
@@ -230,6 +237,11 @@ export function tokenGetter() {
         path: 'risk',
         component: RiskComponent
         , canActivate: [AuthGuardService]
+      },
+      {
+        path: 'editGroup/:id',
+        component: EditGroupComponent
+       
       }
 
     ]),
@@ -241,7 +253,8 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, 
+    AccountsService, RiskService, TabsServiceService,GroupService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],

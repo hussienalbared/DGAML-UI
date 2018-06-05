@@ -1,0 +1,54 @@
+<p>
+  edit-group works!
+</p>
+<div class="example-container mat-elevation-z8">
+
+
+
+  <mat-table #table [dataSource]="capabilities" matSort>
+
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" 
+        [checked]="selection.hasValue() && isAllSelected()" 
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell >
+      <mat-cell *matCellDef="let row" >
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" >
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+   
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>id</mat-header-cell>
+      <mat-cell *matCellDef="let alarm" > {{alarm.id}} </mat-cell>
+    </ng-container>
+
+  <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>description</mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.description}} </mat-cell>
+    </ng-container>
+
+  
+
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+         (click)="selection.toggle(row)">
+    </mat-row>
+  </mat-table>
+  <!-- <mat-paginator #paginator
+[pageSize]="20"
+[pageSizeOptions]="[2,5, 10, 20]"
+[showFirstLastButtons]="true">
+</mat-paginator> -->
+</div>
