@@ -239,10 +239,15 @@ export function tokenGetter() {
         , canActivate: [AuthGuardService]
       },
       {
+path:'groups',
+component:AddGroupComponent
+      },
+      {
         path: 'editGroup/:id',
         component: EditGroupComponent
        
       }
+
 
     ]),
     JwtModule.forRoot({

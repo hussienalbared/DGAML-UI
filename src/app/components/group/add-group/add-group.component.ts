@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { GroupService } from '../../../services/group.service';
 
 @Component({
   selector: 'app-add-group',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class AddGroupComponent implements OnInit {
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router,private groupService: GroupService) { }
  GroupsNames:any=[];
   ngOnInit() {
-    let url="http://localhost:8081/aml/api/group/all";
-    this.http.get(url).subscribe(data=>{
+   
+    this.groupService.getAllGroups().subscribe(data=>{
       this.GroupsNames=data;
 
 
@@ -23,9 +24,19 @@ export class AddGroupComponent implements OnInit {
   addgroup(addForm){
     let url="http://localhost:8081/aml/api/group/add";
     let group={
-      name:addForm.name
+      name:"ROLE_"+addForm.name
     }
-    this.http.post(url,group).subscribe(res => console.log(res))
+    this.http.post(url,group).subscribe(res => 
+      {
+        console.log(res);
+        this.groupService.getAllGroups().subscribe(data=>{
+          this.GroupsNames=data
+    
+    
+    
+        });
+    addForm.name='';
+      });
   
 
   }
@@ -33,6 +44,13 @@ export class AddGroupComponent implements OnInit {
     console.log(groupId)
     let url=`http://localhost:8081/aml/api/group/delete/${groupId}`;
     this.http.delete(url).subscribe(data=>{
+      this.groupService.getAllGroups().subscribe(data=>{
+        this.GroupsNames=data
+  
+  
+  
+      });
+
 
     })
 

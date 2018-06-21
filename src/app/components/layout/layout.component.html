@@ -1,4 +1,4 @@
-<mat-toolbar #img class="topbar"  *ngIf="authService.userName">
+<mat-toolbar #img class="topbar"  >
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
       <h1>
@@ -75,7 +75,7 @@
 
 <!-- <div dir="rtl"> -->
 <mat-sidenav-container class="example-container main_contain" autosize >
-  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName">
+  <mat-sidenav #sidenav [mode]="mode.value" opened >
     <div class="clearfix"></div>
     <hr class="divider">
     <div class="clearfix"></div>
@@ -156,6 +156,12 @@
         <a>
           <mat-icon>settings</mat-icon>
           <span *ngIf="isOn"> Administration</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item  class="mat_item_a" >
+        <a routerLink="groups" >
+          <mat-icon>Group</mat-icon>
+          <span *ngIf="isOn"> Group</span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>

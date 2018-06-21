@@ -3,6 +3,10 @@ import { GroupService } from '../../../services/group.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
 import { capability } from '../../../models/groupModel.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { group } from '../../models/group.model';
+import { NgForm } from '@angular/forms';
+import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-edit-group',
@@ -10,12 +14,16 @@ import { capability } from '../../../models/groupModel.model';
   styleUrls: ['./edit-group.component.css']
 })
 export class EditGroupComponent implements OnInit {
-  capabilities:any=null;
-  displayedColumns = ['select','id', 'name', 'description' ];
+  id: number = null;
+  yes = false
+  group: group = null;
+  capabilities: any = null;
+  displayedColumns = ['select', 'name', 'description'];
   selection = new SelectionModel<capability>(true, []);
+  selection2 = new SelectionModel<capability>(true, []);
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.capabilities.data.length;
+    const numRows = this.group.capabilities.length;
     return numSelected === numRows;
   }
 
@@ -24,17 +32,65 @@ export class EditGroupComponent implements OnInit {
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.capabilities.data.forEach(row => this.selection.select(row));
+      this.group.capabilities.forEach(row => this.selection.select(row));
   }
-  constructor(private group:GroupService) { }
+
+  // 
+  isAllSelected2() {
+    const numSelected = this.selection2.selected.length;
+    const numRows = this.capabilities.data.length;
+    return numSelected === numRows;
+  }
+
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle2() {
+    this.isAllSelected2() ?
+      this.selection2.clear() :
+      this.capabilities.data.forEach(row => this.selection2.select(row));
+  }
+  constructor(private groupService: GroupService, private route: ActivatedRoute, private router: Router) {
+
+  }
+  // 
 
   ngOnInit() {
-    this.group.getAllCapabilities().subscribe(data=>{
-// this.capabilities=data;
-this.capabilities = new MatTableDataSource(data);
+
+    this.route.paramMap.subscribe(params => {
+      this.id = +params.get('id');
+      this.groupService.findGroup(this.id).subscribe(data => {
+        this.group = data;
+        this.group.capabilities.forEach(row => this.selection.select(row));
+
+        this.groupService.getRemainingCapabilities(this.group.id).subscribe(data => {
+
+        
+
+          this.capabilities = new MatTableDataSource<capability>(data);
+
+        })
+
+      })
 
     })
 
+
+
+  }
+  ff(x: NgForm) {
+
+    let g: group = {
+      "id": this.id,
+      "name": x.name ? x.name : this.group.name,
+      "capabilities": this.selection.selected.concat(this.selection2.selected)
+    }
+    // this.groupService.updateGroup(g).subscribe(res => {
+    // });
+    
+    console.log(g.capabilities)
+
+
   }
 
+ 
 }
