@@ -45,32 +45,32 @@
         
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-          <mat-cell *matCellDef="let user" > {{user[0]}} </mat-cell>
+          <mat-cell *matCellDef="let user" > {{user.id}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="firstname">
           <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-          <mat-cell *matCellDef="let user" > {{user[1]}} </mat-cell>
+          <mat-cell *matCellDef="let user" > {{user.firstname}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="lastname">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user[2]}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user[3]}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="enabled">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user[4]}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user.enabled}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="lastPasswordResetDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header>lastPasswordResetDate </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user[5]}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user.lastPasswordResetDate}} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

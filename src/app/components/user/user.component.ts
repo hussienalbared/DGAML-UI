@@ -1,8 +1,9 @@
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { AddNewUserComponent } from './add-new-user/add-new-user.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { user } from './../../models/user.model';
-import { AddNewUserComponent } from './../add-new-user/add-new-user.component';
 import { NgProgress } from 'ngx-progressbar';
 
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
@@ -15,13 +16,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class UserComponent implements OnInit {
 
-  // id : number;
-  // username: string;
-  // password: string;
-  // firstname: string;
-  // lastname: string;
-  // email: string;
-  // enabled: boolean;
+  id : number;
+  username: string;
+  password: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  enabled: boolean;
   // lastPasswordResetDate: Date;
 
   result: user[];
@@ -55,22 +56,30 @@ export class UserComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  // getRecord(row: any) {
-  //   this.id = row.id;
-  //   // this.username = row.username;
-  //   this.password = row.password;
-  //   this.firstname = row.firstname;
-  //   this.lastname = row.lastname;
-  //   this.email = row.email;
-  //   this.enabled = row.enabled;
-  //   this.lastPasswordResetDate = row.lastPasswordResetDate;
-  // }
+  getRecord(row: any) {
+    let dialogRef = this.dialog.open(UpdateUserComponent, {
+      height: '400px',
+      width: '600px',
+      data: { selected: row }
+    });
+    dialogRef.afterClosed().subscribe(result => {}, error => {});
+    
+    this.id = row.id;
+    this.username = row.username;
+    this.password = row.password;
+    this.firstname = row.firstname;
+    this.lastname = row.lastname;
+    this.email = row.email;
+    this.enabled = row.enabled;
+  }
 
   ngOnInit() {
     // this.ngProgress.start();
     this.userService.getAllUsers().
       subscribe(data => {
         this.result = data;
+        console.log("AAAAA:");
+        console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

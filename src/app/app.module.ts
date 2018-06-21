@@ -67,7 +67,8 @@ import { RiskForwardComponent } from './components/risk/risk-forward/risk-forwar
 import { NgProgressModule } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UserComponent } from './components/user/user.component';
-import { AddNewUserComponent } from './components/add-new-user/add-new-user.component';
+import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -116,6 +117,8 @@ export function tokenGetter() {
     UserComponent,
 
     AddNewUserComponent,
+
+    UpdateUserComponent,
 
   ],
   imports: [
@@ -254,6 +257,6 @@ export function tokenGetter() {
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService],
 
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],
 })
 export class AppModule { }

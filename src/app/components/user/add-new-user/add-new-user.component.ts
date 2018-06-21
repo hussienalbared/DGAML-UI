@@ -1,7 +1,7 @@
+import { UserService } from './../../../services/user.service';
+import { MatDialogRef } from '@angular/material';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './../../services/user.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-new-user',
@@ -12,14 +12,14 @@ export class AddNewUserComponent implements OnInit {
 
   form: FormGroup;
 
-  // id : number;
-  // username: string;
+  username: string;
+  DisplayName_: string;
   password: string;
   firstname: string;
   lastname: string;
   email: string;
-  // enabled: boolean;
-  // lastPasswordResetDate: Date;
+  enabled: boolean;
+  lastPasswordResetDate: Date;
 
   constructor(public dialogRef: MatDialogRef<AddNewUserComponent>,private userService: UserService,private formBuilder: FormBuilder) { }
 
@@ -29,20 +29,23 @@ export class AddNewUserComponent implements OnInit {
       password: [null, Validators.required],
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
+      username: [null, Validators.required],
+      DisplayName: [null, Validators.required]
     });
   }
 
   addUser(){
-    // this.userService.addNewUser(this.password,this.firstname,this.lastname,this.email).subscribe(data => {
-    //   }, error => {
-        
-    //   }
-    //   );
-    // this.dialogRef.close();
+    console.log(this.username);
+    console.log(this.DisplayName_);
     console.log(this.firstname);
     console.log(this.lastname);
     console.log(this.email);
     console.log(this.password);
+
+    this.userService.addNewUser(this.username,this.DisplayName_,this.password,this.firstname,this.lastname,this.email,true,
+                                this.lastPasswordResetDate)
+    // this.dialogRef.close();
+    
   }
 
 }
