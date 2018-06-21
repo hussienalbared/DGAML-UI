@@ -13,8 +13,8 @@ export class UserService {
 
   getAllUsers()
   {
-    // let url = this.rootUrl + "user/getAllUsers";
-    let url = this.rootUrl + "amr/";
+    let url = this.rootUrl + "user/getAllUsers";
+    // let url = this.rootUrl + "amr/";
    return this.http.get<user[]>(url);
   }
   enableUser(Uid){
