@@ -1,33 +1,33 @@
 <div class="user_add_form">
   <h5>Add New User</h5>
-    <form [formGroup]="form">
+    <form #form_="ngForm" (ngSubmit)="addUser(form_.value)">
       <div class="container">
         <div class="row">
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "text" matInput formControlName="firstname" placeholder="First Name" [(ngModel)]="firstname">
+                <input type = "text" matInput name="firstname"  placeholder="First Name" ngModel required>
               </mat-form-field>
             </div>
           </div>
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "text" matInput formControlName="lastname" placeholder="Last Name" [(ngModel)]="lastname">
+                <input type = "text" matInput name="lastname" placeholder="Last Name" ngModel required>
               </mat-form-field>
             </div>
           </div>
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "text" matInput formControlName="username" placeholder="User Name" [(ngModel)]="username">
+                <input type = "text" matInput name="username" placeholder="User Name" ngModel required>
               </mat-form-field>
             </div>
           </div>
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "text" matInput formControlName="DisplayName" placeholder="Display Name" [(ngModel)]="DisplayName">
+                <input type = "text" matInput name="DisplayName" placeholder="Display Name" ngModel required>
               </mat-form-field>
             </div>
           </div>
@@ -36,14 +36,14 @@
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "text" matInput formControlName="email" placeholder="E-mail" [(ngModel)]="email">
+                <input type = "text" matInput placeholder="E-mail" name="email" ngModel required>
               </mat-form-field>
             </div>
           </div>
           <div class="form-group">
             <div class="col-lg-12">
               <mat-form-field>
-                <input type = "password" matInput formControlName="password" placeholder="Password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+                <input type = "password" matInput  placeholder="Password" [type]="hide ? 'password' : 'text'" ngModel name="password">
                   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               </mat-form-field>
             </div>
@@ -75,11 +75,10 @@
           </div>
 
           <mat-form-field>
-              <mat-select placeholder="groups" name="groups" formControlName="selectedGroups" multiple [(ngModel)]="selectedGroups">
-                <mat-option  *ngFor="let topping of groups.data" [value]="topping" >{{topping.name}}</mat-option>
-              </mat-select>
-            
-            </mat-form-field>
+            <mat-select placeholder="groups" name="selectedGroups"  multiple ngModel >
+              <mat-option checked="true"  *ngFor="let topping of groups" [value]="topping" >{{topping.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
             <!-- <li *ngFor="let x of selectedGroups.capabilities ">{{x.name}}
 <!-- <li *ngFor="let z of x.capabilities">{{z.name}}</li> -->
             <!-- </li> -->
@@ -87,7 +86,7 @@
         <div class="row">
           <div class="form-group">
             <div class="col-lg-12">
-                <button mat-raised-button color="primary" style="width:100%;" (click)="addUser()" >Add</button><!--[disabled]="!form.valid"-->
+                <button mat-raised-button color="primary" style="width:100%;" (click)="addUser()" type="submit">Add</button><!--[disabled]="!form.valid"-->
             </div>
           </div>
         </div>

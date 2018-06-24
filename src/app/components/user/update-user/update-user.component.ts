@@ -1,3 +1,5 @@
+import { GroupService } from './../../../services/group.service';
+import { group } from './../../models/group.model';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -19,8 +21,11 @@ export class UpdateUserComponent implements OnInit {
   email: string;
   enabled: boolean;
   lastPasswordResetDate: Date;
+  groups:group[]=[];
+  selectedGroups:group[]=[];
 
-  constructor(public dialogRef: MatDialogRef<UpdateUserComponent>,private userService: UserService
+  constructor(public dialogRef: MatDialogRef<UpdateUserComponent>,private userService: UserService,
+    private groupService: GroupService
   ,@Inject(MAT_DIALOG_DATA) public data: any) { 
     console.log("in update constractor");
     console.log(data);
@@ -43,13 +48,20 @@ export class UpdateUserComponent implements OnInit {
     this.lastPasswordResetDate = data.selected.lastPasswordResetDate;
     this.lastname = data.selected.lastname;
     this.password = data.selected.password;   
+    // this.groups = data.selected.groups;
+    // this.groups = this.selectedGroups;
   }
 
   ngOnInit() {
+    this.groupService.getAllGroups().subscribe(data=>{
+      this.groups = data;
+    });
   }
 
+
   updateUser(){
-    this.userService.updateUser(this.id,this.username,this.displayName,this.password,this.firstname,this.lastname,this.email,this.enabled);
+    this.userService.updateUser(this.id,this.username,this.displayName,this.password,this.firstname,
+      this.lastname,this.email,this.enabled,this.selectedGroups);
     this.dialogRef.close();
   }
 

@@ -72,7 +72,7 @@ export class UserService {
       })
   }
 
-  updateUser(id,username,DisplayName,password,firstname,lastname,email,enabled){
+  updateUser(id,username,DisplayName,password,firstname,lastname,email,enabled,groups){
     let url = this.rootUrl + "user/editUser";
     // const user_: user = {  
     //   username: username,
@@ -92,7 +92,8 @@ export class UserService {
       firstname: firstname,
       lastname: lastname,
       email: email,
-      enabled: enabled
+      enabled: enabled,
+      groups:groups
     }).subscribe(data => {},
       err => {
         console.log("Error occured");

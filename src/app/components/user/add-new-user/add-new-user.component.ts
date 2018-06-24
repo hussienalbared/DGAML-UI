@@ -33,32 +33,35 @@ export class AddNewUserComponent implements OnInit {
     private formBuilder: FormBuilder,private groupservice:GroupService) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required],
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      username: [null, Validators.required],
-      DisplayName: [null, Validators.required],
-      selectedGroups:[null, null]
-    });
+    // this.form = this.formBuilder.group({
+    //   email: [null, [Validators.required, Validators.email]],
+    //   password: [null, Validators.required],
+    //   firstname: [null, Validators.required],
+    //   lastname: [null, Validators.required],
+    //   username: [null, Validators.required],
+    //   DisplayName: [null, Validators.required],
+    //   selectedGroups:[null, null]
+    // });
     this.groupservice.getAllGroups().subscribe(data=>{
-      this.groups=new MatTableDataSource<group>(data);
+      // this.groups=new MatTableDataSource<group>(data);
+      this.groups=data;
     })
   }
 
-  addUser(){
-    console.log("add user")
-    console.log(this.username);
-    console.log(this.DisplayName);
+  addUser(x){
+    console.log(x.username);
+    console.log(x.username);
+    console.log(x.DisplayName);
     console.log(this.firstname);
     console.log(this.lastname);
     console.log(this.email);
     console.log(this.password);
     console.log(this.selectedGroups);
 
-    this.userService.addNewUser(this.username,this.DisplayName,this.password,this.firstname,this.lastname,this.email,true,
-                                this.lastPasswordResetDate,this.selectedGroups)
+    this.selectedGroups = this.groups[0];
+
+    this.userService.addNewUser(x.username,x.DisplayName,x.password,x.firstname,x.lastname,x.email,true,
+                                x.lastPasswordResetDate,x.selectedGroups)
     this.dialogRef.close();
     
   }
