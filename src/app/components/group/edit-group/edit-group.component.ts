@@ -15,12 +15,12 @@ import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 })
 export class EditGroupComponent implements OnInit {
   id: number = null;
-  yes = false
   group: group = null;
   capabilities: any = null;
   displayedColumns = ['select', 'name', 'description'];
   selection = new SelectionModel<capability>(true, []);
   selection2 = new SelectionModel<capability>(true, []);
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.group.capabilities.length;
@@ -84,11 +84,10 @@ export class EditGroupComponent implements OnInit {
       "name": x.name ? x.name : this.group.name,
       "capabilities": this.selection.selected.concat(this.selection2.selected)
     }
-    // this.groupService.updateGroup(g).subscribe(res => {
-    // });
-    
-    console.log(g.capabilities)
-
+    this.groupService.updateGroup(g).subscribe(res => {
+    });
+   
+this.router.navigate(['/groups']);
 
   }
 
