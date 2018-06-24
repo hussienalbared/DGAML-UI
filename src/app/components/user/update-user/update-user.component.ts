@@ -10,8 +10,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class UpdateUserComponent implements OnInit {
 
+  id:number;
   username: string;
-  DisplayName: string;
+  displayName: string;
   password: string;
   firstname: string;
   lastname: string;
@@ -33,20 +34,23 @@ export class UpdateUserComponent implements OnInit {
     //   enabled: this.enabled,
     //   lastPasswordResetDate: this.lastPasswordResetDate
     // }
-    this.username = data.username;
-    this.DisplayName = data.email;
-    this.enabled = data.enabled;
-    this.firstname = data.firstname;
-    this.lastPasswordResetDate = data.lastPasswordResetDate;
-    this.lastname = data.lastname;
-    this.password = data.password;   
+    this.id = data.selected.id;
+    this.username = data.selected.username;
+    this.displayName = data.selected.displayName;
+    this.email = data.selected.email;
+    this.enabled = data.selected.enabled;
+    this.firstname = data.selected.firstname;
+    this.lastPasswordResetDate = data.selected.lastPasswordResetDate;
+    this.lastname = data.selected.lastname;
+    this.password = data.selected.password;   
   }
 
   ngOnInit() {
   }
 
   updateUser(){
-    this.userService.updateUser(this.username,this.DisplayName,this.password,this.firstname,this.lastname,this.email);
+    this.userService.updateUser(this.id,this.username,this.displayName,this.password,this.firstname,this.lastname,this.email,this.enabled);
+    this.dialogRef.close();
   }
 
 }

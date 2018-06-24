@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
 
   id : number;
   username: string;
+  DisplayName:string;
   password: string;
   firstname: string;
   lastname: string;
@@ -29,7 +30,7 @@ export class UserComponent implements OnInit {
   IsLoaded=true;
   
   dataSource: any = null;
-  displayedColumns = ['select','id', 'firstname', 'lastname', 'email', 'enabled', 'lastPasswordResetDate'];
+  displayedColumns = ['select','id','username','displayName', 'firstname', 'lastname', 'email', 'enabled', 'lastPasswordResetDate'];
   selection = new SelectionModel<user>(true, []);  
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -66,6 +67,7 @@ export class UserComponent implements OnInit {
     
     this.id = row.id;
     this.username = row.username;
+    this.DisplayName = row.displayname;
     this.password = row.password;
     this.firstname = row.firstname;
     this.lastname = row.lastname;

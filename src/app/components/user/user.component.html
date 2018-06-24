@@ -48,6 +48,16 @@
           <mat-cell *matCellDef="let user" > {{user.id}} </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+            <mat-cell *matCellDef="let user" > {{user.username}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="displayName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </mat-header-cell>
+              <mat-cell *matCellDef="let user" > {{user.displayName}} </mat-cell>
+            </ng-container>
+
         <ng-container matColumnDef="firstname">
           <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
           <mat-cell *matCellDef="let user" > {{user.firstname}} </mat-cell>

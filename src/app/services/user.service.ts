@@ -69,15 +69,27 @@ export class UserService {
       })
   }
 
-  updateUser(username,DisplayName,password,firstname,lastname,email){
+  updateUser(id,username,DisplayName,password,firstname,lastname,email,enabled){
     let url = this.rootUrl + "user/editUser";
+    // const user_: user = {  
+    //   username: username,
+    //   displayName: DisplayName,
+    //   firstname: firstname,
+    //   password: password,
+    //   lastname: lastname,
+    //   email: email,
+    //   enabled: enabled,
+    //   lastPasswordResetDate: lastPasswordResetDate
+    // }
     return this.http.put(url, {
+      id:id,
       username: username,
-      DisplayName: DisplayName,
+      displayName: DisplayName,
       password: password,
       firstname: firstname,
       lastname: lastname,
-      email: email
+      email: email,
+      enabled: enabled
     }).subscribe(data => {},
       err => {
         console.log("Error occured");

@@ -45,7 +45,7 @@ export class AddNewUserComponent implements OnInit {
 
     this.userService.addNewUser(this.username,this.DisplayName,this.password,this.firstname,this.lastname,this.email,true,
                                 this.lastPasswordResetDate)
-    // this.dialogRef.close();
+    this.dialogRef.close();
     
   }
 
