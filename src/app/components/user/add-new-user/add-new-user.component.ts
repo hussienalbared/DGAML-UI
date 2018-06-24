@@ -13,7 +13,7 @@ export class AddNewUserComponent implements OnInit {
   form: FormGroup;
 
   username: string;
-  DisplayName_: string;
+  DisplayName: string;
   password: string;
   firstname: string;
   lastname: string;
@@ -35,14 +35,15 @@ export class AddNewUserComponent implements OnInit {
   }
 
   addUser(){
+    console.log("add user")
     console.log(this.username);
-    console.log(this.DisplayName_);
+    console.log(this.DisplayName);
     console.log(this.firstname);
     console.log(this.lastname);
     console.log(this.email);
     console.log(this.password);
 
-    this.userService.addNewUser(this.username,this.DisplayName_,this.password,this.firstname,this.lastname,this.email,true,
+    this.userService.addNewUser(this.username,this.DisplayName,this.password,this.firstname,this.lastname,this.email,true,
                                 this.lastPasswordResetDate)
     // this.dialogRef.close();
     

@@ -68,9 +68,9 @@
           <mat-cell *matCellDef="let user"> {{user.enabled}} </mat-cell>
         </ng-container>
         
-        <ng-container matColumnDef="lastPasswordResetDate">
+        <ng-container matColumnDef="lastPasswordResetDate"> <!--DatePipe-->
           <mat-header-cell *matHeaderCellDef mat-sort-header>lastPasswordResetDate </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.lastPasswordResetDate}} </mat-cell>
+          <mat-cell *matCellDef="let user"> {{user.lastPasswordResetDate|date:'short'}} </mat-cell>
         </ng-container>
  
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

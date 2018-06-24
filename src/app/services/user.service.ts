@@ -31,7 +31,7 @@ export class UserService {
   }
   addNewUser(username,DisplayName,password,firstname,lastname,email,enable,lastPasswordResetDate){
     
-    console.log("********");
+    console.log("****add service****");
     console.log(username);
     console.log(DisplayName);
     console.log(firstname);
@@ -41,16 +41,29 @@ export class UserService {
     console.log("********");
 
     let url = this.rootUrl + "user/addUser";
-    return this.http.post(url, {
+
+    const user_: user = {  
       username: username,
-      DisplayName: DisplayName,
-      password: password,
+      displayName: DisplayName,
       firstname: firstname,
+      password: password,
       lastname: lastname,
       email: email,
       enabled: enable,
       lastPasswordResetDate: lastPasswordResetDate
-    }).subscribe(data => {},
+    }
+
+    return this.http.post(url,
+      user_
+      // username: username,
+      // displayName: DisplayName,
+      // password: password,
+      // firstname: firstname,
+      // lastname: lastname,
+      // email: email,
+      // enabled: enable,
+      // lastPasswordResetDate: lastPasswordResetDate
+    ).subscribe(data => {},
       err => {
         console.log("Error occured");
       })
