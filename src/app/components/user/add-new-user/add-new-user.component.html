@@ -48,11 +48,46 @@
               </mat-form-field>
             </div>
           </div>
+          <div class="form-group">
+            <div class="col-lg-12">
+                <!-- <mat-table #table [dataSource]="groups" matSort >
+                    <ng-container matColumnDef="select">
+                      <mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                        </mat-checkbox>
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                        </mat-checkbox>
+                      </mat-cell>
+                    </ng-container>
+              
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+                      <mat-cell *matCellDef="let alarm"> {{alarm.name}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    </mat-row>
+                  </mat-table> -->
+              
+            </div>
+          </div>
+
+          <mat-form-field>
+              <mat-select placeholder="groups" name="groups" formControlName="selectedGroups" multiple [(ngModel)]="selectedGroups">
+                <mat-option  *ngFor="let topping of groups.data" [value]="topping" >{{topping.name}}</mat-option>
+              </mat-select>
+            
+            </mat-form-field>
+            <!-- <li *ngFor="let x of selectedGroups.capabilities ">{{x.name}}
+<!-- <li *ngFor="let z of x.capabilities">{{z.name}}</li> -->
+            <!-- </li> -->
         </div>
         <div class="row">
           <div class="form-group">
             <div class="col-lg-12">
-                <button mat-raised-button color="primary" style="width:100%;" (click)="addUser()" [disabled]="!form.valid">Add</button>
+                <button mat-raised-button color="primary" style="width:100%;" (click)="addUser()" >Add</button><!--[disabled]="!form.valid"-->
             </div>
           </div>
         </div>

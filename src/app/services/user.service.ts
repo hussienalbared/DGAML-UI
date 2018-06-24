@@ -29,7 +29,7 @@ export class UserService {
     let url = this.rootUrl + "user/deleteUser?userId=" + Uid ;
     return this.http.put(url, [])
   }
-  addNewUser(username,DisplayName,password,firstname,lastname,email,enable,lastPasswordResetDate){
+  addNewUser(username,DisplayName,password,firstname,lastname,email,enable,lastPasswordResetDate,groups){
     
     console.log("****add service****");
     console.log(username);
@@ -38,6 +38,8 @@ export class UserService {
     console.log(lastname);
     console.log(email);
     console.log(password);
+    console.log("Groups");
+    console.log(groups);
     console.log("********");
 
     let url = this.rootUrl + "user/addUser";
@@ -49,6 +51,7 @@ export class UserService {
       password: password,
       lastname: lastname,
       email: email,
+      groups: groups,
       enabled: enable,
       lastPasswordResetDate: lastPasswordResetDate
     }

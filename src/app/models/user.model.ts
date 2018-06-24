@@ -1,3 +1,4 @@
+import { group } from './../components/models/group.model';
 export interface user {
 
   // id : number;
@@ -8,5 +9,6 @@ export interface user {
   lastname: string;
   email: string;
   enabled: boolean;
+  groups:group[];
   lastPasswordResetDate: Date;
 }

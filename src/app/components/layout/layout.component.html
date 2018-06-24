@@ -152,28 +152,52 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
+      <!-- <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+        <a>
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isOn"> Administration</span>
+        </a>
+      </mat-list-item> -->
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+        <mat-icon>Administration</mat-icon>
+      </mat-list-item>
+
       <mat-accordion *ngIf="isOn" displayMode="flat">
         <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">
-            <mat-icon>settings</mat-icon>
+            <mat-icon>group_work</mat-icon>
             <span>Administration</span>
           </mat-expansion-panel-header>
           <mat-list>
-           <mat-list-item (click)="layoutItem($event);navItem('/user')" class="mat_item_a" appAddTab path="/user">
+         
+          
+          
+            <mat-list-item (click)="layoutItem($event);navItem('groups')" class="mat_item_a">
+                            <a routerLink="groups">Group management</a>
+            </mat-list-item>
+            <mat-list-item (click)="layoutItem($event);navItem('/user')" class="mat_item_a" appAddTab path="/user">
               <a routerLink="user">
                 <mat-icon></mat-icon>
                 <span *ngIf="isOn"> User</span>
               </a>
             </mat-list-item>
-            <mat-divider></mat-divider>
+            <!-- <mat-divider></mat-divider> -->
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
+      
+      <!-- <mat-list-item  class="mat_item_a" >
+        <a routerLink="groups" >
+          <mat-icon>Group</mat-icon>
+          <span *ngIf="isOn"> Group</span>
+        </a>
+      </mat-list-item> -->
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main_middle_content">
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar *ngIf="TabService.tabs.length>0">
       <div *ngFor="let link of TabService.tabs" style="display: inline-block">
       <a mat-tab-link
          

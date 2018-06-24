@@ -1,5 +1,8 @@
+import { SelectionModel } from '@angular/cdk/collections';
+import { group } from './../../models/group.model';
+import { GroupService } from './../../../services/group.service';
 import { UserService } from './../../../services/user.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatTableDataSource } from '@angular/material';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,10 +21,16 @@ export class AddNewUserComponent implements OnInit {
   firstname: string;
   lastname: string;
   email: string;
+
+  groups:any=[];
+  selectedGroups:group[]=[];
+  
   enabled: boolean;
   lastPasswordResetDate: Date;
-
-  constructor(public dialogRef: MatDialogRef<AddNewUserComponent>,private userService: UserService,private formBuilder: FormBuilder) { }
+  displayedColumns = ['select', 'name'];
+  selection = new SelectionModel<group>(true, []);
+  constructor(public dialogRef: MatDialogRef<AddNewUserComponent>,private userService: UserService,
+    private formBuilder: FormBuilder,private groupservice:GroupService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,8 +39,12 @@ export class AddNewUserComponent implements OnInit {
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
       username: [null, Validators.required],
-      DisplayName: [null, Validators.required]
+      DisplayName: [null, Validators.required],
+      selectedGroups:[null, null]
     });
+    this.groupservice.getAllGroups().subscribe(data=>{
+      this.groups=new MatTableDataSource<group>(data);
+    })
   }
 
   addUser(){
@@ -42,11 +55,26 @@ export class AddNewUserComponent implements OnInit {
     console.log(this.lastname);
     console.log(this.email);
     console.log(this.password);
+    console.log(this.selectedGroups);
 
     this.userService.addNewUser(this.username,this.DisplayName,this.password,this.firstname,this.lastname,this.email,true,
-                                this.lastPasswordResetDate)
+                                this.lastPasswordResetDate,this.selectedGroups)
     this.dialogRef.close();
     
   }
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.groups.data.length;
+    return numSelected === numRows;
+  }
+
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.groups.data.forEach(row => this.selection.select(row));
+  }
+
 
 }

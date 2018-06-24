@@ -69,6 +69,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UserComponent } from './components/user/user.component';
 import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
+import { AddGroupComponent } from './components/group/add-group/add-group.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
+import { GroupService } from './services/group.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -119,6 +122,9 @@ export function tokenGetter() {
     AddNewUserComponent,
 
     UpdateUserComponent,
+    AddGroupComponent,
+
+    EditGroupComponent,
 
   ],
   imports: [
@@ -175,11 +181,11 @@ export function tokenGetter() {
     MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
-        {
-        path: '',
-        component: WelcomeComponent
-        ,canActivate: [AuthGuardService]
-      },
+      //   {
+      //   path: '',
+      //   component: WelcomeComponent
+      //   ,canActivate: [AuthGuardService]
+      // },
       {
         path: 'welcome',
         component: WelcomeComponent
@@ -244,7 +250,18 @@ export function tokenGetter() {
       { path: 'user', 
         component: UserComponent
         , canActivate: [AuthGuardService] 
+      },
+      {
+path:'groups',
+component:AddGroupComponent
+      },
+      {
+        path: 'editGroup/:id',
+        component: EditGroupComponent
+       
       }
+
+
     ]),
     JwtModule.forRoot({
       config: {
@@ -254,7 +271,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],
