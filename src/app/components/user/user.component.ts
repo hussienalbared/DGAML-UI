@@ -98,15 +98,15 @@ export class UserComponent implements OnInit {
     }
 
     this.selection.selected.forEach(element => {
-      // let user_id_ = element['id'];
-      let user_id_ = element[0];
-      // let u_enable = element["enabled"];
-      let u_enable = element[4];
+      let user_id_ = element['id'];
+      // let user_id_ = element[0];
+      let u_enable = element["enabled"];
+      // let u_enable = element[4];
       element[4] = true;
       this.userService.enableUser(user_id_).subscribe(data => { },
         error => {
-          // element["enabled"] = u_enable;
-          element[4] = u_enable;
+          element["enabled"] = u_enable;
+          // element[4] = u_enable;
         }
       );;
     });
@@ -118,15 +118,15 @@ export class UserComponent implements OnInit {
       return;
     }
     this.selection.selected.forEach(element => {
-      // let user_id_ = element['id'];
-      let user_id_ = element[0];
-      // let u_enable = element["enabled"];
-      let u_enable = element[4]
+      let user_id_ = element['id'];
+      // let user_id_ = element[0];
+      let u_enable = element["enabled"];
+      // let u_enable = element[4] 
       element[4] = false;
       this.userService.disableUser(user_id_).subscribe(data => { },
         error => {
-          // element["enabled"] = u_enable;
-          element[4] = u_enable;
+          element["enabled"] = u_enable;
+          // element[4] = u_enable;
         }
       );;
     });
