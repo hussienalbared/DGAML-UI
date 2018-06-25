@@ -68,7 +68,7 @@
           </div>
 
           <mat-form-field>
-              <mat-select  placeholder="groups" name="selectedGroups"  multiple ngModel>
+              <mat-select  placeholder="groups" name="selectedGroups"  multiple ngModel >
                 <mat-option checked="true"  *ngFor="let topping of groups" [value]="topping" >{{topping.name}}</mat-option>
               </mat-select>
             </mat-form-field>

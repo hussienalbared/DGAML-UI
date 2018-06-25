@@ -47,10 +47,21 @@ export class UpdateUserComponent implements OnInit {
     this.groupService.getAllGroups().subscribe(data=>{
       this.groups = data;
     });
+
+  //   this.userService.getUser(1024).subscribe(data=>{
+  //     console.log("Returend User Groups");
+  //     console.log(data['groups']);
+  //     this.selectedGroups = data['groups']
+  // });
+  
   }
 
 
   updateUser(form_){
+    
+    // console.log("UpdateUser Form Function");
+    // console.log(form_.selectedGroups);
+
     this.userService.updateUser(form_.id,form_.username,form_.displayName,form_.password,form_.firstname,
       form_.lastname,form_.email,form_.enabled,form_.selectedGroups);
     this.dialogRef.close();

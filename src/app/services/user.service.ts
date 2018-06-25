@@ -17,6 +17,14 @@ export class UserService {
     // let url = this.rootUrl + "amr/";
    return this.http.get<user[]>(url);
   }
+
+  getUser(id_)
+  {
+    let url = this.rootUrl + "user/getUser/"+id_;
+    // let url = this.rootUrl + "amr/";
+   return this.http.get<user[]>(url);
+  }
+
   enableUser(Uid){
     let url = this.rootUrl + "user/enableUser?userId=" + Uid ;
     return this.http.put(url, [])
