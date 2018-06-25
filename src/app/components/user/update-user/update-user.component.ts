@@ -29,16 +29,7 @@ export class UpdateUserComponent implements OnInit {
   ,@Inject(MAT_DIALOG_DATA) public data: any) { 
     console.log("in update constractor");
     console.log(data);
-    // const user_: user = {  
-    //   username: this.username,
-    //   displayName: this.DisplayName,
-    //   firstname: this.firstname,
-    //   password: this.password,
-    //   lastname: this.lastname,
-    //   email: this.email,
-    //   enabled: this.enabled,
-    //   lastPasswordResetDate: this.lastPasswordResetDate
-    // }
+    
     this.id = data.selected.id;
     this.username = data.selected.username;
     this.displayName = data.selected.displayName;
@@ -59,9 +50,9 @@ export class UpdateUserComponent implements OnInit {
   }
 
 
-  updateUser(){
-    this.userService.updateUser(this.id,this.username,this.displayName,this.password,this.firstname,
-      this.lastname,this.email,this.enabled,this.selectedGroups);
+  updateUser(form_){
+    this.userService.updateUser(form_.id,form_.username,form_.displayName,form_.password,form_.firstname,
+      form_.lastname,form_.email,form_.enabled,form_.selectedGroups);
     this.dialogRef.close();
   }
 

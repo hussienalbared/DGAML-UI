@@ -13,8 +13,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewUserComponent implements OnInit {
 
-  form: FormGroup;
-
   username: string;
   DisplayName: string;
   password: string;
@@ -30,20 +28,10 @@ export class AddNewUserComponent implements OnInit {
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<group>(true, []);
   constructor(public dialogRef: MatDialogRef<AddNewUserComponent>,private userService: UserService,
-    private formBuilder: FormBuilder,private groupservice:GroupService) { }
+    private groupservice:GroupService) { }
 
   ngOnInit() {
-    // this.form = this.formBuilder.group({
-    //   email: [null, [Validators.required, Validators.email]],
-    //   password: [null, Validators.required],
-    //   firstname: [null, Validators.required],
-    //   lastname: [null, Validators.required],
-    //   username: [null, Validators.required],
-    //   DisplayName: [null, Validators.required],
-    //   selectedGroups:[null, null]
-    // });
     this.groupservice.getAllGroups().subscribe(data=>{
-      // this.groups=new MatTableDataSource<group>(data);
       this.groups=data;
     })
   }
