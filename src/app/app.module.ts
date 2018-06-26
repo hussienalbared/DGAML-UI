@@ -72,6 +72,7 @@ import { UpdateUserComponent } from './components/user/update-user/update-user.c
 import { AddGroupComponent } from './components/group/add-group/add-group.component';
 import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 import { GroupService } from './services/group.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -125,6 +126,8 @@ export function tokenGetter() {
     AddGroupComponent,
 
     EditGroupComponent,
+
+    UserProfileComponent,
 
   ],
   imports: [

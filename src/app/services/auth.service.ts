@@ -21,6 +21,8 @@ export class AuthService {
           let myRawToken=data.token;
           const helper = new JwtHelperService();
           let decodedToken = helper.decodeToken(myRawToken);
+          console.log(decodedToken)
+          console.log("12")
           localStorage.setItem('name', decodedToken.userName);
         this.userName=decodedToken.userName;
           
