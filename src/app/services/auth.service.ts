@@ -39,6 +39,7 @@ export class AuthService {
   }
 
   logout() {
+    console.log("in logout finc");
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     this.userName = null;
