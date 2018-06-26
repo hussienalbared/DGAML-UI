@@ -35,7 +35,7 @@ export class UpdateUserComponent implements OnInit {
     this.username = data.selected.username;
     this.displayName = data.selected.displayName;
     this.email = data.selected.email;
-    this.enabled = data.selected.enabled;
+    this.enabled = data.selected.enabled ;
     this.firstname = data.selected.firstname;
     this.lastPasswordResetDate = data.selected.lastPasswordResetDate;
     this.lastname = data.selected.lastname;
