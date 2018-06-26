@@ -186,10 +186,15 @@ export function tokenGetter() {
       //   component: WelcomeComponent
       //   ,canActivate: [AuthGuardService]
       // },
+      // {
+      //   path: 'welcome',
+      //   component: WelcomeComponent
+      //   // ,canActivate: [AuthGuardService]
+      // },
       {
-        path: 'welcome',
+        path: '',
         component: WelcomeComponent
-        // ,canActivate: [AuthGuardService]
+        ,canActivate: [AuthGuardService]
       },
       {
         path: 'login',

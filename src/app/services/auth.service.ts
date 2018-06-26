@@ -10,7 +10,7 @@ const httpOptions = {
 };
 @Injectable()
 export class AuthService {
-  userName:string='';
+  userName:string=localStorage.getItem('name');
   constructor(private http: HttpClient) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
