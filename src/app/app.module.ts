@@ -35,6 +35,7 @@ import { AccountDetailComponent } from './components/accounts/account-detail/acc
 import { SuspectsService } from './services/suspects.service';
 
 import { RiskService } from './services/risk.service';
+import { UserService } from './services/user.service';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -65,6 +66,12 @@ import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { UserComponent } from './components/user/user.component';
+import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
+import { AddGroupComponent } from './components/group/add-group/add-group.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
+import { GroupService } from './services/group.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -109,6 +116,15 @@ export function tokenGetter() {
     RiskForwardComponent,
 
     WelcomeComponent,
+
+    UserComponent,
+
+    AddNewUserComponent,
+
+    UpdateUserComponent,
+    AddGroupComponent,
+
+    EditGroupComponent,
 
   ],
   imports: [
@@ -165,11 +181,11 @@ export function tokenGetter() {
     MatChipsModule,
     MatGridListModule,
     RouterModule.forRoot([
-        {
-        path: '',
-        component: WelcomeComponent
-        ,canActivate: [AuthGuardService]
-      },
+      //   {
+      //   path: '',
+      //   component: WelcomeComponent
+      //   ,canActivate: [AuthGuardService]
+      // },
       {
         path: 'welcome',
         component: WelcomeComponent
@@ -230,7 +246,21 @@ export function tokenGetter() {
         path: 'risk',
         component: RiskComponent
         , canActivate: [AuthGuardService]
+      },
+      { path: 'user', 
+        component: UserComponent
+        , canActivate: [AuthGuardService] 
+      },
+      {
+path:'groups',
+component:AddGroupComponent
+      },
+      {
+        path: 'editGroup/:id',
+        component: EditGroupComponent
+       
       }
+
 
     ]),
     JwtModule.forRoot({
@@ -241,9 +271,9 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService],
 
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],
 })
 export class AppModule { }
