@@ -29,7 +29,7 @@
 
       <tr *ngFor="let x of GroupsNames">
         <!-- <th scope="row">1</th> -->
-        <td>{{x.name}}</td>
+        <td>{{x.name.substring(5)}}</td>
         <td> <button type="button" mat-raised-button color="danger" (click)="deleteGroup(x.id)">Delete Group</button></td>
         <td>  <button type="button" mat-raised-button  color="primary"(click)="editGroup(x.id)">Edit Group</button></td>
       </tr>
