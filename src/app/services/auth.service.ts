@@ -1,3 +1,5 @@
+import { TabsServiceService } from './tabs-service.service';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,7 +13,7 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
   userName:string=localStorage.getItem('name');
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router,private tabs:TabsServiceService) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
       JSON.stringify(credentials), httpOptions)
@@ -36,6 +38,10 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    this.userName = null;
+    this.tabs.tabs =[];
+    this.router.navigate(['/']);
   }
 
   isLoggedIn() {
