@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
@@ -24,10 +25,11 @@ import { AuthService } from '../../../services/auth.service';
 export class SuspectsComponent implements OnInit {
   result: suspect[];
   IsLoaded=true;
+  owner_UID_Name: string;
 
   dataSource: any = null;
   displayedColumns = ['select', 'cIndex', 'alarms_Count', 'alarmed_Obj_Name', 'alarmed_Obj_No',
-    'risk_Score_Cd', 'age_Old_Alarm', 'owner_UID'];
+    'risk_Score_Cd', 'age_Old_Alarm', 'ownername'];
   selection = new SelectionModel<suspect>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,7 +40,8 @@ export class SuspectsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     public translate: TranslateService,
-    private suspectService: SuspectsService,public ngProgress: NgProgress
+    private suspectService: SuspectsService,public ngProgress: NgProgress,
+    private userService: UserService
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -61,18 +64,19 @@ export class SuspectsComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+
   ngOnInit() {
 this.ngProgress.start();
     this.suspectService.getAllSuspects().
       subscribe(data => {
-     
+        console.log("All Suspect")
+        console.log(data)
         this.result = data;
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.IsLoaded=false;
         this.ngProgress.done();
-
       });
   }
   getSuspectDetail(alarm) {
