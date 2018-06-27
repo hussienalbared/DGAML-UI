@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +12,7 @@ export class UserProfileComponent implements OnInit {
 user:any=null;
 matched:boolean;
 
-  constructor(private auth:AuthService,private userService:UserService) { 
+  constructor(private auth:AuthService,private userService:UserService,private router:Router) { 
 
   }
 
@@ -42,7 +43,7 @@ matched:boolean;
     this.userService.updateUser(this.user.id,username,displayName,password,firstname,lastname,email,this.user.enabled,this.user.groups)
     }
    
-   
+   this.router.navigate(["/welcom"]);
   }
   check(p1,p2)
   {
