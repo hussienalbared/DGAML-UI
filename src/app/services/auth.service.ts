@@ -12,22 +12,22 @@ const httpOptions = {
 };
 @Injectable()
 export class AuthService {
-  userName:string=localStorage.getItem('name');
-  constructor(private http: HttpClient,private router: Router,private tabs:TabsServiceService) { }
+  userName: string = localStorage.getItem('name');
+  constructor(private http: HttpClient, private router: Router, private tabs: TabsServiceService) { }
   login(credentials) {
     return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
       JSON.stringify(credentials), httpOptions)
       .map(data => {
         if (data && data.hasOwnProperty('token')) {
           localStorage.setItem('token', data.token);
-          let myRawToken=data.token;
+          let myRawToken = data.token;
           const helper = new JwtHelperService();
           let decodedToken = helper.decodeToken(myRawToken);
           localStorage.setItem('name', decodedToken.userName);
-        this.userName=decodedToken.userName;
-          
-      
-          console.log(decodedToken)
+          this.userName = decodedToken.userName;
+          localStorage.setItem('id', decodedToken.id);
+
+
 
 
           return true;
@@ -41,7 +41,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     this.userName = null;
-    this.tabs.tabs =[];
+    this.tabs.tabs = [];
     this.router.navigate(['/']);
   }
 

@@ -105,6 +105,10 @@ changeLang(targLang:string){
     $('.full_icon_fg').css('margin-right', '15px' );
   }
 }
-
+updateProfile()
+{
+  console.log("kuieu")
+  this.router.navigate(["profile"])
+}
 }
 
