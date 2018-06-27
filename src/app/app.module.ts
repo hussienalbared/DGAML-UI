@@ -272,6 +272,9 @@ component:AddGroupComponent
         path: 'editGroup/:id',
         component: EditGroupComponent
        
+      },{
+        path:'profile',
+        component:UserProfileComponent
       }
 
 

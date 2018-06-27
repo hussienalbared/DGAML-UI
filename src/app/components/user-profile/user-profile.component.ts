@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,10 +8,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+user:any=null;
+matched:boolean;
 
-  constructor() { }
+  constructor(private auth:AuthService,private userService:UserService) { 
 
-  ngOnInit() {
   }
 
+  ngOnInit() {
+    let userId=localStorage.getItem('id')
+    this.matched=true;
+    this.userService.getUser(userId).subscribe(data=>{
+      
+      this.user=data;
+    })
+  }
+
+  updateUser(form_)
+  {
+    console.log(form_)
+    if(form_.password!=form_.password2)
+    {
+      this.matched=false
+    }
+    else
+    { 
+     let username=form_.username?form_.username:this.user.username
+     let displayName=form_.displayName?form_.displayName:this.user.displayName
+     let firstname=form_.firstname?form_.firstname:this.user.firstname
+    let  lastname=form_.lastname?form_.lastname:this.user.lastname
+     let  email=form_.email?form_.email:this.user.email
+    let   password=form_.password?form_.password:this.user.password
+    this.userService.updateUser(this.user.id,username,displayName,password,firstname,lastname,email,this.user.enabled,this.user.groups)
+    }
+   
+   
+  }
+  check(p1,p2)
+  {
+    this.matched=p1===p2;  }
 }

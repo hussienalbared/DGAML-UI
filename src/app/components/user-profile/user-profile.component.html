@@ -1,3 +1,99 @@
-<p>
-  user-profile works!
-</p>
+<div class="user_add_form" *ngIf="user">
+  <form #form_="ngForm" (ngSubmit)="updateUser(form_.value)">
+    <div class="container">
+      <div class="row">
+
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>User Name</label>
+
+            <mat-form-field>
+              <input type="text" matInput ngModel name="username" placeholder=" {{ user.username }} ">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>Display Name</label>
+
+            <mat-form-field>
+              <input type="text" matInput ngModel name="displayName" placeholder=" {{ user.displayName }} ">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>First Name</label>
+
+            <mat-form-field>
+              <input type="text" matInput ngModel name="firstname" placeholder=" {{ user.firstname }} ">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-6">
+              <label>Last Name</label>
+
+            <mat-form-field>
+              <input type="text" matInput ngModel name="lastname" ngModel placeholder=" {{ user.lastname }} ">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>E-mail</label>
+
+            <mat-form-field>
+              <input type="text" matInput ngModel name="email" ngModel placeholder=" {{ user.email }} ">
+            </mat-form-field>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>Password</label>
+
+            <mat-form-field>
+              <input type="password"  (keyup)="check(p1.value,p2.value)" #p1 ngModel matInput name="password" [type]="hide ? 'password' : 'text'">
+              
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-6">
+            <label>Password Again</label>
+
+            <mat-form-field>
+              <input type="password" (keyup)="check(p1.value,p2.value)" #p2 ngModel matInput name="password2" [type]="hide2 ? 'password2' : 'text'" >
+              
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+<div class="row">
+  <div class="col-12">
+      <div class="alert alert-danger" *ngIf="!matched">Password not match</div>
+
+  </div>
+</div>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-lg-6">
+            <button mat-raised-button color="primary" style="width:100%;" >Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

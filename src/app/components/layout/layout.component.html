@@ -35,12 +35,12 @@
 
         </button>
         <mat-menu #menu="matMenu" overlapTrigger="false">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="updateProfile()"> 
             <span>My Profile</span>
           </button>
 
-          <button mat-menu-item>
-            <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+          <button mat-menu-item (click)="authService.logout()">
+            <a  class="md-trigger" data-modal="logout-modal">
               <i class="icon-logout-1"></i> Logout</a>
           </button>
         </mat-menu>
