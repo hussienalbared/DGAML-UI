@@ -82,16 +82,7 @@ export class UserService {
 
   updateUser(id,username,DisplayName,password,firstname,lastname,email,enabled,groups){
     let url = this.rootUrl + "user/editUser";
-    // const user_: user = {  
-    //   username: username,
-    //   displayName: DisplayName,
-    //   firstname: firstname,
-    //   password: password,
-    //   lastname: lastname,
-    //   email: email,
-    //   enabled: enabled,
-    //   lastPasswordResetDate: lastPasswordResetDate
-    // }
+    
     return this.http.put(url, {
       id:id,
       username: username,
