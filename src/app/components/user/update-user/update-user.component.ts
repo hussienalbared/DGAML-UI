@@ -24,7 +24,7 @@ export class UpdateUserComponent implements OnInit {
   lastPasswordResetDate: Date;
   groups:group[]=[];
   selectedGroups:group[]=[];
-
+  selected:group[]=[];
   constructor(public dialogRef: MatDialogRef<UpdateUserComponent>,private userService: UserService,
     private groupService: GroupService
   ,@Inject(MAT_DIALOG_DATA) public data: any) { 
@@ -45,9 +45,14 @@ export class UpdateUserComponent implements OnInit {
     // this.groups = this.selectedGroups;
   }
 
+  compareWithFunc(a, b) {
+    return a.id === b.id;
+  }
+
   ngOnInit() {
     this.groupService.getAllGroups().subscribe(data=>{
       this.groups = data;
+      this.selected=data;
     });
 
   //   this.userService.getUser(1024).subscribe(data=>{
@@ -61,6 +66,13 @@ export class UpdateUserComponent implements OnInit {
 
   updateUser(form_){
     
+    console.log("consol lo of selected")
+    console.log(this.selected)
+
+    // console.log("UUUUUUUUUUUU");
+    // console.log(this.selectedGroups)
+    // console.log("ZZZZZZZZZZZZZ");
+    // console.log(this.groups)
     // console.log("UpdateUser Form Function");
     // console.log(form_.selectedGroups);
 

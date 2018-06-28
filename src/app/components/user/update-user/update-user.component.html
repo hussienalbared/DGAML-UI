@@ -77,8 +77,9 @@
             <div class="form-group">
               <label class="form_label">Groups</label>
               <mat-form-field>
-                <mat-select  name="selectedGroups"  multiple ngModel >
-                  <mat-option checked="true"  *ngFor="let topping of groups" [value]="topping" >{{topping.name}}</mat-option>
+                <mat-select  name="selectedGroups" [(value)]="selected" multiple 
+                            [compareWith]="compareWithFunc" >
+                  <mat-option  *ngFor="let topping of groups" [value]="topping" >{{topping.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
