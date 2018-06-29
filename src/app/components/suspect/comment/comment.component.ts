@@ -17,13 +17,13 @@ export class CommentComponent implements OnInit {
     {suspectId:1,userId:2,messege:"At org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support."},
   ]; //store all comments of specific suspect
 
-  constructor(private commentservice: CommentService,private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     // this.route.paramMap.subscribe(params => {
     //   this.suspectId=params.get(''); //get id of the suspect
     // }
-    this.commentservice.getSuspectComments(this.suspectId)
+    // this.commentservice.getSuspectComments(this.suspectId)
   }
 
   addComment(){
