@@ -1,3 +1,4 @@
+import { CommentComponent } from './components/suspect/comment/comment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -128,7 +129,7 @@ export function tokenGetter() {
     EditGroupComponent,
 
     UserProfileComponent,
-
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -264,9 +265,9 @@ export function tokenGetter() {
         component: UserComponent
         , canActivate: [AuthGuardService] 
       },
-      {
-path:'groups',
-component:AddGroupComponent
+      { 
+        path:'groups',
+        component:AddGroupComponent
       },
       {
         path: 'editGroup/:id',
@@ -275,8 +276,11 @@ component:AddGroupComponent
       },{
         path:'profile',
         component:UserProfileComponent
-      }
-
+      },
+      { path: 'comment', 
+        component: CommentComponent
+        , canActivate: [AuthGuardService] 
+      },
 
     ]),
     JwtModule.forRoot({
