@@ -1,3 +1,5 @@
+import { CommentService } from './services/comment.service';
+import { WebSocketServiceService } from './web-socket-service.service';
 import { CommentComponent } from './components/suspect/comment/comment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
@@ -291,7 +293,7 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],

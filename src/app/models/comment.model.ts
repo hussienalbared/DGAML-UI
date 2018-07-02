@@ -1,7 +1,8 @@
 export interface comment {
     // id:Number;
-    suspectId: Number;
-    userId:Number;
+    alarmed_Obj_Key: Number;
+    alarmed_Obj_level_Cd: string;
+    uplodedById:Number;
     // Date_:Date;
-    messege:string;
+    description:string;
 }

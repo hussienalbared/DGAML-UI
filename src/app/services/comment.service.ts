@@ -7,12 +7,33 @@ export class CommentService {
 
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = "http://localhost:8081/aml/api/";
+    this.rootUrl = "http://localhost:8081/aml/api/v1/";
   }
 
-  getSuspectComments(suspectId)
+  getSuspectComments(alarmed_Obj_Key,alarmed_Obj_level_Cd)
   {
-    let url = this.rootUrl + "suspect/comments/"+suspectId;
+    console.log(alarmed_Obj_level_Cd)
+    console.log(alarmed_Obj_Key)
+
+    let url = this.rootUrl + "comments?alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd+"&alarmed_Obj_Key="+alarmed_Obj_Key;
     return this.http.get<comment[]>(url);
+  }
+
+  addComment(alarmed_Obj_Key,alarmed_Obj_level_Cd,description,uplodedById){
+    const comment_: comment = {
+      alarmed_Obj_Key:alarmed_Obj_Key,
+      alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
+      description:description,
+      uplodedById:uplodedById
+    }
+
+    let url = this.rootUrl + "addcomment";
+
+    return this.http.post(url,
+      comment_
+    ).subscribe(data => {},
+      err => {
+        console.log("Error occured");
+      })
   }
 }

@@ -22,7 +22,7 @@ export class UserService {
   {
     let url = this.rootUrl + "user/getUser/"+id_;
     // let url = this.rootUrl + "amr/";
-   return this.http.get<user[]>(url);
+   return this.http.get<user>(url);
   }
 
   enableUser(Uid){
