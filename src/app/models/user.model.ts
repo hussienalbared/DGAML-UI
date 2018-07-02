@@ -1,7 +1,5 @@
 import { group } from './../components/models/group.model';
 export interface user {
-
-  // id : number;
   username: string;
   displayName: string;
   password: string;

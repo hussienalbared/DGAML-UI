@@ -58,6 +58,8 @@ export class UserComponent implements OnInit {
   }
 
   getRecord(row: any) {
+    console.log("consolg log get record")
+    console.log(row)
     let dialogRef = this.dialog.open(UpdateUserComponent, {
       height: '400px',
       width: '600px',
@@ -73,6 +75,7 @@ export class UserComponent implements OnInit {
     this.lastname = row.lastname;
     this.email = row.email;
     this.enabled = row.enabled;
+
   }
 
   ngOnInit() {
