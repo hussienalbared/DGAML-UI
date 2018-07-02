@@ -13,16 +13,17 @@ export class AttachmentComponent implements OnInit {
   @ViewChild('files') el2: ElementRef;
   attachments:any=null;
   description:string=''
-  key:number
+  key:string
   code:string
   constructor(private attachmentService: AttachmentService,private route:ActivatedRoute) { }
   
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.key = +params.get('obj_key');
+      this.key = params.get('obj_key');
       this.code = params.get('obj_level_code');
 
       this.attachmentService.getAttachments(this.key,this.code).subscribe(data=>{
+        console.log(data)
  
         this.attachments=data
       })
@@ -33,7 +34,7 @@ export class AttachmentComponent implements OnInit {
 
   uploadAll() {
     let userId=+localStorage.getItem('id')
-    this.attachmentService.uploadFiles(this.el2.nativeElement.files,this.key,this.code,this.description,userId).subscribe();
+   this.attachmentService.uploadFiles(this.el2.nativeElement.files,this.key,this.code,this.description,userId).subscribe();
     // this.attachmentService.uploadFiles(this.el.nativeElement.files,this.key,this.code,this.description,userId).subscribe();
 
 
