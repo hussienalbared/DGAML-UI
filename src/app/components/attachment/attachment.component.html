@@ -42,24 +42,35 @@
   <h5>Attatchments</h5>
 </div>
 <mat-divider></mat-divider>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Delete</th>
-      <th scope="col">FileName</th>
-      <th scope="col">Description</th>
-      <th scope="col">Uploaded By</th>
-      <th scope="col">Uploaded Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let x of attachments" class="field">
-      <th scope="row" (click)="deleteAttachment(x.id)"><mat-icon>delete</mat-icon></th>
-      <td (click)="downloadFile(x.fileName)">{{x.fileName}}</td>
-      <td>{{x.description}}</td>
-      <td>{{x.uplodedById}}</td>
-      <td>{{x.uploadDate}}</td>
-    </tr>
+
+<div class="container" *ngFor="let x of attachments" >
+  <div class="row comment" >
+    <div class="col-12">
+<h4>{{x.userview.displayName}}</h4>
+    </div>
+
+  <div class="col-8">
+      <h5>{{x.description}}</h5>
+  </div>
+
+
+<div class="col-4">
+{{x.uploadDate |date:'medium' }}
+
+</div>
+<div class="col-10" *ngIf="x.attachment">
+  <div *ngFor="let a of x.attachment" class="row">
+   <div class="col-3"> <p (click)="downloadFile(a.fileName)"><mat-icon>attach_file</mat-icon> {{a.fileName}}</p></div>
+   <div class="col-9">
+
+     <p (click)="deleteAttachment(a.id)"><mat-icon>delete</mat-icon></p>
+   </div>
   
-  </tbody>
-</table>
+  </div>
+
+</div>
+
+  </div>
+
+
+</div>

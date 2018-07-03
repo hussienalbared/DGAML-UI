@@ -19,7 +19,7 @@
 .field:hover{
     background-color: #ddd;
 }
-.containerUpload
+.containerUpload,.comment
 {
     margin-top: 5px;
     background-color: white;
