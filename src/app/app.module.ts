@@ -76,6 +76,8 @@ import { AddGroupComponent } from './components/group/add-group/add-group.compon
 import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AttachmentComponent } from './components/attachment/attachment.component';
+import { AttachmentService } from './services/attachment.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -131,7 +133,10 @@ export function tokenGetter() {
     EditGroupComponent,
 
     UserProfileComponent,
-    CommentComponent
+    CommentComponent,
+
+    AttachmentComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -283,6 +288,11 @@ export function tokenGetter() {
         component: CommentComponent
         , canActivate: [AuthGuardService] 
       },
+      
+,{
+  path:'attachment/:obj_key/:obj_level_code',
+  component:AttachmentComponent
+}
 
     ]),
     JwtModule.forRoot({
@@ -293,7 +303,8 @@ export function tokenGetter() {
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, 
+    TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService,AttachmentService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],

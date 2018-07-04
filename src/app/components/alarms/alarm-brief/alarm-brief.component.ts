@@ -175,7 +175,10 @@ this.dialog.closeAll();
 
 
   }
-
+  upload(){
+    
+    this.router.navigate(["/attachment",this.key,this.code]);
+  }
 
 
 }
