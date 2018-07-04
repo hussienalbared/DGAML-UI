@@ -280,7 +280,8 @@ export function tokenGetter() {
         path: 'editGroup/:id',
         component: EditGroupComponent
        
-      },{
+      },
+      {
         path:'profile',
         component:UserProfileComponent
       },
@@ -289,7 +290,7 @@ export function tokenGetter() {
         , canActivate: [AuthGuardService] 
       },
       
-,{
+{
   path:'attachment/:obj_key/:obj_level_code',
   component:AttachmentComponent
 }

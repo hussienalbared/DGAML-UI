@@ -1,9 +1,11 @@
+import { saveAs } from 'file-saver';
+import { AttachmentService } from './../../../services/attachment.service';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
 import { WebSocketServiceService } from './../../../web-socket-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { comment } from './../../../models/comment.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommentService } from '../../../services/comment.service';
 
 @Component({
@@ -12,15 +14,13 @@ import { CommentService } from '../../../services/comment.service';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  f: FileList;
+  @ViewChild('files2') el2: ElementRef;
+  attachments:any=null;
 
   suspectId:Number;
   suspectName:string='Amr';
   
-  // comments_block:comment[]=[
-  //   {suspectId:1,userId:1,messege:"At org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support."},
-  //   {suspectId:1,userId:2,messege:"At org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support."},
-  // ]; //store all comments of specific suspect
-
   comments_block:comment[]=[];
 
   alarmed_Obj_Key:string;
@@ -30,7 +30,7 @@ export class CommentComponent implements OnInit {
   loggedInuser=localStorage.getItem('id');
 
   constructor(private route: ActivatedRoute,private commentService:CommentService,
-    private webSocketService: WebSocketServiceService,private userService:UserService) { }
+    private webSocketService: WebSocketServiceService,private userService:UserService,private attachmentService: AttachmentService) { }
 
   ngOnInit() {
 
@@ -47,7 +47,14 @@ export class CommentComponent implements OnInit {
 
         this.comments_block.push(this.addedComment)
      })
-    });
+
+     //..
+    //  this.attachmentService.getAttachments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+    //   console.log(data)
+    //   this.attachments=data
+    // })
+    
+  });
 
     this.route.paramMap.subscribe(params => {
       this.alarmed_Obj_Key=params.get('obj_key');
@@ -65,7 +72,23 @@ export class CommentComponent implements OnInit {
 
   addComment(form_){
     console.log("Log Add Comment Function")
-    this.commentService.addComment(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,form_.desc,this.loggedInuser);
+    // this.commentService.addComment(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,form_.desc,this.loggedInuser);
+    this.attachmentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
+      form_.desc,this.loggedInuser).subscribe(
+      data=>{
+        this.attachments=data;
+      }
+      
+         );
+  }
+
+  downloadFile(fileName)
+  {
+    console.log(fileName)
+    this.attachmentService.downloadFile(fileName).subscribe(data => {
+      console.log(data)
+      saveAs(data, fileName)}
+    );
   }
 
 }
