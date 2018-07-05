@@ -32,7 +32,7 @@
                 <span>Comment Attatchments:</span>
                 <div class="attatchments" style="position: relative;" *ngFor="let f of comm.attachment"><!-- go through all files -->
                   <li class="fa fa-paperclip" (click)="downloadFile(f.fileName)" style="display: inline;"><span>{{ f.fileName }} </span></li>
-                  <mat-icon class="delete-icon animate-show" (click)="deleteComment(comm.id)" 
+                  <mat-icon class="delete-icon animate-show" (click)="deleteSpecificFile(f)" 
                       style="display: inline;font-size: 20px;position: absolute;">delete</mat-icon>
                 </div>
               </div>

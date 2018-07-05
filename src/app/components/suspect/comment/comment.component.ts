@@ -134,6 +134,10 @@ export class CommentComponent implements OnInit {
 
   }
 
+  deleteSpecificFile(file_){
+    this.commentService.deleteSpecificFile(file_.id,this.loggedInuser);
+  }
+
   /***/
   // hoverClass='comment-icons';
   //   hoverIn (t){

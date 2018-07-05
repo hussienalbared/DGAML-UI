@@ -58,4 +58,9 @@ export class CommentService {
       });
   }
 
+  deleteSpecificFile(file_id_,user_id){
+    let url = this.rootUrl + "deletefile?fileId="+file_id_+"&userid="+user_id;
+    return this.http.delete(url, { responseType: "text" });
+  }
+
 }
