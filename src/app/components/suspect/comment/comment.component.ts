@@ -125,6 +125,11 @@ export class CommentComponent implements OnInit {
       uplodedById: this.loggedInuser
     }
 
+    console.log("know files size selected:")
+    console.log(this.el3.nativeElement.files['length'])
+    // if(this.el3.nativeElement.files['length'] == 0){
+
+    // }
     this.commentService.updateComment(comm_,this.el3.nativeElement.files);
 
   }
