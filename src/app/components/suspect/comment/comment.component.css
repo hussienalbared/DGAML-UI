@@ -40,3 +40,32 @@
     color: #5f5fbe;
     text-decoration: underline
 }
+
+.comment-icons{
+    position: absolute;
+    bottom: 0;
+    color: #4a4848 ;
+    /* display: none !important */
+}
+.delete-icon:hover{
+    color: #080808
+}
+.update-icon:hover{
+    color: #080808
+}
+.animate-show {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    opacity: 1;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    display: inline-block !important;
+}
+.animate-show.ng-hide {
+    opacity: 0;
+}
+
+/* .hovered-comment{
+    display: inline;
+} */

@@ -36,4 +36,26 @@ export class CommentService {
         console.log("Error occured");
       })
   }
+
+  deleteComment(id_){
+    let url = this.rootUrl + "deletecomment/"+id_;
+    return this.http.delete(url, { responseType: "text" });
+  }
+
+  updateComment(comm_,f:FileList){
+    let url = this.rootUrl + "updatecomment";
+
+    let files: FileList = f;
+    const formData = new FormData();
+    for (var i = 0; i < files.length; i++) {
+      formData.append("updatedFiles", files[i]);
+    }
+    formData.append("newUpdatedComment", comm_);
+    
+    return this.http.post(url, formData).subscribe(data => {},
+      err => {
+        console.log("Error occured");
+      });
+  }
+
 }

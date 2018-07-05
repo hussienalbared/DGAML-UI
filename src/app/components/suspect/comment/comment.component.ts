@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { comment } from './../../../models/comment.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommentService } from '../../../services/comment.service';
+import { ControlContainer } from '@angular/forms';
+
 
 @Component({
   selector: 'app-comment',
@@ -16,6 +18,7 @@ import { CommentService } from '../../../services/comment.service';
 export class CommentComponent implements OnInit {
   f: FileList;
   @ViewChild('files2') el2: ElementRef;
+  @ViewChild('filesUpdated') el3: ElementRef;
   attachments:any=null;
 
   suspectId:Number;
@@ -90,5 +93,52 @@ export class CommentComponent implements OnInit {
       saveAs(data, fileName)}
     );
   }
+
+  deleteComment(id_){
+    console.log("log deleteComment")
+    console.log(id_);
+    if(confirm("Are you sure you want to delete?"))[
+      this.commentService.deleteComment(id_)
+    ]
+  }
+
+  // update_clicked = false;
+  showUpdateComment(index){
+    console.log("log updateComment");
+    $('#U'+index).css('display','block');
+    $('#C'+index).css('display','none');
+    // this.update_clicked = true;
+  }
+
+  updateComment(form_,index){
+    $('#U'+index).css('display','none');
+    $('#C'+index).css('display','block');
+
+    console.log("log updateComment")
+    console.log(form_.comment_desc)
+    console.log(form_.MultipleFiles)
+
+    const comm_: comment = {
+      alarmed_Obj_Key:this.alarmed_Obj_Key,
+      alarmed_Obj_level_Cd:this.alarmed_Obj_level_Cd,
+      description: form_.comment_desc,
+      uplodedById: this.loggedInuser
+    }
+
+    this.commentService.updateComment(comm_,this.el3.nativeElement.files);
+
+  }
+
+  /***/
+  // hoverClass='comment-icons';
+  //   hoverIn (t){
+  //     console.log("log hover in")
+  //     console.log(t.target.children[4].children[1])
+  //     this.hoverClass = 'hovered-comment';
+  //   };
+  //   hoverOut(){
+  //     this.hoverClass='comment-icons';
+  //   };
+  /***/
 
 }
