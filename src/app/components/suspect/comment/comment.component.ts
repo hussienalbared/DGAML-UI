@@ -138,6 +138,11 @@ export class CommentComponent implements OnInit {
     this.commentService.deleteSpecificFile(file_.id,this.loggedInuser);
   }
 
+  closeUpdateComment(index){
+    $('#U'+index).css('display','none');
+    $('#C'+index).css('display','block');
+  }
+
   /***/
   // hoverClass='comment-icons';
   //   hoverIn (t){

@@ -69,3 +69,12 @@
 /* .hovered-comment{
     display: inline;
 } */
+
+.close-icon{
+    float: right;
+    font-size: 14px;
+    color: #CCC;
+}
+.close-icon:hover{
+    color: #8a8888
+}
