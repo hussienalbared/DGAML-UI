@@ -16,10 +16,6 @@ export class AttachmentService {
     const formData = new FormData();
     for (var i = 0; i < files.length; i++) {
       formData.append("files", files[i]);
-
-
-
-
     }
     formData.append("alarmed_Obj_Key", alarmed_Obj_Key);
     formData.append("alarmed_Obj_level_Cd", alarmed_Obj_level_Cd);

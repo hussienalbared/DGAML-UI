@@ -37,9 +37,9 @@ export class CommentService {
       })
   }
 
-  deleteComment(id_){
-    let url = this.rootUrl + "deletecomment/"+id_;
-    return this.http.delete(url, { responseType: "text" });
+  deleteComment(id_,userId){
+    let url = "http://localhost:8081/aml/api/Attachment/deleteComment?commentId="+id_+"&updaterId="+userId;
+    return this.http.delete(url).subscribe(data=>{});
   }
 
   updateComment(comm_,f:FileList){

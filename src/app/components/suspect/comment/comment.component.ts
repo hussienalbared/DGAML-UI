@@ -98,7 +98,7 @@ export class CommentComponent implements OnInit {
     console.log("log deleteComment")
     console.log(id_);
     if(confirm("Are you sure you want to delete?"))[
-      this.commentService.deleteComment(id_)
+      this.commentService.deleteComment(id_,this.loggedInuser)
     ]
   }
 
