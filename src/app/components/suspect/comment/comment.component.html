@@ -21,7 +21,7 @@
           <hr style="margin-bottom: 10px;margin-top: 10px" >
           
           <!--******-->
-          <form id ="U{{index}}" style="display: none" #formUpdate="ngForm" (ngSubmit)="updateComment(formUpdate.value,index)">
+          <form id ="U{{index}}" style="display: none" #formUpdate="ngForm" (ngSubmit)="updateComment(formUpdate.value,index,comm)">
             <mat-icon class="close-icon" (click)="closeUpdateComment(index)">close</mat-icon>
             <mat-form-field>
               <input type="text" matInput name="comment_desc" placeholder="{{ comm.description }}" ngModel>

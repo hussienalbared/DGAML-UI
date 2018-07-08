@@ -1,5 +1,5 @@
 export interface comment {
-    // id:Number;
+    id:Number;
     alarmed_Obj_Key: string;
     alarmed_Obj_level_Cd: string;
     uplodedById:string;

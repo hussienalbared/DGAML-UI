@@ -1,5 +1,4 @@
 import { saveAs } from 'file-saver';
-import { AttachmentService } from './../../../services/attachment.service';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
 import { WebSocketServiceService } from './../../../web-socket-service.service';
@@ -33,7 +32,7 @@ export class CommentComponent implements OnInit {
   loggedInuser=localStorage.getItem('id');
 
   constructor(private route: ActivatedRoute,private commentService:CommentService,
-    private webSocketService: WebSocketServiceService,private userService:UserService,private attachmentService: AttachmentService) { }
+    private webSocketService: WebSocketServiceService,private userService:UserService) { }
 
   ngOnInit() {
 
@@ -52,7 +51,7 @@ export class CommentComponent implements OnInit {
      })
 
      //..
-    //  this.attachmentService.getAttachments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+    //  this.commentService.getAttachments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
     //   console.log(data)
     //   this.attachments=data
     // })
@@ -63,7 +62,7 @@ export class CommentComponent implements OnInit {
       this.alarmed_Obj_Key=params.get('obj_key');
       this.alarmed_Obj_level_Cd = params.get('obj_level_code');
     });
-    this.commentService.getSuspectComments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+    this.commentService.getComments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
       this.comments_block = data;
       console.log("log returend comments")
       console.log(this.comments_block)
@@ -74,21 +73,30 @@ export class CommentComponent implements OnInit {
   }
 
   addComment(form_){
-    console.log("Log Add Comment Function")
-    // this.commentService.addComment(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,form_.desc,this.loggedInuser);
-    this.attachmentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
-      form_.desc,this.loggedInuser).subscribe(
-      data=>{
-        this.attachments=data;
+    console.log("log add comment -----------")
+    console.log(form_)
+
+    if(form_.desc.length === 0 && this.el2.nativeElement.files['length']===0){
+      // show msg
+      console.log("cannot add empty comment")
+    }
+    else {
+      console.log("Log Add Comment Function")
+      // this.commentService.addComment(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,form_.desc,this.loggedInuser);
+      this.commentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
+        form_.desc,this.loggedInuser).subscribe(
+        data=>{
+          this.attachments=data;
+        }
+        
+          );
       }
-      
-         );
   }
 
   downloadFile(fileName)
   {
     console.log(fileName)
-    this.attachmentService.downloadFile(fileName).subscribe(data => {
+    this.commentService.downloadFile(fileName).subscribe(data => {
       console.log(data)
       saveAs(data, fileName)}
     );
@@ -110,7 +118,7 @@ export class CommentComponent implements OnInit {
     // this.update_clicked = true;
   }
 
-  updateComment(form_,index){
+  updateComment(form_,index,comObj:comment){
     $('#U'+index).css('display','none');
     $('#C'+index).css('display','block');
 
@@ -118,20 +126,43 @@ export class CommentComponent implements OnInit {
     console.log(form_.comment_desc)
     console.log(form_.MultipleFiles)
 
-    const comm_: comment = {
+    const comm_ = {
+      id:comObj.id,
       alarmed_Obj_Key:this.alarmed_Obj_Key,
       alarmed_Obj_level_Cd:this.alarmed_Obj_level_Cd,
-      description: form_.comment_desc,
+      description: form_.comment_desc?form_.comment_desc:comObj.description,
       uplodedById: this.loggedInuser
     }
+    
+    
+    console.log(form_.comment_desc.length)
+    if(form_.comment_desc.length===0 && this.el3.nativeElement.files['length']>0)
+    {
+      console.log("add only files")
+      this.commentService.addNewFilesToComment(this.el3.nativeElement.files,comObj['id'],this.loggedInuser)
+    }
+    else if(form_.comment_desc.length==0&&this.el3.nativeElement.files['length']==0){
+      //
+    }
+    else{
+      console.log(comObj.id+"[[[[[[[[[[[[[[[")
+     this.commentService.updateComment(this.el3.nativeElement.files,comm_);
+    }
+    
+
+    console.log("commmmmm desc: ")
+    console.log(form_.comment_desc)
 
     console.log("know files size selected:")
+    console.log(this.el3.nativeElement.files.length)
     console.log(this.el3.nativeElement.files['length'])
     // if(this.el3.nativeElement.files['length'] == 0){
 
     // }
-    this.commentService.updateComment(comm_,this.el3.nativeElement.files);
+    // this.commentService.updateComment(comm_,this.el3.nativeElement.files);
 
+    form_.form_.comment_desc = '';
+    this.el3.nativeElement.value = '';
   }
 
   deleteSpecificFile(file_){
