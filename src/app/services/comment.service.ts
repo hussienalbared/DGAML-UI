@@ -37,14 +37,14 @@ export class CommentService {
   //     })
   // }
 
-  deleteComment(id_,userId){
-    let url = this.rootUrl+"comments/deleteComment?commentId="+id_+"&updaterId="+userId;
+  deleteComment(id_,userId,alarmed_Obj_Key,alarmed_Obj_level_Cd){
+    let url = this.rootUrl+"comments/deleteComment?commentId="+id_+"&updaterId="+userId+"&alarmed_Obj_Key="+alarmed_Obj_Key+"&alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd;
     return this.http.delete(url).subscribe(data=>{});
   }
 
-  deleteSpecificFile(file_id_,user_id){
+  deleteSpecificFile(file_id_,user_id,alarmed_Obj_Key,alarmed_Obj_level_Cd){
     console.log("log delete specif file servcie")
-    let url = this.rootUrl + "Attachment/removeAttachment?attachmentid="+file_id_+"&userId="+user_id;
+    let url = this.rootUrl + "Attachment/removeAttachment?attachmentid="+file_id_+"&userId="+user_id+"&alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd+"&alarmed_Obj_Key="+alarmed_Obj_Key;
     return this.http.delete(url).subscribe(data=>{});
   }
 
@@ -76,7 +76,7 @@ export class CommentService {
 
   }
 
-  addNewFilesToComment(f: FileList,commentid,userid){
+  addNewFilesToComment(f: FileList,commentid,userid,alarmed_Obj_level_Cd,alarmed_Obj_Key){
     let files: FileList = f;
     const formData = new FormData();
     for (var i = 0; i < files.length; i++) {
@@ -84,6 +84,9 @@ export class CommentService {
     }
     formData.append("commentId", commentid);
     formData.append("userId", userid);
+
+    formData.append("alarmed_Obj_level_Cd", alarmed_Obj_level_Cd);
+    formData.append("alarmed_Obj_Key", alarmed_Obj_Key);
 
     let url = this.rootUrl+ "Attachment/addNewFilesToComment"
     return this.http.post(url, formData).subscribe(data=>{})

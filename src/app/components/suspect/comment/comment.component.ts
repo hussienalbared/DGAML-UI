@@ -31,24 +31,34 @@ export class CommentComponent implements OnInit {
   uploadedUser: user;
   loggedInuser=localStorage.getItem('id');
 
+  returnedComment:comment[]=[];
+
   constructor(private route: ActivatedRoute,private commentService:CommentService,
     private webSocketService: WebSocketServiceService,private userService:UserService) { }
 
   ngOnInit() {
 
+    this.route.paramMap.subscribe(params => {
+      this.alarmed_Obj_Key=params.get('obj_key');
+      this.alarmed_Obj_level_Cd = params.get('obj_level_code');
+    });
+
     let stompClient = this.webSocketService.connect();
     stompClient.connect({}, frame => {
 
-    // Subscribe to notification topic
-      stompClient.subscribe('/topic/comment', comment => {
-        // Update notifications attribute with the recent messsage sent from the server
-        this.addedComment= JSON.parse(comment.body);
+    stompClient.subscribe(`/topic/comment/${this.alarmed_Obj_Key}/${this.alarmed_Obj_level_Cd}`, comment => {
+      this.returnedComment= JSON.parse(comment.body);
 
-        console.log("addedComment: ")
-        console.log(this.addedComment)
+      console.log("stompClient.subscribe: ")
+      console.log(this.returnedComment)
 
-        this.comments_block.push(this.addedComment)
-     })
+      // console.log("addedComment: ")
+      // console.log(this.addedComment)
+
+      // this.comments_block.push(this.addedComment)
+
+      this.comments_block = this.returnedComment;
+   })
 
      //..
     //  this.commentService.getAttachments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
@@ -58,10 +68,6 @@ export class CommentComponent implements OnInit {
     
   });
 
-    this.route.paramMap.subscribe(params => {
-      this.alarmed_Obj_Key=params.get('obj_key');
-      this.alarmed_Obj_level_Cd = params.get('obj_level_code');
-    });
     this.commentService.getComments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
       this.comments_block = data;
       console.log("log returend comments")
@@ -106,7 +112,7 @@ export class CommentComponent implements OnInit {
     console.log("log deleteComment")
     console.log(id_);
     if(confirm("Are you sure you want to delete?"))[
-      this.commentService.deleteComment(id_,this.loggedInuser)
+      this.commentService.deleteComment(id_,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd)
     ]
   }
 
@@ -139,7 +145,7 @@ export class CommentComponent implements OnInit {
     if(form_.comment_desc.length===0 && this.el3.nativeElement.files['length']>0)
     {
       console.log("add only files")
-      this.commentService.addNewFilesToComment(this.el3.nativeElement.files,comObj['id'],this.loggedInuser)
+      this.commentService.addNewFilesToComment(this.el3.nativeElement.files,comObj['id'],this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key)
     }
     else if(form_.comment_desc.length==0&&this.el3.nativeElement.files['length']==0){
       //
@@ -166,7 +172,7 @@ export class CommentComponent implements OnInit {
   }
 
   deleteSpecificFile(file_){
-    this.commentService.deleteSpecificFile(file_.id,this.loggedInuser);
+    this.commentService.deleteSpecificFile(file_.id,this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key);
   }
 
   closeUpdateComment(index){
