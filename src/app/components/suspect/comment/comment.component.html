@@ -26,7 +26,7 @@
             <mat-form-field>
               <input type="text" matInput name="comment_desc" placeholder="{{ comm.description }}" ngModel>
             </mat-form-field>
-            <input type="file" class="form-control-file" name="MultipleFiles" #filesUpdated  multiple ngModel>
+            <input type="file" class="form-control-file" (change)="onChangeFile($event.target.files)" name="MultipleFiles" #filesUpdated  multiple ngModel>
             <div class="row">
               <div class="col-lg-10">
                 <span>Comment Attatchments:</span>

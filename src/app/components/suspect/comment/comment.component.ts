@@ -16,6 +16,14 @@ import { environment } from '../../../../environments/environment';  @Component(
 })
 export class CommentComponent implements OnInit {
   f: FileList;
+  
+  fTry:FileList;
+  onChangeFile(f:FileList){
+    this.fTry = f;
+    console.log("FFFFFFFFFFF")
+    console.log(this.fTry)
+  }
+
   @ViewChild('files2') el2: ElementRef;
   @ViewChild('filesUpdated') el3: ElementRef;
   attachments:any=null;
@@ -142,10 +150,10 @@ export class CommentComponent implements OnInit {
     
     
     console.log(form_.comment_desc.length)
-    if(form_.comment_desc.length==0 && this.el3.nativeElement.files['length']>0)
+    if(form_.comment_desc.length===0 && this.fTry.length>0) //this.el3.nativeElement.files['length']>0
     {
       console.log("add only files")
-      this.commentService.addNewFilesToComment(this.el3.nativeElement.files,comObj['id'],this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key)
+      this.commentService.addNewFilesToComment(this.fTry,comObj['id'],this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key)
     }
     else if(form_.comment_desc.length==0&&this.el3.nativeElement.files['length']==0){
       //
