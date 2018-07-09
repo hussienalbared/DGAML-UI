@@ -142,7 +142,7 @@ export class CommentComponent implements OnInit {
     
     
     console.log(form_.comment_desc.length)
-    if(form_.comment_desc.length===0 && this.el3.nativeElement.files['length']>0)
+    if(form_.comment_desc.length==0 && this.el3.nativeElement.files['length']>0)
     {
       console.log("add only files")
       this.commentService.addNewFilesToComment(this.el3.nativeElement.files,comObj['id'],this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key)
@@ -167,7 +167,7 @@ export class CommentComponent implements OnInit {
     // }
     // this.commentService.updateComment(comm_,this.el3.nativeElement.files);
 
-    form_.form_.comment_desc = '';
+    form_.comment_desc = '';
     this.el3.nativeElement.value = '';
   }
 
