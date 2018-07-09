@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-select-close-reason',
   templateUrl: './select-close-reason.component.html',
   styleUrls: ['./select-close-reason.component.css']

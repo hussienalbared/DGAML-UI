@@ -9,7 +9,7 @@ import { CommentService } from '../../../services/comment.service';
 import { ControlContainer } from '@angular/forms';
 
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']

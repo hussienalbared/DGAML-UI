@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 
 var SockJs = require("sockjs-client");
 var Stomp = require("stompjs");
@@ -10,7 +11,7 @@ export class WebSocketServiceService {
 
   // Open connection with the back-end socket
   public connect() {
-    let socket = new SockJs(`http://localhost:8081/socket`);
+    let socket = new SockJs(`${environment.ipAddress}/socket`);
 
     let stompClient = Stomp.over(socket);
 

@@ -76,6 +76,7 @@ import { AddGroupComponent } from './components/group/add-group/add-group.compon
 import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { environment } from '../environments/environment';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -290,8 +291,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8081'],
-        blacklistedRoutes: ['http://localhost:8081/aml/auth']
+        whitelistedDomains: [environment.ipAddress],
+        blacklistedRoutes: [environment.ipAddress+'/aml/auth']
       }
     }),
   ],

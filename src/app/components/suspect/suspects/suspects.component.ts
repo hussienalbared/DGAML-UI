@@ -17,7 +17,7 @@ import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
   styleUrls: ['./suspects.component.css']

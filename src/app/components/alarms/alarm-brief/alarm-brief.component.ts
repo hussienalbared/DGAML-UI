@@ -10,7 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-alarm-brief',
   templateUrl: './alarm-brief.component.html',
   styleUrls: ['./alarm-brief.component.css']
@@ -62,7 +62,7 @@ export class AlarmBriefComponent implements OnInit {
 
   }
   getAlarms() {
-    let Url = "http://localhost:8081/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
+    let Url = environment.ipAddress+"/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
   
     this.http.get(Url).subscribe(data => {
       this.dataSource3 = data["acAlarm"];
@@ -149,7 +149,7 @@ this.dialog.closeAll();
 
           //update alert count
 
-          let url = "http://localhost:8081/aml/api/alaram/updateAlertCountApi?key="
+          let url = environment.ipAddress+"/aml/api/alaram/updateAlertCountApi?key="
             + this.key + "&code=" + this.code;
 
           this.http.put(url, []).subscribe(data => {

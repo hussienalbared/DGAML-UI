@@ -1,13 +1,14 @@
 import { comment } from './../models/comment.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CommentService {
 
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = "http://localhost:8081/aml/api/";
+    this.rootUrl = environment.ipAddress+"/aml/api/";
   }
 
   getComments(alarmed_Obj_Key,alarmed_Obj_level_Cd)
@@ -70,7 +71,7 @@ export class CommentService {
 
   }
   deleteAttachment(id) {
-    let url = `http://localhost:8081/aml/api/Attachment/delete/${id}`
+    let url  =`${environment.ipAddress}/aml/api/Attachment/delete/${id}`
     console.log(url)
     return this.http.delete(url, { responseType: "text" });
 

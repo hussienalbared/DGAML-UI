@@ -6,7 +6,7 @@ import { MatDialogRef, MatTableDataSource } from '@angular/material';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-add-new-user',
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.css']

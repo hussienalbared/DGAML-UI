@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
  import * as $ from 'jquery';
 import { AuthService } from './services/auth.service';
 
-@Component({
+  @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']

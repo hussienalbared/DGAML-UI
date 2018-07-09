@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-transaction-brief',
   templateUrl: './transaction-brief.component.html',
   styleUrls: ['./transaction-brief.component.css']
@@ -33,7 +33,7 @@ export class TransactionBriefComponent implements OnInit {
     });
   }
   getData(number){
-    let Url="http://localhost:8081/aml/api/suspectedTransaction/all?partyNumber="+number;
+    let Url=environment.ipAddress+"/aml/api/suspectedTransaction/all?partyNumber="+number;
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;

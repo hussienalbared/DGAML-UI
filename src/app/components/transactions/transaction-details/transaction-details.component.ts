@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-transaction-details',
   templateUrl: './transaction-details.component.html',
   styleUrls: ['./transaction-details.component.css']
@@ -26,7 +26,7 @@ route.paramMap.subscribe(params=>{
    }
 
   ngOnInit() {
-   let Url="http://localhost:8081/aml/api/Transaction_detail/transactionDeatil?ttrn="+this.TTRN;
+   let Url=environment.ipAddress+"/aml/api/Transaction_detail/transactionDeatil?ttrn="+this.TTRN;
 
     this.http.get(Url).subscribe(data=>{
 this.result=data;

@@ -8,6 +8,7 @@ import { Observable } from "rxjs/Observable"
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsServiceService } from '../../services/tabs-service.service';
 import { tab } from '../models/tab.model';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-party-search',
   templateUrl: './party-search.component.html',
@@ -43,7 +44,7 @@ export class PartySearchComponent {
   }
   onClickSubmit(data) {
  
-    let url = "http://localhost:8081/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
+    let url = environment.ipAddress+"/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
       "&PartyName=" + this.PartyName +
       "&PoliticallyExposedPerson=" + this.PoliticallyExposedPerson +
       "&Risk=" + this.Risk + "&PartyStatusDescription=" + this.PartyStatusDescription;
@@ -61,7 +62,7 @@ export class PartySearchComponent {
   {
   
     
-    let url="http://localhost:8081/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
+    let url=environment.ipAddress+"/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
     console.log(url)
     this.http.get<any[]>(url).subscribe(data=>{
 if(data.length>0)

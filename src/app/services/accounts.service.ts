@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AccountsService {
@@ -11,7 +12,7 @@ export class AccountsService {
    }
    getAccountAlarmsInBrief(AccountKey){
 
-    let url="http://localhost:8081/aml/api/account/alarmInBrief?accountKey="+AccountKey;
+    let url=environment.ipAddress+"/aml/api/account/alarmInBrief?accountKey="+AccountKey;
     return this.http.get(url);
   }
 

@@ -13,7 +13,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
 
-@Component({
+import { environment } from '../../../environments/environment';  @Component({
   selector: 'app-risk',
   templateUrl: './risk.component.html',
   styleUrls: ['./risk.component.css']
@@ -83,7 +83,7 @@ export class RiskComponent implements OnInit {
   }
 
   ngOnInit() {
-    const url = 'http://localhost:8081/aml/api/accountriskassigment/getObject';
+    const url = environment.ipAddress+'/aml/api/accountriskassigment/getObject';
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
@@ -123,7 +123,7 @@ export class RiskComponent implements OnInit {
   }
 
   getDataSecondTable() {
-    const url = 'http://localhost:8081/aml/api/acriskclassifier';
+    const url = environment.ipAddress+'/aml/api/acriskclassifier';
     this.http.get<classifier[]>(url).subscribe(data2 => {
       this.result2 = data2;
       this.dataSourceTable2 = new MatTableDataSource(data2);

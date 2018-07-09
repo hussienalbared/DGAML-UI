@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,7 +16,7 @@ export class AuthService {
   userName: string = localStorage.getItem('name');
   constructor(private http: HttpClient, private router: Router, private tabs: TabsServiceService) { }
   login(credentials) {
-    return this.http.post<UserResponse>('http://localhost:8081/aml/auth',
+    return this.http.post<UserResponse>(environment.ipAddress+'/aml/auth',
       JSON.stringify(credentials), httpOptions)
       .map(data => {
         if (data && data.hasOwnProperty('token')) {

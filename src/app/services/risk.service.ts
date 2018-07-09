@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class RiskService {
 
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = "http://localhost:8081/aml/api/";
+    this.rootUrl = environment.ipAddress+"/aml/api/";
   }
 
   forwardrisk(Key,userName){

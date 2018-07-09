@@ -5,7 +5,7 @@ import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/m
 import { AccountsService } from '../../../services/accounts.service';
 import { TabsServiceService } from '../../../services/tabs-service.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-account-alarm-in-brief',
   templateUrl: './account-alarm-in-brief.component.html',
   styleUrls: ['./account-alarm-in-brief.component.css']
