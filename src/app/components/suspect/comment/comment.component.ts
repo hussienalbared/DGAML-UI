@@ -102,7 +102,7 @@ export class CommentComponent implements OnInit {
       console.log("PPPPPPPPPPPPPPPPPPPPPPP222")
       console.log(loggedUser)
         if(yy.uplodedById==loggedUser){
-          $("#B"+index).css('background','rgb(201, 251, 218)');
+          $("#B"+index).css('background','#f5f2f0');
         }
        console.log('iiiiiiiiiiiiiii' + index);
        $("#B"+index).fadeOut()
