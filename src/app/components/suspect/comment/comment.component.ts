@@ -180,7 +180,9 @@ export class CommentComponent implements OnInit {
   }
 
   deleteSpecificFile(file_){
-    this.commentService.deleteSpecificFile(file_.id,this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key);
+    if(confirm("Are you sure you want to delete?")){
+      this.commentService.deleteSpecificFile(file_.id,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd);
+    }
   }
 
   closeUpdateComment(index){
