@@ -7,12 +7,14 @@
     margin-bottom: 20px;
 }
 .allcomments{
-    background: #d4cecb;
+    /* background: #d4cecb; */
     padding: 20px;
     position: relative;
     border: 1px solid #e3e2e2;
     box-shadow: 2px 2px 2px #d4d2d2;
-    margin-bottom: 20px;
+    margin-bottom: 20px;;
+
+    display: none;
 }
 .comment_div{
     margin-top: 10px
@@ -88,3 +90,14 @@
 .close-icon:hover{
     color: #8a8888
 }
+/* @keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+}
+
+.coment-details{
+    animation-name: example;
+    animation-duration: 4s;
+} */

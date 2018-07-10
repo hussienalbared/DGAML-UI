@@ -17,7 +17,7 @@
       <hr>
 
       <div class="allcomments">
-        <div class="comment_block" *ngFor="let comm of comments_block;let index=index"><!--(mouseenter) ="hoverIn($event)" (mouseleave) ="hoverOut()"-->
+        <div class="comment_block " id="B{{index}}" *ngFor="let comm of comments_block;let index=index"><!--(mouseenter) ="hoverIn($event)" (mouseleave) ="hoverOut()"-->
           <hr style="margin-bottom: 10px;margin-top: 10px" >
           
           <!--******-->
@@ -43,7 +43,7 @@
           </form>
           <!--******-->
 
-          <div class="coment-details" id ="C{{index}}">
+          <div class="coment-details " id ="C{{index}}">
             <span class="commented_by" *ngIf="comm.userview">By: {{ comm.userview.displayName }}</span>
             <span class="commented_date">{{ comm.uploadDate | date:meduim}}</span>
             <span class="comment_desc" >{{ comm.description }}</span>

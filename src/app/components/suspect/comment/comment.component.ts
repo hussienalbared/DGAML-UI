@@ -66,6 +66,7 @@ export class CommentComponent implements OnInit {
       // this.comments_block.push(this.addedComment)
 
       this.comments_block = this.returnedComment;
+
    })
 
      //..
@@ -78,12 +79,29 @@ export class CommentComponent implements OnInit {
 
     this.commentService.getComments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
       this.comments_block = data;
+   
       console.log("log returend comments")
       console.log(this.comments_block)
     });
     this.userService.getUser(this.loggedInuser).subscribe(data=>{
       this.uploadedUser=data;
     });
+    
+   $(document).ready(()=>{
+    //  alert("sjshj")
+    
+    $(".allcomments").each(function(index) {
+      // $(this).fadeOut()
+      $(this).fadeIn(3000)
+    })
+
+     $(".comment_block").each(function(index) {
+       console.log('iiiiiiiiiiiiiii' + index);
+       $("#B"+index).fadeOut()
+      $("#B"+index).fadeIn(3000+index*1000)
+
+  });
+   })
   }
 
   addComment(form_){
