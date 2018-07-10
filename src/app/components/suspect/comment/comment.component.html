@@ -44,8 +44,8 @@
           <!--******-->
 
           <div class="coment-details" id ="C{{index}}">
-            <span class="commented_by">By: {{ comm.uplodedById }}</span>
-            <span class="commented_date">{{ comm.uploadDate }}</span>
+            <span class="commented_by" *ngIf="comm.userview">By: {{ comm.userview.displayName }}</span>
+            <span class="commented_date">{{ comm.uploadDate | date:meduim}}</span>
             <span class="comment_desc" >{{ comm.description }}</span>
             <div class="row">
               <div class="col-lg-10">
