@@ -1,5 +1,13 @@
-.comment_div,.allcomments{
+.comment_div{
     background: #FFF;
+    padding: 20px;
+    position: relative;
+    border: 1px solid #e3e2e2;
+    box-shadow: 2px 2px 2px #d4d2d2;
+    margin-bottom: 20px;
+}
+.allcomments{
+    background: #d4cecb;
     padding: 20px;
     position: relative;
     border: 1px solid #e3e2e2;
@@ -23,7 +31,9 @@
     padding-left: 10px;
     padding-right: 5px;
     cursor: pointer;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    background: #FFF;
+    padding: 5px 10px;
 }
 .comment_block:hover{
     background: #e8f4f9;
