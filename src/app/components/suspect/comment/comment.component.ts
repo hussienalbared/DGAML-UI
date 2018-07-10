@@ -88,18 +88,25 @@ export class CommentComponent implements OnInit {
     });
     
    $(document).ready(()=>{
-    //  alert("sjshj")
+    var loggedUser = this.loggedInuser;
+    var all = this.comments_block;
     
     $(".allcomments").each(function(index) {
-      // $(this).fadeOut()
       $(this).fadeIn(3000)
     })
 
      $(".comment_block").each(function(index) {
+      var yy = all[index];
+      console.log("PPPPPPPPPPPPPPPPPPPPPPP111")
+      console.log(yy)
+      console.log("PPPPPPPPPPPPPPPPPPPPPPP222")
+      console.log(loggedUser)
+        if(yy.uplodedById==loggedUser){
+          $("#B"+index).css('background','rgb(201, 251, 218)');
+        }
        console.log('iiiiiiiiiiiiiii' + index);
        $("#B"+index).fadeOut()
       $("#B"+index).fadeIn(3000+index*1000)
-
   });
    })
   }
