@@ -77,6 +77,7 @@ import { EditGroupComponent } from './components/group/edit-group/edit-group.com
 import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
+import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -133,6 +134,7 @@ export function tokenGetter() {
 
     UserProfileComponent,
     CommentComponent,
+    EmptyComponentComponent
 
   ],
   imports: [
@@ -285,6 +287,10 @@ export function tokenGetter() {
       { path: 'comment', 
         component: CommentComponent
         , canActivate: [AuthGuardService] 
+      },
+      {
+        path:'empty',
+        component:EmptyComponentComponent
       }
 
     ]),
