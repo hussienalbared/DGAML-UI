@@ -12,7 +12,7 @@ import {TranslateService} from '@ngx-translate/core';
 import { TabsServiceService } from '../../services/tabs-service.service';
 import * as $ from 'jquery';
 import { tab } from '../models/tab.model';
-@Component({
+import { environment } from '../../../environments/environment';  @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
@@ -109,6 +109,11 @@ updateProfile()
 {
   console.log("kuieu")
   this.router.navigate(["profile"])
+}
+goTodashboard()
+{
+  this.router.navigate(["/empty"])
+  window.open("http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard", "_blank");
 }
 }
 

@@ -1,4 +1,4 @@
-.comment_div,.allcomments{
+.comment_div{
     background: #FFF;
     padding: 20px;
     position: relative;
@@ -6,7 +6,19 @@
     box-shadow: 2px 2px 2px #d4d2d2;
     margin-bottom: 20px;
 }
+.allcomments{
+    /* background: #E9EBEE; */
+    padding: 20px;
+    position: relative;
+    border: 1px solid #e3e2e2;
+    box-shadow: 2px 2px 2px #d4d2d2;
+    margin-bottom: 20px;;
 
+    display: none;
+}
+.comment_div{
+    margin-top: 10px
+}
 .commented_by,.commented_date,.attatchments span{
     font-size: 14px;
     color: #28607b;
@@ -21,7 +33,9 @@
     padding-left: 10px;
     padding-right: 5px;
     cursor: pointer;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    background: #FFF;
+    padding: 5px 10px;
 }
 .comment_block:hover{
     background: #e8f4f9;
@@ -38,3 +52,52 @@
     color: #5f5fbe;
     text-decoration: underline
 }
+
+.comment-icons{
+    position: absolute;
+    bottom: 0;
+    color: #4a4848 ;
+    /* display: none !important */
+}
+.delete-icon:hover{
+    color: #080808
+}
+.update-icon:hover{
+    color: #080808
+}
+.animate-show {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    opacity: 1;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+    display: inline-block !important;
+}
+.animate-show.ng-hide {
+    opacity: 0;
+}
+
+/* .hovered-comment{
+    display: inline;
+} */
+
+.close-icon{
+    float: right;
+    font-size: 14px;
+    color: #CCC;
+}
+.close-icon:hover{
+    color: #8a8888
+}
+/* @keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+}
+
+.coment-details{
+    animation-name: example;
+    animation-duration: 4s;
+} */

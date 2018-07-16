@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-suspect-details',
   templateUrl: './suspect-details.component.html',
   styleUrls: ['./suspect-details.component.css']
@@ -34,7 +34,7 @@ obj_key:string='';
     });
   }
   getData(number){
-    let Url="http://localhost:8081/aml/api/party/ByPNO?PartyNumber="+
+    let Url=environment.ipAddress+"/aml/api/party/ByPNO?PartyNumber="+
     number;
     this.http.get(Url).subscribe(data=>{
 

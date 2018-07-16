@@ -8,7 +8,7 @@ import { group } from '../../models/group.model';
 import { NgForm } from '@angular/forms';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-edit-group',
   templateUrl: './edit-group.component.html',
   styleUrls: ['./edit-group.component.css']

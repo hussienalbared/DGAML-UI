@@ -1,3 +1,5 @@
+import { CommentService } from './services/comment.service';
+import { WebSocketServiceService } from './web-socket-service.service';
 import { CommentComponent } from './components/suspect/comment/comment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
@@ -74,6 +76,8 @@ import { AddGroupComponent } from './components/group/add-group/add-group.compon
 import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
 import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { environment } from '../environments/environment';
+import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -129,7 +133,9 @@ export function tokenGetter() {
     EditGroupComponent,
 
     UserProfileComponent,
-    CommentComponent
+    CommentComponent,
+    EmptyComponentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -273,7 +279,8 @@ export function tokenGetter() {
         path: 'editGroup/:id',
         component: EditGroupComponent
        
-      },{
+      },
+      {
         path:'profile',
         component:UserProfileComponent
       },
@@ -281,17 +288,22 @@ export function tokenGetter() {
         component: CommentComponent
         , canActivate: [AuthGuardService] 
       },
+      {
+        path:'empty',
+        component:EmptyComponentComponent
+      }
 
     ]),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8081'],
-        blacklistedRoutes: ['http://localhost:8081/aml/auth']
+        whitelistedDomains: [environment.ipAddress],
+        blacklistedRoutes: [environment.ipAddress+'/aml/auth']
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService,UserService,GroupService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, 
+    TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],

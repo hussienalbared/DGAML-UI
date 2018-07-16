@@ -5,7 +5,7 @@ import { UserService } from './../../../services/user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.css']

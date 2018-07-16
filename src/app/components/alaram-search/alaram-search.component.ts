@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable"
 import { alaram } from '../models/alaram.model';
 
-@Component({
+import { environment } from '../../../environments/environment';  @Component({
   selector: 'app-alaram-search',
   templateUrl: './alaram-search.component.html',
   styleUrls: ['./alaram-search.component.css']
@@ -42,7 +42,7 @@ export class AlaramSearchComponent implements OnInit {
   }
   onClickSubmit(data) {
 
-    let url = "http://localhost:8081/aml/api/alaram/allalarams?AlarmId=" + this.AlarmId + "&AlarmStatus=" + this.AlarmStatus +
+    let url = environment.ipAddress+"/aml/api/alaram/allalarams?AlarmId=" + this.AlarmId + "&AlarmStatus=" + this.AlarmStatus +
       "&MoneyLaunderingRisk=" + this.MoneyLaunderingRisk + "&CreateDateFrom=" + this.CreateDateFrom
       + "&CreateDateTo=" + this.CreateDateTo
       + "&RunDateFrom=" + this.RunDateFrom + "&RunDateTo=" + this.RunDateTo +"&ScenarioName=" + this.ScenarioName +

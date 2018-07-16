@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { user } from '../models/user.model';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
@@ -8,7 +9,7 @@ export class UserService {
   
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = "http://localhost:8081/aml/api/";
+    this.rootUrl = environment.ipAddress+"/aml/api/";
   }
 
   getAllUsers()
@@ -22,7 +23,7 @@ export class UserService {
   {
     let url = this.rootUrl + "user/getUser/"+id_;
     // let url = this.rootUrl + "amr/";
-   return this.http.get<user[]>(url);
+   return this.http.get<user>(url);
   }
 
   enableUser(Uid){

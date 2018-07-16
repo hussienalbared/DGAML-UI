@@ -1,33 +1,230 @@
+import { saveAs } from 'file-saver';
+import { user } from './../../../models/user.model';
+import { UserService } from './../../../services/user.service';
+import { WebSocketServiceService } from './../../../web-socket-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { comment } from './../../../models/comment.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommentService } from '../../../services/comment.service';
+import { ControlContainer } from '@angular/forms';
 
-@Component({
+
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  f: FileList;
+  
+  fTry:FileList;
+  onChangeFile(f:FileList){
+    this.fTry = f;
+    console.log("FFFFFFFFFFF")
+    console.log(this.fTry)
+  }
+
+  @ViewChild('files2') el2: ElementRef;
+  @ViewChild('filesUpdated') el3: ElementRef;
+  attachments:any=null;
 
   suspectId:Number;
   suspectName:string='Amr';
-  comments_block:comment[]=[
-    {suspectId:1,userId:1,messege:"At org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support."},
-    {suspectId:1,userId:2,messege:"At org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support.at org.springframework.beans.factory.support."},
-  ]; //store all comments of specific suspect
+  
+  comments_block:comment[]=[];
 
-  constructor(private route: ActivatedRoute) { }
+  alarmed_Obj_Key:string;
+  alarmed_Obj_level_Cd: string;
+  addedComment: comment;
+  uploadedUser: user;
+  loggedInuser=localStorage.getItem('id');
+
+  returnedComment:comment[]=[];
+
+  constructor(private route: ActivatedRoute,private commentService:CommentService,
+    private webSocketService: WebSocketServiceService,private userService:UserService) { }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   this.suspectId=params.get(''); //get id of the suspect
-    // }
-    // this.commentservice.getSuspectComments(this.suspectId)
+
+    this.route.paramMap.subscribe(params => {
+      this.alarmed_Obj_Key=params.get('obj_key');
+      this.alarmed_Obj_level_Cd = params.get('obj_level_code');
+    });
+
+    let stompClient = this.webSocketService.connect();
+    stompClient.connect({}, frame => {
+
+    stompClient.subscribe(`/topic/comment/${this.alarmed_Obj_Key}/${this.alarmed_Obj_level_Cd}`, comment => {
+      this.returnedComment= JSON.parse(comment.body);
+
+      console.log("stompClient.subscribe: ")
+      console.log(this.returnedComment)
+
+      // console.log("addedComment: ")
+      // console.log(this.addedComment)
+
+      // this.comments_block.push(this.addedComment)
+
+      this.comments_block = this.returnedComment;
+
+   })
+
+     //..
+    //  this.commentService.getAttachments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+    //   console.log(data)
+    //   this.attachments=data
+    // })
+    
+  });
+
+    this.commentService.getComments(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+      this.comments_block = data;
+   
+      console.log("log returend comments")
+      console.log(this.comments_block)
+    });
+    this.userService.getUser(this.loggedInuser).subscribe(data=>{
+      this.uploadedUser=data;
+    });
+    
+   $(document).ready(()=>{
+    var loggedUser = this.loggedInuser;
+    var all = this.comments_block;
+    
+    $(".allcomments").each(function(index) {
+      $(this).fadeIn(3000)
+    })
+
+     $(".comment_block").each(function(index) {
+      var yy = all[index];
+      console.log("PPPPPPPPPPPPPPPPPPPPPPP111")
+      console.log(yy)
+      console.log("PPPPPPPPPPPPPPPPPPPPPPP222")
+      console.log(loggedUser)
+        if(yy.uplodedById==loggedUser){
+          $("#B"+index).css('background','#f5f2f0');
+        }
+       console.log('iiiiiiiiiiiiiii' + index);
+       $("#B"+index).fadeOut()
+      $("#B"+index).fadeIn(3000+index*1000)
+  });
+   })
   }
 
-  addComment(){
-    console.log("Log Add Comment Function")
+  addComment(form_){
+    console.log("log add comment -----------")
+    console.log(form_)
+
+    if(form_.desc.length === 0 && this.el2.nativeElement.files['length']===0){
+      // show msg
+      console.log("cannot add empty comment")
+    }
+    else {
+      console.log("Log Add Comment Function")
+      // this.commentService.addComment(this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,form_.desc,this.loggedInuser);
+      this.commentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
+        form_.desc,this.loggedInuser).subscribe(
+        data=>{
+          this.attachments=data;
+        }
+        
+          );
+      }
   }
+
+  downloadFile(fileName)
+  {
+    console.log(fileName)
+    this.commentService.downloadFile(fileName).subscribe(data => {
+      console.log(data)
+      saveAs(data, fileName)}
+    );
+  }
+
+  deleteComment(id_){
+    console.log("log deleteComment")
+    console.log(id_);
+    if(confirm("Are you sure you want to delete?"))[
+      this.commentService.deleteComment(id_,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd)
+    ]
+  }
+
+  // update_clicked = false;
+  showUpdateComment(index){
+    console.log("log updateComment");
+    $('#U'+index).css('display','block');
+    $('#C'+index).css('display','none');
+    // this.update_clicked = true;
+  }
+
+  updateComment(form_,index,comObj:comment){
+    $('#U'+index).css('display','none');
+    $('#C'+index).css('display','block');
+
+    console.log("log updateComment")
+    console.log(form_.comment_desc)
+    console.log(form_.MultipleFiles)
+
+    const comm_ = {
+      id:comObj.id,
+      alarmed_Obj_Key:this.alarmed_Obj_Key,
+      alarmed_Obj_level_Cd:this.alarmed_Obj_level_Cd,
+      description: form_.comment_desc?form_.comment_desc:comObj.description,
+      uplodedById: this.loggedInuser
+    }
+    
+    
+    console.log(form_.comment_desc.length)
+    if(form_.comment_desc.length===0 && this.fTry.length>0) //this.el3.nativeElement.files['length']>0
+    {
+      console.log("add only files")
+      this.commentService.addNewFilesToComment(this.fTry,comObj['id'],this.loggedInuser,this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key)
+    }
+    else if(form_.comment_desc.length==0&&this.el3.nativeElement.files['length']==0){
+      //
+    }
+    else{
+      console.log(comObj.id+"[[[[[[[[[[[[[[[")
+     this.commentService.updateComment(this.el3.nativeElement.files,comm_);
+    }
+    
+
+    console.log("commmmmm desc: ")
+    console.log(form_.comment_desc)
+
+    console.log("know files size selected:")
+    console.log(this.el3.nativeElement.files.length)
+    console.log(this.el3.nativeElement.files['length'])
+    // if(this.el3.nativeElement.files['length'] == 0){
+
+    // }
+    // this.commentService.updateComment(comm_,this.el3.nativeElement.files);
+
+    form_.comment_desc = '';
+    this.el3.nativeElement.value = '';
+  }
+
+  deleteSpecificFile(file_){
+    if(confirm("Are you sure you want to delete?")){
+      this.commentService.deleteSpecificFile(file_.id,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd);
+    }
+  }
+
+  closeUpdateComment(index){
+    $('#U'+index).css('display','none');
+    $('#C'+index).css('display','block');
+  }
+
+  /***/
+  // hoverClass='comment-icons';
+  //   hoverIn (t){
+  //     console.log("log hover in")
+  //     console.log(t.target.children[4].children[1])
+  //     this.hoverClass = 'hovered-comment';
+  //   };
+  //   hoverOut(){
+  //     this.hoverClass='comment-icons';
+  //   };
+  /***/
 
 }

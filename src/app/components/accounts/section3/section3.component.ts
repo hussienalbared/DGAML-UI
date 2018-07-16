@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsServiceService } from '../../../services/tabs-service.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-section3',
   templateUrl: './section3.component.html',
   styleUrls: ['./section3.component.css']
@@ -35,7 +35,7 @@ export class Section3Component implements OnInit {
     });
   }
   getData(number){
-    let Url="http://localhost:8081/aml/api/account/accountDetailSection3?accountNo="+number;
+    let Url=environment.ipAddress+"/aml/api/account/accountDetailSection3?accountNo="+number;
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;

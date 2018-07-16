@@ -9,7 +9,8 @@ import { NgProgress } from 'ngx-progressbar';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-@Component({
+import { environment } from '../../../environments/environment'; 
+ @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']

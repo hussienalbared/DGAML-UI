@@ -6,7 +6,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { externalParty } from '../models/externalParty.model';
-@Component({
+import { environment } from '../../../environments/environment';  @Component({
   selector: 'app-external-party-search',
   templateUrl: './external-party-search.component.html',
   styleUrls: ['./external-party-search.component.css']
@@ -43,7 +43,7 @@ export class ExternalPartySearchComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   onClickSubmit(data) {
-    let url = "http://localhost:8081/aml/api/externalParty/all?ExtPartynumber=" + this.ExtPartynumber +
+    let url = environment.ipAddress+"/aml/api/externalParty/all?ExtPartynumber=" + this.ExtPartynumber +
       "&ExtPartyId=" + this.ExtPartyId + "&ExtPartyFullName=" + this.ExtPartyFullName +
       "&ExtPartyIdCountryCode=" + this.ExtPartyIdCountryCode;
     this.http.get<externalParty[]>(url).subscribe(data => {

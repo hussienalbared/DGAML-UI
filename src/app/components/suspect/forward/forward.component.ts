@@ -7,7 +7,7 @@ import { SuspectsService } from '../../../services/suspects.service';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-forward',
   templateUrl: './forward.component.html',
   styleUrls: ['./forward.component.css']
@@ -69,7 +69,7 @@ export class ForwardComponent implements OnInit {
 
   }
   ngOnInit() {
-    let url="http://localhost:8081/aml/api/user/users";
+    let url=environment.ipAddress+"/aml/api/user/users";
     this.http.get<string[]>(url).subscribe(data=>{
 this.users=data;
 console.log(this.users)

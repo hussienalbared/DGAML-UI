@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { GroupService } from '../../../services/group.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-add-group',
   templateUrl: './add-group.component.html',
   styleUrls: ['./add-group.component.css']
@@ -22,7 +22,7 @@ export class AddGroupComponent implements OnInit {
     })
   }
   addgroup(addForm){
-    let url="http://localhost:8081/aml/api/group/add";
+    let url=environment.ipAddress+"/aml/api/group/add";
     let group={
       name:"ROLE_"+addForm.name
     }
@@ -42,7 +42,7 @@ export class AddGroupComponent implements OnInit {
   }
   deleteGroup(groupId){
     console.log(groupId)
-    let url=`http://localhost:8081/aml/api/group/delete/${groupId}`;
+    let url=`${environment.ipAddress}/aml/api/group/delete/${groupId}`;
     this.http.delete(url).subscribe(data=>{
       this.groupService.getAllGroups().subscribe(data=>{
         this.GroupsNames=data
