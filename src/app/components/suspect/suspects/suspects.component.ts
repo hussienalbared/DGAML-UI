@@ -17,7 +17,7 @@ import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
   styleUrls: ['./suspects.component.css']
@@ -29,7 +29,7 @@ export class SuspectsComponent implements OnInit {
 
   dataSource: any = null;
   displayedColumns = ['select', 'cIndex', 'alarms_Count', 'alarmed_Obj_Name', 'alarmed_Obj_No',
-    'risk_Score_Cd', 'age_Old_Alarm', 'ownername'];
+    'risk_Score_Cd', 'age_Old_Alarm', 'owner_UID'];
   selection = new SelectionModel<suspect>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
