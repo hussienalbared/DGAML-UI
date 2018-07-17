@@ -1,3 +1,4 @@
+import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
 import { WebSocketServiceService } from './web-socket-service.service';
 import { CommentComponent } from './components/suspect/comment/comment.component';
@@ -311,7 +312,7 @@ export function tokenGetter() {
     }),
   ],
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService,
-    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService],
+    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent, AddNewUserComponent, UpdateUserComponent],

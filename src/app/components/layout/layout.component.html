@@ -20,9 +20,15 @@
     </div>
     <div class="optionsc">
       <div>
-        <i class="fa fa-bell notification">
-
-          <!-- <i class="notificationValue">4</i> -->
+        <i class="fa fa-bell notification" style="cursor: pointer;" (click) = "show_noti=!show_noti">
+          <i class="notificationValue">{{ notificatiobValue }}</i>
+          <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
+            <div class="div2">
+              <div>
+                
+              </div>
+            </div>
+          </div>
         </i>
 
         <i class="fa fa-expand full_icon_fg" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>

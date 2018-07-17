@@ -8,7 +8,8 @@ import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
+  @Component({
   selector: 'app-risk-forward',
   templateUrl: './risk-forward.component.html',
   styleUrls: ['./risk-forward.component.css']
@@ -20,7 +21,7 @@ export class RiskForwardComponent implements OnInit {
   myControl: FormControl = new FormControl();
   constructor(
     public dialogRef: MatDialogRef<RiskForwardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private riskService:RiskService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private riskService:RiskService,private notification:NotificationService) {
       this.numSuspected = this.data["selected"].length;
       console.log(this.data["selected"][0]);
   }
@@ -53,6 +54,7 @@ export class RiskForwardComponent implements OnInit {
 
       this.riskService.forwardrisk(riskKey,this.name)
       .subscribe(data => {
+          this.notification.riskNotifiction(riskKey,'Forward',this.name,localStorage.getItem('id'))
       }, error => {
         element["owner_User_Long_Id"] = oldName;
       }

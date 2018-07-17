@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { suspect } from '../components/models/suspect.model';
 import { environment } from '../../environments/environment';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class SuspectsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private notification:NotificationService) { }
   getAllSuspects()
   {
     let url = environment.ipAddress+"/aml/api/v1/suspectedObject";
@@ -24,6 +25,9 @@ export class SuspectsService {
     let url = environment.ipAddress+"/aml/api/v1/updateUser?key=" + key +
     "&code=" + code + "&user=" + complianceUserid;
   return this.http.put(url, [])
+    // remove Owner
+    
+  
   }
   removeOwnerShip(selected){
     
@@ -34,7 +38,10 @@ export class SuspectsService {
       let oldcomplianceUserid = element["owner_UID"];
       element["owner_UID"] = null;
       let url = environment.ipAddress+"/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
-      this.http.put(url, []).subscribe(data => { }
+      this.http.put(url, []).subscribe(data => {
+        // remove Owner
+        this.notification.suspectNotification(code,key,'remove ownership',localStorage.getItem('id'))
+       }
         , error => {
           element["owner_UID"] = oldcomplianceUserid;
         }
@@ -45,13 +52,7 @@ export class SuspectsService {
   addalarmEvent(event)
   {
     let UrlAdd = environment.ipAddress+"/aml/api/v1/alarmEvent/add";
-    this.http.put(UrlAdd, event, { responseType: "text" }).subscribe(data => {
-     
-
-    },
-      err => {
-        console.log("Error occured");
-      })
+    return this.http.put(UrlAdd, event, { responseType: "text" })
   }
   changeAllSuspectAlarms(key,code,eventType){
     let url = environment.ipAddress+"/aml/api/v1/closeAllSuspectAlarms?"
@@ -63,7 +64,6 @@ export class SuspectsService {
     let url = environment.ipAddress+"/aml/api/alaram/closeAlarmById?alarmId="
     + alarmId + "&alarmStatusCode=" + eventType
   this.http.put(url, [], { responseType: "text" }).subscribe(data => {
-
   });
   }
 

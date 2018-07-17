@@ -262,3 +262,33 @@ hr.divider {
 /* .mat-icon{
     margin-top: 10px;
 } */
+
+
+.notification .noti-block{
+    stroke: rgb(239, 239, 239);
+    visibility: visible;
+    top: 37px;
+    left: -315px;
+    position: absolute;
+    z-index: 22;
+}
+.div2{
+    box-sizing: border-box;
+    position: absolute;
+    display: block;
+    border-radius: 8px;
+    color: #efefef;
+    background-color: #fff;
+    max-height: 90vh;
+    max-width: 90vw;
+    min-height: 40px;
+    border: 1px solid currentColor;
+    width: 375px;
+}
+.div2 div{
+    top: -24px;
+    right: 24px;
+    position: absolute;
+    fill: currentColor;
+    height: 24px;
+}

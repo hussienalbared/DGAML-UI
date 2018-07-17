@@ -1,3 +1,5 @@
+import { WebSocketServiceService } from './../../web-socket-service.service';
+import { NotificationService } from './../../services/notification.service';
 import { element } from 'protractor';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -23,16 +25,46 @@ export class LayoutComponent implements OnInit {
   isOn = true;
   elemen: any;
   userName:string='';
+  notificatiobValue: Number;
+  notifications: any=[];
+  show_noti = false;
 
   constructor(private authService: AuthService,/*private changeLangService: ChangeLangService,*/
-              private TabService:TabsServiceService,private router:Router,public translate: TranslateService) { }
+              private TabService:TabsServiceService,private router:Router,public translate: TranslateService,
+            private notification: NotificationService,private webSocketService: WebSocketServiceService) { }
 
   ngOnInit() {
     if(localStorage.getItem('name')!== null)
     {
       this.userName=localStorage.getItem('name')
     }
-  } 
+
+    /******** */
+    let stompClient = this.webSocketService.connect();
+    stompClient.connect({}, frame => {
+
+    stompClient.subscribe('/topic/notification/', noti => {
+      ;
+
+      console.log("stompClient.subscribe: ")
+      console.log(noti)
+      console.log("----------------*********---------------")
+
+      this.notifications = JSON.parse(noti.body);
+      this.notificatiobValue = this.notifications.length;
+    /******** */
+
+    // Get all notification
+  });
+}); 
+
+  this.notification.allNoti().subscribe(data=>{
+    console.log("get all noti ***********")
+  console.log(data)
+    this.notifications = data;
+    this.notificatiobValue = this.notifications.length; 
+  });
+}
 
   changeIsOn() {
     this.isOn = !this.isOn;

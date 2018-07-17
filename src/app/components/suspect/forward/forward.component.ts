@@ -1,3 +1,6 @@
+import { user } from './../../../models/user.model';
+import { UserService } from './../../../services/user.service';
+import { NotificationService } from './../../../services/notification.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +22,7 @@ export class ForwardComponent implements OnInit {
   myControl: FormControl = new FormControl();
   constructor(
     public dialogRef: MatDialogRef<ForwardComponent>,
+    private notification:NotificationService,
     @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService
 
   ) {
@@ -58,6 +62,8 @@ export class ForwardComponent implements OnInit {
     
         this.suspectService.forwardSuspect(suspectKey,code,this.name)
       .subscribe(data => {
+        // forward Notification
+        this.notification.suspectForwardNoti(code,suspectKey,'Forward',localStorage.getItem('id'),this.name)
       }, error => {
         element["owner_UID"] = oldName;
       }
