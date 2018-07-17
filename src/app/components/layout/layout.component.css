@@ -92,7 +92,7 @@
     position: absolute;
     background-color: red;
     color: white;
-    border-radius: 50%;
+    border-radius: 50%;;
  right:4px;
     top: -13px;;
 }
@@ -274,21 +274,49 @@ hr.divider {
 }
 .div2{
     box-sizing: border-box;
-    position: absolute;
-    display: block;
+    /* position: absolute; */
+
+    /* display: block; */
     border-radius: 8px;
-    color: #efefef;
+    color: #515365;
     background-color: #fff;
     max-height: 90vh;
     max-width: 90vw;
     min-height: 40px;
     border: 1px solid currentColor;
     width: 375px;
+    overflow:scroll;
 }
-.div2 div{
-    top: -24px;
+.content{
+    /* top: -24px;
     right: 24px;
-    position: absolute;
-    fill: currentColor;
+    position: absolute; */
+    /* fill: currentColor; */
     height: 24px;
+    padding: 2px;
 }
+
+
+.notify {
+    /* content: '1'; */
+    /* position: absolute; */
+  
+  
+    border-radius: 50%;
+   
+    /* text-align: center; */
+    background: hsl(0, 90, 60);
+    box-shadow: 0 0 0 0.25em hsl(0, 90, 40);
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes  pulse {
+    0%   {box-shadow:0 0 0 0.25em red ;}
+    30%   {box-shadow:0 0 0 0.50em yellow ;}
+    70%   {box-shadow:0 0 0 .75em blue ;}
+    100% { box-shadow:0 0 0 0.40em green;}
+  }
+ .example-card{
+     height: 300px;
+     overflow: scroll;
+ }

@@ -20,14 +20,29 @@
     </div>
     <div class="optionsc">
       <div>
-        <i class="fa fa-bell notification" style="cursor: pointer;" (click) = "show_noti=!show_noti">
+        <i class="fa fa-bell notification notify" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
           <i class="notificationValue">{{ notificatiobValue }}</i>
           <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
-            <div class="div2">
-              <div>
-                
+            <!-- <div class="div2" > -->
+            
+              
+              <!-- <div class="content">
+               looo
               </div>
-            </div>
+              <div class="content">
+                  looo
+              </div> -->
+              <mat-card class="example-card">
+                  
+                  <mat-card-content *ngFor="let x of notifications ">
+                    <p >
+                    {{x.finalDescription}}
+                    </p>
+                  </mat-card-content>
+                
+                </mat-card>
+                
+            <!-- </div> -->
           </div>
         </i>
 
