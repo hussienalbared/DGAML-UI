@@ -60,6 +60,11 @@ export class NotificationService {
     let url = this.rootUrl + "notification/all";
     return this.http.get(url);
   }
+  allNoti2(){
+    let id=localStorage.getItem('id')
+    let url = this.rootUrl + `notification/test/${id}`;
+    return this.http.get(url);
+  }
 
   alarmNotification(alarmeid,action,loggedUser){
     console.log("***** in alarmNotification ******")
