@@ -94,4 +94,14 @@ export class NotificationService {
     console.log(noti)
     this.http.post(url,noti).subscribe(data=>{});
   }
+
+  sendNoti(notiId,userId){
+    let url = this.rootUrl + "notification/readNotification";
+    let noti = {
+      notiId:notiId,
+      userId:userId
+    }
+    this.http.post(url,noti).subscribe(data=>{});
+  }
+
 }

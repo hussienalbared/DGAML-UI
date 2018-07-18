@@ -35,6 +35,14 @@ export class LayoutComponent implements OnInit {
             private notification: NotificationService,private webSocketService: WebSocketServiceService) { }
 
   ngOnInit() {
+
+    // $(document).ready(()=>{
+    //   $(window).click(function(e) {
+    //     alert("A")
+    //     $('.noti-block').hide();     
+    //   })
+    // });
+
     if(localStorage.getItem('name')!== null)
     {
       this.userName=localStorage.getItem('name')
@@ -44,7 +52,7 @@ export class LayoutComponent implements OnInit {
     let stompClient = this.webSocketService.connect();
     stompClient.connect({}, frame => {
 
-    stompClient.subscribe('/topic/notification/', noti => {
+    stompClient.subscribe(`/topic/notification/${localStorage.getItem('id')}`, noti => {
       ;
 
       console.log("stompClient.subscribe: ")
@@ -166,6 +174,16 @@ ffff()
     $("#Notification1").addClass("notify")
 
  }) 
+}
+
+/////////////
+sendNoti(x){
+  console.log(":sendNoti:")
+  console.log(x)
+
+  this.notification.sendNoti(x.id,x.userId)
+
+ 
 }
 }
 
