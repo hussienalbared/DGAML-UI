@@ -311,12 +311,26 @@ hr.divider {
   }
   
   @keyframes  pulse {
-    0%   {box-shadow:0 0 0 0.25em red ;}
-    30%   {box-shadow:0 0 0 0.50em yellow ;}
-    70%   {box-shadow:0 0 0 .75em blue ;}
-    100% { box-shadow:0 0 0 0.40em green;}
+    0% {
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+      }
+      70% {
+          box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      }
+      100% {
+          box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      }
   }
  .example-card{
      height: 300px;
      overflow: scroll;
+ }
+ .mat-list{
+    height: 300px;
+    overflow: scroll;
+ }
+ .notificationDetail{
+     padding: 5px 2px;
+     background-color: #f1f1f1;
+     margin: 2px;
  }

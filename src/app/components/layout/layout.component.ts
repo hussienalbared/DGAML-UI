@@ -26,6 +26,7 @@ export class LayoutComponent implements OnInit {
   elemen: any;
   userName:string='';
   notificatiobValue: Number;
+  newValue: Number;
   notifications: any=[];
   show_noti = false;
 
@@ -47,11 +48,15 @@ export class LayoutComponent implements OnInit {
       ;
 
       console.log("stompClient.subscribe: ")
-      console.log(noti)
-      console.log("----------------*********---------------")
+    
 
       this.notifications = JSON.parse(noti.body);
+      this.newValue = this.notifications.length;
+if(this.newValue!==this.notificatiobValue){
+  this.ffff()
+}
       this.notificatiobValue = this.notifications.length;
+     
     /******** */
 
     // Get all notification
@@ -59,8 +64,8 @@ export class LayoutComponent implements OnInit {
 }); 
 
   this.notification.allNoti().subscribe(data=>{
-    console.log("get all noti ***********")
-  console.log(data)
+
+
     this.notifications = data;
     this.notificatiobValue = this.notifications.length; 
   });
@@ -89,7 +94,6 @@ export class LayoutComponent implements OnInit {
     //  $(e.target).addClass("active");
     
     //
-      //console.log(" = " + $(e.target).attr("class"));
 
     }
     navItem(url){
@@ -116,7 +120,6 @@ let Tab:tab={path:path,label:label}
   // }
 
 changeLang(targLang:string){
-  // console.log("Layout");
   
   // this.changeLangService.changeLang();
   this.translate.use(targLang);
@@ -139,7 +142,6 @@ changeLang(targLang:string){
 }
 updateProfile()
 {
-  console.log("kuieu")
   this.router.navigate(["profile"])
 }
 goTodashboard()
@@ -151,7 +153,17 @@ stopNotificationAnimation(){
  $(document).ready(()=>{
 
  
-    $("i").removeClass("notify")
+    $("#Notification1").removeClass("notify")
+
+ }) 
+}
+ffff()
+{
+  console.log("changeeeeeeeeeeeeeeeeeeee")
+  $(document).ready(()=>{
+
+ 
+    $("#Notification1").addClass("notify")
 
  }) 
 }

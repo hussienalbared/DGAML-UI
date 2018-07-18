@@ -20,8 +20,10 @@
     </div>
     <div class="optionsc">
       <div>
-        <i class="fa fa-bell notification notify" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
-          <i class="notificationValue">{{ notificatiobValue }}</i>
+        <i class="fa fa-bell notification notify"   id="Notification1" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
+          <i class="notificationValue" [innerHtml]="notificatiobValue" (change) ="ffff()"></i>
+        
+        
           <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
             <!-- <div class="div2" > -->
             
@@ -32,7 +34,7 @@
               <div class="content">
                   looo
               </div> -->
-              <mat-card class="example-card">
+              <!-- <mat-card class="example-card">
                   
                   <mat-card-content *ngFor="let x of notifications ">
                     <p >
@@ -40,7 +42,19 @@
                     </p>
                   </mat-card-content>
                 
-                </mat-card>
+
+                </mat-card> -->
+                <mat-list role="list"  style="background-color: white">
+                  <mat-list-item role="listitem"  *ngFor="let x of notifications.slice().reverse()  " class="notificationDetail">
+                  <div *ngIf="x.finalDescription" >
+                    <p >{{x.notificationDate}}</p>
+                     <p> {{x.finalDescription}}</p>
+                  </div> 
+                  
+                  </mat-list-item>
+                 
+                </mat-list>
+                
                 
             <!-- </div> -->
           </div>
