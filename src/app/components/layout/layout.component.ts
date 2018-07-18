@@ -26,7 +26,7 @@ export class LayoutComponent implements OnInit {
   elemen: any;
   userName:string='';
   notificatiobValue: Number;
-  newValue: Number;
+  newValue: number;
   notifications: any=[];
   show_noti = false;
 
@@ -179,14 +179,22 @@ ffff()
 }
 
 /////////////
-sendNoti(x,index){
+sendNoti(x,index:number){
   console.log(":sendNoti:")
+  console.log(index)
   console.log(x)
 
-  this.notification.sendNoti(x.id,x.userId)
+   this.notification.sendNoti(x.id,x.userId)
 
-  this.notifications.splice(index,1);
+  this.notifications.splice(this.notifications.length-index-1,1);
+  this.notificatiobValue=this.notifications.length-1;
  
+}
+prevent(event){
+  $("#mmm").click((event)=>{
+    console.log(event)
+    // event.preventDefault();
+});
 }
 }
 
