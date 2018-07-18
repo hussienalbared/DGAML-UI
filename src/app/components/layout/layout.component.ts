@@ -63,7 +63,7 @@ if(this.newValue!==this.notificatiobValue){
   });
 }); 
 
-  this.notification.allNoti().subscribe(data=>{
+  this.notification.allNoti2().subscribe(data=>{
 
 
     this.notifications = data;
