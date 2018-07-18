@@ -26,10 +26,10 @@
         
           <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
                 <mat-list role="list"  style="background-color: white" class="scrollNotification">
-                  <mat-list-item role="listitem"  *ngFor="let x of notifications.slice().reverse()  " class="notificationDetail">
-                  <div *ngIf="x.finalDescription" (click)="sendNoti(x)">
+                  <mat-list-item role="listitem"  *ngFor="let x of notifications.slice().reverse();let index=index  " class="notificationDetail">
+                  <div *ngIf="x.finalDescription" (click)="sendNoti(x,index)">
                     <p >{{x.notificationDate}}</p>
-                     <p class="HH">{{x.finalDescription}}</p>
+                     <p>{{x.finalDescription}}</p>
                   </div> 
                   
                   </mat-list-item>

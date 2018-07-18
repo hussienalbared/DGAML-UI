@@ -58,7 +58,9 @@ export class LayoutComponent implements OnInit {
       console.log("stompClient.subscribe: ")
     
 
-      this.notifications = JSON.parse(noti.body);
+      this.notifications.push(JSON.parse(noti.body));
+
+      // this.notifications = JSON.parse(noti.body);
       this.newValue = this.notifications.length;
 if(this.newValue!==this.notificatiobValue){
   this.ffff()
@@ -177,12 +179,13 @@ ffff()
 }
 
 /////////////
-sendNoti(x){
+sendNoti(x,index){
   console.log(":sendNoti:")
   console.log(x)
 
   this.notification.sendNoti(x.id,x.userId)
 
+  this.notifications.splice(index,1);
  
 }
 }
