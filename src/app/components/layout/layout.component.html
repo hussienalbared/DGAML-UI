@@ -44,7 +44,7 @@
                 
 
                 </mat-card> -->
-                <mat-list role="list"  style="background-color: white">
+                <mat-list role="list"  style="background-color: white" class="scrollNotification">
                   <mat-list-item role="listitem"  *ngFor="let x of notifications.slice().reverse()  " class="notificationDetail">
                   <div *ngIf="x.finalDescription" >
                     <p >{{x.notificationDate}}</p>
