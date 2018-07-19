@@ -43,6 +43,17 @@ export class LayoutComponent implements OnInit {
     //   })
     // });
 
+    $(document).ready(()=>{
+      $(window).click(function() {
+        $('.noti-block').hide();
+        // alert("window")
+      });
+      
+      $('#Notification1').click(function(event){
+        event.stopPropagation();
+      });
+    });
+
     if(localStorage.getItem('name')!== null)
     {
       this.userName=localStorage.getItem('name')
