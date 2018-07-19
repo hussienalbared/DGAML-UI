@@ -9,4 +9,5 @@ export interface suspect{
     id:any;
     acAlarm:any;
     
+    ownername:string;
 }

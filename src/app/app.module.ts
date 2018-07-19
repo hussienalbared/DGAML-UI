@@ -1,3 +1,6 @@
+import { CommentService } from './services/comment.service';
+import { WebSocketServiceService } from './web-socket-service.service';
+import { CommentComponent } from './components/suspect/comment/comment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewChild } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -33,6 +36,7 @@ import { TransactionDetailsComponent } from './components/transactions/transacti
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
 import { SuspectsService } from './services/suspects.service';
 import { RiskService } from './services/risk.service';
+import { UserService } from './services/user.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -61,6 +65,15 @@ import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { UserComponent } from './components/user/user.component';
+import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
+import { UpdateUserComponent } from './components/user/update-user/update-user.component';
+import { AddGroupComponent } from './components/group/add-group/add-group.component';
+import { EditGroupComponent } from './components/group/edit-group/edit-group.component';
+import { GroupService } from './services/group.service';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { environment } from '../environments/environment';
+import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -101,6 +114,19 @@ export function tokenGetter() {
     RiskForwardComponent,
     WelcomeComponent,
     SamaReportComponent
+
+    UserComponent,
+
+    AddNewUserComponent,
+
+    UpdateUserComponent,
+    AddGroupComponent,
+
+    EditGroupComponent,
+
+    UserProfileComponent,
+    CommentComponent,
+    EmptyComponentComponent
 
   ],
   imports: [
@@ -161,13 +187,23 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-        {
+      //   {
+      //   path: '',
+      //   component: WelcomeComponent
+      //   ,canActivate: [AuthGuardService]
+      // },
+      // {
+      //   path: 'welcome',
+      //   component: WelcomeComponent
+      //   // ,canActivate: [AuthGuardService]
+      // },
+      {
         path: '',
-        component: WelcomeComponent
-        ,canActivate: [AuthGuardService]
+        component: LoginComponent
+        // ,canActivate: [AuthGuardService]
       },
       {
-        path: 'welcome',
+        path: 'welcom',
         component: WelcomeComponent
         // ,canActivate: [AuthGuardService]
       },
@@ -226,6 +262,31 @@ export function tokenGetter() {
         path: 'risk',
         component: RiskComponent
         , canActivate: [AuthGuardService]
+      },
+      { path: 'user', 
+        component: UserComponent
+        , canActivate: [AuthGuardService] 
+      },
+      { 
+        path:'groups',
+        component:AddGroupComponent
+      },
+      {
+        path: 'editGroup/:id',
+        component: EditGroupComponent
+       
+      },
+      {
+        path:'profile',
+        component:UserProfileComponent
+      },
+      { path: 'comment', 
+        component: CommentComponent
+        , canActivate: [AuthGuardService] 
+      },
+      {
+        path:'empty',
+        component:EmptyComponentComponent
       }
       ,{
         path: 'report/sama',
@@ -236,14 +297,15 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:8081'],
-        blacklistedRoutes: ['http://localhost:8081/aml/auth']
+        whitelistedDomains: [environment.ipAddress],
+        blacklistedRoutes: [environment.ipAddress+'/aml/auth']
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, TabsServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, 
+    TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService],
 
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],
 })
 export class AppModule { }

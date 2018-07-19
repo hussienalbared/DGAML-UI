@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8" style="margin: auto">
+      <div class="comment_div">
+        <span style="letter-spacing: 1px;color: #28607b;font-size: 17px;">COMMENT: </span>
+        <form #form_="ngForm" (ngSubmit)="addComment(form_.value)" style="margin-top: 10px;" >
+          <mat-form-field style="width: 100%;font-size: 14px">
+            <input matInput placeholder="Enter a Comment" name="desc" ngModel>
+          </mat-form-field>
+          <div style="display: inline-block;">
+            <input type="file" class="form-control-file" name="MultipleFiles" #files2  multiple >
+          </div>          
+          <button mat-raised-button style="width: 20%;display: block;float: right;">Comment</button>
+        </form>
+      </div>
+
+      <hr>
+
+      <div class="allcomments">
+        <div class="comment_block " id="B{{index}}" *ngFor="let comm of comments_block;let index=index"><!--(mouseenter) ="hoverIn($event)" (mouseleave) ="hoverOut()"-->
+          <hr style="margin-bottom: 10px;margin-top: 10px" >
+          
+          <!--******-->
+          <form id ="U{{index}}" style="display: none" #formUpdate="ngForm" (ngSubmit)="updateComment(formUpdate.value,index,comm)">
+            <mat-icon class="close-icon" (click)="closeUpdateComment(index)">close</mat-icon>
+            <mat-form-field>
+              <input type="text" matInput name="comment_desc" placeholder="{{ comm.description }}" ngModel>
+            </mat-form-field>
+            <input type="file" class="form-control-file" (change)="onChangeFile($event.target.files)" name="MultipleFiles" #filesUpdated  multiple ngModel>
+            <div class="row">
+              <div class="col-lg-10">
+                <span>Comment Attatchments:</span>
+                <div class="attatchments" style="position: relative;" *ngFor="let f of comm.attachment"><!-- go through all files -->
+                  <li class="fa fa-paperclip" (click)="downloadFile(f.fileName)" style="display: inline;"><span>{{ f.fileName }} </span></li>
+                  <mat-icon class="delete-icon animate-show" (click)="deleteSpecificFile(f)" 
+                      style="display: inline;font-size: 20px;position: absolute;">delete</mat-icon>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <button mat-raised-button style="width: 20%;display: block;float: right;position: absolute;bottom: 0;">Update</button>
+              </div>
+            </div>
+          </form>
+          <!--******-->
+
+          <div class="coment-details " id ="C{{index}}">
+            <span class="commented_by" *ngIf="comm.userview">By: <b>{{ comm.userview.displayName }}</b></span>
+            <span class="commented_date">{{ comm.uploadDate | date:meduim}}</span>
+            <span class="comment_desc" >{{ comm.description }}</span>
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="attatchments"><!-- go through all files -->
+                  <span>Comment Attatchments:</span>
+                  <li class="fa fa-paperclip" *ngFor="let f of comm.attachment" (click)="downloadFile(f.fileName)"><span>{{ f.fileName }} </span></li>
+                  <!-- <li class="fa fa-paperclip"><span>attatched file</span></li> -->
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="comment-icons"> <!--[class]="hoverClass"-->
+                  <mat-icon class="update-icon animate-show" title="Update" (click)="showUpdateComment(index)">update</mat-icon>
+                  <mat-icon class="delete-icon animate-show" title="Delete" (click)="deleteComment(comm.id)">delete</mat-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="margin-bottom: 10px;margin-top: 10px">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

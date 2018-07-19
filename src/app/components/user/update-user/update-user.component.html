@@ -1,0 +1,99 @@
+<div class="user_add_form">
+  <h5>Update User</h5>
+    <form #form_="ngForm" (ngSubmit)="updateUser(form_.value)">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6"> 
+            <div class="form-group">
+              <label class="form_label">User Name</label>
+              <mat-form-field>
+                <input type = "text" matInput ngModel name="username" placeholder=" {{ username }} " >
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-lg-6"> 
+            <div class="form-group">
+              <label class="form_label">Display Name</label>
+              <mat-form-field>
+                <input type = "text" matInput ngModel name="displayName" placeholder=" {{ displayName }} ">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6"> 
+            <div class="form-group">
+              <label class="form_label">First Name</label>
+              <mat-form-field>
+                <input type = "text" matInput ngModel name="firstname" placeholder=" {{ firstname }} ">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form_label">Last Name</label>
+              <mat-form-field>
+                <input type = "text" matInput  name="lastname" ngModel placeholder=" {{ lastname }} ">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form_label">E-mail</label>
+              <mat-form-field>
+                <input type = "text" matInput  name="email" ngModel placeholder=" {{ email }} ">
+              </mat-form-field>
+            </div>
+          </div>
+          
+          <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form_label">Status</label>
+              <mat-form-field>
+                <input type = "text" matInput  name="enabled" ngModel placeholder=" {{ enabled ? 'Enable' : 'Disable' }} ">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+                <label class="form_label">New Password</label>
+              <mat-form-field>
+                <input type = "password" matInput name="newPassword" ngModel [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form_label">Groups</label>
+              <mat-form-field>
+                <mat-select  name="selectedGroups" [(value)]="selected" multiple 
+                            [compareWith]="compareWithFunc" >
+                  <mat-option  *ngFor="let topping of groups" [value]="topping" >{{topping.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col-lg-11">
+            <div class="form-group">
+                <button mat-raised-button color="primary" style="width:100%;" >Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

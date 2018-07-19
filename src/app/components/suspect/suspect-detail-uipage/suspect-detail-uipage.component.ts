@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router }     from '@angular/router';
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-suspect-detail-uipage',
   templateUrl: './suspect-detail-uipage.component.html',
   styleUrls: ['./suspect-detail-uipage.component.css']

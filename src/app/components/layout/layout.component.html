@@ -1,4 +1,4 @@
-<mat-toolbar #img class="topbar"  > <!--*ngIf="authService.userName"-->
+<mat-toolbar #img class="topbar" *ngIf="authService.userName" > <!--ngIf="authService.userName"-->
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
       <h1>
@@ -35,14 +35,12 @@
 
         </button>
         <mat-menu #menu="matMenu" overlapTrigger="false">
-          <button mat-menu-item>
+          <button mat-menu-item (click)="updateProfile()"> 
             <span>My Profile</span>
           </button>
-          <button mat-menu-item>
-            <span>Account Setting</span>
-          </button>
-          <button mat-menu-item>
-            <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+
+          <button mat-menu-item (click)="authService.logout()">
+            <a  class="md-trigger" data-modal="logout-modal">
               <i class="icon-logout-1"></i> Logout</a>
           </button>
         </mat-menu>
@@ -55,15 +53,15 @@
         </button>
         <mat-menu #menu2="matMenu" overlapTrigger="false">
           <!-- <select #langSelect (change)="translate.use(langSelect.value)"> -->
-            <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> 
+          <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> 
                 {{ lang }}  
             </option> -->
-            <button mat-menu-item (click) = "changeLang('en');">
-              <span>English</span>
-            </button>
-            <button mat-menu-item (click) = "changeLang('ar');">
-              <span>Arabic</span>
-            </button>
+          <button mat-menu-item (click)="changeLang('en');">
+            <span>English</span>
+          </button>
+          <button mat-menu-item (click)="changeLang('ar');">
+            <span>Arabic</span>
+          </button>
           <!-- </select> -->
         </mat-menu>
       </div>
@@ -75,7 +73,7 @@
 
 <!-- <div dir="rtl"> -->
 <mat-sidenav-container class="example-container main_contain" autosize >
-  <mat-sidenav #sidenav [mode]="mode.value" opened > <!--*ngIf="authService.userName"-->
+  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName" > <!--*ngIf="authService.userName"-->
     <div class="clearfix"></div>
     <hr class="divider">
     <div class="clearfix"></div>
@@ -102,7 +100,7 @@
 
     <mat-nav-list>
       <mat-list-item (click)="layoutItem($event);navItem('/suspects')" class="mat_item_a" appAddTab path="/suspects">
-        <a routerLink="suspects" >
+        <a routerLink="suspects">
           <mat-icon>people</mat-icon>
           <span *ngIf="isOn"> Suspects</span>
         </a>
@@ -115,7 +113,16 @@
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event);navItem('/external')" class="mat_item_a">
+      <!--  -->
+      <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
+        <a>
+          <mat-icon>dashboard</mat-icon>
+          <a  *ngIf="isOn"> DashBoard</a>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <!--  -->
+      <mat-list-item (click)="layoutItem($event);navItem('/comment')" class="mat_item_a">
         <a>
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isOn"> Regulatory Reports </span>
@@ -173,32 +180,60 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
+      <!-- <mat-list-item (click)="layoutItem($event)" class="mat_item_a">
         <a>
           <mat-icon>settings</mat-icon>
           <span *ngIf="isOn"> Administration</span>
         </a>
+      </mat-list-item> -->
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+        <mat-icon>Administration</mat-icon>
       </mat-list-item>
+
+      <mat-accordion *ngIf="isOn" displayMode="flat">
+        <mat-expansion-panel #fffv>
+          <mat-expansion-panel-header class="accordion1">
+            <mat-icon>group_work</mat-icon>
+            <span>Administration</span>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item (click)="layoutItem($event);navItem('groups')" class="mat_item_a">
+              <a routerLink="groups">Group management</a>
+            </mat-list-item>
+            <mat-list-item (click)="layoutItem($event);navItem('/user')" class="mat_item_a" appAddTab path="/user">
+              <a routerLink="user">
+                <span *ngIf="isOn"> User</span>
+              </a>
+            </mat-list-item>
+            <!-- <mat-divider></mat-divider> -->
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+
+      <!-- <mat-list-item  class="mat_item_a" >
+        <a routerLink="groups" >
+          <mat-icon>Group</mat-icon>
+          <span *ngIf="isOn"> Group</span>
+        </a>
+      </mat-list-item> -->
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main_middle_content">
-    <nav mat-tab-nav-bar>
+    <nav mat-tab-nav-bar *ngIf="TabService.tabs.length>0">
       <div *ngFor="let link of TabService.tabs" style="display: inline-block">
-      <a mat-tab-link
-         
-         [routerLink]="link.path"
-         routerLinkActive #rla="routerLinkActive">
-         {{link.label}}
+        <a mat-tab-link [routerLink]="link.path" routerLinkActive #rla="routerLinkActive">
+          {{link.label}}
 
-      </a>
-      <mat-icon (click)="removeTab(link.path,link.label)" >cancel</mat-icon>
+        </a>
+        <mat-icon (click)="removeTab(link.path,link.label)">cancel</mat-icon>
 
-    </div>
+      </div>
     </nav>
-    
-    
-   
+
+
+
 
     <router-outlet></router-outlet>
   </mat-sidenav-content>

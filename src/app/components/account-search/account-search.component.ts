@@ -9,8 +9,8 @@ import { Observable } from "rxjs/Observable"
 import { account } from '../models/account.model';
 import { TabsServiceService } from '../../services/tabs-service.service';
 import { tab } from '../models/tab.model';
-
-@Component({
+import { environment } from '../../../environments/environment';
+ @Component({
   selector: 'app-account-search',
   templateUrl: './account-search.component.html',
   styleUrls: ['./account-search.component.css']
@@ -44,7 +44,7 @@ displayedColumns = ['acct_No', 'acct_Name', 'acct_Type_Desc', 'acct_Open_Date', 
 
  
 
-    let url="http://localhost:8081/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
+    let url=environment.ipAddress+"/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
     +"&AccountOpenDate="+this.accountOpenDate+"&AccountCloseDate="+this.accountCloseDate
                                                                       
     ;

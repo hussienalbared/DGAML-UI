@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-@Component({
+import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-risk-forward',
   templateUrl: './risk-forward.component.html',
   styleUrls: ['./risk-forward.component.css']
@@ -64,7 +64,7 @@ export class RiskForwardComponent implements OnInit {
 
   }
   ngOnInit() {
-    let url="http://localhost:8081/aml/api/user/users";
+    let url=environment.ipAddress+"/aml/api/user/users";
     this.http.get<string[]>(url).subscribe(data=>{
       this.users=data;
       console.log(this.users)
