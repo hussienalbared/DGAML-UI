@@ -56,13 +56,13 @@ export class NotificationService {
     return this.http.post(url,noti).subscribe(data=>{});
   }
 
-  allNoti(){
-    let url = this.rootUrl + "notification/all";
-    return this.http.get(url);
-  }
+  // allNoti(){
+  //   let url = this.rootUrl + "notification/all";
+  //   return this.http.get(url);
+  // }
   allNoti2(){
     let id=localStorage.getItem('id')
-    let url = this.rootUrl + `notification/test/${id}`;
+    let url = this.rootUrl + `notification/allNotification/${id}`;
     return this.http.get(url);
   }
 
@@ -103,7 +103,7 @@ export class NotificationService {
   sendNoti(notiId,userId){
     let url = this.rootUrl + "notification/readNotification";
     let noti = {
-      notiId:notiId,
+      notificationId:notiId,
       userId:userId
     }
     this.http.post(url,noti).subscribe(data=>{});
@@ -111,7 +111,10 @@ export class NotificationService {
 
   markAllRead(userId_){
     let url = this.rootUrl + "notification/markAllRead?userId="+userId_;
-    this.http.put(url,[]).subscribe(data=>{});
+    console.log(''+url);
+    this.http.post(url,[]).subscribe(data=>{},error=>{
+alert('erorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+    });
   }
 
 }

@@ -169,7 +169,6 @@ stopNotificationAnimation(){
 }
 ffff()
 {
-  console.log("changeeeeeeeeeeeeeeeeeeee")
   $(document).ready(()=>{
 
  
@@ -180,26 +179,21 @@ ffff()
 
 /////////////
 sendNoti(x,index:number){
-  console.log(":sendNoti:")
-  console.log(index)
-  console.log(x)
 
-   this.notification.sendNoti(x.id,x.userId)
+ 
+   this.notification.sendNoti(x.id,localStorage.getItem('id'))
 
   this.notifications.splice(this.notifications.length-index-1,1);
   this.notificatiobValue=this.notifications.length-1;
  
 }
-prevent(event){
-  $("#mmm").click((event)=>{
-    console.log(event)
-    // event.preventDefault();
-});
-}
+
 
 markAllRead(){
   console.log("markAllRead()-markAllRead() Function")
   this.notification.markAllRead(localStorage.getItem('id'))
+  this.notifications=[];
+  this.notificatiobValue=0;
 }
 
 }
