@@ -113,17 +113,12 @@ export function tokenGetter() {
     AddTabDirective,
     RiskForwardComponent,
     WelcomeComponent,
-    SamaReportComponent
-
+    SamaReportComponent,
     UserComponent,
-
     AddNewUserComponent,
-
     UpdateUserComponent,
     AddGroupComponent,
-
     EditGroupComponent,
-
     UserProfileComponent,
     CommentComponent,
     EmptyComponentComponent
@@ -143,7 +138,6 @@ export function tokenGetter() {
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     BrowserModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
     MatMenuModule,
