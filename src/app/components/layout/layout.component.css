@@ -93,8 +93,10 @@
     background-color: red;
     color: white;
     border-radius: 50%;;
- right:4px;
+ right:7px;
     top: -13px;;
+    padding: 8px 5px;
+    font-size: 14px;
 }
 
 .logo h1 {
@@ -328,6 +330,7 @@ hr.divider {
  .scrollNotification{
     height: 300px;
     overflow: scroll;
+    /* overflow-x: hidden */
  }
  .notificationDetail{
      padding: 5px 2px;
@@ -346,4 +349,45 @@ hr.divider {
     width: 0;
     z-index: 2;
     transform: rotate(90deg);
+ }
+
+ .noti-block{
+    box-shadow:0 4px 16px rgba(20,23,28,.25)
+ }
+ .notit-clear-div span{
+     cursor: pointer;
+     color: #007791;
+     display: block;
+     font-size: 12px;
+     font-weight: 600;
+     padding: 24px 15px;
+     font-family:Roboto,"Helvetica Neue",sans-serif;
+     width:35%
+ }
+ .notit-clear-div span:hover{
+     background:#f4f5f6;
+     background: #ccc3
+ }
+ .notit-clear-div{
+     background: #f7f8fa;
+     border: none;
+     height: 58px;
+     position: relative;
+ }
+ .notificationDetail{
+    padding: 10px 15px;
+    border-bottom: 1px solid hsla(210,3%,87%,.45);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ }
+ .noti-desc_{
+    font-size: 13px;
+    font-family: sans-serif;
+    width: 325px;
+    white-space: normal;
+    line-height: 17px
+ }
+ .noti-block{
+    width: 390px;
  }

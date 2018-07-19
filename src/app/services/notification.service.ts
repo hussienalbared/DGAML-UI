@@ -109,4 +109,9 @@ export class NotificationService {
     this.http.post(url,noti).subscribe(data=>{});
   }
 
+  markAllRead(userId_){
+    let url = this.rootUrl + "notification/markAllRead?userId="+userId_;
+    this.http.put(url,[]).subscribe(data=>{});
+  }
+
 }

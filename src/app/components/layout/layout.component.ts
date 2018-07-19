@@ -196,5 +196,11 @@ prevent(event){
     // event.preventDefault();
 });
 }
+
+markAllRead(){
+  console.log("markAllRead()-markAllRead() Function")
+  this.notification.markAllRead(localStorage.getItem('id'))
+}
+
 }
 
