@@ -52,8 +52,8 @@ export class SamaReportComponent  {
     });
   }
 
-  downloadReport(){
-    let url = 'http://localhost:8081/report/printSamaReport?transactionIds='+this.selectedTransaction;
+  downloadReport(lang : String){
+    let url = 'http://localhost:8081/report/printSamaReport?transactionIds='+this.selectedTransaction+'&lang='+lang;
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
      this.http.get(url, { headers: headers, responseType: 'blob' }).subscribe(response =>{
