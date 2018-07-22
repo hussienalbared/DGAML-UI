@@ -41,6 +41,7 @@ export class AuthService {
     console.log("in logout finc");
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('id');
     this.userName = null;
     this.tabs.tabs = [];
     this.router.navigate(['/']);

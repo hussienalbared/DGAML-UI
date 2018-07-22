@@ -391,3 +391,29 @@ hr.divider {
  .noti-block{
     width: 390px;
  }
+ 
+@keyframes yourAnimation{
+    0%{
+        transform: rotate(xx);
+        opacity: 0;
+        }
+    99%{
+        opacity: 1;
+        }
+}
+
+.mat-list-item , .fadeAnimation , .mat-accordion{
+    animation: yourAnimation 3s  ease-in;
+}
+@keyframes yourAnimation{
+    0%{
+        transform: translateY(-50px);
+        }
+    99%{
+        transform: rotate(xx) translateY(-50px);
+        }
+}
+
+.elementToAnimate{
+    animation: yourAnimation 3s 1 linear;
+}
