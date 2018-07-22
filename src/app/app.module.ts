@@ -9,7 +9,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { RouterModule } from '@angular/router';
@@ -68,7 +68,7 @@ import { AddTabDirective } from './directives/add-tab.directive';
 import { RiskComponent } from './components/risk/risk.component';
 
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
-import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressModule,NgProgressInterceptor } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UserComponent } from './components/user/user.component';
 import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
@@ -312,7 +312,8 @@ export function tokenGetter() {
     }),
   ],
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService,
-    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService],
+    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService,
+    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
 
   bootstrap: [AppComponent],
   entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent, AddNewUserComponent, UpdateUserComponent],

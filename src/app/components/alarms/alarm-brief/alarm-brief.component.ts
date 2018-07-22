@@ -11,6 +11,7 @@ import { SelectCloseReasonComponent } from '../select-close-reason/select-close-
 import { SuspectsService } from '../../../services/suspects.service';
 
 import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
+import { NgProgress } from 'ngx-progressbar';
   @Component({
   selector: 'app-alarm-brief',
   templateUrl: './alarm-brief.component.html',
@@ -34,7 +35,7 @@ export class AlarmBriefComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private suspectService: SuspectsService,
-  private notification:NotificationService) {
+  private notification:NotificationService,public ngProgress: NgProgress) {
 
 
   }
@@ -65,16 +66,13 @@ export class AlarmBriefComponent implements OnInit {
   }
   getAlarms() {
     let Url = environment.ipAddress+"/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
-  
+  this.ngProgress.start();
     this.http.get(Url).subscribe(data => {
       this.dataSource3 = data["acAlarm"];
-      console.log("&&&&&&&&&&&&&&&&&")
-      console.log(this.dataSource3)
-      console.log("&&&&&&&&&&&&&&&&&")  
       this.dataSource3 = new MatTableDataSource(this.dataSource3);
       this.dataSource3.sort = this.sort;
       this.dataSource3.paginator = this.paginator;
-   
+   this.ngProgress.done();
 
     });
 
