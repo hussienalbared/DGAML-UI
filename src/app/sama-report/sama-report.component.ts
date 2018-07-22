@@ -27,7 +27,9 @@ export class SamaReportComponent  {
    }
 
   loadTransactionList(customerId: HTMLInputElement){
-    this.http.get('http://localhost:8081/report/getTransactions?customerId='+customerId.value)
+    let url="http://localhost:8081/aml/api/suspectedTransaction/all?partyNumber="+customerId.value;
+    // this.http.get('http://localhost:8081/report/getTransactions?customerId='+customerId.value)
+    this.http.get(url)
     .subscribe( response => {
       this.transactionList = JSON.parse(JSON.stringify(response));
       console.log(this.transactionList)
@@ -44,6 +46,7 @@ export class SamaReportComponent  {
   }
 
   saveReports(SamaReport){
+
     console.log('HHHHHH')
     console.log(SamaReport)
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
