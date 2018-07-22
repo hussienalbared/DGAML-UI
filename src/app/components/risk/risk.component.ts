@@ -14,7 +14,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
 
-import { environment } from '../../../environments/environment';  @Component({
+import { environment } from '../../../environments/environment';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
+  @Component({
   selector: 'app-risk',
   templateUrl: './risk.component.html',
   styleUrls: ['./risk.component.css']
@@ -272,6 +274,9 @@ export class RiskComponent implements OnInit {
     // console.log(tindex);
     return tindex;
   }
-
+  ExportasCSV()
+  {
+    new Angular5Csv(this.result, 'My Report');
+  }
 }
 

@@ -17,7 +17,7 @@ import { suspect } from '../../models/suspect.model';
 import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
-
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
@@ -218,5 +218,8 @@ export class SuspectsComponent implements OnInit {
 
 
   }
-
+  exportAsCSV(){
+  
+    new Angular5Csv(this.result,'My Report');
+  }
 }
