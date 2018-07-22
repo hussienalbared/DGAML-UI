@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';
+import { NgProgress } from 'ngx-progressbar';
+  @Component({
   selector: 'app-transaction-brief',
   templateUrl: './transaction-brief.component.html',
   styleUrls: ['./transaction-brief.component.css']
@@ -21,7 +23,8 @@ export class TransactionBriefComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   constructor(private http:HttpClient,
-    private route: ActivatedRoute,private router: Router
+    private route: ActivatedRoute,private router: Router,
+    public ngProgress: NgProgress
   ) { }
 
   ngOnInit() {
@@ -34,13 +37,14 @@ export class TransactionBriefComponent implements OnInit {
   }
   getData(number){
     let Url=environment.ipAddress+"/aml/api/suspectedTransaction/all?partyNumber="+number;
+    this.ngProgress.start();
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      
+      this.ngProgress.done();
           });
 
   }

@@ -68,17 +68,16 @@ export class SuspectsComponent implements OnInit {
 
 
   ngOnInit() {
-this.ngProgress.start();
+// this.ngProgress.start();
     this.suspectService.getAllSuspects().
       subscribe(data => {
-        console.log("All Suspect")
-        console.log(data)
+      
         this.result = data;
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.IsLoaded=false;
-        this.ngProgress.done();
+        // this.ngProgress.done();
       });
   }
   getSuspectDetail(alarm) {
