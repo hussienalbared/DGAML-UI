@@ -9,7 +9,8 @@ import { CommentService } from '../../../services/comment.service';
 import { ControlContainer } from '@angular/forms';
 
 
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
+  @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
@@ -42,7 +43,7 @@ export class CommentComponent implements OnInit {
   returnedComment:comment[]=[];
 
   constructor(private route: ActivatedRoute,private commentService:CommentService,
-    private webSocketService: WebSocketServiceService,private userService:UserService) { }
+    private webSocketService: WebSocketServiceService,private userService:UserService,private notification:NotificationService) { }
 
   ngOnInit() {
 
@@ -125,6 +126,7 @@ export class CommentComponent implements OnInit {
       this.commentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
         form_.desc,this.loggedInuser).subscribe(
         data=>{
+          this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'add comment',this.loggedInuser,form_.desc)
           this.attachments=data;
         }
         
@@ -141,11 +143,13 @@ export class CommentComponent implements OnInit {
     );
   }
 
-  deleteComment(id_){
+  deleteComment(id_,description){
     console.log("log deleteComment")
     console.log(id_);
     if(confirm("Are you sure you want to delete?"))[
-      this.commentService.deleteComment(id_,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd)
+      this.commentService.deleteComment(id_,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
+        this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'delete comment',this.loggedInuser,description)
+      })
     ]
   }
 

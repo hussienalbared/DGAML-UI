@@ -1,3 +1,4 @@
+import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
 import { WebSocketServiceService } from './web-socket-service.service';
 import { CommentComponent } from './components/suspect/comment/comment.component';
@@ -79,6 +80,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { environment } from '../environments/environment';
 import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -135,6 +137,7 @@ export function tokenGetter() {
     UserProfileComponent,
     CommentComponent,
     EmptyComponentComponent
+   
 
   ],
   imports: [
@@ -216,26 +219,30 @@ export function tokenGetter() {
         component: LoginComponent
         // ,canActivate: [AuthGuardService]
       },
-      { path: 'account', 
+      {
+        path: 'account',
         component: AccountSearchComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
-      { path: 'alarm', 
+      {
+        path: 'alarm',
         component: AlaramSearchComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
-      { path: 'party', 
+      {
+        path: 'party',
         component: PartySearchComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
-      { path: 'external', 
+      {
+        path: 'external',
         component: ExternalPartySearchComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
       {
         path: 'suspects',
         component: SuspectsComponent
-        ,canActivate: [AuthGuardService]
+        , canActivate: [AuthGuardService]
       },
       {
         path: 'suspectDetail/:obj_key/:obj_level_code/:obj_number',
@@ -267,30 +274,32 @@ export function tokenGetter() {
         component: RiskComponent
         , canActivate: [AuthGuardService]
       },
-      { path: 'user', 
+      {
+        path: 'user',
         component: UserComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
-      { 
-        path:'groups',
-        component:AddGroupComponent
+      {
+        path: 'groups',
+        component: AddGroupComponent
       },
       {
         path: 'editGroup/:id',
         component: EditGroupComponent
-       
+
       },
       {
-        path:'profile',
-        component:UserProfileComponent
+        path: 'profile',
+        component: UserProfileComponent
       },
-      { path: 'comment', 
+      {
+        path: 'comment',
         component: CommentComponent
-        , canActivate: [AuthGuardService] 
+        , canActivate: [AuthGuardService]
       },
       {
-        path:'empty',
-        component:EmptyComponentComponent
+        path: 'empty',
+        component: EmptyComponentComponent
       }
 
     ]),
@@ -298,14 +307,14 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [environment.ipAddress],
-        blacklistedRoutes: [environment.ipAddress+'/aml/auth']
+        blacklistedRoutes: [environment.ipAddress + '/aml/auth']
       }
     }),
   ],
-  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService, 
-    TabsServiceService,UserService,GroupService,CommentService,WebSocketServiceService],
+  providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService,
+    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService],
 
   bootstrap: [AppComponent],
-  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent,AddNewUserComponent,UpdateUserComponent],
+  entryComponents: [ForwardComponent, SelectCloseReasonComponent, RiskForwardComponent, AddNewUserComponent, UpdateUserComponent],
 })
 export class AppModule { }

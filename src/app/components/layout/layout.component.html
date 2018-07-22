@@ -20,9 +20,32 @@
     </div>
     <div class="optionsc">
       <div>
-        <i class="fa fa-bell notification">
-
-          <!-- <i class="notificationValue">4</i> -->
+        <i class="fa fa-bell notification notify"   id="Notification1" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
+          <i class="notificationValue" [innerHtml]="notificatiobValue" (change) ="ffff()"></i>
+        
+        
+          <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
+            <h2 style="padding: 12px 12px 0;font-size: 15px;border-bottom: 1px solid hsla(210,3%,87%,.45);color: #29303b;background-color: #fff;position: relative;">Notifications</h2>
+                <mat-list role="list"  style="background-color: white;padding: 0;" class="scrollNotification">
+                  
+                    <mat-list-item  *ngIf="notifications.length<=0"style="height: auto" role="listitem"  class="notificationDetail">
+                      <p>No Notification Available</p>
+                      </mat-list-item>
+                  <mat-list-item style="height: auto" role="listitem"  (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  " class="notificationDetail">
+                  <div *ngIf="x.finalDescription" >
+                     <p class="noti-desc_ text-truncate">{{x.finalDescription}}</p>
+                     <p style="margin: 0;">{{x.notificationDate |date : "M/d/yy h:mm a"}}</p>
+                  </div> 
+                  
+                  </mat-list-item>
+                 
+                </mat-list>
+            <div class="notit-clear-div" (click)="markAllRead()">
+              <span>Mark All as Read</span>
+            </div>
+                
+            <!-- </div> -->
+          </div>
         </i>
 
         <i class="fa fa-expand full_icon_fg" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>

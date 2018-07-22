@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-empty-component',
-  template:''
+  templateUrl: './empty-component.component.html',
+  styleUrls: ['./empty-component.component.css']
 })
 export class EmptyComponentComponent implements OnInit {
 

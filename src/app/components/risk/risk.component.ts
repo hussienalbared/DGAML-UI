@@ -1,3 +1,4 @@
+import { NotificationService } from './../../services/notification.service';
 import { element } from 'protractor';
 import { RiskForwardComponent } from './risk-forward/risk-forward.component';
 import { RiskService } from './../../services/risk.service';
@@ -53,7 +54,8 @@ export class RiskComponent implements OnInit {
     public dialog: MatDialog,
     private authService: AuthService,
               private riskService: RiskService,
-              public translate: TranslateService) {
+              public translate: TranslateService,
+            private notification:NotificationService) {
   }
 
 /*----------------*/
@@ -181,7 +183,9 @@ export class RiskComponent implements OnInit {
       let prev_owner = element["owner_User_Long_Id"];
       element["owner_User_Long_Id"] = loggedUser;
       console.log(element["risk_Assmnt_Id"]);
-      this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => { },
+      this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => {
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take ownership',localStorage.getItem('id'))
+       },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
         }
@@ -198,7 +202,11 @@ export class RiskComponent implements OnInit {
     this.selection.selected.forEach(element => {
       let prev_owner = element["owner_User_Long_Id"];
       element["owner_User_Long_Id"] = null;
-      this.riskService.removeOwnerShip(element["risk_Assmnt_Id"]).subscribe(data => { },
+      this.riskService.removeOwnerShip(element["risk_Assmnt_Id"]).subscribe(data => {
+        console.log("UUUUUUUUUQQQQQQQQQAAAAAAAAAAAAAAAA")
+        console.log(element["risk_Assmnt_Id"])
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove ownership',localStorage.getItem('id'))
+      },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
         }
@@ -217,7 +225,9 @@ export class RiskComponent implements OnInit {
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
-      this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => { },
+      this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => {
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'approve',localStorage.getItem('id'))
+       },
         error => {
           
         }
@@ -236,7 +246,9 @@ export class RiskComponent implements OnInit {
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
-      this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => { },
+      this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => {
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'decline',localStorage.getItem('id'))
+       },
         error => {
           
         }

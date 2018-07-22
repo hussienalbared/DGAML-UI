@@ -40,7 +40,7 @@ export class CommentService {
 
   deleteComment(id_,userId,alarmed_Obj_Key,alarmed_Obj_level_Cd){
     let url = this.rootUrl+"comments/deleteComment?commentId="+id_+"&updaterId="+userId+"&alarmed_Obj_Key="+alarmed_Obj_Key+"&alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd;
-    return this.http.delete(url).subscribe(data=>{});
+    return this.http.delete(url);
   }
 
   deleteSpecificFile(file_id_,user_id,alarmed_Obj_Key,alarmed_Obj_level_Cd){

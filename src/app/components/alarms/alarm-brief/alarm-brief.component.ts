@@ -10,7 +10,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
 
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
+  @Component({
   selector: 'app-alarm-brief',
   templateUrl: './alarm-brief.component.html',
   styleUrls: ['./alarm-brief.component.css']
@@ -32,7 +33,8 @@ export class AlarmBriefComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
-    private suspectService: SuspectsService) {
+    private suspectService: SuspectsService,
+  private notification:NotificationService) {
 
 
   }
@@ -140,8 +142,18 @@ this.dialog.closeAll();
               this.dataSource3.data = this.dataSource3.data.filter(item => item !== a);
               
               
-             this.suspectService.addalarmEvent(event)
-
+             this.suspectService.addalarmEvent(event).subscribe(data => {
+              let x ;
+              if(eventType==='CLS')
+                x= 'Close'
+              else 
+                x = 'Suppress';
+              this.notification.alarmNotification(a.alarm_Id,x,localStorage.getItem('id'))
+            },
+              err => {
+                console.log("Error occured");
+              })
+             
             })
             
     
@@ -153,7 +165,6 @@ this.dialog.closeAll();
             + this.key + "&code=" + this.code;
 
           this.http.put(url, []).subscribe(data => {
-
 
           })
         }

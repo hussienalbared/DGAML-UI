@@ -1,3 +1,5 @@
+import { WebSocketServiceService } from './../../web-socket-service.service';
+import { NotificationService } from './../../services/notification.service';
 import { element } from 'protractor';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -23,16 +25,72 @@ export class LayoutComponent implements OnInit {
   isOn = true;
   elemen: any;
   userName:string='';
+  notificatiobValue: Number;
+  newValue: number;
+  notifications: any=[];
+  show_noti = false;
 
   constructor(private authService: AuthService,/*private changeLangService: ChangeLangService,*/
-              private TabService:TabsServiceService,private router:Router,public translate: TranslateService) { }
+              private TabService:TabsServiceService,private router:Router,public translate: TranslateService,
+            private notification: NotificationService,private webSocketService: WebSocketServiceService) { }
 
   ngOnInit() {
+
+    // $(document).ready(()=>{
+    //   $(window).click(function(e) {
+    //     alert("A")
+    //     $('.noti-block').hide();     
+    //   })
+    // });
+
+    $(document).ready(()=>{
+      $(window).click(function() {
+        $('.noti-block').hide();
+        // alert("window")
+      });
+      
+      $('#Notification1').click(function(event){
+        event.stopPropagation();
+      });
+    });
+
     if(localStorage.getItem('name')!== null)
     {
       this.userName=localStorage.getItem('name')
     }
-  } 
+
+    /******** */
+    let stompClient = this.webSocketService.connect();
+    stompClient.connect({}, frame => {
+
+    stompClient.subscribe(`/topic/notification/${localStorage.getItem('id')}`, noti => {
+      ;
+
+      console.log("stompClient.subscribe: ")
+    
+
+      this.notifications.push(JSON.parse(noti.body));
+
+      // this.notifications = JSON.parse(noti.body);
+      this.newValue = this.notifications.length;
+if(this.newValue!==this.notificatiobValue){
+  this.ffff()
+}
+      this.notificatiobValue = this.notifications.length;
+     
+    /******** */
+
+    // Get all notification
+  });
+}); 
+
+  this.notification.allNoti2().subscribe(data=>{
+
+
+    this.notifications = data;
+    this.notificatiobValue = this.notifications.length; 
+  });
+}
 
   changeIsOn() {
     this.isOn = !this.isOn;
@@ -57,7 +115,6 @@ export class LayoutComponent implements OnInit {
     //  $(e.target).addClass("active");
     
     //
-      //console.log(" = " + $(e.target).attr("class"));
 
     }
     navItem(url){
@@ -84,7 +141,6 @@ let Tab:tab={path:path,label:label}
   // }
 
 changeLang(targLang:string){
-  // console.log("Layout");
   
   // this.changeLangService.changeLang();
   this.translate.use(targLang);
@@ -107,7 +163,6 @@ changeLang(targLang:string){
 }
 updateProfile()
 {
-  console.log("kuieu")
   this.router.navigate(["profile"])
 }
 goTodashboard()
@@ -115,5 +170,42 @@ goTodashboard()
   this.router.navigate(["/empty"])
   window.open("http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard", "_blank");
 }
+stopNotificationAnimation(){
+ $(document).ready(()=>{
+
+ 
+    $("#Notification1").removeClass("notify")
+
+ }) 
+}
+ffff()
+{
+  $(document).ready(()=>{
+
+ 
+    $("#Notification1").addClass("notify")
+
+ }) 
+}
+
+/////////////
+sendNoti(x,index:number){
+
+ 
+   this.notification.sendNoti(x.id,localStorage.getItem('id'))
+
+  this.notifications.splice(this.notifications.length-index-1,1);
+  this.notificatiobValue=this.notifications.length-1;
+ 
+}
+
+
+markAllRead(){
+  console.log("markAllRead()-markAllRead() Function")
+  this.notification.markAllRead(localStorage.getItem('id'))
+  this.notifications=[];
+  this.notificatiobValue=0;
+}
+
 }
 

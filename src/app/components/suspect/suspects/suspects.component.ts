@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../services/notification.service';
 import { UserService } from './../../../services/user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -41,7 +42,8 @@ export class SuspectsComponent implements OnInit {
     public dialog: MatDialog,
     public translate: TranslateService,
     private suspectService: SuspectsService,public ngProgress: NgProgress,
-    private userService: UserService
+    private userService: UserService,
+    private notification: NotificationService
   ) { }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -126,7 +128,9 @@ this.ngProgress.start();
         element['owner_UID'] = this.authService.userName;
 
 
-        this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => { }
+        this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
+          this.notification.suspectNotification(code,key,'take ownership',localStorage.getItem('id'))
+         }
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
           }
@@ -177,6 +181,13 @@ this.ngProgress.start();
           console.log(code+"&&&&&&"+key+"%%%%"+oldcomplianceUserid)
 
           this.suspectService.changeAllSuspectAlarms(key, code, eventType).subscribe(data => {
+
+            let x;
+            if(eventType==='CLS')
+              x = 'close';
+            else
+              x='suppress';
+            this.notification.suspectNotification(code,key,x,localStorage.getItem('id'))
             //set alert count of suspect to zero
             element['alarms_Count'] = '0';
           }
