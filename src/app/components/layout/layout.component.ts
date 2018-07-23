@@ -145,27 +145,27 @@ let Tab:tab={path:path,label:label}
 
   // }
 
-changeLang(targLang:string){
+// changeLang(targLang:string){
   
-  // this.changeLangService.changeLang();
-  // this.translate.use(targLang);
+//   // this.changeLangService.changeLang();
+//   // this.translate.use(targLang);
   
-  // $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
+//   // $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
 
-  //forwaed dialog
-  $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
+//   //forwaed dialog
+//   $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
   
-  if(targLang == 'en'){
-    $('.selected_Language').text("ُEnglish");
-      $('.all_container').css('text-align', 'left' );
-  }
-  else{
-    // $('.selected_Language').text("اللغة العربية");
-    $('.all_container').css('text-align', 'right' );
-    $('.topbar').css('padding-right', '0' );
-    $('.full_icon_fg').css('margin-right', '15px' );
-  }
-}
+//   if(targLang == 'en'){
+//     $('.selected_Language').text("ُEnglish");
+//       $('.all_container').css('text-align', 'left' );
+//   }
+//   else{
+//     // $('.selected_Language').text("اللغة العربية");
+//     $('.all_container').css('text-align', 'right' );
+//     $('.topbar').css('padding-right', '0' );
+//     $('.full_icon_fg').css('margin-right', '15px' );
+//   }
+// }
 
 /*****ASZ******/
 changeLang2(tarnsLang:string){
