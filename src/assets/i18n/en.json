@@ -66,5 +66,71 @@
     "Notification":{
         "Mark_All_as_Read": "Mark All as Read",
         "Notifications": "Notifications"
+    },
+
+    "SearchAccount":{
+        "Search_Account": "Search Account",
+        "Account_Number": "Account Number",
+        "Account_Name": "Account Name",
+        "Account_Open_date": "Account Open date",
+        "Account_Close_date": "Account Close date",
+        "Account_Type": "Account Type",
+        "Search": "Search"        
+    },
+    "SearchAlarm":{
+        "Search_Alarms": "Search Alarms",
+        "Alarm_ID": "Alarm ID",
+        "Alarm_status": "Alarm status",
+        "Active": "Active",
+        "closed": "Closed",
+        "suppressed": "Suppressed",
+        "Money_laundering_risk": "Money laundering risk",
+        "Start_Create_date": "Start Create date",
+        "End_Create_date": "End Create date",
+        "Start_Run_date" : "Start Run date",
+        "End_Run_date": "End Run date",
+        "Scenario_name": "Scenario name",
+        "Scenario_ID": "Scenario ID",
+        "Search": "Search",
+        "Create_date": "Create date",
+        "Run_date": "Run date" 
+    },
+    "SearchCustomer":{
+        "Search_Customer": "Search Customer",
+        "Customer_Number": "Customer Number",
+        "Customer_Id": "Customer Id",
+        "Customer_Name": "Customer Name",
+        "PoliticallyExposedPerson": "PoliticallyExposedPerson",
+        "Yes": "Yes",
+        "No": "No",
+        "Risk": "Risk",
+        "High": "High",
+        "Medium": "Medium",
+        "Low": "Low",
+        "Customer_status_description": "Customer status description",
+        "Active": "Active",
+        "Dormant": "Dormant",
+        "Closed": "Closed",
+        "Ex_customer": "Ex-customer",
+        "Search": "Search",
+        "Politically_exposed_person": "Politically exposed person",
+        "Party_risk": "Party risk"
+    },
+    "SearchExternalParty":{
+        "Search_External_Party": "Search External Party",
+        "Ext_Party_Id": "Ext Party Id",
+        "Ext_Party_Full_Name": "Ext Party Full Name",
+        "Party_Number": "Party Number",
+        "Ext_Party_ID_country_code": "Ext Party ID country code",
+        "Search": "Search",
+        "EXT_party_name": "EXT party name",
+        "Address": "Address",
+        "Ext_Party_Number": "Ext Party Number",
+        "City_Name": "City Name",
+        "Date_of_Birth": "Date of Birth",
+        "Citizenship": "Citizenship",
+        "Identification_Document": "Identification Document",
+        "Identification_Number": "Identification Number",
+        "Telephone": "Telephone"
     }
 }
