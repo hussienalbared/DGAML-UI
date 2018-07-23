@@ -132,5 +132,20 @@
         "Identification_Document": "Identification Document",
         "Identification_Number": "Identification Number",
         "Telephone": "Telephone"
+    },
+    "UserAdministration":{
+        "Add_New_User": "Add New User",
+        "Enable": "Enable",
+        "Disable": "Disable",
+        "Delete": "Delete",
+        "Users": "Users",
+        "Id": "Id",
+        "User_Name": "User Name",
+        "Display_Name": "Display Name",
+        "First_Name": "First Name",
+        "Last_Name": "Last Name",
+        "E_mail": "E-mail",
+        "Status": "Status",
+        "lastPasswordResetDate": "lastPasswordResetDate"
     }
 }

@@ -133,5 +133,20 @@
         "Identification_Document": "Identification Document",
         "Identification_Number": "Identification Number",
         "Telephone": "Telephone"
+    },
+    "UserAdministration":{
+        "Add_New_User": "اضافة مستخدم جديد",
+        "Enable": "Enable",
+        "Disable": "Disable",
+        "Delete": "حذف",
+        "Users": "Users",
+        "Id": "Id",
+        "User_Name": "اسم المستخدم",
+        "Display_Name": "Display Name",
+        "First_Name": "الاسم للاول",
+        "Last_Name": "الاسم الاخير",
+        "E_mail": "الايميل",
+        "Status": "الحالة",
+        "lastPasswordResetDate": "lastPasswordResetDate"
     }
 }
