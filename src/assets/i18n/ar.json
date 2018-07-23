@@ -148,5 +148,45 @@
         "E_mail": "الايميل",
         "Status": "الحالة",
         "lastPasswordResetDate": "lastPasswordResetDate"
+    },
+    "SuspectDetail":{
+        "Suspect_Detail": "بيانات المشتبه",
+        "Customer_name": "اسم العميل",
+        "Customer_Number": "Customer Number",
+        "Address": "Address",
+        "Date_of_Birth": "تاريخ الميلاد",
+        "Politically_exposed": "Politically exposed",
+        "Citizenship": "Citizenship",
+        "Identification_Document": "Identification Document",
+        "Identification_Number": "Identification Number",
+        "Identification_Issue_Date": "Identification Issue Date",
+        "Identification_Expiry_Date": "Identification Expiry Date",
+        "Employer_Name": "Employer Name",
+        "Occupation": "Occupation",
+        "Telephone": "Telephone",
+        "Current_Risk_Classification": "Current Risk Classification",
+        "Dealing_with_the_bank_since_Date": "Dealing with the bank since Date",
+        "Related_Accounts": "Related Accounts"
+    },
+    "AlarmBrief":{
+        "Alarm_in_Brief": "Alarm in Brief",
+        "Close": "Close",
+        "Suppress": "Suppress",
+        "Report": "Report",
+        "ALARM_ID": "ALARM ID",
+        "Alarm_Level": "Alarm Level",
+        "Scenario_Name": "Scenario Name",
+        "Scenario_Type": "Scenario Type",
+        "Scenario_Description": "Scenario Description",
+        "Run_Date": "Run Date"
+    },
+    "TransactionBrief":{
+        "Transaction_in_Brief": "Transaction in Brief",
+        "Account_Number": "رقم الحساب",
+        "Transaction_reference_number": "Transaction reference number",
+        "Transaction_Description": "Transaction Description",
+        "Transaction_Amount": "Transaction Amount",
+        "Transaction_Date": "Transaction Date",
+        "Transaction_Type": "Transaction Type"
     }
 }
