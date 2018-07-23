@@ -30,11 +30,16 @@ export class LayoutComponent implements OnInit {
   notifications: any=[];
   show_noti = false;
 
+  selected_Language=null;
+
   constructor(private authService: AuthService,/*private changeLangService: ChangeLangService,*/
               private TabService:TabsServiceService,private router:Router,public translate: TranslateService,
             private notification: NotificationService,private webSocketService: WebSocketServiceService) { }
 
   ngOnInit() {
+
+    this.selected_Language = this.translate.getDefaultLang();
+    // alert(this.selected_Language)
 
     // $(document).ready(()=>{
     //   $(window).click(function(e) {
@@ -143,9 +148,9 @@ let Tab:tab={path:path,label:label}
 changeLang(targLang:string){
   
   // this.changeLangService.changeLang();
-  this.translate.use(targLang);
+  // this.translate.use(targLang);
   
-  $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
+  // $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
 
   //forwaed dialog
   $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
@@ -155,12 +160,34 @@ changeLang(targLang:string){
       $('.all_container').css('text-align', 'left' );
   }
   else{
-    $('.selected_Language').text("اللغة العربية");
+    // $('.selected_Language').text("اللغة العربية");
     $('.all_container').css('text-align', 'right' );
     $('.topbar').css('padding-right', '0' );
     $('.full_icon_fg').css('margin-right', '15px' );
   }
 }
+
+/*****ASZ******/
+changeLang2(tarnsLang:string){
+  // alert(tarnsLang)
+  this.translate.setDefaultLang(tarnsLang);
+  this.translate.use(tarnsLang)
+  this.selected_Language = tarnsLang;
+  console.log(this.selected_Language)
+
+  //--- temp because it doesn't read the style from ar/en.json
+    if(this.selected_Language=='en'){
+      $('.all_container').css('text-align', 'left' );
+      $('.select_button').css('text-align', 'left' );
+    }
+    else {
+      $('.all_container').css('text-align', 'right' );
+      $('.select_button').css('text-align', 'right' );
+    }
+  //---
+}
+/***********/
+
 updateProfile()
 {
   this.router.navigate(["profile"])

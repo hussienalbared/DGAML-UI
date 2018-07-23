@@ -1,15 +1,70 @@
 {
     "dir":"ltr",
     "text_align": "left",
-    "Suspect":{
-        "sec_title": "Suspects Data"
+    "en": "English",
+    "ar": "Arabic",
+    "My_Profile": "My Profile",
+    "Logout": "Logout",
+
+    "right_side_bar":{
+        "Welcome": "Welcome",
+        "Suspects": "Suspects",
+        "Risk_Profiling": "Risk Profiling",
+        "DashBoard": "DashBoard",
+        "Regulatory_Reports": "Regulatory Reports",
+        "Search": "Search",
+            "Account": "Account",
+            "Alarm": "Alarm",
+            "Customer": "Customer",
+            "External_Customer": "External Customer",
+        "Administration": "Administration",
+            "Group_management": "Group management",
+            "User": "User"
     },
+
+    "mainFunctionalities": {
+        "Forward": "Forward",
+        "Take_Ownership": "Take Ownership",
+        "Remove_Ownership": "Remove Ownership",
+        "Close": "Close",
+        "Suppress": "Suppress",
+        "Export_as_CSV": "Export as CSV",
+        "Approve": "Approve",
+        "Decline": "Decline"
+    },
+
+    "Suspect":{
+        "sec_title": "Suspects Data",
+        "No": "No",
+        "Number_of_Alarm": "Number of Alarm",
+        "Suspect_Name": "Suspect Name",
+        "RIM_Number": "RIM Number",
+        "Profile_Risk": "Profile Risk",
+        "Oldest_Alarm": "Oldest Alarm",
+        "User": "User"
+    },
+
     "Risk":{
+        "General_Information": "General Information",
         "sec_title": "",
-        "risk_table":{
-            "riskId": "",
-            "customerName": "Customer Name",
-            "customerNumber":"Customer Number"
-        }
+        "Risk_Id": "Risk Id",
+        "customerName": "Customer Name",
+        "customerNumber":"Customer Number",
+        "Current_classification": "Current Classification",
+        "Suggested_classification": "Suggested Classification",
+        "Created_Date": "Created Date",
+        "User": "User",
+
+        "Risk_Classifier": "Risk Classifier",
+        "Id": "Id",
+        "Risk_Classifier_Name": "Risk Classifier Name",
+        "Classifier_Wieght": "Classifier Wieght",
+        "Describition": "Describition",
+        "Classifier_ThreeShold": "Classifier ThreeShold"
+    },
+
+    "Notification":{
+        "Mark_All_as_Read": "Mark All as Read",
+        "Notifications": "Notifications"
     }
 }
