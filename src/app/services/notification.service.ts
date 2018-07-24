@@ -51,9 +51,9 @@ export class NotificationService {
     let noti = {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
       alarmed_Obj_Key:alarmed_Obj_Key,
-      Action:action,
-      Create_User_Id:loggedUser,
-      Comment_Decription:commentdecription
+      action:action,
+      create_User_Id:loggedUser,
+      comment_Decription:commentdecription
     }
     return this.http.post(url,noti).subscribe(data=>{});
   }
