@@ -22,8 +22,10 @@ export class NotificationService {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
       alarmed_Obj_Key:alarmed_Obj_Key,
       action:action,
-      userId:loggedUser
+      create_User_Id:loggedUser
     }
+    console.log("Noti ***************** obj : ")
+    console.log(noti)
     return this.http.post(url,noti).subscribe(data=>{});
   }
 
@@ -36,8 +38,8 @@ export class NotificationService {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
       alarmed_Obj_Key:alarmed_Obj_Key,
       action:action,
-      userId:loggedUser,
-      target_user_name:target_user_name
+      create_User_Id:loggedUser,
+      target_User_Name:target_user_name
     }
     this.http.post(url,noti).subscribe(data=>{});
   }
@@ -49,9 +51,9 @@ export class NotificationService {
     let noti = {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
       alarmed_Obj_Key:alarmed_Obj_Key,
-      action:action,
-      userId:loggedUser,
-      commentdecription:commentdecription
+      Action:action,
+      Create_User_Id:loggedUser,
+      Comment_Decription:commentdecription
     }
     return this.http.post(url,noti).subscribe(data=>{});
   }
@@ -70,9 +72,9 @@ export class NotificationService {
     console.log("***** in alarmNotification ******")
     let url = this.rootUrl + "notification/addalarmNotification";
     let noti = {
-      alarmeid:alarmeid,
+      alarm_Id:alarmeid,
       action:action,
-      userId:loggedUser
+      create_User_Id:loggedUser
     }
     this.http.post(url,noti).subscribe(data=>{});
   }
@@ -83,7 +85,7 @@ export class NotificationService {
       risk_Assmnt_Id:risk_Assmnt_Id,
       action:action,
       target_Name:Target_Name,
-      userId:loggedUser
+      create_User_Id:loggedUser
     }
     this.http.post(url,noti).subscribe(data=>{});
   }
@@ -93,7 +95,7 @@ export class NotificationService {
     let noti = {
       risk_Assmnt_Id:risk_Assmnt_Id,
       action:action,
-      userId:loggedUser
+      create_User_Id:loggedUser
     }
     console.log("hussien 1 ")
     console.log(noti)

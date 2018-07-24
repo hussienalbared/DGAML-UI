@@ -88,6 +88,8 @@ if(this.newValue!==this.notificatiobValue){
 
 
     this.notifications = data;
+    console.log("all noto ))))))))))))))))))")
+    console.log(this.notifications)
     this.notificatiobValue = this.notifications.length; 
   });
 }
@@ -192,7 +194,7 @@ ffff()
 sendNoti(x,index:number){
 
  
-   this.notification.sendNoti(x.id,localStorage.getItem('id'))
+   this.notification.sendNoti(x.notification_ID,localStorage.getItem('id'))
 
   this.notifications.splice(this.notifications.length-index-1,1);
   this.notificatiobValue=this.notifications.length-1;

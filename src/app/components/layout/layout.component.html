@@ -21,7 +21,7 @@
     <div class="optionsc">
       <div>
         <i class="fa fa-bell notification notify"   id="Notification1" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
-          <i class="notificationValue" [innerHtml]="notificatiobValue" (change) ="ffff()"></i>
+          <i class="notificationValue" [innerHtml]="notifications.length" (change) ="ffff()"></i>
         
         
           <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
@@ -32,9 +32,9 @@
                       <p>No Notification Available</p>
                       </mat-list-item>
                   <mat-list-item style="height: auto" role="listitem"  (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  " class="notificationDetail">
-                  <div *ngIf="x.finalDescription" >
-                     <p class="noti-desc_ text-truncate">{{x.finalDescription}}</p>
-                     <p style="margin: 0;">{{x.notificationDate |date : "M/d/yy h:mm a"}}</p>
+                  <div *ngIf="x.notification_Summary" >
+                     <p class="noti-desc_ text-truncate">{{x.notification_Summary}}</p>
+                     <p style="margin: 0;">{{x.notification_Date |date : "M/d/yy h:mm a"}}</p>
                   </div> 
                   
                   </mat-list-item>
