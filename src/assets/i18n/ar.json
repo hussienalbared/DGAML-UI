@@ -12,5 +12,22 @@
             "customerName": "اسم العميل",
             "customerNumber":"رقم العميل"
         }
-    }
+    },
+    "take-ownership-suspect":"اخذ ملكية المشتبه",
+    "close-suspect":"غلق حالة المشتبه ",
+    "suppress-suspect":" حجب المشتبه",
+    "remove-ownership-suspect":" ازال ملكية المشتبه",
+    "Forward-suspect":"عمل اعادة توجيه",
+    "add-comment-to-suspect":"اضاف تعليق  ",
+    "delete-comment-of-suspect":" حذف تعليق ",
+    "Suppress-alarm":"حجب التنبيه",
+    "Close-alarm":"اغلق التنبيه",
+    "take-ownership-risk":" اخذ ملكية درجة خطر التنبيه",
+    "remove-ownership-risk":" حذف ملكية درجة الخطر للتبيه"
+    ,"approve-risk":" وافق على درجة الخطر",
+    "decline-risk":" رفض درجة الخطر",
+    "Forward-Risk":" عمل اعادة توجيه للخطر",
+    "on":" على ",
+    "to":" الى "
+
 }

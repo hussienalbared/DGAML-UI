@@ -126,7 +126,7 @@ export class CommentComponent implements OnInit {
       this.commentService.uploadFiles(this.el2.nativeElement.files,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd,
         form_.desc,this.loggedInuser).subscribe(
         data=>{
-          this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'add comment',this.loggedInuser,form_.desc)
+          this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'add-comment-to-suspect',this.loggedInuser,form_.desc)
           this.attachments=data;
         }
         
@@ -148,7 +148,7 @@ export class CommentComponent implements OnInit {
     console.log(id_);
     if(confirm("Are you sure you want to delete?"))[
       this.commentService.deleteComment(id_,this.loggedInuser,this.alarmed_Obj_Key,this.alarmed_Obj_level_Cd).subscribe(data=>{
-        this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'delete comment',this.loggedInuser,description)
+        this.notification.suspectCommentNoti(this.alarmed_Obj_level_Cd,this.alarmed_Obj_Key,'delete-comment-of-suspect',this.loggedInuser,description)
       })
     ]
   }

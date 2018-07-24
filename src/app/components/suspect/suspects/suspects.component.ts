@@ -128,7 +128,7 @@ export class SuspectsComponent implements OnInit {
 
 
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
-          this.notification.suspectNotification(code,key,'take ownership',localStorage.getItem('id'))
+          this.notification.suspectNotification(code,key,'take-ownership-suspect',localStorage.getItem('id'))
          }
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
@@ -183,9 +183,9 @@ export class SuspectsComponent implements OnInit {
 
             let x;
             if(eventType==='CLS')
-              x = 'close';
+              x = 'close-suspect';
             else
-              x='suppress';
+              x='suppress-suspect';
             this.notification.suspectNotification(code,key,x,localStorage.getItem('id'))
             //set alert count of suspect to zero
             element['alarms_Count'] = '0';

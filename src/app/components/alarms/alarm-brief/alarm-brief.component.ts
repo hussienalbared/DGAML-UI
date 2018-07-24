@@ -143,9 +143,9 @@ this.dialog.closeAll();
              this.suspectService.addalarmEvent(event).subscribe(data => {
               let x ;
               if(eventType==='CLS')
-                x= 'Close'
+                x= 'Close-alarm'
               else 
-                x = 'Suppress';
+                x = 'Suppress-alarm';
               this.notification.alarmNotification(a.alarm_Id,x,localStorage.getItem('id'))
             },
               err => {

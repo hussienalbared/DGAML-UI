@@ -1,4 +1,5 @@
-<mat-toolbar #img class="topbar" *ngIf="authService.userName" > <!--ngIf="authService.userName"-->
+<mat-toolbar #img class="topbar" *ngIf="authService.userName">
+  <!--ngIf="authService.userName"-->
   <div class="topbar-left">
     <div class="logo" *ngIf="isOn">
       <h1>
@@ -20,30 +21,80 @@
     </div>
     <div class="optionsc">
       <div>
-        <i class="fa fa-bell notification notify"   id="Notification1" style="cursor: pointer;" (click) = "show_noti=!show_noti;stopNotificationAnimation()">
-          <i class="notificationValue" [innerHtml]="notifications.length" (change) ="ffff()"></i>
-        
-        
-          <div class="noti-block" *ngIf="show_noti"> <!--*ngFor="let n of notifications"-->
+        <i class="fa fa-bell notification notify" id="Notification1" style="cursor: pointer;" (click)="show_noti=!show_noti;stopNotificationAnimation()">
+          <i class="notificationValue" [innerHtml]="notifications.length" (change)="ffff()"></i>
+
+
+          <div class="noti-block" *ngIf="show_noti">
+            <!--*ngFor="let n of notifications"-->
             <h2 style="padding: 12px 12px 0;font-size: 15px;border-bottom: 1px solid hsla(210,3%,87%,.45);color: #29303b;background-color: #fff;position: relative;">Notifications</h2>
-                <mat-list role="list"  style="background-color: white;padding: 0;" class="scrollNotification">
-                  
-                    <mat-list-item  *ngIf="notifications.length<=0"style="height: auto" role="listitem"  class="notificationDetail">
-                      <p>No Notification Available</p>
-                      </mat-list-item>
-                  <mat-list-item style="height: auto" role="listitem"  (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  " class="notificationDetail">
-                  <div *ngIf="x.notification_Summary" >
-                     <p class="noti-desc_ text-truncate">{{x.notification_Summary}}</p>
-                     <p style="margin: 0;">{{x.notification_Date |date : "M/d/yy h:mm a"}}</p>
-                  </div> 
-                  
-                  </mat-list-item>
-                 
-                </mat-list>
+            <mat-list role="list" style="background-color: white;padding: 0;" class="scrollNotification">
+
+              <mat-list-item *ngIf="notifications.length<=0" style="height: auto" role="listitem" class="notificationDetail">
+                <p>No Notification Available</p>
+              </mat-list-item>
+              <mat-list-item style="height: auto" role="listitem" (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  "
+                class="notificationDetail">
+                <div [ngSwitch]="x.action">
+                  <p *ngSwitchCase="'take-ownership-suspect'">
+                  {{x.create_User_Name}}{{"take-ownership-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+
+                  </p>
+                  <p *ngSwitchCase="'close-suspect'">
+                      {{x.create_User_Name}}{{"close-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  </p>
+                  <p *ngSwitchCase="'suppress-suspect'">
+                      {{x.create_User_Name}}{{"suppress-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  </p>
+                  <p *ngSwitchCase="'remove-ownership-suspect'">
+                      {{x.create_User_Name}}{{"remove-ownership-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  </p>
+                  <p *ngSwitchCase="'Forward-suspect'">
+                {{x.create_User_Name}}{{"Forward-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}{{"to"|translate}}
+                {{x.target_User_Name}}
+
+                  </p>
+                  <p *ngSwitchCase="'add-comment-to-suspect'">
+                      {{x.create_User_Name}}{{"add-comment-to-suspect"|translate}}  {{x.comment_Decription}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  </p>
+                  <p *ngSwitchCase="'delete-comment-of-suspect'">
+                      {{x.create_User_Name}}{{"delete-comment-of-suspect"|translate}} {{x.comment_Decription}}{{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  </p>
+                  <p *ngSwitchCase="'Suppress-alarm'">
+                      {{x.create_User_Name}}{{"Suppress-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
+                  </p>
+                  <p *ngSwitchCase="'Close-alarm'">
+                      {{x.create_User_Name}}{{"Close-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
+                  </p>
+                  <p *ngSwitchCase="'take-ownership-risk'">
+{{x.create_User_Name}}{{"take-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  </p>
+                  <p *ngSwitchCase="'remove-ownership-risk'">
+                      {{x.create_User_Name}}{{"remove-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  </p>
+                  <p *ngSwitchCase="'approve-risk'">
+                      {{x.create_User_Name}}{{"approve-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  </p>
+                  <p *ngSwitchCase="'decline-risk'">
+                      {{x.create_User_Name}}{{"decline-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  </p>
+                  <p *ngSwitchCase="'Forward-Risk'">
+                      {{x.create_User_Name}}{{"Forward-Risk"|translate}}{{"on"|translate}}{{x.cust_Name}} {{"to"|translate}} {{x.target_Name}}
+                  </p>
+
+
+
+                  <!-- <p class="noti-desc_ text-truncate">{{x.action}}</p> -->
+                  <p style="margin: 0;">{{x.notification_Date |date : "M/d/yy h:mm a"}}</p>
+                </div>
+
+              </mat-list-item>
+
+            </mat-list>
             <div class="notit-clear-div" (click)="markAllRead()">
               <span>Mark All as Read</span>
             </div>
-                
+
             <!-- </div> -->
           </div>
         </i>
@@ -58,12 +109,12 @@
 
         </button>
         <mat-menu #menu="matMenu" overlapTrigger="false">
-          <button mat-menu-item (click)="updateProfile()"> 
+          <button mat-menu-item (click)="updateProfile()">
             <span>My Profile</span>
           </button>
 
           <button mat-menu-item (click)="authService.logout()">
-            <a  class="md-trigger" data-modal="logout-modal">
+            <a class="md-trigger" data-modal="logout-modal">
               <i class="icon-logout-1"></i> Logout</a>
           </button>
         </mat-menu>
@@ -95,8 +146,9 @@
 </mat-toolbar>
 
 <!-- <div dir="rtl"> -->
-<mat-sidenav-container class="example-container main_contain" autosize >
-  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName" > <!--*ngIf="authService.userName"-->
+<mat-sidenav-container class="example-container main_contain" autosize>
+  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName">
+    <!--*ngIf="authService.userName"-->
     <div class="clearfix"></div>
     <hr class="divider">
     <div class="clearfix"></div>
@@ -140,7 +192,7 @@
       <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
         <a>
           <mat-icon>dashboard</mat-icon>
-          <a  *ngIf="isOn"> DashBoard</a>
+          <a *ngIf="isOn"> DashBoard</a>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>

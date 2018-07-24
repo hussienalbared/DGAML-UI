@@ -54,7 +54,7 @@ export class RiskForwardComponent implements OnInit {
 
       this.riskService.forwardrisk(riskKey,this.name)
       .subscribe(data => {
-          this.notification.riskNotifiction(riskKey,'Forward',this.name,localStorage.getItem('id'))
+          this.notification.riskNotifiction(riskKey,'Forward-Risk',this.name,localStorage.getItem('id'))
       }, error => {
         element["owner_User_Long_Id"] = oldName;
       }
