@@ -40,7 +40,7 @@ export class SuspectsService {
       let url = environment.ipAddress+"/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
       this.http.put(url, []).subscribe(data => {
         // remove Owner
-        this.notification.suspectNotification(code,key,'remove ownership',localStorage.getItem('id'))
+        this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
        }
         , error => {
           element["owner_UID"] = oldcomplianceUserid;

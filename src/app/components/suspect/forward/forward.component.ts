@@ -63,7 +63,7 @@ export class ForwardComponent implements OnInit {
         this.suspectService.forwardSuspect(suspectKey,code,this.name)
       .subscribe(data => {
         // forward Notification
-        this.notification.suspectForwardNoti(code,suspectKey,'Forward',localStorage.getItem('id'),this.name)
+        this.notification.suspectForwardNoti(code,suspectKey,'Forward-suspect',localStorage.getItem('id'),this.name)
       }, error => {
         element["owner_UID"] = oldName;
       }

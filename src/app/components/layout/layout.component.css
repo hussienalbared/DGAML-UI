@@ -403,7 +403,7 @@ hr.divider {
 }
 
 .mat-list-item , .fadeAnimation , .mat-accordion{
-    animation: yourAnimation 3s  ease-in;
+    animation: yourAnimation 1s  ease-in;
 }
 @keyframes yourAnimation{
     0%{
@@ -415,5 +415,5 @@ hr.divider {
 }
 
 .elementToAnimate{
-    animation: yourAnimation 3s 1 linear;
+    animation: yourAnimation 1s 1 linear;
 }

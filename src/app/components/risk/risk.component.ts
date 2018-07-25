@@ -186,7 +186,7 @@ export class RiskComponent implements OnInit {
       element["owner_User_Long_Id"] = loggedUser;
       console.log(element["risk_Assmnt_Id"]);
       this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => {
-        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take ownership',localStorage.getItem('id'))
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take-ownership-risk',localStorage.getItem('id'))
        },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
@@ -207,7 +207,7 @@ export class RiskComponent implements OnInit {
       this.riskService.removeOwnerShip(element["risk_Assmnt_Id"]).subscribe(data => {
         console.log("UUUUUUUUUQQQQQQQQQAAAAAAAAAAAAAAAA")
         console.log(element["risk_Assmnt_Id"])
-        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove ownership',localStorage.getItem('id'))
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove-ownership-risk',localStorage.getItem('id'))
       },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
@@ -228,7 +228,7 @@ export class RiskComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
       this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => {
-        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'approve',localStorage.getItem('id'))
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'approve-risk',localStorage.getItem('id'))
        },
         error => {
           
@@ -249,7 +249,7 @@ export class RiskComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
       this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => {
-        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'decline',localStorage.getItem('id'))
+        this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'decline-risk',localStorage.getItem('id'))
        },
         error => {
           

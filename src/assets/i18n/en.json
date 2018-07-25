@@ -11,5 +11,23 @@
             "customerName": "Customer Name",
             "customerNumber":"Customer Number"
         }
-    }
+    },
+    
+    "take-ownership-suspect":"take ownership suspect",
+    "close-suspect":"close suspect",
+    "suppress-suspect":"suppress suspect",
+    "remove-ownership-suspect":"remove ownership suspect",
+    "Forward-suspect":"Forward suspect",
+    "add-comment-to-suspect": "add comment to suspect",
+    "delete-comment-of-suspect":"delete comment of suspect",
+    "Suppress-alarm":"Suppress alarm",
+    "Close-alarm":"Close alarm",
+    "take-ownership-risk":"take ownership risk",
+    "remove-ownership-risk":"remove ownership risk"
+    ,"approve-risk":"approve risk",
+    "decline-risk":"decline risk",
+    "Forward-Risk":"Forward Risk",
+    "on":"on",
+    "to":"to"
+    
 }
