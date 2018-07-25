@@ -1,0 +1,54 @@
+<mat-accordion *ngIf="result" >
+
+        <mat-expansion-panel  expanded>
+          <mat-expansion-panel-header>
+                {{ 'SuspectDetail.Suspect_Detail' | translate }}
+          </mat-expansion-panel-header>
+
+
+<div class="col-lg-6">
+        <!--Card-->
+        <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <!-- <h4 class="card-title">Account Detail</h4> -->
+                <!--Text-->
+                <div class="card-text" >
+                    <p>{{ 'SuspectDetail.Customer_name' | translate }}:{{result.cust_FName}}</p>
+                    <p>{{ 'SuspectDetail.Customer_Number' | translate }}:{{result.cust_No}}</p>
+                    <p>{{ 'SuspectDetail.Address' | translate }}:{{result.addr_1}}--{{result.addr_1}}</p>
+                    <p>{{ 'SuspectDetail.Date_of_Birth' | translate }}:{{result.cust_Birth_Date}}</p>
+                    <p>{{ 'SuspectDetail.Politically_exposed' | translate }}:{{result.political_Exp_Prsn_Ind}}</p>
+                    <p>{{ 'SuspectDetail.Citizenship' | translate }}:{{result.citizen_Cntry_Cd}}</p>
+                    <p>{{ 'SuspectDetail.Identification_Document' | translate }}:{{result.cust_Ident_Type_Desc}}</p>
+                    <p>{{ 'SuspectDetail.Identification_Number' | translate }}:{{result.cust_Ident_Id}}</p>
+                    <p>{{ 'SuspectDetail.Identification_Issue_Date' | translate }}:{{result.cust_Ident_Iss_Date}}</p>
+                    <p>{{ 'SuspectDetail.Identification_Expiry_Date' | translate }}:{{result.cust_Ident_Exp_Date}}</p>
+                    <p>{{ 'SuspectDetail.Employer_Name' | translate }}:{{result.empr_Name}}</p>
+                    <p>{{ 'SuspectDetail.Occupation' | translate }}:{{result.occup_Desc}}</p>
+                    <p>{{ 'SuspectDetail.Telephone' | translate }}:{{result.tel_No_1}}--{{result.tel_No_2}}--{{result.tel_No_3}}</p>
+                    <p>{{ 'SuspectDetail.Current_Risk_Classification' | translate }}:{{result.risk_Class}}</p>
+                
+                <p>{{ 'SuspectDetail.Dealing_with_the_bank_since_Date' | translate }}:{{result.cust_Since_Date}}</p>
+                <h6>{{ 'SuspectDetail.Related_Accounts' | translate }}</h6>
+                <div  *ngFor="let account of result.customerAccount">
+                        <a  [routerLink]="['/accountDetailSearch',account.acct_No,account.id.acct_Key]" appAddTab path="/accountDetailSearch/{{account.acct_No}}/{{account.id.acct_Key}}">{{account.acct_No}} </a>
+    
+                </div>
+                </div>  
+                
+                
+            </div>
+            <!--/.Card content-->
+
+        </div>
+        <!--/.Card-->
+    </div>
+
+</mat-expansion-panel>
+</mat-accordion>
+
+
+

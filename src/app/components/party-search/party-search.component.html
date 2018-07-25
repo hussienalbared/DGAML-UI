@@ -1,0 +1,146 @@
+ <mat-accordion>
+    <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      {{ 'SearchCustomer.Search_Customer' | translate }}
+    </mat-expansion-panel-header>
+    <div class="container">
+<form #partySearch="ngForm" (ngSubmit)="onClickSubmit(partySearch.value)">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PartyNumber">{{ 'SearchCustomer.Customer_Number' | translate }}</label>
+        <input type="text" name="PartyNumber" [(ngModel)]="PartyNumber" class="form-control">
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PartyId">{{ 'SearchCustomer.Customer_Id' | translate }}</label>
+        <input type="text" name="PartyId" [(ngModel)]="PartyId" class="form-control">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PartyName">{{ 'SearchCustomer.Customer_Name' | translate }}</label>
+        <input type="text" name="PartyName" [(ngModel)]="PartyName" class="form-control">
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="PoliticallyExposedPerson">{{ 'SearchCustomer.PoliticallyExposedPerson' | translate }}</label>
+        <select name="PoliticallyExposedPerson" [(ngModel)]="PoliticallyExposedPerson" class="form-control">
+          <option value="y">{{ 'SearchCustomer.Yes' | translate }}</option>
+          <option value="n">{{ 'SearchCustomer.No' | translate}}</option>
+
+          <option value=""></option>
+
+        </select>
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="Risk">{{ 'SearchCustomer.Risk' | translate}}</label>
+        <select name="Risk" [(ngModel)]="Risk" class="form-control">
+          <option value="3">{{ 'SearchCustomer.High' | translate }}</option>
+          <option value="2">{{ 'SearchCustomer.Medium' | translate }}</option>
+
+          <option value="1">{{ 'SearchCustomer.Low' | translate }}</option>
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-6">
+
+      <div class="form-group">
+        <label for="PartyStatusDescription">{{ 'SearchCustomer.Customer_status_description' | translate }}</label>
+        <select name="PartyStatusDescription" [(ngModel)]="PartyStatusDescription" class="form-control">
+          <option value="active">{{ 'SearchCustomer.Active' | translate }}</option>
+          <option value="dormant">{{ 'SearchCustomer.Dormant' | translate }}</option>
+
+          <option value="closed">{{ 'SearchCustomer.Closed' | translate }}</option>
+          <option value="ex-customer">{{ 'SearchCustomer.Ex_customer' | translate }}</option>
+          <option value=""></option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- <div>
+    <input type="submit" value="Search" class="btn btn-success">
+
+  </div> -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block searchButton" >{{ 'SearchCustomer.Search' | translate }}</button>
+  </div>
+</form>
+</div>
+<hr>
+<ng-progress></ng-progress>
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+<div class="example-container mat-elevation-z8">
+    
+  <mat-table #table [dataSource]="dataSource" matSort> 
+
+    <ng-container matColumnDef="cust_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchCustomer.Customer_Number' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party" (click)="getParty(party.cust_No,party.cust_FName)"> {{party.cust_No}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cust_Ident_Id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchCustomer.Customer_Id' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_Ident_Id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cust_FName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchCustomer.Customer_Name' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_FName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="political_Exp_Prsn_Ind">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchCustomer.Politically_exposed_person' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.political_Exp_Prsn_Ind}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="risk_Class">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchCustomer.Party_risk' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.risk_Class}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cust_Status_Desc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchCustomer.Customer_status_description' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let party"> {{party.cust_Status_Desc}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  <mat-paginator #paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+  
+
+</div>
+</mat-expansion-panel>
+</mat-accordion> 

@@ -1,0 +1,166 @@
+<mat-accordion>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      {{ 'SearchAlarm.Search_Alarms' | translate }}
+    </mat-expansion-panel-header>
+    <div class="container">
+      <form #alarmSearch="ngForm" (ngSubmit)="onClickSubmit(alarmSearch.value)">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="AlarmId">{{ 'SearchAlarm.Alarm_ID' | translate }}</label>
+              <input type="text" name="AlarmId" [(ngModel)]="AlarmId" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="AlarmStatus">{{ 'SearchAlarm.Alarm_status' | translate }}</label>
+              <!-- <input type="text" name="AlarmStatus" [(ngModel)]="AlarmStatus"> -->
+              <select name="AlarmStatus" [(ngModel)]="AlarmStatus" class="form-control">
+                <option value="act">{{ 'SearchAlarm.Active' | translate }}</option>
+                <option value="cls">{{ 'SearchAlarm.closed' | translate }}</option>
+                <option value="sup">{{ 'SearchAlarm.suppressed' | translate }}</option>
+                <option value=""></option>
+
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="MoneyLaunderingRisk">{{ 'SearchAlarm.Money_laundering_risk' | translate }}</label>
+              <input type="text" name="MoneyLaunderingRisk" [(ngModel)]="MoneyLaunderingRisk" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="CreateDateFrom"> {{ 'SearchAlarm.Start_Create_date' | translate }}</label>
+              <input type="date" name="CreateDateFrom" [(ngModel)]="CreateDateFrom" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="CreateDateTo">{{ 'SearchAlarm.End_Create_date' | translate }}</label>
+              <input type="date" name="CreateDateTo" [(ngModel)]="CreateDateTo" class="form-control">
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+              <div class="form-group">
+                  <label for="RunDateFrom">{{ 'SearchAlarm.Start_Run_date' | translate }}</label>
+                  <input type="date" name="RunDateFrom" [(ngModel)]="RunDateFrom" class="form-control">
+        
+                </div>
+          </div>
+          <div class="col-6">
+              <div class="form-group">
+                  <label for="RunDateTo">{{ 'SearchAlarm.End_Run_date' | translate }}</label>
+                  <input type="date" name="RunDateTo" [(ngModel)]="RunDateTo" class="form-control">
+        
+                </div>
+          </div>
+        </div>
+       
+       <div class="row">
+         <div class="col-6">
+            <div class="form-group">
+                <label for="ScenarioName">{{ 'SearchAlarm.Scenario_name' | translate }}</label>
+                <input type="text" name="ScenarioName" [(ngModel)]="ScenarioName" class="form-control">
+      
+              </div>
+         </div>
+         <div class="col-6">
+            <div class="form-group">
+                <label for="ScenarioId">{{ 'SearchAlarm.Scenario_ID' | translate }}</label>
+                <input type="text" name="ScenarioId" [(ngModel)]="ScenarioId" class="form-control">
+      
+              </div>
+         </div>
+       </div>
+        
+       
+        <!-- <div class="form-group"> 
+    <input type="submit" value="Search" class="btn btn-primary">
+    
+    </div> -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary  searchButton btn-block">{{ 'SearchAlarm.Search' | translate }}</button>
+        </div>
+
+      </form>
+    </div>
+    <hr>
+    <ng-progress></ng-progress>
+   <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z8">
+    
+  <mat-table #table [dataSource]="dataSource" matSort> 
+  
+    <ng-container matColumnDef="alarm_Id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAlarm.Alarm_ID' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> 
+      <a routerLink="/alarmDetail/{{alarm.alarm_Id}}" appAddTab path="/alarmDetail/{{alarm.alarm_Id}}" >{{alarm.alarm_Id}}</a>  
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="alarm_Status_Cd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAlarm.Alarm_status' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.alarm_Status_Cd}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="ml_Risk_Score">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAlarm.Money_laundering_risk' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.ml_Risk_Score}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="create_Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAlarm.Create_date' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.create_Date}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="run_Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchAlarm.Run_date' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.run_Date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="routine_Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchAlarm.Scenario_name' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="routine_Id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchAlarm.Scenario_ID' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let alarm"> {{alarm.routine_Id}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+  </mat-table>
+  <mat-paginator #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+  </div>
+  
+</mat-expansion-panel>
+
+</mat-accordion>
+
+  

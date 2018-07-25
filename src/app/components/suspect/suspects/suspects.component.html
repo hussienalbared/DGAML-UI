@@ -1,0 +1,110 @@
+<ng-progress></ng-progress>
+
+<mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
+  <button class="btn btn-primary" (click)="openDialog()">
+    <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
+  <button class="btn btn-primary" (click)="takeOwnerShip()">
+    <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
+  <button class="btn btn-primary" (click)="removeOwnerShip()">
+    <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
+  <button class="btn btn-primary" (click)="closeAlarms()">
+    <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Close' | translate }}</button>
+  <button class="btn btn-primary" (click)="suppressAlarms()">
+    <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Suppress' | translate }}</button>
+    <button class="btn btn-primary" (click)="exportAsCSV()">
+      <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>
+
+</mat-card>
+
+
+<!-- <span>{{ dataSource.data[0].alarmed_Obj_Name }}</span> -->
+
+<mat-accordion style="background-color: rgba(0, 0, 0, 0.02)" >
+  <mat-expansion-panel expanded='true'>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ 'Suspect.sec_title' | translate }}
+      </mat-panel-title>
+      <mat-panel-description>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+    <div class="example-container mat-elevation-z8">
+
+
+
+      <mat-table #table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" 
+            [checked]="selection.hasValue() && isAllSelected()" 
+            [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </mat-header-cell >
+          <mat-cell *matCellDef="let row" >
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)" >
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cIndex">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Suspect.No' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let cIndex = index;"> {{cIndex+1}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="alarms_Count">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Suspect.Number_of_Alarm' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let alarm" > {{alarm.alarms_Count}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="alarmed_Obj_Name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Suspect.Suspect_Name' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let alarm" (click)="getSuspectDetail(alarm)">
+      
+            <a routerLink="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}" appAddTab
+             path="/suspectDetail/{{alarm.id.alarmed_Obj_Key}}/{{alarm.id.alarmed_Obj_level_Cd}}/{{alarm.alarmed_Obj_No}}"> {{alarm.alarmed_Obj_Name}}</a>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="alarmed_Obj_No">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Suspect.RIM_Number' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.alarmed_Obj_No}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="risk_Score_Cd">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Suspect.Profile Risk' | translate}} </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.risk_Score_Cd}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="age_Old_Alarm">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Suspect.Oldest_Alarm' | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.age_Old_Alarm}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="owner_UID">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'Suspect.User' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let alarm"> {{alarm.owner_UID}} </mat-cell>
+
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+             (click)="selection.toggle(row)">
+        </mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+  [pageSize]="20"
+  [pageSizeOptions]="[2,5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+    </div>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!-- <mat-spinner *ngIf="IsLoaded"></mat-spinner> -->

@@ -1,1 +1,388 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* .dropdown-toggle.btn-sm {
+    padding-right: 6px;
+}
+
+.dropdown-toggle.btn-xs {
+    padding-right: 3px;
+}
+*/
+.btn-default {
+    background-color: #ABB7B7;
+    border-color: #ABB7B7;
+    color: #fff;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+    background-color: #98A3A3;
+    border-color: #98A3A3;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #fff;
+    border: 1px solid #0072b280;
+    color: #0072b2;
+    border-radius: 25px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    background-color: #0072b280;
+    border-color: transparent;
+    color: #FFFFFF;
+}
+
+.btn-success {
+    background-color: #68C39F;
+    border-color: #68C39F;
+    color: #FFFFFF;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #5CAD8D;
+    border-color: #5CAD8D;
+    color: #FFFFFF;
+}
+
+.btn-info {
+    background-color: #65BBD6;
+    border-color: #65BBD6;
+    color: #FFFFFF;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+    background-color: #5BA9C2;
+    border-color: #5BA9C2;
+    color: #FFFFFF;
+}
+
+.btn-warning {
+    background-color: #FFC052;
+    border-color: #FFC052;
+    color: #FFFFFF;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+    background-color: #F5B84F;
+    border-color: #F5B84F;
+    color: #FFFFFF;
+}
+
+.btn-danger {
+    background-color: #E15554;
+    border-color: #E15554;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+    background-color: #C74B4A;
+    border-color: #C74B4A;
+    color: #FFFFFF;
+}
+
+
+body {
+    /* background: #E4EAE6; */
+    background: rgba(0, 0, 0, 0.03);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 10px 0;
+}
+
+h1 {
+    line-height: 43px;
+}
+
+h2 {
+    line-height: 35px;
+}
+
+h3 {
+    line-height: 30px;
+}
+
+h4 {
+    line-height: 22px;
+}
+
+h3 small,
+h4 small,
+h5 small {
+    font-family: 'Oswald';
+    font-weight: 300;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Oswald';
+    font-weight: 300;
+    color: #505458;
+}
+
+* {
+    outline: none !important;
+}
+
+a:hover,
+a:active,
+a:focus {
+    outline: 0;
+    text-decoration: none;
+}
+
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+.label {
+    padding: 0.3em 0.6em;
+}
+
+.container {
+    width: auto;
+}
+
+/*===========================RGB CSS 2018-05-06====================*/
+
+/*======= Top Header =========*/
+.notificationValue[_ngcontent-c1] {
+    position: absolute;
+    background-color: #E15554 !important;
+    color: white;
+    border-radius: 50%;
+    right: -2px;
+    top: -8px;
+    padding: 4px;
+    line-height: 7px !important;
+    font-size: 16px;
+}
+
+.mat-menu-panel {
+    background: #7A868F;
+}
+.mat-menu-panel .mat-menu-item {
+    color: rgba(255, 253, 253, 0.87);
+}
+
+mat-toolbar .mat-button:focus {
+    color: #555555;
+    background-color: #eee;
+}
+
+.cdk-overlay-container .cdk-overlay-pane::before .mat-menu-panel {
+    border-bottom: 6px solid #7a868f;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    right: 18px;
+    content: "";
+    height: 0;
+    margin-right: -3px;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    bottom: 100%;
+}
+.mat-menu-item {
+    line-height: 28px !important;
+    height: 30px !important;
+    font-size: 14px;
+}
+
+/*========== Side-Menu Nav ===========*/
+
+mat-nav-list .mat-list-item:active {
+    background-color: #ff7902 !important;
+    color: #fff !important;
+    border-left: 5px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+}
+mat-sidenav .row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.mat-nav-list .mat-expansion-panel-body, .mat-nav-list .mat-expansion-panel-body .mat-list{
+    padding: 0;
+}
+.mat-nav-list .mat-expansion-panel-body .mat-list-item-content{
+    padding: 0 36px !important;
+    /*background: #114158a3;*/
+}
+.mat-nav-list .mat-icon {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+.mat-nav-list .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+}
+
+/*=========================== sidenav-content ===============================*/
+
+.mat-sidenav-content .mat-expansion-panel-header{
+    cursor: pointer;
+    -webkit-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    background: rgba(0, 0, 0, 0.02);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mat-sidenav-content .mat-card:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+
+.mat-sidenav-content .mat-elevation-z8 {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+/*======================== mat-dialog-container- Modal ==============================*/
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
+    height: auto !important;
+    background: #fff;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .mat-dialog-container {
+    padding: 10px;
+}
+.cdk-overlay-container .cdk-global-overlay-wrapper .forwardContainer[_ngcontent-c24],.cdk-overlay-container .cdk-global-overlay-wrapper .mat-dialog-container {
+    background: #f5f5f5;
+    color: rgba(0,0,0,.87);
+    padding: 15px;
+    box-shadow:none;
+}
+/*================ Search expansion-panel =======================*/
+
+mat-expansion-panel .mat-expansion-panel-body {
+    padding: 30px 16px;
+}
+
+.mat-expansion-panel-body [type="submit"] {
+    -webkit-appearance: button;
+    background-color: #25628F;
+    border: solid 1px #25628F;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding: 10px 25px;
+    height: 38px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: none;
+    cursor: pointer;
+}
+.mat-icon-button {
+    height: 50px !important;
+    line-height: 50px !important;
+    width: 46px !important;
+}
+.mat-expansion-indicator::after{
+    color: rgb(231, 231, 231) !important;
+}
+
+/***/
+
+.mat-list-item.active,
+.mat-list-item.active.subdrop {
+    color: #fff;
+    background: #F0843F !important;
+    border-left: 5px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+}
+
+.mat-list-item.open:after,
+.mat-list-item-content.active:after,
+.mat-list-item.active:after {
+    border-color: rgba(0, 0, 0, 0) #E4EAE6 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 15px 11px 15px 0;
+    content: " ";
+    height: 0;
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 0;
+    z-index: 2;
+}
+
+.mat_item_a.active,.mat-list-item-content.active .mat-list-item-content,
+.mat-list-item-content.active{
+    color: #fff;
+    background: #F0843F !important;
+    border-left: 5px solid rgba(0, 0, 0, 0.3);
+    padding-left: 5px;
+}
+.mat-nav-list[_ngcontent-c1] .mat-list-item.active[_ngcontent-c1]:hover{
+    background: #F0843F !important;}
+.searchActiveLink{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+  
+   
+}
+.searchActiveLink2{
+    /* background-color: black !important; */
+    border-radius: 10px 10px 0px 0px !important;
+    background-color: red;
+   
+}
+/**/
+.mat-drawer-content{position: initial !important}

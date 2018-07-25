@@ -1,0 +1,95 @@
+<app-section3></app-section3>
+<app-account-alarm-in-brief></app-account-alarm-in-brief>
+
+<mat-accordion>
+
+    <mat-expansion-panel expanded='true'>
+      <mat-expansion-panel-header>
+        Account Detail
+      </mat-expansion-panel-header>
+<!--Content-->
+<div class="container">
+    <div class="row">
+        <!--First columnn-->
+        <div class="col-lg-6">
+            <!--Card-->
+            <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    
+                    <!--Text-->
+                    <div class="card-text">
+                        <p> Account Number:{{result.acct_No}}</p>
+                        <p>Open Date:{{result.acct_Open_Date}}</p>
+                        <p>Status:{{result.acct_Status_Desc}}</p>
+                        <p>Closing Date:{{result.acct_Close_Date}}</p>
+                        <p>Product Type:{{result.prod_Type_Name}}</p>
+                        <p>Account Currency:{{result.acct_Ccy_Name}}</p>
+                        <p>Account Owner Name:{{result.acct_Name}}</p>
+                     </div>  
+                    
+                    
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+        </div>
+        <!--First columnn-->
+        <div class="col-lg-6">
+            <!--Card-->
+            <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title">Address</h4>
+                    <!--Text-->
+                    <div class="card-text">
+                        <p>{{result.mail_Addr_1}}</p>
+                        <p>{{result.mail_Addr_2}}</p>
+                        <p>{{result.mail_City_Name}}</p>
+                        <p>{{result.mail_Cntry_Name}}</p>
+                     </div>  
+                    
+                    
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+        </div>
+        <!--First columnn-->
+         <!--First columnn-->
+         <div class="col-lg-6">
+            <!--Card-->
+            <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title">Owner Detail</h4>
+                    <!--Text-->
+                    <div class="card-text">
+                        <div *ngFor="let x of result.cutomerAccounts">
+                            <p>customer Number:{{x.id.cust_Key}}</p>
+                            <p>Customer Role:{{x.id.role_Key}}</p>
+                            
+                            </div>
+                     </div>  
+                    
+                    
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+        </div>
+        <!--First columnn-->
+    </div>
+</div>
+<!--/.Content-->
+</mat-expansion-panel>
+</mat-accordion>

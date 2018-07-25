@@ -1,0 +1,155 @@
+<div class="left side-menu">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; /*height: 435px;*/">
+        <div class="sidebar-inner slimscrollleft" style="overflow: hidden; width: auto; /*height: 435px;*/">
+
+            <div class="clearfix"></div>
+            <hr class="divider">
+            <div class="clearfix"></div>
+            <!--- Profile -->
+            <div class="profile-info row">
+                <div class="col-4">
+                    <a href="#" class="rounded-image profile-image">
+                        <img src="./assets/images/users/avartar3.png">
+                    </a>
+                </div>
+                <div class="col-8">
+                    <div *ngIf="authService.currentUser" class="profile-text">Welcome
+                        <b>{{authService.currentUser.sub}}</b>
+                    </div>
+                </div>
+            </div>
+            <!--- Divider -->
+            <div class="clearfix"></div>
+            <hr class="divider">
+            <div class="clearfix"></div>
+            <!--- Divider -->
+            <div id="sidebar-menu">
+                <ul>
+                    <li>
+                        <a routerLink="suspects" class="active">
+                            <i class="icon-users-1"></i>
+                            <span> Suspects</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="icon-vcard"></i>
+                            <span> Risk Profiling</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="icon-clipboard"></i>
+                            <span> Regulatory Reports</span>
+                        </a>
+                    </li>
+
+
+                    <!-- <li><a href="#"><i class="icon-search-1"></i><span>Search</span></a></li>
+   -->
+
+
+
+
+                    <div>
+                        <mat-accordion>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <!-- <mat-panel-title>
+                      Personal data
+                    </mat-panel-title> -->
+                                    <mat-panel-description routerLink="#">
+                                        Search
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+
+
+                                <mat-list>
+                                    <mat-list-item ><a routerLink="account">account</a></mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><a routerLink="alarm">Alarm</a></mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><a routerLink="risk">Risk</a></mat-list-item>
+                                    <mat-divider></mat-divider>
+                                    <mat-list-item><a routerLink="party">Party</a></mat-list-item>
+                                    <mat-divider></mat-divider>
+
+                                    <mat-list-item><a routerLink="external">External Party</a></mat-list-item>
+                                    <mat-divider></mat-divider>
+                                </mat-list>
+
+
+
+
+
+                            </mat-expansion-panel>
+
+                        </mat-accordion>
+
+
+
+                    </div>
+
+
+
+
+
+                    <li>
+                        <a href="#">
+                            <i class="icon-cog-2"></i>
+                            <span> Administration</span>
+                        </a>
+                    </li>
+
+
+
+
+
+
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="slimScrollBar" style="background: rgb(122, 134, 143) none repeat scroll 0% 0%; width: 5px; position: absolute; top: -404px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; /*height: 435px;*/ visibility: visible;"></div>
+        <div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; left: 1px;"></div>
+    </div>
+
+</div>
+
+<!-- jhhhj -->
+<script>
+    // LEFT SIDE MAIN NAVIGATION
+    $("#sidebar-menu a").on('click', function(e) {
+        if (!$("#wrapper").hasClass("enlarged")) {
+
+            if ($(this).parent().hasClass("has_sub")) {
+                e.preventDefault();
+            }
+
+            if (!$(this).hasClass("active")) {
+                // hide any open menus and remove all other classes
+                $("ul", $(this).parents("ul:first")).slideUp(350);
+                $("a", $(this).parents("ul:first")).removeClass("active");
+                $("#sidebar-menu .pull-right i").removeClass("fa-angle-up").addClass("fa-angle-down");
+
+                // open our new menu and add the open class
+                $(this).next("ul").slideDown(350);
+                $(this).addClass("active");
+                $(".pull-right i", $(this).parents(".has_sub:last")).removeClass("fa-angle-down").addClass("fa-angle-up");
+                $(".pull-right i", $(this).siblings("ul")).removeClass("fa-angle-up").addClass("fa-angle-down");
+            } else if ($(this).hasClass("active")) {
+                $(this).removeClass("active");
+                $(this).next("ul").slideUp(350);
+                $(".pull-right i", $(this).parent()).removeClass("fa-angle-up").addClass("fa-angle-down");
+                //$(".pull-right i",$(this).parents("ul:eq(1)")).removeClass("fa-chevron-down").addClass("fa-chevron-left");
+            }
+        }
+    });
+</script>

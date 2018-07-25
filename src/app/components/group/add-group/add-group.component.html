@@ -1,0 +1,38 @@
+<form class="example-container" #add="ngForm" (ngSubmit)="addgroup(add.value)">
+  <mat-form-field>
+    <input matInput placeholder="GroupName" name="name" ngModel required>
+  </mat-form-field>
+  <button mat-raised-button  type="submit" color="accent">Add Group</button>
+
+</form>
+<div>
+<!-- 
+  <mat-list role="list" *ngIf="GroupsNames">
+    <mat-list-item role="listitem" *ngFor="let x of GroupsNames">{{x.name}}
+      <button type="button" class="btn btn-danger" (click)="deleteGroup(x.id)">Delete Group</button>
+      <button type="button" class="btn btn-primary" (click)="editGroup(x.id)">Edit Group</button>
+    </mat-list-item>
+
+  </mat-list> -->
+</div>
+<table class="table table-striped" style="border-left: 5px solid #609cba;">
+    <thead>
+      <tr>
+       
+        <th scope="col">Name</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead
+    >
+    <tbody>
+
+      <tr *ngFor="let x of GroupsNames">
+        <!-- <th scope="row">1</th> -->
+        <td>{{x.name.substring(5)}}</td>
+        <td> <button type="button" mat-raised-button color="danger" (click)="deleteGroup(x.id)">Delete Group</button></td>
+        <td>  <button type="button" mat-raised-button  color="primary"(click)="editGroup(x.id)">Edit Group</button></td>
+      </tr>
+    
+    </tbody>
+  </table>

@@ -1,0 +1,82 @@
+<ng-progress></ng-progress>
+
+
+<mat-accordion>
+
+
+<mat-expansion-panel expanded=true>
+  <mat-expansion-panel-header>
+      Alarm Detail
+    </mat-expansion-panel-header>
+    <mat-card class="example-card">
+        <mat-card-header>
+          
+          <!-- <mat-card-title>Transaction Detail</mat-card-title> -->
+         
+        </mat-card-header>
+     
+       <mat-card-content *ngIf="dataSource">
+         
+      
+        <h6>Routine Name : {{dataSource.routine_Name}}
+          </h6>
+        <h6>Routine Description: <span *ngIf="dataSource.acroutine">{{dataSource.acroutine.routine_Desc}}</span></h6>
+        <h6>Run Date:{{dataSource.run_Date}}</h6>
+        <h6> alarm message:{{dataSource.actual_Value_Txt}}</h6>
+      
+      
+        </mat-card-content>
+      
+      </mat-card>
+      
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!--  -->
+
+<hr>
+
+<mat-accordion>
+    <mat-expansion-panel  expanded>
+    <mat-expansion-panel-header>
+      Alarm Transaction Detail
+      </mat-expansion-panel-header>
+  <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource2" *ngIf="dataSource2">
+    
+      
+        <ng-container matColumnDef="acct_Key">
+          <mat-header-cell *matHeaderCellDef> Account Number </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.acct_Key}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="trans_Ref_No">
+          <mat-header-cell *matHeaderCellDef> Transaction reference Number </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.trans_Ref_No}} </mat-cell>
+        </ng-container>
+    
+     
+        <ng-container matColumnDef="date_Key">
+          <mat-header-cell *matHeaderCellDef>Transaction Date  </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date_Key}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ccy_Amt">
+            <mat-header-cell *matHeaderCellDef> Transaction Amount  </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ccy_Amt}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="trans_Cr_Db_Ind_Desc">
+              <mat-header-cell *matHeaderCellDef> Transaction Type </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.trans_Cr_Db_Ind_Desc}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="trans_Desc">
+                <mat-header-cell *matHeaderCellDef> Transaction Description </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.trans_Desc}} </mat-cell>
+              </ng-container>
+      
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+      </mat-table>
+    </div>
+    </mat-expansion-panel>
+    </mat-accordion>

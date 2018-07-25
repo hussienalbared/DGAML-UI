@@ -1,0 +1,122 @@
+<mat-accordion>
+    <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      {{ 'SearchExternalParty.Search_External_Party' | translate }}
+    </mat-expansion-panel-header>
+<div class="container">
+  
+  <form  #ExternalPartySearch = "ngForm" (ngSubmit) = "onClickSubmit(ExternalPartySearch.value)">
+  
+ <div class="row">
+   <div class="col-6">
+    <div class="form-group">
+      <label for="ExtPartyId">{{ 'SearchExternalParty.Ext_Party_Id' | translate }}</label>
+      <input type="text" value=" "  name="ExtPartyId" [(ngModel)]="ExtPartyId" class="form-control">
+      
+      </div>
+   </div>
+   <div class="col-6">
+    <div  class="form-group">
+      <label for="ExtPartyFullName">{{ 'SearchExternalParty.Ext_Party_Full_Name' | translate }}</label>
+      <input type="text" value=" "  name="ExtPartyFullName" [(ngModel)]="ExtPartyFullName" class="form-control">
+      
+      </div>
+   </div>
+ </div>
+ <div class="row">
+  <div class="col-6">
+    <div class="form-group">
+      <label for="ExtPartynumber">{{ 'SearchExternalParty.Party_Number' | translate }}</label>
+      <input type="text" value="" name="ExtPartynumber" [(ngModel)]="ExtPartynumber" class="form-control">
+      
+      </div>
+  </div>
+  <div class="col-6">
+
+    <div  class="form-group">
+      <label for="ExtPartyIdCountryCode">{{ 'SearchExternalParty.Ext_Party_ID_country_code' | translate }}</label>
+      <input type="text" name="ExtPartyIdCountryCode" [(ngModel)]="ExtPartyIdCountryCode" class="form-control">
+      
+      </div>
+  </div>
+</div>
+    
+     
+        
+         
+     
+  <!-- <div class="form-group"> 
+  <input type="submit" value="Search" class="btn btn-primary">
+  
+  </div> -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block searchButton" >{{ 'SearchExternalParty.Search' | translate }}</button>
+  </div>
+  
+  </form>
+  </div>
+  <hr>
+  <ng-progress></ng-progress>
+ <div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+<div class="example-container mat-elevation-z8">
+  
+<mat-table #table [dataSource]="dataSource" matSort> 
+
+  <ng-container matColumnDef="ext_Full_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.EXT_party_name' | translate }} </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Full_Name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ext_Cust_No">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchExternalParty.Ext_Party_Number' | translate }} </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Cust_No}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Address">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchExternalParty.Address' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.addr_1}}--{{alarm.addr_2}} </mat-cell>
+  </ng-container>
+ 
+  <ng-container matColumnDef="city_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchExternalParty.City_Name' | translate }} </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.city_Name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ext_Birth_Date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.Date_of_Birth' | translate }} </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ext_Birth_Date | date:'MM/dd/yyyy'}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="cntry_Name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.Citizenship' | translate }} </mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.cntry_Name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ident_Type_Desc">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.Identification_Document' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ident_Type_Desc}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ident_Id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.Identification_Number' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.ident_Id}} </mat-cell>
+  </ng-container>
+ 
+  <ng-container matColumnDef="TEL">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchExternalParty.Telephone' | translate }}</mat-header-cell>
+    <mat-cell *matCellDef="let alarm"> {{alarm.tel_No_1}} --- {{alarm.tel_No_2}}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+<mat-paginator #paginator
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 20]"
+  [showFirstLastButtons]="true">
+</mat-paginator>
+</div>
+
+</mat-expansion-panel>
+</mat-accordion>

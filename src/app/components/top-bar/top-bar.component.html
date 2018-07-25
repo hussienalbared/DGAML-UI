@@ -1,0 +1,79 @@
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo">
+      <h1>
+        <a href="#">
+          <img src="./assets/images/logo.png" alt="Logo">
+        </a>
+      </h1>
+    </div>
+    <button class="button-menu-mobile open-left">
+      <i class="fa fa-bars"></i>
+    </button>
+  </div>
+
+  <div class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+    <!-- <div class="container"> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="navbar-srch">
+          <h3>
+            <strong>DataGear</strong> Anti-Money Laundering</h3>
+        </li>
+
+        <li class="nav-item dropdown iconify hide-phone">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-bell"></i>
+            <span class="label label-danger absolute">4</span>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown iconify hide-phone">
+          <a class="nav-link" href="#" onclick="javascript:toggle_fullscreen()" title="full Screen">
+            <i class="icon-resize-full-2"></i>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown topbar-profile">
+          <a *ngIf="authService.currentUser" href="#" mat-button [matMenuTriggerFor]="menu" class="nav-link dropdown-toggle">
+            <span class="rounded-image topbar-profile-image">
+              <img src="./assets/images/users/avartar3.png">
+            </span >
+            {{authService.currentUser.sub}}
+          </a>
+        </li>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <li>
+              <a href="#">My Profile</a>
+            </li>
+          </button>
+          <button mat-menu-item>
+            <li>
+              <a href="#">Account Setting</a>
+            </li>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item>
+            <a (click)="authService.logout()" class="md-trigger" data-modal="logout-modal">
+              <i class="icon-logout-1"></i> Logout</a>
+          </button>
+        </mat-menu>
+
+        <li class="nav-item language_bar dropdown hidden">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">English
+            <i class="fa fa-globe"></i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li class="dropdown-header notif-header">English</li>
+            <li>
+              <a href="index-ar.html">اللغة العربية</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
