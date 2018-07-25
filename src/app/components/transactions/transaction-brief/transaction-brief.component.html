@@ -3,7 +3,7 @@
 
     <mat-expansion-panel expanded='true'>
       <mat-expansion-panel-header>
-          Transaction in Brief
+          {{ 'TransactionBrief.Transaction_in_Brief' | translate }}
       </mat-expansion-panel-header>
 
 <div class="example-header">
@@ -19,33 +19,33 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="acct_Key" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Account Number </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TransactionBrief.Account_Number' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let element" (click)="alertF(element.acct_Key)"> {{element.acct_Key}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="trans_Ref_No">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction reference number </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TransactionBrief.Transaction_reference_number' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let element">  <a routerLink="/TransactionDeatil/{{element.trans_Ref_No}}" appAddTab path="/TransactionDeatil/{{element.trans_Ref_No}}">{{element.trans_Ref_No}}</a> </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="trans_Desc">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Description</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TransactionBrief.Transaction_Description' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.trans_Desc}} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="ccy_Amt" >
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Amount </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TransactionBrief.Transaction_Amount' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.ccy_Amt}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="date_Key">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Transaction Date </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'TransactionBrief.Transaction_Date' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.date_Key}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="trans_Cr_Db_Ind_Desc">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Type </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'TransactionBrief.Transaction_Type' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.trans_Cr_Db_Ind_Desc}} </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

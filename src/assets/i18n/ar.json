@@ -1,18 +1,195 @@
 {
     "dir":"rtl",
     "text_align": "right",
+    "en": "الإنجليزية",
+    "ar": "العربية",
+    "My_Profile": "حسابي",
+    "Logout": "تسجيل خروج",
+
+    "right_side_bar":{
+        "Welcome": "مرحباً",
+        "Suspects": "المشتبة بهم",
+        "Risk_Profiling": "Risk Profiling",
+        "DashBoard": "DashBoard",
+        "Regulatory_Reports": "Regulatory Reports",
+        "Search": "ابحث بـ",
+            "Account": "الحساب",
+            "Alarm": "Alarm",
+            "Customer": "العميل",
+            "External_Customer": "External Customer",
+        "Administration": "الإدارة",
+            "Group_management": "إداره الجروبات",
+            "User": "إدارة المستخدمين"
+    },
+
+    "mainFunctionalities": {
+        "Forward": "توجيه المشتبه",
+        "Take_Ownership": "Take Ownership",
+        "Remove_Ownership": "Remove Ownership",
+        "Close": "Close",
+        "Suppress": "Suppress",
+        "Export_as_CSV": "Export as CSV",
+        "Approve": "Approve",
+        "Decline": "Decline"
+    },
+
     "Suspect":{
-        "sec_title": "بيانات الشمتبه بهم"
+        "sec_title": "بيانات المشتبه فيهم",
+        "No": "رقم المشتبه",
+        "Number_of_Alarm": "Number of Alarm",
+        "Suspect_Name": "اسم المشتبه",
+        "RIM_Number": "RIM Number",
+        "Profile_Risk": "Profile Risk",
+        "Oldest_Alarm": "Oldest Alarm",
+        "User": "المستخدم"
     },
 
     "Risk":{
+        "General_Information": "معلومات عامة عن المشتبه",
         "sec_title": "",
-        "risk_table":{
-            "riskId": "",
-            "customerName": "اسم العميل",
-            "customerNumber":"رقم العميل"
-        }
+        "Risk_Id": "Risk Id",
+        "customerName": "اسم العميل",
+        "customerNumber":"رقم العميل",
+        "Current_classification": "Current classification",
+        "Suggested_classification": "Suggested classification",
+        "Created_Date": "Created Date",
+        "User": "المستخدم",
+
+        "Risk_Classifier": "Risk Classifier",
+        "Id": "Id",
+        "Risk_Classifier_Name": "Risk Classifier Name",
+        "Classifier_Wieght": "Classifier Wieght",
+        "Describition": "Describition",
+        "Classifier_ThreeShold": "Classifier ThreeShold"
     },
+
+    "Notification":{
+        "Mark_All_as_Read": "حدد كمقروء",
+        "Notifications": "الإشعارات"
+    },
+
+    "SearchAccount":{
+        "Search_Account": "البحث عن طريق الحساب",
+        "Account_Number": "رقم الحساب",
+        "Account_Name": "اسم الحساب",
+        "Account_Open_date": "تاريخ فتح الحساب",
+        "Account_Close_date": "تاريخ قفل الحساب",
+        "Account_Type": "نوع الحساب",
+        "Search": "ابحث"        
+    },
+
+    "SearchAlarm":{
+        "Search_Alarms": "Search Alarms",
+        "Alarm_ID": "Alarm ID",
+        "Alarm_status": "Alarm status",
+        "Active": "Active",
+        "closed": "Closed",
+        "suppressed": "Suppressed",
+        "Money_laundering_risk": "Money laundering risk",
+        "Start_Create_date": "Start Create date",
+        "End_Create_date": "End Create date",
+        "Start_Run_date" : "Start Run date",
+        "End_Run_date": "End Run date",
+        "Scenario_name": "Scenario name",
+        "Scenario_ID": "Scenario ID",
+        "Search": "ابحث",
+        "Create_date": "Create date",
+        "Run_date": "Run date" 
+    },
+    "SearchCustomer":{
+        "Search_Customer": "البحث عن طريق العميل",
+        "Customer_Number": "اسم العميل",
+        "Customer_Id": "رقم العميل",
+        "Customer_Name": "اسم العميل",
+        "PoliticallyExposedPerson": "PoliticallyExposedPerson",
+        "Yes": "نعم",
+        "No": "لا",
+        "Risk": "Risk",
+        "High": "High",
+        "Medium": "Medium",
+        "Low": "Low",
+        "Customer_status_description": "Customer status description",
+        "Active": "Active",
+        "Dormant": "Dormant",
+        "Closed": "Closed",
+        "Ex_customer": "Ex-customer",
+        "Search": "ابحث",
+        "Politically_exposed_person": "Politically exposed person",
+        "Party_risk": "Party risk"
+    },
+    "SearchExternalParty":{
+        "Search_External_Party": "Search External Party",
+        "Ext_Party_Id": "Ext Party Id",
+        "Ext_Party_Full_Name": "Ext Party Full Name",
+        "Party_Number": "Party Number",
+        "Ext_Party_ID_country_code": "Ext Party ID country code",
+        "Search": "ابحث",
+        "EXT_party_name": "EXT party name",
+        "Address": "Address",
+        "Ext_Party_Number": "Ext Party Number",
+        "City_Name": "اسم المدينة",
+        "Date_of_Birth": "تاريخ الميلاد",
+        "Citizenship": "Citizenship",
+        "Identification_Document": "Identification Document",
+        "Identification_Number": "Identification Number",
+        "Telephone": "Telephone"
+    },
+    "UserAdministration":{
+        "Add_New_User": "اضافة مستخدم جديد",
+        "Enable": "Enable",
+        "Disable": "Disable",
+        "Delete": "حذف",
+        "Users": "المستخدمين",
+        "Id": "رقم المستخدم",
+        "User_Name": "اسم المستخدم",
+        "Display_Name": "Display Name",
+        "First_Name": "الاسم الاول",
+        "Last_Name": "الاسم الاخير",
+        "E_mail": "البريد الالكتروني",
+        "Status": "الحالة",
+        "lastPasswordResetDate": "lastPasswordResetDate"
+    },
+    "SuspectDetail":{
+        "Suspect_Detail": "بيانات المشتبه",
+        "Customer_name": "اسم العميل",
+        "Customer_Number": "رقم العميل",
+        "Address": "Address",
+        "Date_of_Birth": "تاريخ الميلاد",
+        "Politically_exposed": "Politically exposed",
+        "Citizenship": "Citizenship",
+        "Identification_Document": "Identification Document",
+        "Identification_Number": "Identification Number",
+        "Identification_Issue_Date": "Identification Issue Date",
+        "Identification_Expiry_Date": "Identification Expiry Date",
+        "Employer_Name": "Employer Name",
+        "Occupation": "Occupation",
+        "Telephone": "Telephone",
+        "Current_Risk_Classification": "Current Risk Classification",
+        "Dealing_with_the_bank_since_Date": "Dealing with the bank since Date",
+        "Related_Accounts": "Related Accounts"
+    },
+    "AlarmBrief":{
+        "Alarm_in_Brief": "Alarm in Brief",
+        "Close": "Close",
+        "Suppress": "Suppress",
+        "Report": "Report",
+        "ALARM_ID": "ALARM ID",
+        "Alarm_Level": "Alarm Level",
+        "Scenario_Name": "Scenario Name",
+        "Scenario_Type": "Scenario Type",
+        "Scenario_Description": "Scenario Description",
+        "Run_Date": "Run Date"
+    },
+    "TransactionBrief":{
+        "Transaction_in_Brief": "Transaction in Brief",
+        "Account_Number": "رقم الحساب",
+        "Transaction_reference_number": "Transaction reference number",
+        "Transaction_Description": "Transaction Description",
+        "Transaction_Amount": "Transaction Amount",
+        "Transaction_Date": "Transaction Date",
+        "Transaction_Type": "Transaction Type"
+    },
+
     "take-ownership-suspect":"اخذ ملكية المشتبه",
     "close-suspect":"غلق حالة المشتبه ",
     "suppress-suspect":" حجب المشتبه",
@@ -29,5 +206,4 @@
     "Forward-Risk":" عمل اعادة توجيه للخطر",
     "on":" على ",
     "to":" الى "
-
 }

@@ -1,12 +1,12 @@
 <mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
   <button class="btn btn-primary" (click)="addUser()">
-    <i class="fa fa-chain-broken" ></i> Add New User</button>
+    <i class="fa fa-chain-broken" ></i> {{ 'UserAdministration.Add_New_User' | translate}}</button>
     <button class="btn btn-primary" (click)="enableUser()">
-    <i class="fa fa-share" > </i> Enable</button>
+    <i class="fa fa-share" > </i> {{ 'UserAdministration.Enable' | translate }}</button>
   <button class="btn btn-primary" (click)="disableUser()">
-    <i class="fa fa-chain"></i> Disable</button>
+    <i class="fa fa-chain"></i> {{ 'UserAdministration.Disable' | translate}}</button>
   <button class="btn btn-primary" (click)="deleteUser()">
-    <i class="fa fa-chain-broken" ></i> Delete</button>
+    <i class="fa fa-chain-broken" ></i> {{ 'UserAdministration.Delete' | translate }}</button>
 </mat-card>
 
 <!-- <span>{{ dataSource.data[0].firstname }}</span> -->
@@ -15,7 +15,7 @@
   <mat-expansion-panel expanded='true'>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Users
+        {{ 'UserAdministration.Users' | translate }}
       </mat-panel-title>
       <mat-panel-description>
 
@@ -44,42 +44,42 @@
         </ng-container>
         
         <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'UserAdministration.Id' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let user" > {{user.id}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="username">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'UserAdministration.User_Name' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let user" > {{user.username}} </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="displayName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'UserAdministration.Display_Name' | translate }} </mat-header-cell>
               <mat-cell *matCellDef="let user" > {{user.displayName}} </mat-cell>
             </ng-container>
 
         <ng-container matColumnDef="firstname">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'UserAdministration.First_Name' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let user" > {{user.firstname}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="lastname">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'UserAdministration.Last_Name' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let user"> {{user.lastname}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="email">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'UserAdministration.E_mail' | translate }}</mat-header-cell>
           <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="enabled">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Status </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'UserAdministration.Status' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{user.enabled}} </mat-cell>
         </ng-container>
         
         <ng-container matColumnDef="lastPasswordResetDate"> <!--DatePipe-->
-          <mat-header-cell *matHeaderCellDef mat-sort-header>lastPasswordResetDate </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'UserAdministration.lastPasswordResetDate' | translate }} </mat-header-cell>
           <mat-cell *matCellDef="let user"> {{user.lastPasswordResetDate|date:'short'}} </mat-cell>
         </ng-container>
  

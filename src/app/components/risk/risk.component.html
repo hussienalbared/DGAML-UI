@@ -3,17 +3,17 @@
   <ng-progress></ng-progress>
 <mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
   <button class="btn btn-primary" (click)="openDialog()">
-    <i class="fa fa-share" > </i> Forward</button>
+    <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
   <button class="btn btn-primary" (click)="takeOwnerShip()">
-    <i class="fa fa-chain"></i> Take Ownership</button>
+    <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
   <button class="btn btn-primary" (click)="removeOwnerShip()">
-    <i class="fa fa-chain-broken" ></i> Remove Ownership</button>
+    <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
   <button class="btn btn-primary" (click)="approveRisk()">
-    <i class="fa fa-ban"></i> Approve</button>
+    <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Approve' | translate }}</button>
   <button class="btn btn-primary" (click)="declineRisk()">
-    <i class="fa fa-eye-slash"></i> Decline</button>
+    <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Decline' | translate }}</button>
     <button class="btn btn-primary" (click)="ExportasCSV()">
-      <i class="fa fa-eye-slash"></i> Export as CSV</button>
+      <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>
 </mat-card>
 <!-- -->
 <mat-accordion>
@@ -51,37 +51,37 @@
     <!-- -->
 
     <ng-container matColumnDef="risk_Assmnt_Id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  Risk Id </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.Risk_Id' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.risk_Assmnt_Id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cust_Name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.risk_table.customerName' | translate }} </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.customerName' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.cust_Name}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cust_No">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.risk_table.customerNumber' | translate }}</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.customerNumber' | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.cust_No}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="risk_Class">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Current classification </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.Current_classification' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.risk_Class}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="proposed_Risk_Class">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> Suggested classification </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.Suggested_classification' | translate }} </mat-header-cell>
     <mat-cell *matCellDef="let risk"> {{risk.proposed_Risk_Class}} </mat-cell>
   </ng-container>
 
     <ng-container matColumnDef="create_Date">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  Created Date </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.Created_Date' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.create_Date}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="owner_User_Long_Id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>  User </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.User' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let risk"> {{risk.owner_User_Long_Id}} </mat-cell>
     </ng-container>
 
@@ -116,7 +116,7 @@
   <h5 class="riskSectionTitle">
     <!-- <mat-list class="nav-link">
             <a mat-list-item href="risk.component.html" > -->
-              General Information
+              {{ 'Risk.General_Information' | translate }}:
               <!-- <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
           
@@ -126,13 +126,13 @@
  <mat-card-content>
    
 
-  <h6>Risk ID : <span style="font-weight:normal">  {{this.riskId}}</span></h6>
-  <h6>{{ 'Risk.risk_table.customerName' | translate }} : <span>{{this.customerName}}</span></h6>
-  <h6>{{ 'Risk.risk_table.customerNumber' | translate }} :<span> {{customerNumber}}</span></h6>
-  <h6>Current Classification : <span>{{currentClassification}}</span> </h6>
-  <h6>Suggested Classification : <span>{{suggestedClassification}}</span> </h6>
-  <h6>Created Date : <span>{{createDate}}</span> </h6>
-  <h6>User : <span>{{user}}</span> </h6>
+  <h6>{{ 'Risk.Risk ID' | translate }} : <span style="font-weight:normal">  {{this.riskId}}</span></h6>
+  <h6>{{ 'Risk.customerName' | translate }} : <span>{{this.customerName}}</span></h6>
+  <h6>{{ 'Risk.customerNumber' | translate }} :<span> {{customerNumber}}</span></h6>
+  <h6>{{ 'Risk.Current_classification' | translate }} : <span>{{currentClassification}}</span> </h6>
+  <h6>{{ 'Risk.Suggested_classification' | translate }} : <span>{{suggestedClassification}}</span> </h6>
+  <h6>{{ 'Risk.Created_Date' | translate }} : <span>{{createDate}}</span> </h6>
+  <h6>{{ 'Risk.User' | translate }} : <span>{{user}}</span> </h6>
 
 
   </mat-card-content>
@@ -146,38 +146,38 @@
 <mat-accordion>
   <mat-expansion-panel expanded>
     <mat-expansion-panel-header class="riskSectionTitle">
-        Risk Classifier
+        {{ 'Risk.Risk_Classifier' | translate }}
       </mat-expansion-panel-header>
       <mat-table [dataSource]="dataSourceTable2" #sortClassifier="matSort" matSort>
 
        
           <ng-container matColumnDef="riskClassifierId">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.Id' | translate }}</mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.risk_Class_Id}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="riskClassifierName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Risk Classifier Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.Risk_Classifier_Name' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.risk_Class_Name}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="riskClassifierDesc">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Describition </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'Risk.Describition' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.risk_Class_Desc}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="weight">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier Wieght </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.Classifier_Wieght' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.weight}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="classifierThreshold">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>  Classifier ThreeShold </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.Classifier_ThreeShold' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.class_Limit}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="createDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>  Create Date </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>  {{ 'Risk.Created_Date' | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let class"> {{class.create_Date}} </mat-cell>
           </ng-container>
       
