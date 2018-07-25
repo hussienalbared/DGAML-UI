@@ -8,7 +8,7 @@
 
     "right_side_bar":{
         "Welcome": "مرحباً",
-        "Suspects": "المشتبة فيهم",
+        "Suspects": "المشتبة بهم",
         "Risk_Profiling": "Risk Profiling",
         "DashBoard": "DashBoard",
         "Regulatory_Reports": "Regulatory Reports",
@@ -35,13 +35,13 @@
 
     "Suspect":{
         "sec_title": "بيانات المشتبه فيهم",
-        "No": "No",
+        "No": "رقم المشتبه",
         "Number_of_Alarm": "Number of Alarm",
         "Suspect_Name": "اسم المشتبه",
         "RIM_Number": "RIM Number",
         "Profile_Risk": "Profile Risk",
         "Oldest_Alarm": "Oldest Alarm",
-        "User": "User"
+        "User": "المستخدم"
     },
 
     "Risk":{
@@ -53,7 +53,7 @@
         "Current_classification": "Current classification",
         "Suggested_classification": "Suggested classification",
         "Created_Date": "Created Date",
-        "User": "User",
+        "User": "المستخدم",
 
         "Risk_Classifier": "Risk Classifier",
         "Id": "Id",
@@ -64,14 +64,14 @@
     },
 
     "Notification":{
-        "Mark_All_as_Read": "تم الإطلاع",
+        "Mark_All_as_Read": "حدد كمقروء",
         "Notifications": "الإشعارات"
     },
 
     "SearchAccount":{
-        "Search_Account": "Search Account",
+        "Search_Account": "البحث عن طريق الحساب",
         "Account_Number": "رقم الحساب",
-        "Account_Name": "Account Name",
+        "Account_Name": "اسم الحساب",
         "Account_Open_date": "تاريخ فتح الحساب",
         "Account_Close_date": "تاريخ قفل الحساب",
         "Account_Type": "نوع الحساب",
@@ -97,10 +97,10 @@
         "Run_date": "Run date" 
     },
     "SearchCustomer":{
-        "Search_Customer": "Search Customer",
-        "Customer_Number": "Customer Number",
-        "Customer_Id": "Customer Id",
-        "Customer_Name": "Customer Name",
+        "Search_Customer": "البحث عن طريق العميل",
+        "Customer_Number": "اسم العميل",
+        "Customer_Id": "رقم العميل",
+        "Customer_Name": "اسم العميل",
         "PoliticallyExposedPerson": "PoliticallyExposedPerson",
         "Yes": "نعم",
         "No": "لا",
@@ -139,20 +139,20 @@
         "Enable": "Enable",
         "Disable": "Disable",
         "Delete": "حذف",
-        "Users": "Users",
-        "Id": "Id",
+        "Users": "المستخدمين",
+        "Id": "رقم المستخدم",
         "User_Name": "اسم المستخدم",
         "Display_Name": "Display Name",
-        "First_Name": "الاسم للاول",
+        "First_Name": "الاسم الاول",
         "Last_Name": "الاسم الاخير",
-        "E_mail": "الايميل",
+        "E_mail": "البريد الالكتروني",
         "Status": "الحالة",
         "lastPasswordResetDate": "lastPasswordResetDate"
     },
     "SuspectDetail":{
         "Suspect_Detail": "بيانات المشتبه",
         "Customer_name": "اسم العميل",
-        "Customer_Number": "Customer Number",
+        "Customer_Number": "رقم العميل",
         "Address": "Address",
         "Date_of_Birth": "تاريخ الميلاد",
         "Politically_exposed": "Politically exposed",
