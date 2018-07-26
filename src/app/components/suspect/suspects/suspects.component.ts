@@ -1,6 +1,6 @@
 import { NotificationService } from './../../../services/notification.service';
 import { UserService } from './../../../services/user.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
@@ -18,7 +18,9 @@ import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';
+import { ToastsManager } from 'ng2-toastr';
+  @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
   styleUrls: ['./suspects.component.css']
@@ -43,8 +45,12 @@ export class SuspectsComponent implements OnInit {
     public translate: TranslateService,
     private suspectService: SuspectsService,public ngProgress: NgProgress,
     private userService: UserService,
-    private notification: NotificationService
-  ) { }
+    private notification: NotificationService,
+
+    public toastr: ToastsManager, vcr: ViewContainerRef
+  ) { 
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -116,8 +122,6 @@ export class SuspectsComponent implements OnInit {
     this.suspectService.removeOwnerShip(this.selection.selected);
   }
   takeOwnerShip() {
-
-
     this.selection.selected.forEach(
       element => {
 
@@ -129,9 +133,13 @@ export class SuspectsComponent implements OnInit {
 
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
           this.notification.suspectNotification(code,key,'take-ownership-suspect',localStorage.getItem('id'))
-         }
+          
+          this.toastr.success('You have been assigned to the suspect', 'Success!');
+          
+        }
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
           }
         );
       }
