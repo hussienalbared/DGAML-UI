@@ -73,7 +73,7 @@
               <mat-form-field>
                 <!-- <input type = "password" matInput  placeholder="Password" [type]="hide ? 'password' : 'text'" ngModel name="password">
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
-                <input type = "password" matInput  placeholder="Password" ngModel name="password">
+                <input type = "password" matInput  placeholder="Password" #password="ngModel" ngModel name="password">
               </mat-form-field>
               <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
                 <div *ngIf="password.errors.required">E-mail is required.</div>
