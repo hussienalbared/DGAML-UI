@@ -1,6 +1,7 @@
+import { ToastsManager } from 'ng2-toastr';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { user } from './../../models/user.model';
@@ -36,7 +37,10 @@ export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService,public ngProgress: NgProgress,public dialog: MatDialog,) { }
+  constructor(private userService: UserService,public ngProgress: NgProgress,public dialog: MatDialog,
+    public toastr: ToastsManager, vcr: ViewContainerRef) { 
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
 /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -107,10 +111,13 @@ export class UserComponent implements OnInit {
       let u_enable = element["enabled"];
       // let u_enable = element[4];
       element[4] = true;
-      this.userService.enableUser(user_id_).subscribe(data => { },
+      this.userService.enableUser(user_id_).subscribe(data => { 
+        this.toastr.success('User Enabled Successfully','Success')
+      },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
+          this.toastr.error('Operation fail!', 'Oops!')
         }
       );;
     });
@@ -127,10 +134,13 @@ export class UserComponent implements OnInit {
       let u_enable = element["enabled"];
       // let u_enable = element[4] 
       element[4] = false;
-      this.userService.disableUser(user_id_).subscribe(data => { },
+      this.userService.disableUser(user_id_).subscribe(data => {
+        this.toastr.success('User Disabled Successfully', 'Success')
+       },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
+          this.toastr.error('Operation fail!', 'Oops!')
         }
       );;
     });
@@ -144,14 +154,16 @@ export class UserComponent implements OnInit {
     var tindex = this.getSelectedIndex();
     this.selection.selected.forEach(element => {
       // let user_id_ = element['id'];
-      let user_id_ = element[0];
+      let user_id_ = element['id'];
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<user>(true, []);
 
-      this.userService.deleteUser(user_id_).subscribe(data => { },
+      this.userService.deleteUser(user_id_).subscribe(data => { 
+        this.toastr.success('User Deleted Successfully', 'Success')
+      },
         error => {
-          
+          this.toastr.error('Operation fail!', 'Oops!')
         }
       );;
     });

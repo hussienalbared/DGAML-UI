@@ -75,10 +75,7 @@ export class UserService {
       // email: email,
       // enabled: enable,
       // lastPasswordResetDate: lastPasswordResetDate
-    ).subscribe(data => {},
-      err => {
-        console.log("Error occured");
-      })
+    )
   }
 
   updateUser(id,username,DisplayName,password,firstname,lastname,email,enabled,groups){
@@ -94,10 +91,7 @@ export class UserService {
       email: email,
       enabled: enabled,
       groups:groups
-    }).subscribe(data => {},
-      err => {
-        console.log("Error occured");
-      })
+    })
   }
 
 }
