@@ -71,7 +71,7 @@ export class LayoutComponent implements OnInit {
     stompClient.subscribe(`/topic/notification/${localStorage.getItem('id')}`, noti => {
       ;
 
-      console.log("stompClient.subscribe: ")
+      
     
 
       this.notifications.push(JSON.parse(noti.body));
@@ -93,8 +93,7 @@ if(this.newValue!==this.notificatiobValue){
 
 
     this.notifications = data;
-    console.log("all noto ))))))))))))))))))")
-    console.log(this.notifications)
+  
     this.notificatiobValue = this.notifications.length; 
   });
 }
@@ -175,7 +174,7 @@ changeLang2(tarnsLang:string){
   this.translate.setDefaultLang(tarnsLang);
   this.translate.use(tarnsLang)
   this.selected_Language = tarnsLang;
-  console.log(this.selected_Language)
+  
 
   //--- temp because it doesn't read the style from ar/en.json
     if(this.selected_Language=='en'){
@@ -230,7 +229,7 @@ sendNoti(x,index:number){
 
 
 markAllRead(){
-  console.log("markAllRead()-markAllRead() Function")
+  
   this.notification.markAllRead(localStorage.getItem('id'))
   this.notifications=[];
   this.notificatiobValue=0;

@@ -14,8 +14,8 @@ export class NotificationService {
 
   // suspect notification (takeowner,removeowner,close,suppress)
   suspectNotification(alarmed_Obj_level_Cd,alarmed_Obj_Key,action,loggedUser){
-    console.log("***** in suspectNotification take-removeOwner - close - suppress******")
-    console.log(alarmed_Obj_level_Cd + ", " + alarmed_Obj_Key + " ," + action + ", " + loggedUser)
+    
+    
 
     let url = this.rootUrl + "notification/addSuspectNotification";
     let noti = {
@@ -24,15 +24,15 @@ export class NotificationService {
       action:action,
       create_User_Id:loggedUser
     }
-    console.log("Noti ***************** obj : ")
-    console.log(noti)
+    
+    
     return this.http.post(url,noti).subscribe(data=>{});
   }
 
   //suspect forward
   suspectForwardNoti(alarmed_Obj_level_Cd,alarmed_Obj_Key,action,loggedUser,target_user_name){
-    console.log("***** in suspectForwardNotification ******")
-    console.log(alarmed_Obj_level_Cd + ", " + alarmed_Obj_Key + " ," + action + ", " + loggedUser+ ", "+ target_user_name)
+    
+    
     let url = this.rootUrl + "notification/addSuspectNotification";
     let noti = {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
@@ -45,8 +45,8 @@ export class NotificationService {
   }
 
   suspectCommentNoti(alarmed_Obj_level_Cd,alarmed_Obj_Key,action,loggedUser,commentdecription){
-    console.log("***** in suspectForwardNotification ******")
-    console.log(alarmed_Obj_level_Cd + ", " + alarmed_Obj_Key + " ," + action + ", " + loggedUser+ ", "+ commentdecription)
+    
+    
     let url = this.rootUrl + "notification/addSuspectNotification";
     let noti = {
       alarmed_Obj_level_Cd:alarmed_Obj_level_Cd,
@@ -69,7 +69,7 @@ export class NotificationService {
   }
 
   alarmNotification(alarmeid,action,loggedUser){
-    console.log("***** in alarmNotification ******")
+    
     let url = this.rootUrl + "notification/addalarmNotification";
     let noti = {
       alarm_Id:alarmeid,
@@ -97,8 +97,8 @@ export class NotificationService {
       action:action,
       create_User_Id:loggedUser
     }
-    console.log("hussien 1 ")
-    console.log(noti)
+    
+    
     this.http.post(url,noti).subscribe(data=>{});
   }
 
@@ -113,7 +113,7 @@ export class NotificationService {
 
   markAllRead(userId_){
     let url = this.rootUrl + "notification/markAllRead?userId="+userId_;
-    console.log(''+url);
+    
     this.http.post(url,[]).subscribe(data=>{},error=>{
 alert('erorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
     });

@@ -40,16 +40,16 @@ export class UserService {
   }
   addNewUser(username,DisplayName,password,firstname,lastname,email,enable,lastPasswordResetDate,groups){
     
-    console.log("****add service****");
-    console.log(username);
-    console.log(DisplayName);
-    console.log(firstname);
-    console.log(lastname);
-    console.log(email);
-    console.log(password);
-    console.log("Groups");
-    console.log(groups);
-    console.log("********");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     let url = this.rootUrl + "user/addUser";
 
@@ -77,7 +77,7 @@ export class UserService {
       // lastPasswordResetDate: lastPasswordResetDate
     ).subscribe(data => {},
       err => {
-        console.log("Error occured");
+        
       })
   }
 
@@ -96,7 +96,7 @@ export class UserService {
       groups:groups
     }).subscribe(data => {},
       err => {
-        console.log("Error occured");
+        
       })
   }
 

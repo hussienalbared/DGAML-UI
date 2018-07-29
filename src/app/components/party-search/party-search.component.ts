@@ -63,14 +63,14 @@ export class PartySearchComponent {
   
     
     let url=environment.ipAddress+"/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
-    console.log(url)
+    
     this.http.get<any[]>(url).subscribe(data=>{
 if(data.length>0)
 {
   let path="suspectDetail/"+data[0][0]+"/"+data[0][1]+"/"+partyNumber;
   let Tab:tab={path:path,label:PartyName}
   this.tabService.addTab(Tab);
-  console.log("tab"+Tab.label+Tab.path)
+  
  this.router.navigate([path]);
 }
     })

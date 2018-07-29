@@ -15,10 +15,10 @@ export class LoginComponent {
     private authService: AuthService) { }
 
   signIn(credentials) {
-    console.log('signIn');
+   
     this.authService.login(credentials).
       subscribe(result => {
-        console.log(result);
+       
         if (result) {
           const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.router.navigate([returnUrl || '/welcom']);

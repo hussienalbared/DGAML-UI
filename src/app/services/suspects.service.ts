@@ -11,7 +11,7 @@ export class SuspectsService {
   getAllSuspects()
   {
     let url = environment.ipAddress+"/aml/api/v1/suspectedObject";
-    console.log(url)
+    
    return this.http.get<suspect[]>(url);
   }
   forwardSuspect(suspectKey,suspectCode,userName){

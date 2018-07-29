@@ -177,7 +177,7 @@ export class SuspectsComponent implements OnInit {
           let code = element['id']['alarmed_Obj_level_Cd'];
           let key = element['id']['alarmed_Obj_Key'];
           let oldcomplianceUserid = element['owner_UID'];
-          console.log(code+"&&&&&&"+key+"%%%%"+oldcomplianceUserid)
+          
 
           this.suspectService.changeAllSuspectAlarms(key, code, eventType).subscribe(data => {
 
@@ -222,4 +222,5 @@ export class SuspectsComponent implements OnInit {
   
     new Angular5Csv(this.result,'My Report');
   }
+
 }

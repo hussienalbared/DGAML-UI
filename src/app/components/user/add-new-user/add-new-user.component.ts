@@ -37,14 +37,14 @@ export class AddNewUserComponent implements OnInit {
   }
 
   addUser(x){
-    console.log(x.username);
-    console.log(x.username);
-    console.log(x.DisplayName);
-    console.log(this.firstname);
-    console.log(this.lastname);
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.selectedGroups);
+    
+    
+    
+    
+    
+    
+    
+    
 
     this.selectedGroups = this.groups[0];
 
