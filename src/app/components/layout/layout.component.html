@@ -198,7 +198,7 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <!--  -->
-      <mat-list-item (click)="layoutItem($event);navItem('/comment')" class="mat_item_a">
+      <mat-list-item (click)="layoutItem($event);" class="mat_item_a"> <!--navItem('/comment')-->
         <a>
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isOn">{{ 'right_side_bar.Regulatory_Reports' | translate }} </span>

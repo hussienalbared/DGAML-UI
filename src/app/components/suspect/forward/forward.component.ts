@@ -1,7 +1,8 @@
+import { ToastsManager } from 'ng2-toastr';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
 import { NotificationService } from './../../../services/notification.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -23,10 +24,13 @@ export class ForwardComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ForwardComponent>,
     private notification:NotificationService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService
+    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService,
+    public toastr: ToastsManager, vcr: ViewContainerRef
 
   ) {
     this.numSuspected = this.data["selected"].length;
+
+    this.toastr.setRootViewContainerRef(vcr);
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -64,8 +68,11 @@ export class ForwardComponent implements OnInit {
       .subscribe(data => {
         // forward Notification
         this.notification.suspectForwardNoti(code,suspectKey,'Forward-suspect',localStorage.getItem('id'),this.name)
+        
+        this.toastr.success('operation completed successfully', 'Success!');
       }, error => {
         element["owner_UID"] = oldName;
+        this.toastr.error('Got an issue, check the connection ', 'Oops!');
       }
       );
 

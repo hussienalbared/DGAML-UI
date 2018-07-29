@@ -6,33 +6,26 @@
           <div class="col-lg-6">
             <div class="form-group">
               <mat-form-field>
-                <input type = "text" matInput name="firstname"  placeholder="First Name" ngModel required>
+                <input type = "text" matInput name="firstname"  placeholder="First Name" ngModel #firstname="ngModel" required minlength="4" maxlength="50">
               </mat-form-field>
+              <div class="alert alert-danger" *ngIf="firstname.touched && !firstname.valid">
+                <div *ngIf="firstname.errors.required">First name is required.</div>
+                <div *ngIf="firstname.errors.minlength">First name should be minimum {{ firstname.errors.minlength.requiredLength }} charachters.</div>
+                <div *ngIf="firstname.errors.maxlength">First name should be maximum {{ firstname.errors.maxlength.requiredLength }} charachters.</div>
+              </div>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="form-group">
               <mat-form-field>
-                <input type = "text" matInput name="lastname" placeholder="Last Name" ngModel required>
+                <input type = "text" matInput name="lastname" placeholder="Last Name" #lastname="ngModel" ngModel required minlength="4" maxlength="50">
               </mat-form-field>
-            </div>
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="form-group">
-              <mat-form-field>
-                <input type = "text" matInput name="username" placeholder="User Name" ngModel required>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="form-group">
-              <mat-form-field>
-                <input type = "text" matInput name="DisplayName" placeholder="Display Name" ngModel required>
-              </mat-form-field>
+              <div class="alert alert-danger" *ngIf="lastname.touched && !lastname.valid">
+                <div *ngIf="lastname.errors.required">Last name is required.</div>
+                <div *ngIf="lastname.errors.minlength">Last name should be minimum {{ lastname.errors.minlength.requiredLength }} charachters.</div>
+                <div *ngIf="lastname.errors.maxlength">Last name should be maximum {{ lastname.errors.maxlength.requiredLength }} charachters.</div>
+              </div>
             </div>
           </div>
 
@@ -41,16 +34,51 @@
           <div class="col-lg-6">
             <div class="form-group">
               <mat-form-field>
-                <input type = "text" matInput placeholder="E-mail" name="email" ngModel required>
+                <input type = "text" matInput name="username" placeholder="User Name"  #username="ngModel" ngModel required minlength="4" maxlength="50">
               </mat-form-field>
+              <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
+                <div *ngIf="username.errors.required">User name is required.</div>
+                <div *ngIf="username.errors.minlength">User name should be minimum {{ username.errors.minlength.requiredLength }} charachters.</div>
+                <div *ngIf="username.errors.maxlength">User name should be maximum {{ username.errors.maxlength.requiredLength }} charachters.</div>
+              </div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
               <mat-form-field>
-                <input type = "password" matInput  placeholder="Password" [type]="hide ? 'password' : 'text'" ngModel name="password">
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <input type = "text" matInput name="DisplayName" placeholder="Display Name" #DisplayName="ngModel" ngModel required>
               </mat-form-field>
+              <div class="alert alert-danger" *ngIf="DisplayName.touched && !DisplayName.valid">
+                <div *ngIf="DisplayName.errors.required">User name is required.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <mat-form-field>
+                <input type = "text" matInput placeholder="E-mail" name="email" #email="ngModel" ngModel required minlength="4" maxlength="50">
+              </mat-form-field>
+              <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <div *ngIf="email.errors.required">E-mail is required.</div>
+                <div *ngIf="email.errors.minlength">E-mail should be minimum {{ email.errors.minlength.requiredLength }} charachters.</div>
+                <div *ngIf="email.errors.maxlength">E-mail should be maximum {{ email.errors.maxlength.requiredLength }} charachters.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <mat-form-field>
+                <input type = "password" matInput  placeholder="Password" [type]="hide ? 'password' : 'text'" #password="ngModel" ngModel name="password" required minlength="4" maxlength="100">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+              <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                <div *ngIf="password.errors.required">E-mail is required.</div>
+                <div *ngIf="password.errors.minlength">E-mail should be minimum {{ password.errors.minlength.requiredLength }} charachters.</div>
+                <div *ngIf="password.errors.maxlength">E-mail should be maximum {{ password.errors.maxlength.requiredLength }} charachters.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -68,8 +96,8 @@
         </div>
         </div>
         <div class="row">
-          <div class="form-group">
-            <div class="col-lg-11">
+          <div class="form-group" style="width: 100%">
+            <div class="col-lg-12">
                 <button mat-raised-button color="primary" style="width:100%;" type="submit">Add</button><!--[disabled]="!form.valid"-->
             </div>
           </div>

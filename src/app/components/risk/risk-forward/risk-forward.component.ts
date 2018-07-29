@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,9 +22,12 @@ export class RiskForwardComponent implements OnInit {
   myControl: FormControl = new FormControl();
   constructor(
     public dialogRef: MatDialogRef<RiskForwardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private riskService:RiskService,private notification:NotificationService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private riskService:RiskService,
+    private notification:NotificationService,public toastr: ToastsManager, vcr: ViewContainerRef) {
       this.numSuspected = this.data["selected"].length;
       console.log(this.data["selected"][0]);
+
+      this.toastr.setRootViewContainerRef(vcr);
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -55,8 +59,12 @@ export class RiskForwardComponent implements OnInit {
       this.riskService.forwardrisk(riskKey,this.name)
       .subscribe(data => {
           this.notification.riskNotifiction(riskKey,'Forward-Risk',this.name,localStorage.getItem('id'))
+
+          this.toastr.success('operation completed successfully', 'Success!');
       }, error => {
         element["owner_User_Long_Id"] = oldName;
+
+        this.toastr.error('Got an issue, check the connection ', 'Oops!');
       }
       );
 

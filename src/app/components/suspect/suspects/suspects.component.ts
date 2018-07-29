@@ -119,7 +119,27 @@ export class SuspectsComponent implements OnInit {
          $('.forwardContainer').css('text-align', 'right' );
   }
   removeOwnerShip() {
-    this.suspectService.removeOwnerShip(this.selection.selected);
+    // this.suspectService.removeOwnerShip(this.selection.selected)
+    this.selection.selected.forEach(element => {
+ 
+      let code = element["id"]["alarmed_Obj_level_Cd"];
+      let key = element["id"]["alarmed_Obj_Key"];
+      let oldcomplianceUserid = element["owner_UID"];
+      element["owner_UID"] = null;
+      this.suspectService.removeOwnerShip(key, code, element['owner_UID']).subscribe(data => {
+        // remove Owner
+        this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
+
+        this.toastr.success('You have been removed from the suspect', 'Success!');
+       }
+        , error => {
+          element["owner_UID"] = oldcomplianceUserid;
+
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+        }
+      );
+    }
+    )
   }
   takeOwnerShip() {
     this.selection.selected.forEach(
@@ -195,6 +215,8 @@ export class SuspectsComponent implements OnInit {
             else
               x='suppress-suspect';
             this.notification.suspectNotification(code,key,x,localStorage.getItem('id'))
+
+            this.toastr.success(`${x} done sucssefully `, 'Success!');
             //set alert count of suspect to zero
             element['alarms_Count'] = '0';
           }
@@ -219,7 +241,7 @@ export class SuspectsComponent implements OnInit {
         alert('nothing selected')
       }
     }, error => {
-
+      this.toastr.error('Got an issue, check the connection ', 'Oops!');
     }
 
     );
