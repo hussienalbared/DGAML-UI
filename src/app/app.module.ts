@@ -1,3 +1,4 @@
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
 import { WebSocketServiceService } from './web-socket-service.service';
@@ -193,6 +194,8 @@ export function tokenGetter() {
     MatAutocompleteModule,
     MatChipsModule,
     MatGridListModule,
+    ToastModule.forRoot(),
+
     RouterModule.forRoot([
       //   {
       //   path: '',

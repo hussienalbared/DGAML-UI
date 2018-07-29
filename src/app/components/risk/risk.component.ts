@@ -1,3 +1,4 @@
+import { ToastsManager } from 'ng2-toastr';
 import { NotificationService } from './../../services/notification.service';
 import { element } from 'protractor';
 import { RiskForwardComponent } from './risk-forward/risk-forward.component';
@@ -5,7 +6,7 @@ import { RiskService } from './../../services/risk.service';
 import { AuthService } from '../../services/auth.service';
 import { risk } from './../../models/risk.model';
 
-import {ViewChild, OnInit, Component} from '@angular/core';
+import { ViewChild, OnInit, Component, ViewContainerRef } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -57,7 +58,10 @@ export class RiskComponent implements OnInit {
     private authService: AuthService,
               private riskService: RiskService,
               public translate: TranslateService,
-            private notification:NotificationService) {
+            private notification:NotificationService,
+            public toastr: ToastsManager, vcr: ViewContainerRef) {
+
+              this.toastr.setRootViewContainerRef(vcr);
   }
 
 /*----------------*/
@@ -187,9 +191,13 @@ export class RiskComponent implements OnInit {
       console.log(element["risk_Assmnt_Id"]);
       this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take-ownership-risk',localStorage.getItem('id'))
+
+        this.toastr.success('You have been assigned to the suspect', 'Success!');
        },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
+
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
         }
       );
     });
@@ -208,9 +216,12 @@ export class RiskComponent implements OnInit {
         console.log("UUUUUUUUUQQQQQQQQQAAAAAAAAAAAAAAAA")
         console.log(element["risk_Assmnt_Id"])
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove-ownership-risk',localStorage.getItem('id'))
+
+        this.toastr.success('You have been removed from the suspect', 'Success!');
       },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
         }
       );
     });
@@ -229,9 +240,11 @@ export class RiskComponent implements OnInit {
       this.selection = new SelectionModel<risk>(true, []);
       this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'approve-risk',localStorage.getItem('id'))
+
+        this.toastr.success('Approve operation done sucssefully ', 'Success!');
        },
         error => {
-          
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
         }
       );
     });
@@ -250,9 +263,11 @@ export class RiskComponent implements OnInit {
       this.selection = new SelectionModel<risk>(true, []);
       this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'decline-risk',localStorage.getItem('id'))
+
+        this.toastr.success('Delete operation done sucssefully ', 'Success!');
        },
         error => {
-          
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
         }
       );
     });

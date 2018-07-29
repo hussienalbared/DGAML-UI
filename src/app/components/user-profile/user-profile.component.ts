@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
@@ -12,8 +13,9 @@ export class UserProfileComponent implements OnInit {
 user:any=null;
 matched:boolean;
 
-  constructor(private auth:AuthService,private userService:UserService,private router:Router) { 
-
+  constructor(private auth:AuthService,private userService:UserService,private router:Router,
+    public toastr: ToastsManager, vcr: ViewContainerRef) { 
+      this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -40,7 +42,14 @@ matched:boolean;
     let  lastname=form_.lastname?form_.lastname:this.user.lastname
      let  email=form_.email?form_.email:this.user.email
     let   password=form_.password?form_.password:''
-    this.userService.updateUser(this.user.id,username,displayName,password,firstname,lastname,email,this.user.enabled,this.user.groups)
+    this.userService.updateUser(this.user.id,username,displayName,password,firstname,lastname,email,this.user.enabled,
+      this.user.groups).subscribe(data => {
+        this.toastr.success('Update Operation Done Seccessfully', 'Success')
+      },
+        err => {
+          console.log("Error occured");
+          this.toastr.error('Operation fail!', 'Oops!')
+        })
     }
    
    this.router.navigate(["/welcom"]);
