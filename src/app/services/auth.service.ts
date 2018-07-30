@@ -18,45 +18,12 @@ const httpOptions = {
 export class AuthService {
   userName: string = localStorage.getItem('name');
   constructor(private http: HttpClient, private router: Router, private tabs: TabsServiceService) { }
-  
+
   login(credentials) {
     // alert("login")
-    return this.http.post<UserResponse>(environment.ipAddress+'/aml/auth',JSON.stringify(credentials), httpOptions)
-    
-     
-      // .map(data => {
-      //   if (data && data.hasOwnProperty('token')) {
-      //     localStorage.setItem('token', data.token);
-      //     let myRawToken = data.token;
-      //     const helper = new JwtHelperService();
-      //     let decodedToken = helper.decodeToken(myRawToken);
-      //     localStorage.setItem('name', decodedToken.userName);
-      //     this.userName = decodedToken.userName;
-      //     localStorage.setItem('id', decodedToken.id);
-
-      //     // return true;
-      //   }
-      //   // return false;
-      // }
-      // ,catchError(this.handleError)
-    // )
-      
-      // .pipe(
-      //   catchError(this.handleError)
-      // );
-    //   .catch((error: HttpErrorResponse) => {
-    //     // todo: log?
-    //       console.log("WEWEWE")
-    //     if (error.status == 500) {
-    //         // this.alertService.showError(error.statusText);
-    //     } else if (error.status == 588) {
-    //         // this.alertService.showAlert(error.statusText);
-    //     }
-
-    //     return Observable.throw(error.statusText);
-    // });;
+    return this.http.post<UserResponse>(environment.ipAddress + '/aml/auth',
+      JSON.stringify(credentials), httpOptions);
   }
-
 
   logout() {
 
@@ -91,13 +58,13 @@ export class AuthService {
     return new JwtHelperService().decodeToken(token);
   }
   has_Capabilities(capability): boolean {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const helper = new JwtHelperService();
-    let decodedToken = helper.decodeToken(token);
+    const decodedToken = helper.decodeToken(token);
 
 
-    let authorities = decodedToken.authorities;
-    let arr: string[] = authorities;
+    const authorities = decodedToken.authorities;
+    const arr: string[] = authorities;
 
     return arr.includes(capability);
   }
