@@ -43,7 +43,7 @@ export class AppComponent {
 
   
 changeLang(targLang:string){
-  console.log("App");
+
 }
 
 }

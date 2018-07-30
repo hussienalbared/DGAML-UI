@@ -28,7 +28,7 @@ export class AddGroupComponent implements OnInit {
     }
     this.http.post(url,group).subscribe(res => 
       {
-        console.log(res);
+        
         this.groupService.getAllGroups().subscribe(data=>{
           this.GroupsNames=data
     
@@ -41,7 +41,7 @@ export class AddGroupComponent implements OnInit {
 
   }
   deleteGroup(groupId){
-    console.log(groupId)
+    
     let url=`${environment.ipAddress}/aml/api/group/delete/${groupId}`;
     this.http.delete(url).subscribe(data=>{
       this.groupService.getAllGroups().subscribe(data=>{

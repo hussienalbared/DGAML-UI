@@ -70,7 +70,8 @@ export class LayoutComponent implements OnInit {
       stompClient.subscribe(`/topic/notification/${localStorage.getItem('id')}`, noti => {
         ;
 
-        console.log("stompClient.subscribe: ")
+      
+    
 
 
         this.notifications.push(JSON.parse(noti.body));
@@ -92,8 +93,7 @@ export class LayoutComponent implements OnInit {
 
 
       this.notifications = data;
-      console.log("all noto ))))))))))))))))))")
-      console.log(this.notifications)
+     
       this.notificatiobValue = this.notifications.length;
     });
   }
@@ -115,13 +115,7 @@ export class LayoutComponent implements OnInit {
     }
     $(e.target).addClass('active');
     $(e.target).closest('.mat_item_a').addClass('active');
-    //$(e.target).css({ "display": "block !important","background-color": "#F0843F !important"});
-    // this.isActive = true;
-    // // e.target.addClass("active")
-    //  $(e.target).addClass("active");
-
-    //
-
+    
   }
   navItem(url) {
     this.router.navigate(["/" + url]);
@@ -146,40 +140,20 @@ export class LayoutComponent implements OnInit {
 
   // }
 
-  // changeLang(targLang:string){
 
-  //   // this.changeLangService.changeLang();
-  //   // this.translate.use(targLang);
 
-  //   // $('.all_container').attr( "dir", "{{ 'dir' | translate }}" );
+/*****ASZ******/
+changeLang2(tarnsLang:string){
+  // alert(tarnsLang)
+  this.translate.setDefaultLang(tarnsLang);
+  this.translate.use(tarnsLang)
+  this.selected_Language = tarnsLang;
+  
 
-  //   //forwaed dialog
-  //   $('.mat-dialog-container').attr( "dir", "{{ 'dir' | translate }}" );
-
-  //   if(targLang == 'en'){
-  //     $('.selected_Language').text("ُEnglish");
-  //       $('.all_container').css('text-align', 'left' );
-  //   }
-  //   else{
-  //     // $('.selected_Language').text("اللغة العربية");
-  //     $('.all_container').css('text-align', 'right' );
-  //     $('.topbar').css('padding-right', '0' );
-  //     $('.full_icon_fg').css('margin-right', '15px' );
-  //   }
-  // }
-
-  /*****ASZ******/
-  changeLang2(tarnsLang: string) {
-    // alert(tarnsLang)
-    this.translate.setDefaultLang(tarnsLang);
-    this.translate.use(tarnsLang)
-    this.selected_Language = tarnsLang;
-    console.log(this.selected_Language)
-
-    //--- temp because it doesn't read the style from ar/en.json
-    if (this.selected_Language == 'en') {
-      $('.all_container').css('text-align', 'left');
-      $('.select_button').css('text-align', 'left');
+  //--- temp because it doesn't read the style from ar/en.json
+    if(this.selected_Language=='en'){
+      $('.all_container').css('text-align', 'left' );
+      $('.select_button').css('text-align', 'left' );
     }
     else {
       $('.all_container').css('text-align', 'right');

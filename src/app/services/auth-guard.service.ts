@@ -10,9 +10,9 @@ export class AuthGuardService implements CanActivate {
     private authService: AuthService) { }
 
   canActivate(routr, state: RouterStateSnapshot) {
-    console.log('canActivate ');
+    
     if (this.authService.isLoggedIn()) {
-      console.log('works');
+      
       return true;
     }
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });

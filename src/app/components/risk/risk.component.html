@@ -2,15 +2,15 @@
 <!-- <div dir="rtl"> -->
   <ng-progress></ng-progress>
 <mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
-  <button class="btn btn-primary" (click)="openDialog()">
+  <button class="btn btn-primary" (click)="openDialog();" *userHasCapability="forward-risk">
     <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
-  <button class="btn btn-primary" (click)="takeOwnerShip()">
+  <button class="btn btn-primary" (click)="takeOwnerShip()" *userHasCapability="'take-ownership-risk'">
     <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="removeOwnerShip()">
+  <button class="btn btn-primary" (click)="removeOwnerShip()" *userHasCapability="'remove-ownership-risk'">
     <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="approveRisk()">
+  <button class="btn btn-primary" (click)="approveRisk()" *userHasCapability="'approve-risk'">
     <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Approve' | translate }}</button>
-  <button class="btn btn-primary" (click)="declineRisk()">
+  <button class="btn btn-primary" (click)="declineRisk()" *userHasCapability="'decline-risk'">
     <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Decline' | translate }}</button>
     <button class="btn btn-primary" (click)="ExportasCSV()">
       <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>

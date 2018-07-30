@@ -149,7 +149,7 @@ this.dialog.closeAll();
               this.notification.alarmNotification(a.alarm_Id,x,localStorage.getItem('id'))
             },
               err => {
-                console.log("Error occured");
+                
               })
              
             })
