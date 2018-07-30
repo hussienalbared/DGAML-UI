@@ -159,7 +159,7 @@
     </div>
     <div class="profile-info row" *ngIf="isOn">
       <div class="col-4">
-        <a href="#" class="rounded-image profile-image">
+        <a routerLink="/profile" class="rounded-image profile-image">
           <img src="./assets/images/users/avartar3.png">
         </a>
       </div>
@@ -182,7 +182,7 @@
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item (click)="layoutItem($event);navItem('/risk')" class="mat_item_a" appAddTab path="/risk">
+      <mat-list-item *userHasCapability="'show-risk-profiling-module'" (click)="layoutItem($event);navItem('/risk')" class="mat_item_a" appAddTab path="/risk">
         <a>
           <mat-icon>people</mat-icon>
           <a routerLink="/risk" *ngIf="isOn">{{'right_side_bar.Risk_Profiling' | translate }}</a>
@@ -190,7 +190,7 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <!--  -->
-      <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
+      <mat-list-item *userHasCapability="'show-dashboard'" (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
         <a>
           <mat-icon>dashboard</mat-icon>
           <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>
@@ -198,13 +198,34 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <!--  -->
-      <mat-list-item (click)="layoutItem($event);" class="mat_item_a"> <!--navItem('/comment')-->
+      <mat-list-item  *userHasCapability="'show-reports'" (click)="layoutItem($event);" class="mat_item_a">
         <a>
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isOn">{{ 'right_side_bar.Regulatory_Reports' | translate }} </span>
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
+
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+        <mat-icon>search</mat-icon>
+      </mat-list-item>
+
+      <mat-accordion *ngIf="isOn" displayMode="flat" (click)="layoutItem($event);">
+        <mat-expansion-panel #fffv>
+          <mat-expansion-panel-header class="accordion1">
+            <mat-icon>search</mat-icon>
+            <span>Reports</span>
+          </mat-expansion-panel-header>
+          <mat-list appAddTab path="report/sama">
+            <mat-list-item  class="mat_item_a"  (click)="layoutItem($event);">
+              <a routerLink="report/sama">SAMA Report</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider>
+
       <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
         <mat-icon>search</mat-icon>
       </mat-list-item>
@@ -216,19 +237,19 @@
             <span>{{ 'right_side_bar.Search' | translate }}</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item (click)="layoutItem($event);navItem('/account')" class="mat_item_a fadeAnimation" appAddTab path="/account">
+            <mat-list-item *userHasCapability="'show-account-search-screen'" (click)="layoutItem($event);navItem('/account')" class="mat_item_a fadeAnimation" appAddTab path="/account">
               <a routerLink="account">{{ 'right_side_bar.Account' | translate }}</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event);navItem('/alarm')" class="mat_item_a fadeAnimation" appAddTab path="/alarm">
+            <mat-list-item *userHasCapability="'show-alarms-search-screen'" (click)="layoutItem($event);navItem('/alarm')" class="mat_item_a fadeAnimation" appAddTab path="/alarm">
               <a routerLink="alarm">{{ 'right_side_bar.Alarm' | translate }}</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event);navItem('/party')" class="mat_item_a fadeAnimation" appAddTab path="/party">
+            <mat-list-item *userHasCapability="'show-party-search-screen'" (click)="layoutItem($event);navItem('/party')" class="mat_item_a fadeAnimation" appAddTab path="/party">
               <a routerLink="party">{{ 'right_side_bar.Customer' | translate }}</a>
             </mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item (click)="layoutItem($event);navItem('/external')" class="mat_item_a fadeAnimation" appAddTab path="/external">
+            <mat-list-item *userHasCapability="'show-search-external-parties-search-screen'" (click)="layoutItem($event);navItem('/external')" class="mat_item_a fadeAnimation" appAddTab path="/external">
               <a routerLink="external">{{ 'right_side_bar.External_Customer' | translate }}</a>
             </mat-list-item>
           </mat-list>
@@ -241,10 +262,12 @@
           <span *ngIf="isOn"> Administration</span>
         </a>
       </mat-list-item> -->
+      <div *userHasCapability="'adminstration'">
       <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
-        <mat-icon>Administration</mat-icon>
+        <mat-icon>group_work</mat-icon>
       </mat-list-item>
-
+    </div>
+    <div *userHasCapability="'adminstration'">
       <mat-accordion *ngIf="isOn" displayMode="flat">
         <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">
@@ -265,7 +288,7 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-divider></mat-divider>
-
+    </div>
       <!-- <mat-list-item  class="mat_item_a" >
         <a routerLink="groups" >
           <mat-icon>Group</mat-icon>

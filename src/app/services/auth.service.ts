@@ -59,17 +59,19 @@ export class AuthService {
 
 
   logout() {
-    console.log("in logout finc");
+
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('id');
+    // localStorage.removeItem('authorities');
+
     this.userName = null;
     this.tabs.tabs = [];
     this.router.navigate(['/']);
   }
 
   isLoggedIn() {
-    console.log('isLoggedIn');
+
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -88,8 +90,18 @@ export class AuthService {
     const decodedToken = new JwtHelperService().decodeToken(token);
     return new JwtHelperService().decodeToken(token);
   }
-}
+  has_Capabilities(capability): boolean {
+    let token = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+    let decodedToken = helper.decodeToken(token);
 
+
+    let authorities = decodedToken.authorities;
+    let arr: string[] = authorities;
+
+    return arr.includes(capability);
+  }
+}
 interface UserResponse {
   login: string;
   token: string;

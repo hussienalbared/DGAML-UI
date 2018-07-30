@@ -79,5 +79,10 @@ export class LoginComponent {
         // }
       // });
   }
+  isLoggedIn(){
+    console.log(this.authService.isLoggedIn()+"YYYYYYYYYY");
+    return this.authService.isLoggedIn();
+
+  }
 
 }
