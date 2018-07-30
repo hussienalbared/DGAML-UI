@@ -68,17 +68,15 @@ export class AuthService {
     const decodedToken = new JwtHelperService().decodeToken(token);
     return new JwtHelperService().decodeToken(token);
   }
-  has_Capabilities(capability):boolean{
-    let token=localStorage.getItem('token');
+  has_Capabilities(capability): boolean {
+    let token = localStorage.getItem('token');
     const helper = new JwtHelperService();
     let decodedToken = helper.decodeToken(token);
-    console.log("HHHHHHHHHHHHHHH")
-    console.log(decodedToken);
-   
-let authorities=decodedToken.authorities;
-console.log(authorities);
-    let arr:string[]=authorities;
- 
+
+
+    let authorities = decodedToken.authorities;
+    let arr: string[] = authorities;
+
     return arr.includes(capability);
   }
 }
