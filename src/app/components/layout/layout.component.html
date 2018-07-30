@@ -216,8 +216,8 @@
             <mat-icon>search</mat-icon>
             <span>Reports</span>
           </mat-expansion-panel-header>
-          <mat-list>
-            <mat-list-item  class="mat_item_a" appAddTab path="report/sama" (click)="layoutItem($event);">
+          <mat-list appAddTab path="report/sama">
+            <mat-list-item  class="mat_item_a"  (click)="layoutItem($event);">
               <a routerLink="report/sama">SAMA Report</a>
             </mat-list-item>
             <mat-divider></mat-divider>
