@@ -210,14 +210,14 @@
         <mat-icon>search</mat-icon>
       </mat-list-item>
 
-      <mat-accordion *ngIf="isOn" displayMode="flat">
+      <mat-accordion *ngIf="isOn" displayMode="flat" (click)="layoutItem($event);">
         <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">
             <mat-icon>search</mat-icon>
             <span>Reports</span>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item  class="mat_item_a" appAddTab path="report/sama">
+            <mat-list-item  class="mat_item_a" appAddTab path="report/sama" (click)="layoutItem($event);">
               <a routerLink="report/sama">SAMA Report</a>
             </mat-list-item>
             <mat-divider></mat-divider>
