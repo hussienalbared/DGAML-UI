@@ -39,12 +39,12 @@ export class RiskForwardComponent implements OnInit {
 
   }
   isNameComplete(name){
-    console.log(name)
+    
     return this.users.indexOf(name)
   }
   forward() {
     if (this.name === ''||this.users.indexOf(this.name)<0) {
-      console.log("please select user");
+   
       this.dialogRef.close();
       return;
 
@@ -77,7 +77,7 @@ export class RiskForwardComponent implements OnInit {
     let url=environment.ipAddress+"/aml/api/user/users";
     this.http.get<string[]>(url).subscribe(data=>{
       this.users=data;
-      console.log(this.users)
+      
       this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),

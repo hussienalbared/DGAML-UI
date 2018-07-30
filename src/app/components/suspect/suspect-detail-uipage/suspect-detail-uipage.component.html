@@ -1,9 +1,9 @@
 
- <app-alarm-brief></app-alarm-brief>
+ <app-alarm-brief *userHasCapability="'Show-alarm'"></app-alarm-brief>
  <hr>
-<app-transaction-brief></app-transaction-brief>
+<app-transaction-brief *userHasCapability="'show-transaction'"></app-transaction-brief>
 <hr>
-<app-suspect-details></app-suspect-details>
+<app-suspect-details  *userHasCapability="'show-suspect-details'"></app-suspect-details>
 <hr>
-<app-comment></app-comment>
+<app-comment  *userHasCapability="'show-comment'"></app-comment>
 

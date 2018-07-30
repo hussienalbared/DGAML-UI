@@ -13,11 +13,11 @@ export class SuspectDetailUipageComponent implements OnInit {
    
  
  this.route.paramMap.subscribe(params => {
-   console.log("^^^^^^^^^^^^^")
-  console.log(+params.get('obj_key'));
+   
   
-  console.log(params.get('obj_number'))
-  console.log("^^^^^^^^^^^^^")
+  
+  
+  
 });
   }
 

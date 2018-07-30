@@ -1,15 +1,15 @@
 <ng-progress></ng-progress>
 
-<mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
-  <button class="btn btn-primary" (click)="openDialog()">
+<mat-card *userHasCapability="'show-main-screen'" style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG" >
+  <button class="btn btn-primary" (click)="openDialog()" *userHasCapability="'forward-suspect'">
     <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
-  <button class="btn btn-primary" (click)="takeOwnerShip()">
+  <button class="btn btn-primary" (click)="takeOwnerShip()" *userHasCapability="'take-ownership-suspect'">
     <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="removeOwnerShip()">
-    <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="closeAlarms()">
+  <button class="btn btn-primary" (click)="removeOwnerShip()" *userHasCapability="'remove-ownership-suspect'">
+    <i class="fa fa-chain-broken"  ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
+  <button class="btn btn-primary" (click)="closeAlarms()" *userHasCapability="'close'">
     <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Close' | translate }}</button>
-  <button class="btn btn-primary" (click)="suppressAlarms()">
+  <button class="btn btn-primary" (click)="suppressAlarms()" *userHasCapability="'suppress'">
     <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Suppress' | translate }}</button>
     <button class="btn btn-primary" (click)="exportAsCSV()">
       <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>
@@ -19,7 +19,7 @@
 
 <!-- <span>{{ dataSource.data[0].alarmed_Obj_Name }}</span> -->
 
-<mat-accordion style="background-color: rgba(0, 0, 0, 0.02)" >
+<mat-accordion style="background-color: rgba(0, 0, 0, 0.02)"  *userHasCapability="'show-main-screen'">
   <mat-expansion-panel expanded='true'>
     <mat-expansion-panel-header>
       <mat-panel-title>

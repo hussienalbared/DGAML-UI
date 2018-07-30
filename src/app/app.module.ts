@@ -80,6 +80,7 @@ import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
+import { userHasCapabilityDirective } from './directives/has-capability.directive';
 
 
 // AoT requires an exported function for factories
@@ -137,7 +138,8 @@ export function tokenGetter() {
 
     UserProfileComponent,
     CommentComponent,
-    EmptyComponentComponent
+    EmptyComponentComponent,
+    userHasCapabilityDirective
    
 
   ],

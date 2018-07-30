@@ -29,7 +29,7 @@ matched:boolean;
 
   updateUser(form_)
   {
-    console.log(form_)
+    
     if(form_.password!=form_.password2)
     {
       this.matched=false

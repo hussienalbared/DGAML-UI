@@ -80,7 +80,7 @@ export class RiskComponent implements OnInit {
 /*----------------*/
 
   getRecord(row: any) {
-    console.log(row);
+    
     this.riskId = row.risk_Assmnt_Id;
     this.customerName = row.cust_Name;
     this.customerNumber = row.cust_No;
@@ -95,7 +95,7 @@ export class RiskComponent implements OnInit {
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource = new MatTableDataSource(data);
-      //console.log(this.sort);
+      //
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -104,7 +104,7 @@ export class RiskComponent implements OnInit {
   }
 
   // ngAfterViewInit() {
-  //   console.log("ngAfterViewInit");
+  //   
   //   this.sort = this.msort;
   //   this.sortClassifier = this.msort;
   // }
@@ -135,7 +135,7 @@ export class RiskComponent implements OnInit {
     this.http.get<classifier[]>(url).subscribe(data2 => {
       this.result2 = data2;
       this.dataSourceTable2 = new MatTableDataSource(data2);
-      console.log(this.sortClassifier);
+      
       this.dataSourceTable2.paginator = this.paginatorClassifier;
       this.dataSourceTable2.sort = this.sortClassifier;
       
@@ -145,7 +145,7 @@ export class RiskComponent implements OnInit {
 
   //Forward
   openDialog(){
-    console.log("openDialog");
+    
     const numSelected = this.selection.selected.length;
     if (numSelected === 0) {
       alert("Select at least one suspect,please");
@@ -170,8 +170,8 @@ export class RiskComponent implements OnInit {
     this.en_ar_Dialog();
   }
   en_ar_Dialog(){
-    //  console.log("lllll");
-    //  console.log($('.selected_Language').text());
+    //  
+    //  
      if($('.selected_Language').text() != "English")
          $('.forwardContainer').css('text-align', 'right' );
   }
@@ -188,7 +188,7 @@ export class RiskComponent implements OnInit {
     this.selection.selected.forEach(element => {
       let prev_owner = element["owner_User_Long_Id"];
       element["owner_User_Long_Id"] = loggedUser;
-      console.log(element["risk_Assmnt_Id"]);
+      
       this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take-ownership-risk',localStorage.getItem('id'))
 
@@ -213,8 +213,8 @@ export class RiskComponent implements OnInit {
       let prev_owner = element["owner_User_Long_Id"];
       element["owner_User_Long_Id"] = null;
       this.riskService.removeOwnerShip(element["risk_Assmnt_Id"]).subscribe(data => {
-        console.log("UUUUUUUUUQQQQQQQQQAAAAAAAAAAAAAAAA")
-        console.log(element["risk_Assmnt_Id"])
+        
+        
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove-ownership-risk',localStorage.getItem('id'))
 
         this.toastr.success('You have been removed from the suspect', 'Success!');
@@ -278,20 +278,22 @@ export class RiskComponent implements OnInit {
     this.selection.selected.forEach(element => {
       sd = element["risk_Assmnt_Id"];
     });
-    // console.log("=");
+    // 
     var tindex = 0;
     this.dataSource.data.forEach((element,index) => {
       if(element["risk_Assmnt_Id"] == sd ){
         tindex = index;
       }
     });
-    // console.log("selected index:");
-    // console.log(tindex);
+    // 
+    // 
     return tindex;
   }
   ExportasCSV()
   {
     new Angular5Csv(this.result, 'My Report');
   }
+  
+ 
 }
 

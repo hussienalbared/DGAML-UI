@@ -16,14 +16,14 @@ export class RiskService {
   }
 
   takeOwnerShipService(key,complianceUserid){
-    console.log("takeOwnerShipService");
-    console.log(complianceUserid);
+    
+    
     let url = this.rootUrl + "accountriskassigment/updateUser?key=" + key + "&user=" + complianceUserid;
     return this.http.put(url, [])
   }
 
   removeOwnerShip(key){
-    console.log("removeOwnerShip");
+    
     let url = this.rootUrl + "accountriskassigment/removeOwnerShip?key=" + key ;
     return this.http.put(url, [])
   }

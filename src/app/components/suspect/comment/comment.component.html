@@ -3,11 +3,11 @@
     <div class="col-lg-8" style="margin: auto">
       <div class="comment_div">
         <span style="letter-spacing: 1px;color: #28607b;font-size: 17px;">COMMENT: </span>
-        <form #form_="ngForm" (ngSubmit)="addComment(form_.value)" style="margin-top: 10px;" >
+        <form #form_="ngForm" (ngSubmit)="addComment(form_.value)" style="margin-top: 10px;"  *userHasCapability="'add-notes-or-comments'">
           <mat-form-field style="width: 100%;font-size: 14px">
             <input matInput placeholder="Enter a Comment" name="desc" ngModel>
           </mat-form-field>
-          <div style="display: inline-block;">
+          <div style="display: inline-block;" >
             <input type="file" class="form-control-file" name="MultipleFiles" #files2  multiple >
           </div>          
           <button mat-raised-button style="width: 20%;display: block;float: right;">Comment</button>
@@ -32,7 +32,7 @@
                 <span>Comment Attatchments:</span>
                 <div class="attatchments" style="position: relative;" *ngFor="let f of comm.attachment"><!-- go through all files -->
                   <li class="fa fa-paperclip" (click)="downloadFile(f.fileName)" style="display: inline;"><span>{{ f.fileName }} </span></li>
-                  <mat-icon class="delete-icon animate-show" (click)="deleteSpecificFile(f)" 
+                  <mat-icon *userHasCapability="'delete-attachment'" class="delete-icon animate-show" (click)="deleteSpecificFile(f)" 
                       style="display: inline;font-size: 20px;position: absolute;">delete</mat-icon>
                 </div>
               </div>
@@ -57,8 +57,8 @@
               </div>
               <div class="col-lg-2">
                 <div class="comment-icons"> <!--[class]="hoverClass"-->
-                  <mat-icon class="update-icon animate-show" title="Update" (click)="showUpdateComment(index)">update</mat-icon>
-                  <mat-icon class="delete-icon animate-show" title="Delete" (click)="deleteComment(comm.id,comm.description)">delete</mat-icon>
+                  <mat-icon class="update-icon animate-show" title="Update" (click)="showUpdateComment(index)" *userHasCapability="'update-comment'">update</mat-icon>
+                  <mat-icon class="delete-icon animate-show" title="Delete" (click)="deleteComment(comm.id,comm.description)" *userHasCapability="'delete-comment'">delete</mat-icon>
                 </div>
               </div>
             </div>

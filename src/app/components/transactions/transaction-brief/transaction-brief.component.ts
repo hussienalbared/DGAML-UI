@@ -35,15 +35,18 @@ export class TransactionBriefComponent implements OnInit {
       this.getData(number);  
     });
   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
   getData(number){
     let Url=environment.ipAddress+"/aml/api/suspectedTransaction/all?partyNumber="+number;
     this.ngProgress.start();
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
-      this.dataSource=data;
+      // this.dataSource=data;
       this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+   
       this.ngProgress.done();
           });
 

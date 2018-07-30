@@ -61,14 +61,14 @@ export class UpdateUserComponent implements OnInit {
     this.email = form_.email ? form_.email: this.email;
     this.enabled = form_.enabled ? form_.enabled: this.enabled;
     this.selectedGroups = form_.selectedGroups ? form_.selectedGroups: this.selectedGroups;
-    this.newPassword = form_.newPassword ? form_.newPassword : this.newPassword;
+    this.newPassword = form_.newPassword ;
 
 
     this.selectedGroups = this.selected.concat(this.selectedGroups)
-    console.log('final selected groups')
-    console.log(this.selectedGroups)
+    
+    
 
-    this.userService.updateUser(this.id,this.username,this.displayName,this.newPassword,this.firstname,
+     this.userService.updateUser(this.id,this.username,this.displayName,this.newPassword,this.firstname,
       this.lastname,this.email,this.enabled,this.selectedGroups);
     this.dialogRef.close();
   }
