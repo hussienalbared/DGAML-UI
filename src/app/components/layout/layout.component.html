@@ -276,7 +276,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main_middle_content elementToAnimate">
-    <nav mat-tab-nav-bar *ngIf="TabService.tabs.length>0">
+
+    <!--Hide Tabs-->
+    <!-- <nav mat-tab-nav-bar *ngIf="TabService.tabs.length>0">
       <div *ngFor="let link of TabService.tabs" style="display: inline-block">
         <a mat-tab-link [routerLink]="link.path" routerLinkActive #rla="routerLinkActive">
           {{link.label}}
@@ -285,7 +287,7 @@
         <mat-icon (click)="removeTab(link.path,link.label)">cancel</mat-icon>
 
       </div>
-    </nav>
+    </nav> -->
 
 
 
