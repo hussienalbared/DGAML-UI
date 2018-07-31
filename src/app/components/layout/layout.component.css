@@ -402,9 +402,9 @@ hr.divider {
         }
 }
 
-.mat-list-item , .fadeAnimation , .mat-accordion{
+/* .mat-list-item , .fadeAnimation , .mat-accordion{
     animation: yourAnimation 1s  ease-in;
-}
+} */
 @keyframes yourAnimation{
     0%{
         transform: translateY(-50px);
@@ -414,6 +414,6 @@ hr.divider {
         }
 }
 
-.elementToAnimate{
+/* .elementToAnimate{
     animation: yourAnimation 1s 1 linear;
-}
+} */
