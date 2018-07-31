@@ -214,5 +214,7 @@
     "username_is_required.": "username is required.",
 
     "Reports": "Reports",
-    "SAMA_Report": "SAMA Report"
+    "SAMA_Report": "SAMA Report",
+
+    "No_Record_Found!": "No Record Found!"
 }

@@ -31,6 +31,9 @@ export class ExternalPartySearchComponent implements OnInit {
     // 'exptel1',
     'TEL'
   ];
+
+  search_R: boolean = false;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private http: HttpClient) { }
@@ -43,6 +46,9 @@ export class ExternalPartySearchComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   onClickSubmit(data) {
+
+    this.search_R = true;
+
     let url = environment.ipAddress+"/aml/api/externalParty/all?ExtPartynumber=" + this.ExtPartynumber +
       "&ExtPartyId=" + this.ExtPartyId + "&ExtPartyFullName=" + this.ExtPartyFullName +
       "&ExtPartyIdCountryCode=" + this.ExtPartyIdCountryCode;
@@ -52,6 +58,11 @@ export class ExternalPartySearchComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
+      // console.log("AAAAAAAAAAAAaaa")
+      // console.log(this.result)
+
+      // if(this.result.length == 0)
+      //   this.search_R = true;
 
     });
   }

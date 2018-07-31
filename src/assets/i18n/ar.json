@@ -214,5 +214,7 @@
     "username_is_required.": "الرجاء ادخال اسم المستخدم",
 
     "Reports": "تقارير",
-    "SAMA_Report": "تقرير سما"
+    "SAMA_Report": "تقرير سما",
+
+    "No_Record_Found!": "لا يوجد نتائج!"
 }

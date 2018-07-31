@@ -61,55 +61,65 @@
 
 </form>
 </div>
-<div class="example-header">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-  </mat-form-field>
-</div>
-<hr>
+
 <ng-progress></ng-progress>
-<div class="example-container mat-elevation-z8">
-  
-<mat-table #table [dataSource]="dataSource" matSort> 
-
-  <ng-container matColumnDef="acct_No">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Number' | translate }} </mat-header-cell>
-    <mat-cell *matCellDef="let account" > 
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <hr>
+  <!-- <ng-progress></ng-progress> -->
+  <div class="example-container mat-elevation-z8">
     
-       
-       <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}" appAddTab path="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}">{{account.acct_No}}</a>
-       </mat-cell>
-  </ng-container>
+  <mat-table #table [dataSource]="dataSource" matSort> 
+    <ng-container matColumnDef="acct_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Number' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let account" > 
+      
+        
+        <a routerLink="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}" appAddTab path="/accountDetailSearch/{{account.acct_No}}/{{account.acct_Key}}">{{account.acct_No}}</a>
+        </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="acct_Name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Name' | translate }} </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Name}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="acct_Name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Name' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.acct_Name}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="acct_Type_Desc">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Type' | translate }}</mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Type_Desc}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="acct_Type_Desc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Type' | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.acct_Type_Desc}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="acct_Open_Date">
-    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Open_date' | translate }} </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Open_Date|date:'MM/dd/yyyy'}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="acct_Open_Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'SearchAccount.Account_Open_date' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.acct_Open_Date|date:'MM/dd/yyyy'}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="acct_Close_Date">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchAccount.Account_Close_date' | translate }} </mat-header-cell>
-    <mat-cell *matCellDef="let account"> {{account.acct_Close_Date|date:'MM/dd/yyyy'}} </mat-cell>
-  </ng-container>
- 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <ng-container matColumnDef="acct_Close_Date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SearchAccount.Account_Close_date' | translate }} </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.acct_Close_Date|date:'MM/dd/yyyy'}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-</mat-table>
-<mat-paginator #paginator
-  [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 20]"
-  [showFirstLastButtons]="true">
-</mat-paginator>
-</div>
+    
+  </mat-table>
+
+  <div *ngIf="search_R">
+    <div class="alert alert-warning" role="alert" *ngIf="!result || result.length==0" style="margin-top: 15px;">
+      {{ 'No_Record_Found!' | translate }}
+    </div>
+  </div>
+
+  <mat-paginator #paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+  </div>
+
 </mat-expansion-panel>
 </mat-accordion>
