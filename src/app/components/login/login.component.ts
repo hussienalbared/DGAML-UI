@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { ToastsManager } from 'ng2-toastr';
@@ -16,6 +17,7 @@ export class LoginComponent {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    private translate: TranslateService,
     public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -42,7 +44,10 @@ export class LoginComponent {
       }
     }
       , error => {
-        this.toastr.error('Invalid Username or Password', 'Error!');
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.error('Invalid Username or Password', 'Error!');
+        else 
+          this.toastr.error('خطأ في اسم المستخدم او كلمة السر!', 'خطأ!');
       }
     );
   }

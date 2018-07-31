@@ -7,7 +7,8 @@ import { MatDialogRef, MatTableDataSource } from '@angular/material';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';import { TranslateService } from '@ngx-translate/core';
+  @Component({
   selector: 'app-add-new-user',
   templateUrl: './add-new-user.component.html',
   styleUrls: ['./add-new-user.component.css']
@@ -29,6 +30,7 @@ export class AddNewUserComponent implements OnInit {
   displayedColumns = ['select', 'name'];
   selection = new SelectionModel<group>(true, []);
   constructor(public dialogRef: MatDialogRef<AddNewUserComponent>,private userService: UserService,
+    public translate: TranslateService,
     private groupservice:GroupService,public toastr: ToastsManager, vcr: ViewContainerRef) { 
       this.toastr.setRootViewContainerRef(vcr);
     }
@@ -53,11 +55,17 @@ export class AddNewUserComponent implements OnInit {
 
     this.userService.addNewUser(x.username,x.DisplayName,x.password,x.firstname,x.lastname,x.email,true,
                                 x.lastPasswordResetDate,x.selectedGroups).subscribe(data => {
-                                  this.toastr.success('User Addedd Successfully', 'Success')
+                                  if(this.translate.getDefaultLang() == 'en')
+                                    this.toastr.success('User Addedd Successfully', 'Success')
+                                  else 
+                                    this.toastr.success('تم اضافه المستخدم', 'تمت العمليه بنجاح')
                                 },
                                   err => {
                                     console.log("Error occured");
-                                    this.toastr.error('Operation fail!', 'Oops!')
+                                    if(this.translate.getDefaultLang() == 'en')
+                                      this.toastr.error('Operation fail!', 'Oops!')
+                                    else 
+                                      this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
                                   })
     this.dialogRef.close();
     

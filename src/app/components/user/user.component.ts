@@ -11,6 +11,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { environment } from '../../../environments/environment'; 
+import { TranslateService } from '@ngx-translate/core';
  @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -38,6 +39,7 @@ export class UserComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService,public ngProgress: NgProgress,public dialog: MatDialog,
+    public translate:TranslateService,
     public toastr: ToastsManager, vcr: ViewContainerRef) { 
       this.toastr.setRootViewContainerRef(vcr);
     }
@@ -112,12 +114,19 @@ export class UserComponent implements OnInit {
       // let u_enable = element[4];
       element[4] = true;
       this.userService.enableUser(user_id_).subscribe(data => { 
-        this.toastr.success('User Enabled Successfully','Success')
+
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Enabled Successfully','Success')
+        else 
+          this.toastr.success('تم تفعيل حساب المستخدم','تمت العملية بنجاح')
       },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
-          this.toastr.error('Operation fail!', 'Oops!')
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });
@@ -135,12 +144,19 @@ export class UserComponent implements OnInit {
       // let u_enable = element[4] 
       element[4] = false;
       this.userService.disableUser(user_id_).subscribe(data => {
-        this.toastr.success('User Disabled Successfully', 'Success')
+
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Disabled Successfully', 'Success')
+        else 
+          this.toastr.success('تم تعطيل حساب المستخدم','تمت العملية بنجاح')
        },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
-          this.toastr.error('Operation fail!', 'Oops!')
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });
@@ -160,10 +176,16 @@ export class UserComponent implements OnInit {
       this.selection = new SelectionModel<user>(true, []);
 
       this.userService.deleteUser(user_id_).subscribe(data => { 
-        this.toastr.success('User Deleted Successfully', 'Success')
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Deleted Successfully', 'Success')
+        else
+          this.toastr.success('تم حذف الحساب', 'تمت العملية بنجاح')
       },
         error => {
-          this.toastr.error('Operation fail!', 'Oops!')
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });

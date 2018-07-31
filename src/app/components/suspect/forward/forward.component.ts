@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ToastsManager } from 'ng2-toastr';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
@@ -20,16 +21,21 @@ export class ForwardComponent implements OnInit {
   name: string = '';
   numSuspected: number = 0;
   users:string[]=[];
+
+  target_lang: string;
+
   myControl: FormControl = new FormControl();
   constructor(
     public dialogRef: MatDialogRef<ForwardComponent>,
     private notification:NotificationService,
     @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient,private suspectService:SuspectsService,
+    public translate: TranslateService,
     public toastr: ToastsManager, vcr: ViewContainerRef
 
   ) {
     this.numSuspected = this.data["selected"].length;
 
+    this.target_lang = this.translate.getDefaultLang();
     this.toastr.setRootViewContainerRef(vcr);
   }
   onNoClick(): void {
@@ -69,10 +75,17 @@ export class ForwardComponent implements OnInit {
         // forward Notification
         this.notification.suspectForwardNoti(code,suspectKey,'Forward-suspect',localStorage.getItem('id'),this.name)
         
-        this.toastr.success('operation completed successfully', 'Success!');
+        if(this.target_lang == 'en')
+          this.toastr.success('operation completed successfully', 'Success!');
+        else 
+          this.toastr.success('تمت العملية بنجاح.', 'تم بنجاح!');
       }, error => {
         element["owner_UID"] = oldName;
-        this.toastr.error('Got an issue, check the connection ', 'Oops!');
+
+        if(this.target_lang == 'en')
+          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+        else 
+          this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
       }
       );
 
