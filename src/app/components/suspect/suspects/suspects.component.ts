@@ -30,6 +30,8 @@ export class SuspectsComponent implements OnInit {
   IsLoaded=true;
   owner_UID_Name: string;
 
+  target_lang : string;
+
   dataSource: any = null;
   displayedColumns = ['select', 'cIndex', 'alarms_Count', 'alarmed_Obj_Name', 'alarmed_Obj_No',
     'risk_Score_Cd', 'age_Old_Alarm', 'owner_UID'];
@@ -50,6 +52,8 @@ export class SuspectsComponent implements OnInit {
     public toastr: ToastsManager, vcr: ViewContainerRef
   ) { 
     this.toastr.setRootViewContainerRef(vcr);
+
+    this.target_lang = this.translate.getDefaultLang();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -130,12 +134,18 @@ export class SuspectsComponent implements OnInit {
         // remove Owner
         this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
 
-        this.toastr.success('You have been removed from the suspect', 'Success!');
+        if(this.target_lang == 'en')
+          this.toastr.success('You have been removed from the suspect', 'Success!');
+        else  
+          this.toastr.success('لقد تم ازلة ملكيتك وصلاحيتك عن العميل المشتبه', 'تم ينجاح!');
        }
         , error => {
           element["owner_UID"] = oldcomplianceUserid;
 
-          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          if(this.target_lang == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );
     }
@@ -154,12 +164,19 @@ export class SuspectsComponent implements OnInit {
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
           this.notification.suspectNotification(code,key,'take-ownership-suspect',localStorage.getItem('id'))
           
-          this.toastr.success('You have been assigned to the suspect', 'Success!');
+          if(this.target_lang == 'en')
+            this.toastr.success('You have been assigned to the suspect', 'Success!');
+          else
+            this.toastr.success('لقد تم تعيينك مسؤولاً عن العميل المشتبة', 'تم بنجاح!');
           
         }
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
-            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+
+            if(this.target_lang == 'en')
+              this.toastr.error('Got an issue, check the connection ', 'Oops!');
+            else 
+              this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
           }
         );
       }
@@ -216,7 +233,11 @@ export class SuspectsComponent implements OnInit {
               x='suppress-suspect';
             this.notification.suspectNotification(code,key,x,localStorage.getItem('id'))
 
-            this.toastr.success(`${x} done sucssefully `, 'Success!');
+            // alert(this.translate.getDefaultLang())
+            if(this.translate.getDefaultLang() == 'en')
+              this.toastr.success(`${x} done succssefully `, 'Success!');
+            else
+              this.toastr.success(`${x} تمت بنجاح `, 'تم بنجاح!');
             //set alert count of suspect to zero
             element['alarms_Count'] = '0';
           }
@@ -241,7 +262,10 @@ export class SuspectsComponent implements OnInit {
         alert('nothing selected')
       }
     }, error => {
-      this.toastr.error('Got an issue, check the connection ', 'Oops!');
+      if(this.target_lang == 'en')
+        this.toastr.error('Got an issue, check the connection ', 'Oops!');
+      else
+        this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
     }
 
     );

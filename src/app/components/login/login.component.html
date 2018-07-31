@@ -11,19 +11,19 @@
             <form class="form-container" #userlogin="ngForm" (ngSubmit) = "signIn(userlogin.value)" >
               <div class="form-group">
                 <div class="input-icon icon-left icon-lg icon-color-primary">
-                  <label>Username</label>
+                  <label>{{ "Username" | translate }}</label>
                   <input type="text" class="form-control" name="username" placeholder="Username" ngModel required #username="ngModel">
                   <span class="icon-addon">
                     <span class="la la-user fa fa-user"></span>
                   </span>
                 </div>
                 <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
-                  <div *ngIf="username.errors.required">username is required.</div>
+                  <div *ngIf="username.errors.required">{{ "username_is_required." | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-icon icon-left icon-lg icon-color-primary">
-                  <label class="pull-left">Password</label>
+                  <label class="pull-left">{{ "Password" | translate }}</label>
                   <!-- <a href="#" class="pull-right">Forget Password?</a> -->
                   <input type="password" class="form-control" name="password" placeholder="Password" ngModel required #password="ngModel">
                   <span class="icon-addon">
@@ -31,11 +31,11 @@
                   </span>
                 </div>
                 <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-                  <div *ngIf="password.errors.required">Password is required.</div>
+                  <div *ngIf="password.errors.required">{{ "Password_is_required." | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" >Login</button>
+                <button type="submit" class="btn btn-primary btn-block" >{{ "Login" | translate }}</button>
               </div>
 
               <!-- <div class="ks-social ks-text-center">

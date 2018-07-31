@@ -205,5 +205,11 @@
     "decline-risk":"decline risk",
     "Forward-Risk":"Forward Risk",
     "on":"on",
-    "to":"to"
+    "to":"to",
+
+    "Username": "Username",
+    "Password": "Password",
+    "Login": "Login",
+    "Password_is_required.": "Password is required.",
+    "username_is_required.": "username is required."
 }

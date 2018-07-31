@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastsManager } from 'ng2-toastr';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { GroupService } from '../../../services/group.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material';
@@ -49,8 +51,10 @@ export class EditGroupComponent implements OnInit {
       this.selection2.clear() :
       this.capabilities.data.forEach(row => this.selection2.select(row));
   }
-  constructor(private groupService: GroupService, private route: ActivatedRoute, private router: Router) {
-
+  constructor(private groupService: GroupService, private route: ActivatedRoute, private router: Router,
+    public translate: TranslateService,
+    public toastr: ToastsManager, vcr: ViewContainerRef) {
+      this.toastr.setRootViewContainerRef(vcr);
   }
   // 
 
@@ -85,6 +89,16 @@ export class EditGroupComponent implements OnInit {
       "capabilities": this.selection.selected.concat(this.selection2.selected)
     }
     this.groupService.updateGroup(g).subscribe(res => {
+      if(this.translate.getDefaultLang() == 'en')
+        this.toastr.success('Group Updated Successfully','Success!')
+      else 
+        this.toastr.success('تم تحديث بيانات الجروب','تمت العملية بنجاح')
+    },
+    error => {
+      if(this.translate.getDefaultLang() == 'en')
+        this.toastr.error('Operation fail!', 'Oops!')
+      else 
+        this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!')
     });
    
 this.router.navigate(['/groups']);

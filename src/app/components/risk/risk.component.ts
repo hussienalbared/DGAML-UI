@@ -192,12 +192,18 @@ export class RiskComponent implements OnInit {
       this.riskService.takeOwnerShipService(element["risk_Assmnt_Id"],loggedUser).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'take-ownership-risk',localStorage.getItem('id'))
 
-        this.toastr.success('You have been assigned to the suspect', 'Success!');
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('You have been assigned to the suspect', 'Success!');
+        else
+          this.toastr.success('لقد تم تعيينك مسؤولاً عن العميل المشتبة', 'تم بنجاح!');
        },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
 
-          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );
     });
@@ -217,11 +223,17 @@ export class RiskComponent implements OnInit {
         
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'remove-ownership-risk',localStorage.getItem('id'))
 
-        this.toastr.success('You have been removed from the suspect', 'Success!');
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('You have been removed from the suspect', 'Success!');
+        else 
+          this.toastr.success('لقد تم ازلة ملكيتك وصلاحيتك عن العميل المشتبه', 'تم ينجاح!');
       },
         error => {
           element["owner_User_Long_Id"] = prev_owner;
-          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );
     });
@@ -241,10 +253,16 @@ export class RiskComponent implements OnInit {
       this.riskService.approveRisk(element["risk_Assmnt_Id"], element['cust_No']).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'approve-risk',localStorage.getItem('id'))
 
-        this.toastr.success('Approve operation done sucssefully ', 'Success!');
+        if(this.translate.getDefaultLang()== 'en')
+          this.toastr.success('Approve operation done sucssefully ', 'Success!');
+        else 
+          this.toastr.success('تمت العملية بنجاح', 'تم ينجاح!');
        },
         error => {
-          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );
     });
@@ -264,10 +282,16 @@ export class RiskComponent implements OnInit {
       this.riskService.riskDecline(element["risk_Assmnt_Id"]).subscribe(data => {
         this.notification.riskNotifictionOwner(element["risk_Assmnt_Id"],'decline-risk',localStorage.getItem('id'))
 
-        this.toastr.success('Delete operation done sucssefully ', 'Success!');
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('Delete operation done sucssefully ', 'Success!');
+        else  
+          this.toastr.success('تمت عملية الحذف بنجاح ', 'Success!');
        },
         error => {
-          this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );
     });
@@ -287,7 +311,7 @@ export class RiskComponent implements OnInit {
     });
     // 
     // 
-    return tindex;
+    return tindex;  
   }
   ExportasCSV()
   {
