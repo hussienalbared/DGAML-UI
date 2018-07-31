@@ -1,6 +1,6 @@
 <form class="example-container" #add="ngForm" (ngSubmit)="addgroup(add.value)">
   <mat-form-field>
-    <input matInput placeholder="GroupName" name="name" ngModel required>
+    <input matInput placeholder="GroupName" name="name" [(ngModel)] = 'name_' required >
   </mat-form-field>
   <button mat-raised-button  type="submit" color="accent">Add Group</button>
 
