@@ -18,42 +18,51 @@ export class AddGroupComponent implements OnInit {
     this.toastr.setRootViewContainerRef(vcr);
   }
   GroupsNames: any = [];
+
+  name_ = '';
+
   ngOnInit() {
 
     this.groupService.getAllGroups().subscribe(data => {
       this.GroupsNames = data;
-
-
-
     })
   }
   addgroup(addForm) {
-    let url = environment.ipAddress + "/aml/api/group/add";
-    let group = {
-      name: "ROLE_" + addForm.name
-    }
-    this.http.post(url, group).subscribe(res => {
+    if(addForm.name.length == 0)
+      this.toastr.error('Cannot add group without name.','Error!');
 
-      if(this.translate.getDefaultLang() == 'en')
-        this.toastr.success('Group added Successfully','Success!')
-      else 
-        this.toastr.success('تم اضافه جروب جديد','تمت العملية بنجاح')
+    else {
+      if(this.GroupsNames.find(e => e.name === 'ROLE_'+addForm.name)){
+        this.toastr.error('Cannot have more than one group with same name.','Error!');
+      }else{
+        let url = environment.ipAddress + "/aml/api/group/add";
+        let group = {
+          name: "ROLE_" + addForm.name
+        }
+        this.http.post(url, group).subscribe(res => {
 
-      this.groupService.getAllGroups().subscribe(data => {
-        this.GroupsNames = data
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.success('Group added Successfully','Success!')
+          else 
+            this.toastr.success('تم اضافه جروب جديد','تمت العملية بنجاح')
 
-      },
-      error => {
-        if(this.translate.getDefaultLang() == 'en')
-          this.toastr.error('Operation fail!', 'Oops!')
-        else 
-          this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!')
+          this.groupService.getAllGroups().subscribe(data => {
+            this.GroupsNames = data
+
+          },
+          error => {
+            if(this.translate.getDefaultLang() == 'en')
+              this.toastr.error('Operation fail!', 'Oops!')
+            else 
+              this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!')
+          }
+        );
+          // addForm.name = '';
+        });
       }
-    );
-      addForm.name = '';
-    });
 
-
+      this.name_ = addForm.name
+    }
   }
   deleteGroup(groupId) {
 
