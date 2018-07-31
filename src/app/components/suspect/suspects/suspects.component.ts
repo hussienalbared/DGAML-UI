@@ -134,7 +134,7 @@ export class SuspectsComponent implements OnInit {
         // remove Owner
         this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
 
-        if(this.target_lang == 'en')
+        if(this.translate.getDefaultLang() == 'en')
           this.toastr.success('You have been removed from the suspect', 'Success!');
         else  
           this.toastr.success('لقد تم ازلة ملكيتك وصلاحيتك عن العميل المشتبه', 'تم ينجاح!');
@@ -142,7 +142,7 @@ export class SuspectsComponent implements OnInit {
         , error => {
           element["owner_UID"] = oldcomplianceUserid;
 
-          if(this.target_lang == 'en')
+          if(this.translate.getDefaultLang() == 'en')
             this.toastr.error('Got an issue, check the connection ', 'Oops!');
           else
             this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
@@ -164,7 +164,7 @@ export class SuspectsComponent implements OnInit {
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
           this.notification.suspectNotification(code,key,'take-ownership-suspect',localStorage.getItem('id'))
           
-          if(this.target_lang == 'en')
+          if(this.translate.getDefaultLang() == 'en')
             this.toastr.success('You have been assigned to the suspect', 'Success!');
           else
             this.toastr.success('لقد تم تعيينك مسؤولاً عن العميل المشتبة', 'تم بنجاح!');
@@ -173,7 +173,7 @@ export class SuspectsComponent implements OnInit {
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
 
-            if(this.target_lang == 'en')
+            if(this.translate.getDefaultLang() == 'en')
               this.toastr.error('Got an issue, check the connection ', 'Oops!');
             else 
               this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
@@ -262,7 +262,7 @@ export class SuspectsComponent implements OnInit {
         alert('nothing selected')
       }
     }, error => {
-      if(this.target_lang == 'en')
+      if(this.translate.getDefaultLang() == 'en')
         this.toastr.error('Got an issue, check the connection ', 'Oops!');
       else
         this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');

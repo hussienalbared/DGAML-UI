@@ -35,7 +35,7 @@ export class ForwardComponent implements OnInit {
   ) {
     this.numSuspected = this.data["selected"].length;
 
-    this.target_lang = this.translate.getDefaultLang();
+    // this.target_lang = this.translate.getDefaultLang();
     this.toastr.setRootViewContainerRef(vcr);
   }
   onNoClick(): void {
@@ -75,14 +75,18 @@ export class ForwardComponent implements OnInit {
         // forward Notification
         this.notification.suspectForwardNoti(code,suspectKey,'Forward-suspect',localStorage.getItem('id'),this.name)
         
-        if(this.target_lang == 'en')
+        // alert(this.translate.getDefaultLang())
+        if(this.translate.getDefaultLang() == 'en'){
+          alert("toats")
           this.toastr.success('operation completed successfully', 'Success!');
+        }
+          
         else 
           this.toastr.success('تمت العملية بنجاح.', 'تم بنجاح!');
       }, error => {
         element["owner_UID"] = oldName;
 
-        if(this.target_lang == 'en')
+        if(this.translate.getDefaultLang() == 'en')
           this.toastr.error('Got an issue, check the connection ', 'Oops!');
         else 
           this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
