@@ -6,4 +6,5 @@
 export const environment = {
   production: false,
   ipAddress:"http://192.168.1.95:8081"
+
 };

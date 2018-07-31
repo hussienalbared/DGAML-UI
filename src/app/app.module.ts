@@ -1,3 +1,4 @@
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
 import { WebSocketServiceService } from './web-socket-service.service';
@@ -19,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {
-  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule,
+  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatRadioButton, MatRadioGroup,  MatDatepicker,  MatDatepickerToggle, MatDatepickerInput,
   MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatRadioModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule, MatTabsModule, MatIconModule
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
@@ -30,17 +31,14 @@ import { SuspectDetailsComponent } from './components/suspect/suspect-details/su
 import { SuspectDetailUipageComponent } from './components/suspect/suspect-detail-uipage/suspect-detail-uipage.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ForwardComponent } from './components/suspect/forward/forward.component';
-
 import { SuspectsComponent } from './components/suspect/suspects/suspects.component';
 import { SelectCloseReasonComponent } from './components/alarms/select-close-reason/select-close-reason.component';
 import { AlarmDetail1Component } from './components/alarms/alarm-detail-1/alarm-detail-1.component';
 import { TransactionDetailsComponent } from './components/transactions/transaction-details/transaction-details.component';
 import { AccountDetailComponent } from './components/accounts/account-detail/account-detail.component';
 import { SuspectsService } from './services/suspects.service';
-
 import { RiskService } from './services/risk.service';
 import { UserService } from './services/user.service';
-
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -64,9 +62,8 @@ import { Section3Component } from './components/accounts/section3/section3.compo
 import { AccountDetailSearchComponent } from './components/accounts/account-detail-search/account-detail-search.component';
 import { TabsServiceService } from './services/tabs-service.service';
 import { AddTabDirective } from './directives/add-tab.directive';
-
+import { SamaReportComponent } from './sama-report/sama-report.component';
 import { RiskComponent } from './components/risk/risk.component';
-
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
 import { NgProgressModule,NgProgressInterceptor } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -79,6 +76,7 @@ import { GroupService } from './services/group.service';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { environment } from '../environments/environment';
 import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
+import { userHasCapabilityDirective } from './directives/has-capability.directive';
 
 
 // AoT requires an exported function for factories
@@ -113,30 +111,22 @@ export function tokenGetter() {
     LayoutComponent,
     LoginComponent,
     AccountAlarmInBriefComponent,
-
     Section3Component,
-
     AccountDetailSearchComponent,
     RiskComponent,
-
     AddTabDirective,
-
     RiskForwardComponent,
-
     WelcomeComponent,
-
+    SamaReportComponent,
     UserComponent,
-
     AddNewUserComponent,
-
     UpdateUserComponent,
     AddGroupComponent,
-
     EditGroupComponent,
-
     UserProfileComponent,
     CommentComponent,
-    EmptyComponentComponent
+    EmptyComponentComponent,
+    userHasCapabilityDirective
    
 
   ],
@@ -154,7 +144,6 @@ export function tokenGetter() {
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     BrowserModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
     MatMenuModule,
@@ -183,16 +172,22 @@ export function tokenGetter() {
     MatInputModule,
     MatTooltipModule,
     MatRadioModule,
-
     MatMenuModule,
     MatSelectModule,
     MatTabsModule,
     NgProgressModule,
-
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatChipsModule,
     MatGridListModule,
+    ToastModule.forRoot(),
+
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       //   {
       //   path: '',
@@ -301,7 +296,11 @@ export function tokenGetter() {
         path: 'empty',
         component: EmptyComponentComponent
       }
-
+      ,{
+        path: 'report/sama',
+        component: SamaReportComponent
+        , canActivate: [AuthGuardService]
+      }
     ]),
     JwtModule.forRoot({
       config: {

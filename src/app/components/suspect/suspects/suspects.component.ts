@@ -1,6 +1,6 @@
 import { NotificationService } from './../../../services/notification.service';
 import { UserService } from './../../../services/user.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 // import { Location } from '@angular/common';
@@ -18,7 +18,9 @@ import { NgProgress } from 'ngx-progressbar';
 import {TranslateService} from '@ngx-translate/core';
 import { AuthService } from '../../../services/auth.service';
 import { Angular5Csv } from 'angular5-csv/Angular5-csv';
-import { environment } from '../../../../environments/environment';  @Component({
+import { environment } from '../../../../environments/environment';
+import { ToastsManager } from 'ng2-toastr';
+  @Component({
   selector: 'app-suspects',
   templateUrl: './suspects.component.html',
   styleUrls: ['./suspects.component.css']
@@ -27,6 +29,8 @@ export class SuspectsComponent implements OnInit {
   result: suspect[];
   IsLoaded=true;
   owner_UID_Name: string;
+
+  target_lang : string;
 
   dataSource: any = null;
   displayedColumns = ['select', 'cIndex', 'alarms_Count', 'alarmed_Obj_Name', 'alarmed_Obj_No',
@@ -43,8 +47,14 @@ export class SuspectsComponent implements OnInit {
     public translate: TranslateService,
     private suspectService: SuspectsService,public ngProgress: NgProgress,
     private userService: UserService,
-    private notification: NotificationService
-  ) { }
+    private notification: NotificationService,
+
+    public toastr: ToastsManager, vcr: ViewContainerRef
+  ) { 
+    this.toastr.setRootViewContainerRef(vcr);
+
+    this.target_lang = this.translate.getDefaultLang();
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -113,11 +123,35 @@ export class SuspectsComponent implements OnInit {
          $('.forwardContainer').css('text-align', 'right' );
   }
   removeOwnerShip() {
-    this.suspectService.removeOwnerShip(this.selection.selected);
+    // this.suspectService.removeOwnerShip(this.selection.selected)
+    this.selection.selected.forEach(element => {
+ 
+      let code = element["id"]["alarmed_Obj_level_Cd"];
+      let key = element["id"]["alarmed_Obj_Key"];
+      let oldcomplianceUserid = element["owner_UID"];
+      element["owner_UID"] = null;
+      this.suspectService.removeOwnerShip(key, code, element['owner_UID']).subscribe(data => {
+        // remove Owner
+        this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
+
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('You have been removed from the suspect', 'Success!');
+        else  
+          this.toastr.success('لقد تم ازلة ملكيتك وصلاحيتك عن العميل المشتبه', 'تم ينجاح!');
+       }
+        , error => {
+          element["owner_UID"] = oldcomplianceUserid;
+
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Got an issue, check the connection ', 'Oops!');
+          else
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
+        }
+      );
+    }
+    )
   }
   takeOwnerShip() {
-
-
     this.selection.selected.forEach(
       element => {
 
@@ -129,9 +163,20 @@ export class SuspectsComponent implements OnInit {
 
         this.suspectService.takeOwnerShipService(key, code, element['owner_UID']).subscribe(data => {
           this.notification.suspectNotification(code,key,'take-ownership-suspect',localStorage.getItem('id'))
-         }
+          
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.success('You have been assigned to the suspect', 'Success!');
+          else
+            this.toastr.success('لقد تم تعيينك مسؤولاً عن العميل المشتبة', 'تم بنجاح!');
+          
+        }
           , error => {
             element['owner_UID'] = oldcomplianceUserid;
+
+            if(this.translate.getDefaultLang() == 'en')
+              this.toastr.error('Got an issue, check the connection ', 'Oops!');
+            else 
+              this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
           }
         );
       }
@@ -177,7 +222,7 @@ export class SuspectsComponent implements OnInit {
           let code = element['id']['alarmed_Obj_level_Cd'];
           let key = element['id']['alarmed_Obj_Key'];
           let oldcomplianceUserid = element['owner_UID'];
-          console.log(code+"&&&&&&"+key+"%%%%"+oldcomplianceUserid)
+          
 
           this.suspectService.changeAllSuspectAlarms(key, code, eventType).subscribe(data => {
 
@@ -187,6 +232,12 @@ export class SuspectsComponent implements OnInit {
             else
               x='suppress-suspect';
             this.notification.suspectNotification(code,key,x,localStorage.getItem('id'))
+
+            // alert(this.translate.getDefaultLang())
+            if(this.translate.getDefaultLang() == 'en')
+              this.toastr.success(`${x} done succssefully `, 'Success!');
+            else
+              this.toastr.success(`${x} تمت بنجاح `, 'تم بنجاح!');
             //set alert count of suspect to zero
             element['alarms_Count'] = '0';
           }
@@ -211,7 +262,10 @@ export class SuspectsComponent implements OnInit {
         alert('nothing selected')
       }
     }, error => {
-
+      if(this.translate.getDefaultLang() == 'en')
+        this.toastr.error('Got an issue, check the connection ', 'Oops!');
+      else
+        this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
     }
 
     );
@@ -222,4 +276,5 @@ export class SuspectsComponent implements OnInit {
   
     new Angular5Csv(this.result,'My Report');
   }
+
 }

@@ -1,4 +1,4 @@
-<div class="bodyContainer" *ngIf="!isLoggedIn">
+<div class="bodyContainer" *ngIf="!isLoggedIn()"><!--- *ngIf="!isLoggedIn" -->
   <div class="container">
     <div class="ks-page">
       <div class="ks-page-content">
@@ -11,43 +11,46 @@
             <form class="form-container" #userlogin="ngForm" (ngSubmit) = "signIn(userlogin.value)" >
               <div class="form-group">
                 <div class="input-icon icon-left icon-lg icon-color-primary">
-                  <label>Username</label>
-                  <input type="text" class="form-control" name="username" placeholder="Username" ngModel>
+                  <label>{{ "Username" | translate }}</label>
+                  <input type="text" class="form-control" name="username" placeholder="Username" ngModel required #username="ngModel">
                   <span class="icon-addon">
                     <span class="la la-user fa fa-user"></span>
                   </span>
                 </div>
+                <div class="alert alert-danger" *ngIf="username.touched && !username.valid">
+                  <div *ngIf="username.errors.required">{{ "username_is_required." | translate }}</div>
+                </div>
               </div>
               <div class="form-group">
                 <div class="input-icon icon-left icon-lg icon-color-primary">
-                  <label class="pull-left">Password</label>
-                  <a href="#" class="pull-right">Forget Password?</a>
-                  <input type="password" class="form-control" name="password" placeholder="Password" ngModel>
+                  <label class="pull-left">{{ "Password" | translate }}</label>
+                  <!-- <a href="#" class="pull-right">Forget Password?</a> -->
+                  <input type="password" class="form-control" name="password" placeholder="Password" ngModel required #password="ngModel">
                   <span class="icon-addon">
                     <span class="la la-key fa fa-key"></span>
                   </span>
                 </div>
+                <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                  <div *ngIf="password.errors.required">{{ "Password_is_required." | translate }}</div>
+                </div>
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" >Login</button>
+                <button type="submit" class="btn btn-primary btn-block" >{{ "Login" | translate }}</button>
               </div>
 
-
-
-              <div class="ks-social ks-text-center">
+              <!-- <div class="ks-social ks-text-center">
                 <div class="checkbox">
                   <label>
                     <input type="checkbox"> Remember me
                   </label>
                 </div>
-              </div>
+              </div> -->
             </form>
           </div>
         </div>
       </div>
       <div class="ks-footer">
         <span class="ks-copyright">&copy; Copyright © 2018 - DataGear Anti-Money Laundering.</span>
-
       </div>
     </div>
   </div>

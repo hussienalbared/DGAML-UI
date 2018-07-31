@@ -26,6 +26,8 @@ export class AlaramSearchComponent implements OnInit {
   result: alaram[];
   dataSource: any = null;
 
+  search_R: boolean = false;
+
   displayedColumns = ['alarm_Id', 'alarm_Status_Cd', 'ml_Risk_Score',
     'create_Date', 'run_Date', 'routine_Name', 'routine_Id'];
 
@@ -42,6 +44,8 @@ export class AlaramSearchComponent implements OnInit {
   }
   onClickSubmit(data) {
 
+    this.search_R = true;
+
     let url = environment.ipAddress+"/aml/api/alaram/allalarams?AlarmId=" + this.AlarmId + "&AlarmStatus=" + this.AlarmStatus +
       "&MoneyLaunderingRisk=" + this.MoneyLaunderingRisk + "&CreateDateFrom=" + this.CreateDateFrom
       + "&CreateDateTo=" + this.CreateDateTo
@@ -54,6 +58,9 @@ export class AlaramSearchComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+      // if(this.result.length == 0)
+      //   this.search_R = true;
 
     });
 

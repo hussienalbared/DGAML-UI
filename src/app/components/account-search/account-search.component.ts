@@ -10,6 +10,7 @@ import { account } from '../models/account.model';
 import { TabsServiceService } from '../../services/tabs-service.service';
 import { tab } from '../models/tab.model';
 import { environment } from '../../../environments/environment';
+import { concat } from 'rxjs/operator/concat';
  @Component({
   selector: 'app-account-search',
   templateUrl: './account-search.component.html',
@@ -21,8 +22,10 @@ accountCloseDate:string='';
 accountName:string='';
 accountNumber:string='';
 accountType:string='';
-result: account[];
+result: account[] ;
 dataSource:any=null;
+
+search_R: boolean = false;
 
 displayedColumns = ['acct_No', 'acct_Name', 'acct_Type_Desc', 'acct_Open_Date', 'acct_Close_Date'];
 @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,21 +42,33 @@ displayedColumns = ['acct_No', 'acct_Name', 'acct_Type_Desc', 'acct_Open_Date', 
       this.dataSource.filter = filterValue;
     }
   onClickSubmit(data) {
-   
-
-
- 
-
+    this.search_R = true;
+    
     let url=environment.ipAddress+"/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
     +"&AccountOpenDate="+this.accountOpenDate+"&AccountCloseDate="+this.accountCloseDate
-                                                                      
     ;
     
     this.http.get<account[]>(url).subscribe(data => {
       this.result = data;
+      
      this.dataSource = new MatTableDataSource(data);
+
+    //  console.log("AAAAAAAAAAAAAAa:")
+    //  console.log(this.result)
+// 
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
+
+     
+
+    //  if(this.result == null)
+    //   this.search_R = true;
+    // else if(this.result.length == 0)
+    //   this.search_R = true;
+    // else 
+    //   this.search_R = false;
+
+
     });
     
   

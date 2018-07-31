@@ -205,5 +205,16 @@
     "decline-risk":"decline risk",
     "Forward-Risk":"Forward Risk",
     "on":"on",
-    "to":"to"
+    "to":"to",
+
+    "Username": "Username",
+    "Password": "Password",
+    "Login": "Login",
+    "Password_is_required.": "Password is required.",
+    "username_is_required.": "username is required.",
+
+    "Reports": "Reports",
+    "SAMA_Report": "SAMA Report",
+
+    "No_Record_Found!": "No Record Found!"
 }

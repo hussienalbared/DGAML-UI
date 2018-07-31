@@ -1,9 +1,11 @@
+import { ToastsManager } from 'ng2-toastr';
+import { TranslateService } from '@ngx-translate/core';
 import { GroupService } from './../../../services/group.service';
 import { group } from './../../models/group.model';
 import { user } from './../../../models/user.model';
 import { UserService } from './../../../services/user.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 
 import { environment } from '../../../../environments/environment';  @Component({
   selector: 'app-update-user',
@@ -26,6 +28,8 @@ export class UpdateUserComponent implements OnInit {
   selectedGroups:group[]=[];
   selected:group[]=[];
   constructor(public dialogRef: MatDialogRef<UpdateUserComponent>,private userService: UserService,
+    public translate: TranslateService,
+    public toastr: ToastsManager, vcr: ViewContainerRef,
     private groupService: GroupService
   ,@Inject(MAT_DIALOG_DATA) public data: any) { 
     this.id = data.selected.id;
@@ -38,6 +42,8 @@ export class UpdateUserComponent implements OnInit {
     this.lastname = data.selected.lastname;
     this.newPassword = data.selected.password; 
     this.selected = data.selected.groups;
+
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   compareWithFunc(a, b) {
@@ -61,15 +67,27 @@ export class UpdateUserComponent implements OnInit {
     this.email = form_.email ? form_.email: this.email;
     this.enabled = form_.enabled ? form_.enabled: this.enabled;
     this.selectedGroups = form_.selectedGroups ? form_.selectedGroups: this.selectedGroups;
-    this.newPassword = form_.newPassword ? form_.newPassword : this.newPassword;
+    this.newPassword = form_.newPassword ;
 
 
     this.selectedGroups = this.selected.concat(this.selectedGroups)
-    console.log('final selected groups')
-    console.log(this.selectedGroups)
+    
+    
 
-    this.userService.updateUser(this.id,this.username,this.displayName,this.newPassword,this.firstname,
-      this.lastname,this.email,this.enabled,this.selectedGroups);
+     this.userService.updateUser(this.id,this.username,this.displayName,this.newPassword,this.firstname,
+      this.lastname,this.email,this.enabled,this.selectedGroups).subscribe(data => {
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User updated Successfully','Success!')
+        else 
+          this.toastr.success('تم تحديث بيانات الحساب', 'تمت العملية بنجاح')
+        }
+        ,err => {
+        console.log("Error occured");
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.error('Operation fail!', 'Oops!')
+        else 
+          this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
+      })
     this.dialogRef.close();
   }
 

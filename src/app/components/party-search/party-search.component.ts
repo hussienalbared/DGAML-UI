@@ -26,6 +26,8 @@ export class PartySearchComponent {
   riskValue = { 1: 'low', 2: 'medium', 3: 'high' };
   displayedColumns = ['cust_No', 'cust_Ident_Id', 'cust_FName', 'political_Exp_Prsn_Ind', 'risk_Class', 'cust_Status_Desc'];
  
+  search_R: boolean = false;
+
    @ViewChild(MatPaginator) paginator: MatPaginator;
    @ViewChild(MatSort) sort: MatSort;
 
@@ -43,6 +45,8 @@ export class PartySearchComponent {
     this.dataSource.filter = filterValue;
   }
   onClickSubmit(data) {
+
+    this.search_R = true;
  
     let url = environment.ipAddress+"/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
       "&PartyName=" + this.PartyName +
@@ -53,6 +57,10 @@ export class PartySearchComponent {
      this.dataSource = new MatTableDataSource(data);
      this.dataSource.paginator = this.paginator;
      this.dataSource.sort = this.sort;
+
+    //  if(this.result.length == 0)
+    //     this.search_R = true;
+
     });
 
    
@@ -63,14 +71,14 @@ export class PartySearchComponent {
   
     
     let url=environment.ipAddress+"/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
-    console.log(url)
+    
     this.http.get<any[]>(url).subscribe(data=>{
 if(data.length>0)
 {
   let path="suspectDetail/"+data[0][0]+"/"+data[0][1]+"/"+partyNumber;
   let Tab:tab={path:path,label:PartyName}
   this.tabService.addTab(Tab);
-  console.log("tab"+Tab.label+Tab.path)
+  
  this.router.navigate([path]);
 }
     })

@@ -11,7 +11,7 @@ export class SuspectsService {
   getAllSuspects()
   {
     let url = environment.ipAddress+"/aml/api/v1/suspectedObject";
-    console.log(url)
+    
    return this.http.get<suspect[]>(url);
   }
   forwardSuspect(suspectKey,suspectCode,userName){
@@ -29,25 +29,9 @@ export class SuspectsService {
     
   
   }
-  removeOwnerShip(selected){
-    
-    selected.forEach(element => {
- 
-      let code = element["id"]["alarmed_Obj_level_Cd"];
-      let key = element["id"]["alarmed_Obj_Key"];
-      let oldcomplianceUserid = element["owner_UID"];
-      element["owner_UID"] = null;
+  removeOwnerShip(key,code,complianceUserid){
       let url = environment.ipAddress+"/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
-      this.http.put(url, []).subscribe(data => {
-        // remove Owner
-        this.notification.suspectNotification(code,key,'remove-ownership-suspect',localStorage.getItem('id'))
-       }
-        , error => {
-          element["owner_UID"] = oldcomplianceUserid;
-        }
-      );
-    }
-    )
+      return this.http.put(url, [])
   }
   addalarmEvent(event)
   {

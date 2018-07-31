@@ -13,8 +13,8 @@ export class CommentService {
 
   getComments(alarmed_Obj_Key,alarmed_Obj_level_Cd)
   {
-    console.log(alarmed_Obj_level_Cd)
-    console.log(alarmed_Obj_Key)
+    
+    
 
     let url = this.rootUrl + "comments/comments?alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd+"&alarmed_Obj_Key="+alarmed_Obj_Key;
     return this.http.get<comment[]>(url);
@@ -34,7 +34,7 @@ export class CommentService {
   //     comment_
   //   ).subscribe(data => {},
   //     err => {
-  //       console.log("Error occured");
+  //       
   //     })
   // }
 
@@ -44,7 +44,7 @@ export class CommentService {
   }
 
   deleteSpecificFile(file_id_,user_id,alarmed_Obj_Key,alarmed_Obj_level_Cd){
-    console.log("log delete specif file servcie")
+    
     let url = this.rootUrl + "Attachment/removeAttachment?attachmentid="+file_id_+"&userId="+user_id+"&alarmed_Obj_level_Cd="+alarmed_Obj_level_Cd+"&alarmed_Obj_Key="+alarmed_Obj_Key;
     return this.http.delete(url).subscribe(data=>{});
   }
@@ -52,7 +52,7 @@ export class CommentService {
   /**********************************************************/
   getAttachments(key, code) {
     let url = this.rootUrl+ `comments/comments?code=${code}&key=${key}`;
-    console.log(url)
+    
     return this.http.get(url);
   }
   uploadFiles(f: FileList, alarmed_Obj_Key, alarmed_Obj_level_Cd, description, uplodedById) {
@@ -72,7 +72,7 @@ export class CommentService {
   }
   deleteAttachment(id) {
     let url  =`${environment.ipAddress}/aml/api/Attachment/delete/${id}`
-    console.log(url)
+    
     return this.http.delete(url, { responseType: "text" });
 
   }
@@ -116,7 +116,7 @@ export class CommentService {
 
   downloadFile(filename) {
     let url = this.rootUrl+ `Attachment/downloadFile/${filename}`
-    console.log(url)
+    
     return this.http.get(url, { responseType: 'blob' })
   }
   /**********************************************************/

@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng server --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -41,6 +41,7 @@
     "install": "^0.12.1",
     "jquery": "^3.3.1",
     "material-components-web": "^0.35.0",
+    "ng2-toastr": "^4.1.2",
     "ngx-pagination": "^3.1.0",
     "ngx-progressbar": "^2.1.1",
     "rxjs": "^5.5.6",

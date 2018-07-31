@@ -1,6 +1,7 @@
+import { ToastsManager } from 'ng2-toastr';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddNewUserComponent } from './add-new-user/add-new-user.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { UserService } from './../../services/user.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { user } from './../../models/user.model';
@@ -10,6 +11,7 @@ import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { environment } from '../../../environments/environment'; 
+import { TranslateService } from '@ngx-translate/core';
  @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -36,7 +38,11 @@ export class UserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: UserService,public ngProgress: NgProgress,public dialog: MatDialog,) { }
+  constructor(private userService: UserService,public ngProgress: NgProgress,public dialog: MatDialog,
+    public translate:TranslateService,
+    public toastr: ToastsManager, vcr: ViewContainerRef) { 
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
 /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -59,8 +65,8 @@ export class UserComponent implements OnInit {
   }
 
   getRecord(row: any) {
-    console.log("consolg log get record")
-    console.log(row)
+    
+    
     let dialogRef = this.dialog.open(UpdateUserComponent, {
       height: '400px',
       width: '600px',
@@ -84,8 +90,8 @@ export class UserComponent implements OnInit {
     this.userService.getAllUsers().
       subscribe(data => {
         this.result = data;
-        console.log("AAAAA:");
-        console.log(data);
+        
+        
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -107,10 +113,20 @@ export class UserComponent implements OnInit {
       let u_enable = element["enabled"];
       // let u_enable = element[4];
       element[4] = true;
-      this.userService.enableUser(user_id_).subscribe(data => { },
+      this.userService.enableUser(user_id_).subscribe(data => { 
+
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Enabled Successfully','Success')
+        else 
+          this.toastr.success('تم تفعيل حساب المستخدم','تمت العملية بنجاح')
+      },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });
@@ -127,10 +143,20 @@ export class UserComponent implements OnInit {
       let u_enable = element["enabled"];
       // let u_enable = element[4] 
       element[4] = false;
-      this.userService.disableUser(user_id_).subscribe(data => { },
+      this.userService.disableUser(user_id_).subscribe(data => {
+
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Disabled Successfully', 'Success')
+        else 
+          this.toastr.success('تم تعطيل حساب المستخدم','تمت العملية بنجاح')
+       },
         error => {
           element["enabled"] = u_enable;
           // element[4] = u_enable;
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });
@@ -144,14 +170,22 @@ export class UserComponent implements OnInit {
     var tindex = this.getSelectedIndex();
     this.selection.selected.forEach(element => {
       // let user_id_ = element['id'];
-      let user_id_ = element[0];
+      let user_id_ = element['id'];
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<user>(true, []);
 
-      this.userService.deleteUser(user_id_).subscribe(data => { },
+      this.userService.deleteUser(user_id_).subscribe(data => { 
+        if(this.translate.getDefaultLang() == 'en')
+          this.toastr.success('User Deleted Successfully', 'Success')
+        else
+          this.toastr.success('تم حذف الحساب', 'تمت العملية بنجاح')
+      },
         error => {
-          
+          if(this.translate.getDefaultLang() == 'en')
+            this.toastr.error('Operation fail!', 'Oops!')
+          else 
+            this.toastr.error('هناك خطأ, تأكد من اتصالك بالانترنت او السيرفر ', 'Oops!');
         }
       );;
     });

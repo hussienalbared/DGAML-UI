@@ -28,7 +28,7 @@ export class AlarmDetail1Component implements OnInit {
         this.dataSource=data;
         this.dataSource.sort = this.sort;
        
-        console.log(this.dataSource);
+      
       })
       let url2=environment.ipAddress+"/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
       this.http.get(url2).subscribe(data=>{

@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Element } from '@angular/compiler';
 import { Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +13,7 @@ import { SuspectsService } from '../../../services/suspects.service';
 
 import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
 import { NgProgress } from 'ngx-progressbar';
+import { TranslateService } from '@ngx-translate/core';
   @Component({
   selector: 'app-alarm-brief',
   templateUrl: './alarm-brief.component.html',
@@ -34,9 +36,11 @@ export class AlarmBriefComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public dialog: MatDialog,
+    public translate: TranslateService,
     private suspectService: SuspectsService,
-  private notification:NotificationService,public ngProgress: NgProgress) {
-
+  private notification:NotificationService,public ngProgress: NgProgress,
+  public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
 
   }
   isAllSelected() {
@@ -147,9 +151,14 @@ this.dialog.closeAll();
               else 
                 x = 'Suppress-alarm';
               this.notification.alarmNotification(a.alarm_Id,x,localStorage.getItem('id'))
+
+              if(this.translate.getDefaultLang() == 'en')
+                this.toastr.success(`${x} done succssefully `, 'Success!');
+              else
+                this.toastr.success(`${x} تمت بنجاح `, 'تم بنجاح!')
             },
               err => {
-                console.log("Error occured");
+                
               })
              
             })
