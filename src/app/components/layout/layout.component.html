@@ -206,7 +206,7 @@
       </mat-list-item> -->
       <!-- <mat-divider></mat-divider> -->
 
-      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();"> <!--fffv.expanded='true'-->
         <mat-icon>assignment</mat-icon>
       </mat-list-item>
 
@@ -226,7 +226,7 @@
       </mat-accordion>
       <mat-divider></mat-divider>
 
-      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();"> <!--fffv.expanded='true'-->
         <mat-icon>search</mat-icon>
       </mat-list-item>
 
@@ -263,7 +263,7 @@
         </a>
       </mat-list-item> -->
       <div *userHasCapability="'adminstration'">
-      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
+      <mat-list-item *ngIf="!isOn" (click)="changeIsOn();"> <!--fffv.expanded='true'-->
         <mat-icon>group_work</mat-icon>
       </mat-list-item>
     </div>
