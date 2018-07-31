@@ -77,7 +77,7 @@ export class ForwardComponent implements OnInit {
         
         // alert(this.translate.getDefaultLang())
         if(this.translate.getDefaultLang() == 'en'){
-          alert("toats")
+          // alert("toats")
           this.toastr.success('operation completed successfully', 'Success!');
         }
           
