@@ -211,5 +211,8 @@
     "Password": "Password",
     "Login": "Login",
     "Password_is_required.": "Password is required.",
-    "username_is_required.": "username is required."
+    "username_is_required.": "username is required.",
+
+    "Reports": "Reports",
+    "SAMA_Report": "SAMA Report"
 }

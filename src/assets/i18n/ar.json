@@ -211,5 +211,8 @@
     "Password": "كلمة السر",
     "Login": "تسجيل دخول",
     "Password_is_required.": "الرجاء ادخال كلمة السر",
-    "username_is_required.": "الرجاء ادخال اسم المستخدم"
+    "username_is_required.": "الرجاء ادخال اسم المستخدم",
+
+    "Reports": "تقارير",
+    "SAMA_Report": "تقرير سما"
 }

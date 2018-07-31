@@ -196,29 +196,29 @@
           <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>
         </a>
       </mat-list-item>
-      <mat-divider></mat-divider>
+      <!-- <mat-divider></mat-divider> -->
       <!--  -->
-      <mat-list-item  *userHasCapability="'show-reports'" (click)="layoutItem($event);" class="mat_item_a">
+      <!-- <mat-list-item  *userHasCapability="'show-reports'" (click)="layoutItem($event);" class="mat_item_a">
         <a>
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isOn">{{ 'right_side_bar.Regulatory_Reports' | translate }} </span>
         </a>
-      </mat-list-item>
-      <mat-divider></mat-divider>
+      </mat-list-item> -->
+      <!-- <mat-divider></mat-divider> -->
 
       <mat-list-item *ngIf="!isOn" (click)="changeIsOn();fffv.expanded='true'">
-        <mat-icon>search</mat-icon>
+        <mat-icon>assignment</mat-icon>
       </mat-list-item>
 
       <mat-accordion *ngIf="isOn" displayMode="flat" (click)="layoutItem($event);">
         <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">
-            <mat-icon>search</mat-icon>
-            <span>Reports</span>
+            <mat-icon>assignment</mat-icon>
+            <span>{{ 'Reports' | translate }}</span>
           </mat-expansion-panel-header>
           <mat-list appAddTab path="report/sama">
             <mat-list-item  class="mat_item_a"  (click)="layoutItem($event);">
-              <a routerLink="report/sama">SAMA Report</a>
+              <a routerLink="report/sama">{{ 'SAMA_Report' | translate }}</a>
             </mat-list-item>
             <mat-divider></mat-divider>
           </mat-list>
