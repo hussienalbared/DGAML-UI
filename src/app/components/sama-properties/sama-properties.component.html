@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-lg-9" style="margin: auto">
       <div class="comment_div">
-        <span style="letter-spacing: 1px;color: #28607b;font-size: 17px;">SAMA Main Properties: </span>
+        <span style="letter-spacing: 1px;color: #28607b;font-size: 17px;">{{ 'SAMA_Main_Properties' | translate }}: </span>
         <form #form_="ngForm" (ngSubmit)="updateProps(form_.value)" style="margin-top: 10px;" > <!--*userHasCapability="''"-->
           
           <div class="container">
             <div id="sama_form">
               <div class="row">
                 <div class="col-lg-12">
-                  <span style="letter-spacing: 1px;color: #28607b;font-size: 14px;">Reporting Entity:</span>
+                  <span style="letter-spacing: 1px;color: #28607b;font-size: 14px;">{{ 'Reporting_Entity' | translate }}:</span>
                 </div>
               </div>
               <div class="row">
@@ -17,21 +17,21 @@
                 <div class="col-lg-6">
 
                   <div style="display: block">
-                    <label style="font-size: 13px;color: #28607b;">Entity Name:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Entity_Name' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Entity_Name"  placeholder="{{ sama_Entity_Name_placeholder }}" ngModel >
                     </mat-form-field>
                   </div>
                   
                   <div style="display: block">
-                    <label style="font-size: 13px;color: #28607b;">Entity City:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Entity_City' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Entity_City"  placeholder="{{ sama_Entity_City_placeholder }}" ngModel >
                     </mat-form-field>
                   </div>
                   
                   <div style="display: block">
-                    <label style="font-size: 13px;color: #28607b;">Entity Phone Number:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Entity_Phone_Number' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Entity_Phone"  placeholder="{{ sama_Entity_Phone_placeholder }}" ngModel >
                     </mat-form-field>
@@ -42,14 +42,14 @@
                 <div class="col-lg-6">
 
                   <div style="display: block">
-                    <label style="font-size: 13px;color: #28607b;">Entity Type:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Entity_Type' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Entity_Type"  placeholder="{{ sama_Entity_Type_placeholder }}" ngModel >
                     </mat-form-field>
                   </div>
 
                   <div style="display: block">
-                    <label style="font-size: 13px;color: #28607b;">Entity Branch:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Entity_Branch' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Entity_Branch"  placeholder="{{ sama_Entity_Branch_placeholder }}" ngModel >
                     </mat-form-field>
@@ -64,26 +64,26 @@
             <div id="sama_form">
               <div class="row" >
                 <div class="col-lg-12">
-                  <span style="letter-spacing: 1px;color: #28607b;font-size: 14px;">Contact The Reporting:</span>
+                  <span style="letter-spacing: 1px;color: #28607b;font-size: 14px;">{{ 'Contact_The_Reporting' | translate }}:</span>
                 </div>
               </div>
             
               <div class="row">
                 <!-- <div class="col-lg-1"></div> -->
                   <div class="col-lg-6">
-                    <label style="font-size: 13px;color: #28607b;">Reporting Name:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Reporting_Name' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Reporting_Name"  placeholder="{{ sama_Reporting_Name_placeholder }}" ngModel >
                     </mat-form-field>
 
-                    <label style="font-size: 13px;color: #28607b;">Reporting Address:</label>
+                    <label style="font-size: 13px;color: #28607b;">{{ 'Reporting_Address' | translate }}:</label>
                     <mat-form-field>
                       <input type = "text" matInput name="sama_Reporting_Address"  placeholder="{{ sama_Reporting_Address_placeholder }}" ngModel >
                     </mat-form-field>
                 </div>
 
                 <div class="col-lg-6">
-                  <label style="font-size: 13px;color: #28607b;">Reporting Phone Number:</label>
+                  <label style="font-size: 13px;color: #28607b;">{{ 'Reporting_Phone_Number' | translate }}:</label>
                   <mat-form-field>
                     <input type = "text" matInput name="sama_Reporting_Phone"  placeholder="{{ sama_Reporting_Phone_placeholder }}" ngModel >
                   </mat-form-field>
@@ -96,7 +96,7 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-12">
-                <button mat-raised-button style="width: 20%;display: block;float: right;">Submit</button>
+                <button mat-raised-button style="width: 20%;display: block;float: right;">{{ 'Submit' | translate }}</button>
               </div>
             </div>          
           </div>

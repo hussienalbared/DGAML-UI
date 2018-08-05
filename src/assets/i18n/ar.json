@@ -218,5 +218,17 @@
 
     "No_Record_Found!": "لا يوجد نتائج!",
 
-    "SAMA_Properties": "SAMA Properties"
+    "SAMA_Properties": "SAMA Properties",
+    "SAMA_Main_Properties": "SAMA Main Properties",
+    "Reporting_Entity": "الجهه المبلغه",
+    "Entity_Name": "اسم الجهه المبلغه",
+    "Entity_City": "المدينة",
+    "Entity_Phone_Number": "رقم الهاتف",
+    "Entity_Type": "نوع الجهه",
+    "Entity_Branch": "الفرع",
+    "Contact_The_Reporting": "الاتصال بالمبلغ",
+    "Reporting_Name": "الاسم",
+    "Reporting_Address": "العنوان",
+    "Reporting_Phone_Number": "رقم الهاتف",
+    "Submit": "Submit"
 }
