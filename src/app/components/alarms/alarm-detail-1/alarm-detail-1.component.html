@@ -20,11 +20,11 @@
        <mat-card-content *ngIf="dataSource">
          
       
-        <h6>Routine Name : {{dataSource.routine_Name}}
+        <h6><span class="routine_heders_titles">Routine Name </span>: {{dataSource.routine_Name}}
           </h6>
-        <h6>Routine Description: <span *ngIf="dataSource.acroutine">{{dataSource.acroutine.routine_Desc}}</span></h6>
-        <h6>Run Date:{{dataSource.run_Date}}</h6>
-        <h6> alarm message:{{dataSource.actual_Value_Txt}}</h6>
+        <h6><span class="routine_heders_titles">Routine Description </span>: <span *ngIf="dataSource.acroutine">{{dataSource.acroutine.routine_Desc}}</span></h6>
+        <h6><span class="routine_heders_titles">Run Date</span> :{{dataSource.run_Date}}</h6>
+        <h6><span class="routine_heders_titles">Alarm message</span> :{{dataSource.actual_Value_Txt}}</h6>
       
       
         </mat-card-content>
