@@ -34,7 +34,7 @@
                 <p>No Notification Available</p>
               </mat-list-item>
               <mat-list-item style="height: auto" role="listitem" (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  "
-                class="notificationDetail">
+                class="notificationDetail" matTooltip="Mark as Read!" matTooltipPosition="left">
                 <div [ngSwitch]="x.action">
                   <p *ngSwitchCase="'take-ownership-suspect'" class="main_action_details">
                       <span class="action_user_name">{{x.create_User_Name}}</span>
