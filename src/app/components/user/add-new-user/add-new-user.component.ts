@@ -61,7 +61,7 @@ export class AddNewUserComponent implements OnInit {
                                     this.toastr.success('تم اضافه المستخدم', 'تمت العمليه بنجاح')
                                 },
                                   err => {
-                                    console.log("Error occured");
+                                    console.log("Error occured!");
                                     if(this.translate.getDefaultLang() == 'en')
                                       this.toastr.error('Operation fail!', 'Oops!')
                                     else 

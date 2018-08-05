@@ -283,6 +283,13 @@
                 <span *ngIf="isOn">{{ 'right_side_bar.User' | translate }}</span>
               </a>
             </mat-list-item>
+
+            <mat-list-item (click)="layoutItem($event);navItem('/sama_props')" class="mat_item_a" appAddTab path="/sama_props">
+              <a routerLink="sama_props">
+                <span *ngIf="isOn">{{ 'SAMA_Properties' | translate }}</span>
+              </a>
+            </mat-list-item>
+
             <!-- <mat-divider></mat-divider> -->
           </mat-list>
         </mat-expansion-panel>

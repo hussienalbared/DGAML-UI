@@ -77,6 +77,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { environment } from '../environments/environment';
 import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 import { userHasCapabilityDirective } from './directives/has-capability.directive';
+import { SamaPropertiesComponent } from './components/sama-properties/sama-properties.component';
 
 
 // AoT requires an exported function for factories
@@ -126,7 +127,8 @@ export function tokenGetter() {
     UserProfileComponent,
     CommentComponent,
     EmptyComponentComponent,
-    userHasCapabilityDirective
+    userHasCapabilityDirective,
+    SamaPropertiesComponent
    
 
   ],
@@ -277,6 +279,11 @@ export function tokenGetter() {
       {
         path: 'groups',
         component: AddGroupComponent
+      },
+      {
+        path: 'sama_props',
+        component: SamaPropertiesComponent
+        , canActivate: [AuthGuardService]
       },
       {
         path: 'editGroup/:id',
