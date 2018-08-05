@@ -14,6 +14,7 @@ export class AlarmDetail1Component implements OnInit {
   dataSource:any=[];
   dataSource2:any=[];
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(private http:HttpClient,private route:ActivatedRoute,private router:Router  ) { }
 
@@ -32,8 +33,10 @@ export class AlarmDetail1Component implements OnInit {
       })
       let url2=environment.ipAddress+"/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
       this.http.get(url2).subscribe(data=>{
-        this.dataSource2=data;
+        this.dataSource2 = new MatTableDataSource();
+        this.dataSource2.data = data;
         this.dataSource2.sort = this.sort;
+        this.dataSource2.paginator = this.paginator;
       })
 
     })
