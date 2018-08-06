@@ -190,7 +190,7 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <!--  -->
-      <mat-list-item *userHasCapability="'show-dashboard'" (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
+      <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
         <a>
           <mat-icon>dashboard</mat-icon>
           <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>

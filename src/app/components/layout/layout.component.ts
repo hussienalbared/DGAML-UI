@@ -163,7 +163,7 @@ changeLang2(tarnsLang: string) {
   }
   goTodashboard() {
     this.router.navigate(['/empty']);
-    window.open('http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard', '_blank');
+   // window.open('http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard', '_blank');
   }
   stopNotificationAnimation() {
     $(document).ready(() => {
