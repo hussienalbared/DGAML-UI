@@ -1,251 +1,178 @@
+<ng-progress></ng-progress>
+<h1>
+    SAMA Report</h1>
 
-<h1>SAMA Report</h1>
-
-<mat-form-field >
-  <input matInput placeholder="Enter customer ID"
-  (keyup.enter)="loadTransactionList(customerId)"
-  #customerId  >
+<mat-form-field>
+    <input matInput placeholder="Enter customer ID" (keyup.enter)="loadTransactionList(customerId)" value="CUST000000095" #customerId>
 </mat-form-field>
 
 
 <form [formGroup]="form" (ngSubmit)="generateSamaReport()" *ngIf="transactionList">
 
-      <mat-form-field>
-        <mat-select 
-          placeholder="Transactions" 
-          [(ngModel)]="selectedTransaction"
-          formControlName="transactionControlName"
-          multiple>
-          <mat-option 
-            *ngFor="let transaction of transactionList" 
-            [value]="transaction.trans_Key">{{transaction.trans_Ref_No}}</mat-option>
+    <mat-form-field>
+        <mat-select placeholder="Transactions" [(ngModel)]="selectedTransaction" formControlName="transactionControlName" multiple>
+            <mat-option *ngFor="let transaction of transactionList" [value]="transaction.trans_Key">{{transaction.trans_Ref_No}}</mat-option>
         </mat-select>
-      </mat-form-field>
+    </mat-form-field>
 
 
-      <button class="btn btn-success" type="submit" mat-button>Generate SAMA Report</button>
+    <button class="btn btn-success" type="submit" mat-button>Generate SAMA Report</button>
 
 </form>
 
 <div *ngIf="samaReports">
-<mat-accordion *ngFor="let report of samaReports">
-    <mat-expansion-panel expanded='false'>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-           Transaction 1:
-           {{ report.customerName}}
-          </mat-panel-title>
-          <mat-panel-description>
-    
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-       
-        <div class="row">
-            <div class="col-md-6">
-        <form #reportForm="ngForm" (ngSubmit)="saveReports(reportForm.value)">
+    <mat-accordion *ngFor="let report of samaReports">
+        <mat-expansion-panel expanded='false'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Transaction 1: {{ report.customerName}}
 
-            <div class="form-group">
-              <label for="depositType" >Deposit Type: </label>
-                <select [(ngModel)]="SamaReport.depositType" class="form-control" name="depositType">
-                    <option value="1">Check</option>
-                    <option value="2">Cash</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="withdrawType">Withdrawal Type: </label>
-                <select  [(ngModel)]="SamaReport.withdrawType" id="withdrawType" name="withdrawType"  class="form-control">
-                    <option value="1">ATM</option>
-                    <option value="2">Branch</option>
-                </select>
-            </div>
+                </mat-panel-title>
+                <mat-panel-description>
 
-            <div class="form-group">
-                <label for="withdrawType">Transfer Type: </label>
-                <div class="radio">
-                    <label class="checkbox-inline">
-                      <input type="radio" value="1" [(ngModel)]="SamaReport.transferType"  name="transferType">Demostic
-                    </label>
-                  
-                    <label class="checkbox-inline">
-                      <input type="radio" value="2" [(ngModel)]="SamaReport.transferType"  name="transferType">International
-                    </label>
-                </div>
-            </div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
 
-            <div class="form-group">                
-                <label for="creationDate">Creation Date</label>
-                
-                <input  [matDatepicker]="picker"  placeholder="Creation Date" type="text" name="creationDate"
-                [(ngModel)]="SamaReport.creationDate" class="form-control">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                  
-              </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form #reportForm="ngForm" (ngSubmit)="saveReports(reportForm.value,report)">
+                        <div class="form-group">
+                            <label for="depositType">Deposit Type: </label>
+                            <select class="form-control" name="depositType" [(ngModel)]="report.depositType">
+                                <option value="1">Cash</option>
+                                <option value="2">Check</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdrawType">Withdrawal Type: </label>
+                            <select id="withdrawType" name="withdrawType" class="form-control" [(ngModel)]="report.withdrawType">
+                                <option value="1">ATM</option>
+                                <option value="2">Branch</option>
+                            </select>
+                        </div>
+                    
+                        <!-- <div class="form-group">
+                            <label for="withdrawType">Transfer Type: </label>
+                            <div class="radio">
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="transferType" value="1" [(ngModel)]="report.transferType">Demostic
+                                </label>
 
-            <div class="form-group">  
-                <label for="amount">The amount</label>
-                <div class="input-group">                   
-                  <input type="text"  placeholder="The amount" [(ngModel)]="SamaReport.amountNumber" 
-                    name="amountNumber" class="form-control" id="amountNumber">
-                </div>
-            </div>
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="transferType" value="2" [(ngModel)]="report.transferType">International
+                                </label>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                        <label for="transferType">Transfer Type: </label>
+                        <mat-radio-group name="transferType" [(ngModel)]="report.transferType" class="form-control">
+                                <mat-radio-button value="1">Demostic</mat-radio-button>
+                                <mat-radio-button value="2">International</mat-radio-button>
 
-            <div class="form-group">  
-                <label for="currencyName">Currency Name</label>
-                <div class="input-group">                   
-                  <input type="text"  placeholder="Currency Name" [(ngModel)]="SamaReport.currencyName" 
-                    name="currencyName" class="form-control">
-                </div>
-            </div>
+                            </mat-radio-group>
+                            </div>
+                        <div class="form-group">
+                            <label for="creationDate">Creation Date</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input [matDatepicker]="picker" type="text" name="creationDate" [(ngModel)]="report.creationDate" class="form-control">
 
-            <div class="form-group">  
-                <label for="accountNumber">Account Number</label>
-                <div class="input-group">                   
-                  <input type="text"  placeholder="Account Number" [(ngModel)]="SamaReport.accountNumber" 
-                    name="accountNumber" class="form-control" >
-                </div>
-            </div>
+                                </div>
+                                <div class="col-6">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker style="margin: -7px; "></mat-datepicker>
+                                </div>
+                            </div>
 
-            <div class="form-group">  
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="amount">The amount</label>
+                            <div class="input-group">
+                                <input type="text" name="amountNumber" class="form-control" id="amountNumber" [(ngModel)]="report.amountNumber" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="currencyName">Currency Name</label>
+                            <div class="input-group">
+                                <input type="text" name="currencyName" class="form-control" [(ngModel)]="report.currencyName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number</label>
+                            <div class="input-group">
+                                <input type="text" name="accountNumber" class="form-control" [(ngModel)]="report.accountNumber">
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group">  
                 <label for="accountBranch">Account Name</label>
                 <div class="input-group">                   
-                  <input type="text"  placeholder="Account Branch Name" [(ngModel)]="SamaReport.accountBranch" 
-                    name="accountBranch" class="form-control" >
+                  <input type="text"
+                    name="accountBranch" class="form-control"  [(ngModel)]="report.accountBranch">
                 </div>
-            </div>
+            </div> -->
 
-            <div class="form-group">  
-              <label for="customerId">Customer ID</label>
-              <div class="input-group">                   
-                <input type="text"  placeholder="Customer ID" [(ngModel)]="SamaReport.customerId" 
-                  name="customerId" class="form-control" >
-              </div>
-            </div>
-
-            <div class="form-group">  
-                <label for="customerName">Customer Name</label>
-                <div class="input-group">                   
-                  <input type="text"  placeholder="Customer Name" [(ngModel)]="SamaReport.customerName" 
-                    name="customerName" class="form-control" >
-                </div>
-            </div>
-
-            <div class="form-group">  
-                <label for="nationality">Nationality</label>
-                <div class="input-group">                   
-                  <input type="text"  placeholder="Nationality" [(ngModel)]="SamaReport.nationality" 
-                    name="nationality" class="form-control" >
-                </div>
-            </div>
-
- <!--
-                    <div class="form-group">
-
-                      <label>Deposit Type: </label>
-                      <mat-radio-group formControlName="SamaReport.depositType" >
-                          <mat-radio-button value="1">Check</mat-radio-button>
-                          <mat-radio-button value="2">Cash</mat-radio-button>
-                      </mat-radio-group>
-
-                      <div class="pull-right">
-                      <label>Withdrawal Type: </label>
-                      <mat-radio-group  formControlName="SamaReport.withdrawType">
-                          <mat-radio-button value="1">ATM</mat-radio-button>
-                          <mat-radio-button value="2">Branch</mat-radio-button>
-                      </mat-radio-group>
-                    </div>
-
-                    </div>
-            
-                    <div class="form-group">
-
-                        <label>Transfer Type: </label>
-                        <mat-radio-group formControlName="transferType">
-                            <mat-radio-button value="1">Demostic</mat-radio-button>
-                            <mat-radio-button value="2">International</mat-radio-button>
-                        </mat-radio-group>
-  
-                        <div class="pull-right">
-                            <mat-form-field >
-                                <input  [matDatepicker]="picker" matInput placeholder="Creation Date" type="text" formControlName="creationDate">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-
- 
+                        <div class="form-group">
+                            <label for="customerId">Customer ID</label>
+                            <div class="input-group">
+                                <input type="text" name="customerId" class="form-control" [(ngModel)]="report.customerId">
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="form-group">
-                      <mat-form-field>
-                        <input formControlName="reportingEntityPhone" matInput placeholder="Reporting Entity Phone" type="text">
-                      </mat-form-field>
-
-                      <div class="pull-right">
-                        <mat-form-field>
-                          <input type="text" matInput placeholder="The amount" formControlName="amount">
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-             
-                  <div class="form-group">
-                    <mat-form-field>
-                      <input formControlName="currencyName" matInput placeholder="Currency Name" type="text">
-                    </mat-form-field>
-
-                    <div class="pull-right">
-                      <mat-form-field>
-                        <input type="text" matInput placeholder="Account Number" formControlName="accountNumber">
-                      </mat-form-field>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                      <mat-form-field>
-                        <input formControlName="accountBranchNumber" matInput placeholder="Account Branch Number" type="text">
-                      </mat-form-field>
-  
-                      <div class="pull-right">
-                        <mat-form-field>
-                          <input type="text" matInput placeholder="Customer Name" formControlName="customerName">
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-
-                  <div class="form-group">
-                      <mat-form-field>
-                        <input formControlName="customerId" matInput placeholder="Customer Number" type="text">
-                      </mat-form-field>
-  
-                      <div class="pull-right">
-                        <mat-form-field>
-                          <input type="text" matInput placeholder="Customer Name"  formControlName="customerName">
-                        </mat-form-field>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                        <mat-form-field>
-                          <input formControlName="nationality" matInput placeholder="Nationality" type="text">
-                        </mat-form-field>
-
-                        <div class="pull-right">
-
-                            <button class="btn btn-success" type="submit">Save</button>
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <div class="input-group">
+                                <input type="text" name="customerName" class="form-control" [(ngModel)]="report.customerName">
+                            </div>
                         </div>
-                    </div>
-                  -->
-                  <button class="btn btn-success" type="submit">Save</button>
-       </form>
-       </div>
-       </div>
-      </mat-expansion-panel>
+
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <div class="input-group">
+                                <input type="text" name="nationality" class="form-control" [(ngModel)]="report.nationality">
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="form-group">
+                            <label for="transactionKey">transaction Key</label>
+                            <div class="input-group">
+                                <input type="input" name="transactionKey" class="form-control" [(ngModel)]="report.transactionKey">
+
+                            </div>
+                            <!--  -->
+                            <div class="form-group">
+                                <label for="cust_Key">Customer Key</label>
+                                <div class="input-group">
+                                    <input type="input" name="cust_Key" class="form-control" [(ngModel)]="report.cust_Key">
+
+                                </div>
+                            </div>
+                            <!--  -->
+                            <!--  -->
+                            <div class="form-group">
+                                <label for="cust_No">Customer Number</label>
+                                <div class="input-group">
+                                    <input type="input" name="cust_No" class="form-control" [(ngModel)]="report.cust_No">
+
+                                </div>
+                            </div>
+                            <!--  -->
+                        </div>
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </mat-expansion-panel>
     </mat-accordion>
 
-    
-<button matButton class="btn btn-success" (click)="downloadReport('ar')">Print Arabic Report</button>
-<button matButton class="btn btn-success" (click)="downloadReport('en')">Print English Report</button>
+
+    <button matButton class="btn btn-success" (click)="downloadReport('ar')">Print Arabic Report</button>
+    <button matButton class="btn btn-success" (click)="downloadReport('en')">Print English Report</button>
 
 </div>
