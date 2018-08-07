@@ -26,3 +26,7 @@ font-family: inherit;
 } */
 
 /* .mat-sidenav-content[_ngcontent-c1] {height: 100% !important} */
+
+.row_ds:hover{
+  background: #d7effb6b
+}
