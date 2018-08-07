@@ -86,7 +86,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)" title="General Information" style="cursor: pointer;" class="row_ds"></mat-row>
 
   </mat-table>
   <mat-paginator #paginator
@@ -182,7 +182,7 @@
           </ng-container>
       
           <mat-header-row *matHeaderRowDef="displayedColumnsforClassfirerTable"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumnsforClassfirerTable;" (click)="getRecord(row)"></mat-row>
+          <mat-row *matRowDef="let row; columns: displayedColumnsforClassfirerTable;" ></mat-row>
       
         </mat-table>
         
