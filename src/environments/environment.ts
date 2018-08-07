@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  ipAddress:"http://192.168.1.95:8081"
+  ipAddress:"http://192.168.1.90:8081",
+  ipAddressWithoutHttp:'192.168.1.90:8081'
 
 };

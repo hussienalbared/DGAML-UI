@@ -2,7 +2,7 @@
 <!-- <div dir="rtl"> -->
   <ng-progress></ng-progress>
 <mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
-  <button class="btn btn-primary" (click)="openDialog();" *userHasCapability="forward-risk">
+  <button class="btn btn-primary" (click)="openDialog();" *userHasCapability="'forward-risk'">
     <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
   <button class="btn btn-primary" (click)="takeOwnerShip()" *userHasCapability="'take-ownership-risk'">
     <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
