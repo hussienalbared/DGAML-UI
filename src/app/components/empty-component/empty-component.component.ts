@@ -21,7 +21,7 @@ export class EmptyComponentComponent implements OnInit {
     let myExternalPageLink="http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard";
     let t="https://angular.io/"
     var headers = new Headers();
-console.log('ttttttttt');
+
       // this.http.get(t).subscribe(response => {
       //   this.myTemplate=response
       //   ;
