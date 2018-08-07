@@ -43,8 +43,13 @@
     <mat-expansion-panel-header>
       Alarm Transaction Detail
       </mat-expansion-panel-header>
-  <div class="example-container mat-elevation-z8">
-      <mat-table #table [dataSource]="dataSource2" *ngIf="dataSource2">
+      <div *ngIf="this.dataSource2.data.length==0">
+        <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+          {{ 'No_Record_Found!' | translate }}
+        </div>
+        </div>
+  <div class="example-container mat-elevation-z8" *ngIf="this.dataSource2.data.length>0" >
+      <mat-table #table [dataSource]="dataSource2" >
     
       
         <ng-container matColumnDef="acct_Key">

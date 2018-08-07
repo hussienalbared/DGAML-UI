@@ -32,10 +32,11 @@ export class TransactionDetailsComponent implements OnInit {
 
   ngOnInit() {
     let Url = environment.ipAddress + "/aml/api/Transaction_detail/transactionDeatil?ttrn=" + this.TTRN;
-    this.ngProgress.start();
+    console.log(this.result);
     this.http.get(Url).subscribe(data => {
       this.result = data;
-      this.ngProgress.done();
+      console.log(this.result);
+     
     })
   }
 
