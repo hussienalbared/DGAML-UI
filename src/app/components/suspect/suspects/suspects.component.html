@@ -1,5 +1,9 @@
 <ng-progress></ng-progress>
-
+<div *ngIf="!dataSource">
+    <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+      {{ 'No_Record_Found!' | translate }}
+    </div>
+  </div>
 <mat-card *userHasCapability="'show-main-screen'" style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG" >
   <button class="btn btn-primary" (click)="openDialog()" *userHasCapability="'forward-suspect'">
     <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>

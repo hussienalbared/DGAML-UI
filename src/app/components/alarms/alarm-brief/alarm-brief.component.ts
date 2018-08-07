@@ -11,10 +11,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { SelectCloseReasonComponent } from '../select-close-reason/select-close-reason.component';
 import { SuspectsService } from '../../../services/suspects.service';
 
-import { environment } from '../../../../environments/environment';import { NotificationService } from '../../../services/notification.service';
+import { environment } from '../../../../environments/environment'; import { NotificationService } from '../../../services/notification.service';
 import { NgProgress } from 'ngx-progressbar';
 import { TranslateService } from '@ngx-translate/core';
-  @Component({
+@Component({
   selector: 'app-alarm-brief',
   templateUrl: './alarm-brief.component.html',
   styleUrls: ['./alarm-brief.component.css']
@@ -28,9 +28,9 @@ export class AlarmBriefComponent implements OnInit {
   key: string = '';
   code: string = '';
   selection = new SelectionModel<any>(true, []);
-  
-  dataSource3: any = [];
-  
+  dataSourceLength:number=0
+
+  dataSource3 = new MatTableDataSource([]);
   selectedAlarms: Element2[] = [];
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
@@ -38,8 +38,8 @@ export class AlarmBriefComponent implements OnInit {
     public dialog: MatDialog,
     public translate: TranslateService,
     private suspectService: SuspectsService,
-  private notification:NotificationService,public ngProgress: NgProgress,
-  public toastr: ToastsManager, vcr: ViewContainerRef) {
+    private notification: NotificationService, public ngProgress: NgProgress,
+    public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
 
   }
@@ -69,14 +69,14 @@ export class AlarmBriefComponent implements OnInit {
 
   }
   getAlarms() {
-    let Url = environment.ipAddress+"/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
-  this.ngProgress.start();
+    let Url = environment.ipAddress + "/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
     this.http.get(Url).subscribe(data => {
-      this.dataSource3 = data["acAlarm"];
-      this.dataSource3 = new MatTableDataSource(this.dataSource3);
+     
+      this.dataSource3.data=data["acAlarm"];
+      this.dataSourceLength=this.dataSource3.data.length;
+      console.log(this.dataSourceLength);
       this.dataSource3.sort = this.sort;
       this.dataSource3.paginator = this.paginator;
-   this.ngProgress.done();
 
     });
 
@@ -92,8 +92,8 @@ export class AlarmBriefComponent implements OnInit {
     this.changeAlarmStatus('SUP')
   }
 
-  closeAlarm() {  
-     this.changeAlarmStatus('CLS')
+  closeAlarm() {
+    this.changeAlarmStatus('CLS')
 
   }
 
@@ -104,81 +104,80 @@ export class AlarmBriefComponent implements OnInit {
       alert("Select at least one suspect,please");
       return;
     }
-  
-    
+
+
     //select reason for close
-   
+
     let dialogRef = this.dialog.open(SelectCloseReasonComponent, {
 
       height: '400px',
       width: '600px',
       // selected: this.selection.selected
-      data: {  }
+      data: {}
     });
-   
-     dialogRef.afterClosed().subscribe( result => {
-      
-this.dialog.closeAll();
-        if (dialogRef.componentInstance.isConfirmed) {
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.dialog.closeAll();
+      if (dialogRef.componentInstance.isConfirmed) {
 
 
-          //close alarms
-        
-          this.selection.selected.forEach(
-          (  a ,index)=>
-            {
-            
-              // 
-            
+        //close alarms
 
-              // 
-             this.suspectService.changeAlarmStatuseById(a.alarm_Id, eventType)
+        this.selection.selected.forEach(
+          (a, index) => {
+
+            // 
 
 
-              let event = {
-                "create_user_id": "45",
-                "event_type_code": eventType,
-                "event_description": dialogRef.componentInstance.description,
-                "alarm_id": a.alarm_Id
-              }
-              this.dataSource3.data = this.dataSource3.data.filter(item => item !== a);
-              
-              
-             this.suspectService.addalarmEvent(event).subscribe(data => {
-              let x ;
-              if(eventType==='CLS')
-                x= 'Close-alarm'
-              else 
+            // 
+            this.suspectService.changeAlarmStatuseById(a.alarm_Id, eventType)
+
+
+            let event = {
+              "create_user_id": "45",
+              "event_type_code": eventType,
+              "event_description": dialogRef.componentInstance.description,
+              "alarm_id": a.alarm_Id
+            }
+            this.dataSource3.data = this.dataSource3.data.filter(item => item !== a);
+
+
+            this.suspectService.addalarmEvent(event).subscribe(data => {
+              let x;
+              if (eventType === 'CLS')
+                x = 'Close-alarm'
+              else
                 x = 'Suppress-alarm';
-              this.notification.alarmNotification(a.alarm_Id,x,localStorage.getItem('id'))
+              this.notification.alarmNotification(a.alarm_Id, x, localStorage.getItem('id'))
 
-              if(this.translate.getDefaultLang() == 'en')
+              if (this.translate.getDefaultLang() == 'en')
                 this.toastr.success(`${x} done succssefully `, 'Success!');
               else
                 this.toastr.success(`${x} تمت بنجاح `, 'تم بنجاح!')
             },
               err => {
-                
+
               })
-             
-            })
-            
-    
- this.selection = new SelectionModel<Element>(true, []);
-
-          //update alert count
-
-          let url = environment.ipAddress+"/aml/api/alaram/updateAlertCountApi?key="
-            + this.key + "&code=" + this.code;
-
-          this.http.put(url, []).subscribe(data => {
 
           })
-        }
-        else {
-          alert('nothing selected')
-        }
-      },
+
+
+        this.selection = new SelectionModel<Element>(true, []);
+
+        //update alert count
+
+        let url = environment.ipAddress + "/aml/api/alaram/updateAlertCountApi?key="
+          + this.key + "&code=" + this.code;
+
+        this.http.put(url, []).subscribe(data => {
+
+        })
+      }
+      else {
+        alert('nothing selected')
+      }
+    },
       error => {
         alert("Error")
 
@@ -187,7 +186,7 @@ this.dialog.closeAll();
 
 
 
-      );
+    );
 
 
 

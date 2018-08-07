@@ -33,8 +33,8 @@ export class RiskComponent implements OnInit {
   user = '';
   result: risk[];
   result2: classifier[];
-  dataSource: any = null;
-  dataSourceTable2: any = null;
+  dataSource=new MatTableDataSource([]);;
+  dataSourceTable2= new MatTableDataSource([]);
   riskClassifierId = '';
   riskClassifierName = '';
   createDate2 = '';
@@ -94,7 +94,7 @@ export class RiskComponent implements OnInit {
     const url = environment.ipAddress+'/aml/api/accountriskassigment/getObject';
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
-      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.data=data;
       //
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -134,7 +134,7 @@ export class RiskComponent implements OnInit {
     const url = environment.ipAddress+'/aml/api/acriskclassifier';
     this.http.get<classifier[]>(url).subscribe(data2 => {
       this.result2 = data2;
-      this.dataSourceTable2 = new MatTableDataSource(data2);
+      // this.dataSourceTable2.data=data2;
       
       this.dataSourceTable2.paginator = this.paginatorClassifier;
       this.dataSourceTable2.sort = this.sortClassifier;

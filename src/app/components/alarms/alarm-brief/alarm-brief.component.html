@@ -1,11 +1,20 @@
-<ng-progress></ng-progress>
-  <mat-accordion *ngIf="dataSource3">
+
+
+  
+  <ng-progress></ng-progress>
+
+  <mat-accordion >
 
       <mat-expansion-panel expanded='true'>
         <mat-expansion-panel-header>
           {{ 'AlarmBrief.Alarm_in_Brief' | translate }}
         </mat-expansion-panel-header>
-
+        <div *ngIf="this.dataSource3.data.length==0">
+          <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+            {{ 'No_Record_Found!' | translate }}
+          </div>
+          </div>
+          <div *ngIf="this.dataSource3.data.length>0">
     <mat-card>
     <div class="button-row"> 
  
@@ -83,6 +92,7 @@
   [pageSizeOptions]="[5, 10, 20]"
   [showFirstLastButtons]="true">
 </mat-paginator>
+</div>
 </div>
 </mat-expansion-panel>
 </mat-accordion>

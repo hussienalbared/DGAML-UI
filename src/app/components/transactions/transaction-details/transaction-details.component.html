@@ -5,6 +5,11 @@
     <mat-expansion-panel-header>
       Transaction Detail
     </mat-expansion-panel-header>
+    <div *ngIf="result.length==0">
+      <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+        {{ 'No_Record_Found!' | translate }}
+      </div>
+      </div>
     <mat-card class="example-card">
       <mat-card-header>
 

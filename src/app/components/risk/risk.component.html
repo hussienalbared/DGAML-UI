@@ -1,33 +1,37 @@
-<!-- -->
-<!-- <div dir="rtl"> -->
+
   <ng-progress></ng-progress>
-<mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
-  <button class="btn btn-primary" (click)="openDialog();" *userHasCapability="'forward-risk'">
-    <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
-  <button class="btn btn-primary" (click)="takeOwnerShip()" *userHasCapability="'take-ownership-risk'">
-    <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="removeOwnerShip()" *userHasCapability="'remove-ownership-risk'">
-    <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
-  <button class="btn btn-primary" (click)="approveRisk()" *userHasCapability="'approve-risk'">
-    <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Approve' | translate }}</button>
-  <button class="btn btn-primary" (click)="declineRisk()" *userHasCapability="'decline-risk'">
-    <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Decline' | translate }}</button>
-    <button class="btn btn-primary" (click)="ExportasCSV()">
-      <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>
-</mat-card>
-<!-- -->
+  <div *ngIf="dataSource.data.length==0">
+      <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+        {{ 'No_Record_Found!' | translate }}
+      </div>
+      </div>
+      <div>
+
 <mat-accordion>
   <mat-expansion-panel expanded>
   <mat-expansion-panel-header class="riskSectionTitle">
   Risk
   </mat-expansion-panel-header>
+  <div  *ngIf="dataSource.data.length>0">
   <div class="example-header">
+      <mat-card style="background-color: rgba(0, 0, 0, 0.03)" class="ButtonG">
+          <button class="btn btn-primary" (click)="openDialog();" *userHasCapability="'forward-risk'">
+            <i class="fa fa-share" > </i>{{ 'mainFunctionalities.Forward' | translate }}</button>
+          <button class="btn btn-primary" (click)="takeOwnerShip()" *userHasCapability="'take-ownership-risk'">
+            <i class="fa fa-chain"></i>{{ 'mainFunctionalities.Take_Ownership' | translate }}</button>
+          <button class="btn btn-primary" (click)="removeOwnerShip()" *userHasCapability="'remove-ownership-risk'">
+            <i class="fa fa-chain-broken" ></i>{{ 'mainFunctionalities.Remove_Ownership' | translate }}</button>
+          <button class="btn btn-primary" (click)="approveRisk()" *userHasCapability="'approve-risk'">
+            <i class="fa fa-ban"></i>{{ 'mainFunctionalities.Approve' | translate }}</button>
+          <button class="btn btn-primary" (click)="declineRisk()" *userHasCapability="'decline-risk'">
+            <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Decline' | translate }}</button>
+            <button class="btn btn-primary" (click)="ExportasCSV()">
+              <i class="fa fa-eye-slash"></i>{{ 'mainFunctionalities.Export_as_CSV' | translate }}</button>
+        </mat-card>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-<!-- <div class="container"> -->
-<!-- <div class="example-container mat-elevation-z8"> -->
 
 
   
@@ -94,33 +98,18 @@
                  [pageSizeOptions]="[2,5, 10, 20]"
                  [showFirstLastButtons]="true">
   </mat-paginator>
-
-<!-- </div> -->
-<!-- </div> -->
+</div>
 </mat-expansion-panel>
 </mat-accordion>
 
+</div>
 
-<!-- <mat-grid-list cols="4" rowHeight="3:1">
-  <mat-grid-tile class="lead">Details</mat-grid-tile>
-</mat-grid-list> -->
-
-<!-- <div class="list-group">
-  <a href="#" class="list-group-item"> Risk Assisment Id : {{riskId}}</a>
-  <a href="#" class="list-group-item">Customer Name : {{customerName}}</a>
-  <a href="#" class="list-group-item">Customer Name : {{customerNumber}} </a>
-  <a href="#" class="list-group-item">Created Date : {{createDate}} </a>
-</div> -->
 <br>
 <mat-card class="example-card" style="position: inherit">
   <h5 class="riskSectionTitle">
-    <!-- <mat-list class="nav-link">
-            <a mat-list-item href="risk.component.html" > -->
+ 
               {{ 'Risk.General_Information' | translate }}:
-              <!-- <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-          
-    </mat-list> -->
+        
  </h5>
 
  <mat-card-content>
@@ -139,16 +128,19 @@
 
 </mat-card>
 <br>
-<!-- <mat-list> -->
-<!-- <mat-grid-list cols="4" rowHeight="3:1">
-  <mat-grid-tile class="lead">Risk Classifier</mat-grid-tile>
-</mat-grid-list> -->
+
 <mat-accordion>
   <mat-expansion-panel expanded>
     <mat-expansion-panel-header class="riskSectionTitle">
         {{ 'Risk.Risk_Classifier' | translate }}
       </mat-expansion-panel-header>
-      <mat-table [dataSource]="dataSourceTable2" #sortClassifier="matSort" matSort>
+      <div *ngIf="dataSourceTable2.data.length==0">
+          <div class="alert alert-warning" role="alert" style="margin-top: 15px;">
+            {{ 'No_Record_Found!' | translate }}
+          </div>
+          </div>
+<div *ngIf="dataSourceTable2.data.length>0">
+      <mat-table [dataSource]="dataSourceTable2" #sortClassifier="matSort" matSort   >
 
        
           <ng-container matColumnDef="riskClassifierId">
@@ -186,12 +178,13 @@
       
         </mat-table>
         
-        <mat-paginator #paginatorClassifier
+        <mat-paginator #paginatorClassifier 
         [pageSize]="5"
         [pageSizeOptions]="[5, 10, 20]"
         [showFirstLastButtons]="true">
 </mat-paginator>
+</div>
+
       
   </mat-expansion-panel>
-</mat-accordion>
-<!-- </div> -->
+</mat-accordion> 

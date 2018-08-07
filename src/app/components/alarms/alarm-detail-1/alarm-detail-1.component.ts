@@ -12,7 +12,8 @@ export class AlarmDetail1Component implements OnInit {
   displayedColumns=['RoutineName','RoutineDescription','alarm message','RunDate']
   displayedColumns2=['acct_Key','trans_Ref_No','date_Key','ccy_Amt','trans_Cr_Db_Ind_Desc','trans_Desc']
   dataSource:any=[];
-  dataSource2:any=[];
+  dataSource2 = new MatTableDataSource([]);
+ 
 
   @ViewChild(MatSort) sort: MatSort;
   constructor(private http:HttpClient,private route:ActivatedRoute,private router:Router  ) { }
@@ -31,8 +32,11 @@ export class AlarmDetail1Component implements OnInit {
       
       })
       let url2=environment.ipAddress+"/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
-      this.http.get(url2).subscribe(data=>{
-        this.dataSource2=data;
+      this.http.get<any>(url2).subscribe(data1 => {
+
+        this.dataSource2.data=data1;
+        console.log(this.dataSource2);
+
         this.dataSource2.sort = this.sort;
       })
 
