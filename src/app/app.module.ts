@@ -295,7 +295,7 @@ export function tokenGetter() {
         , canActivate: [AuthGuardService]
       },
       {
-        path: 'empty',
+        path: 'dashboard',
         component: EmptyComponentComponent
       }
       ,{
