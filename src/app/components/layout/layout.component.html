@@ -64,73 +64,73 @@
                       {{x.create_User_Name}}{{"Suppress-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
                   </p>
                   <p *ngSwitchCase="'Close-alarm'">
-                      {{x.create_User_Name}}{{"Close-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
+                    {{x.create_User_Name}}{{"Close-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
                   </p>
                   <p *ngSwitchCase="'take-ownership-risk'">
 {{x.create_User_Name}}{{"take-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
-                  </p>
+</p>
                   <p *ngSwitchCase="'remove-ownership-risk'">
-                      {{x.create_User_Name}}{{"remove-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                    {{x.create_User_Name}}{{"remove-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
                   </p>
                   <p *ngSwitchCase="'approve-risk'">
-                      {{x.create_User_Name}}{{"approve-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                    {{x.create_User_Name}}{{"approve-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
                   </p>
                   <p *ngSwitchCase="'decline-risk'">
                       {{x.create_User_Name}}{{"decline-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
-                  </p>
+                    </p>
                   <p *ngSwitchCase="'Forward-Risk'">
-                      {{x.create_User_Name}}{{"Forward-Risk"|translate}}{{"on"|translate}}{{x.cust_Name}} {{"to"|translate}} {{x.target_Name}}
+                    {{x.create_User_Name}}{{"Forward-Risk"|translate}}{{"on"|translate}}{{x.cust_Name}} {{"to"|translate}} {{x.target_Name}}
                   </p>
 
-
-
+                  
+                  
                   <!-- <p class="noti-desc_ text-truncate">{{x.action}}</p> -->
                   <p style="margin: 0;">{{x.notification_Date |date : "M/d/yy h:mm a"}}</p>
                 </div>
-
+                
               </mat-list-item>
-
+              
             </mat-list>
             <div class="notit-clear-div" (click)="markAllRead()">
               <span>{{ 'Notification.Mark_All_as_Read' | translate }}</span>
             </div>
-
+            
             <!-- </div> -->
           </div>
         </i>
-
+        
         <i class="fa fa-expand full_icon_fg" style="margin-left: 15px;" id="fg" onclick="javascript:toggle_fullscreen()"></i>
-
+        
       </div>
       <div>
         <button mat-button [matMenuTriggerFor]="menu">
-
+          
           <img src="./assets/images/users/avartar3.png" class="rounded-circle" height="40">{{authService.userName}}
-
+          
         </button>
         <mat-menu #menu="matMenu" overlapTrigger="false">
           <button mat-menu-item (click)="updateProfile()" class="select_button"> 
             <span>{{ 'My_Profile' | translate}}</span>
           </button>
-
+          
           <button mat-menu-item (click)="authService.logout()" class="select_button">
             <a  class="md-trigger" data-modal="logout-modal">
               <i class="icon-logout-1"></i> {{ 'Logout' |translate }}</a>
+            </button>
+          </mat-menu>
+        </div>
+        <!--  -->
+        <div>
+          <button mat-button [matMenuTriggerFor]="menu2">
+            <span class="selected_Language">{{ selected_Language | translate }}</span>
+            <mat-icon>language</mat-icon>
           </button>
-        </mat-menu>
-      </div>
-      <!--  -->
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu2">
-          <span class="selected_Language">{{ selected_Language | translate }}</span>
-          <mat-icon>language</mat-icon>
-        </button>
-        <mat-menu #menu2="matMenu" overlapTrigger="false">
-          <!-- <select #langSelect (change)="translate.use(langSelect.value)"> -->
-          <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> 
+          <mat-menu #menu2="matMenu" overlapTrigger="false">
+            <!-- <select #langSelect (change)="translate.use(langSelect.value)"> -->
+              <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang"> 
                 {{ lang }}  
             </option> -->
-          <button mat-menu-item (click)="changeLang2('en');" class="select_button">
+            <button mat-menu-item (click)="changeLang2('en');" class="select_button">
             <span>{{ 'en' | translate }}</span>
           </button>
           <button mat-menu-item (click)="changeLang2('ar');" class="select_button">
@@ -140,18 +140,18 @@
         </mat-menu>
       </div>
       <!--  -->
-
+      
     </div>
   </div>
 </mat-toolbar>
 
 <!-- <div dir="rtl"> -->
-<mat-sidenav-container class="example-container main_contain" autosize>
-  <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName">
-    <!--*ngIf="authService.userName"-->
-    <div class="clearfix"></div>
-    <hr class="divider">
-    <div class="clearfix"></div>
+  <mat-sidenav-container class="example-container main_contain" autosize>
+    <mat-sidenav #sidenav [mode]="mode.value" opened *ngIf="authService.userName">
+      <!--*ngIf="authService.userName"-->
+      <div class="clearfix"></div>
+      <hr class="divider">
+      <div class="clearfix"></div>
     <div class="profile-image-min" *ngIf="!isOn">
       <a href="#" class="rounded-image profile-image">
         <img src="./assets/images/users/avartar3.png">
@@ -163,7 +163,7 @@
           <img src="./assets/images/users/avartar3.png">
         </a>
       </div>
-
+      
       <div class="col-8">
         <div class="profile-text">{{'right_side_bar.Welcome' | translate}}
           <b>{{authService.userName}}</b>
@@ -173,8 +173,16 @@
     <div class="clearfix"></div>
     <hr class="divider">
     <div class="clearfix"></div>
-
+    
     <mat-nav-list>
+        <!--  -->
+        <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
+          <a>
+            <mat-icon>dashboard</mat-icon>
+            <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>
+          </a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
       <mat-list-item (click)="layoutItem($event);navItem('/suspects')" class="mat_item_a" appAddTab path="/suspects">
         <a routerLink="suspects">
           <mat-icon>people</mat-icon>
@@ -189,13 +197,7 @@
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <!--  -->
-      <mat-list-item (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
-        <a>
-          <mat-icon>dashboard</mat-icon>
-          <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>
-        </a>
-      </mat-list-item>
+      <mat-divider></mat-divider>
       <!-- <mat-divider></mat-divider> -->
       <!--  -->
       <!-- <mat-list-item  *userHasCapability="'show-reports'" (click)="layoutItem($event);" class="mat_item_a">
@@ -205,11 +207,11 @@
         </a>
       </mat-list-item> -->
       <!-- <mat-divider></mat-divider> -->
-
+      
       <mat-list-item *ngIf="!isOn" (click)="changeIsOn();"> <!--fffv.expanded='true'-->
         <mat-icon>assignment</mat-icon>
       </mat-list-item>
-
+      
       <mat-accordion *ngIf="isOn" displayMode="flat" (click)="layoutItem($event);">
         <mat-expansion-panel #fffv>
           <mat-expansion-panel-header class="accordion1">

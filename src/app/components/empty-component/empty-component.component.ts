@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 // import { HttpClient } from '../../../../node_modules/@angular/common/http';
 import { Headers } from '../../../../node_modules/@angular/http';
 import { HttpClient } from '@angular/common/http';
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-empty-component',
@@ -12,20 +13,15 @@ import { HttpClient } from '@angular/common/http';
 export class EmptyComponentComponent implements OnInit {
 
   private myTemplate: any = "";
-  constructor(private http: HttpClient) {
+ urlSafe: SafeResourceUrl;
+ @Input()dashBoardUrl:string=environment.dashBoardUrl;
+  constructor(private http: HttpClient,public sanitizer: DomSanitizer) {
 
  
   }
 
   ngOnInit() {
-    let myExternalPageLink="http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard";
-    let t="https://angular.io/"
-    var headers = new Headers();
-
-      // this.http.get(t).subscribe(response => {
-      //   this.myTemplate=response
-      //   ;
-      // })
+    this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.dashBoardUrl);
   }
 
 }
