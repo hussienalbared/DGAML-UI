@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import {ToastOptions} from 'ng2-toastr';
 
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -77,6 +77,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { environment } from '../environments/environment';
 import { EmptyComponentComponent } from './components/empty-component/empty-component.component';
 import { userHasCapabilityDirective } from './directives/has-capability.directive';
+import { toastoption } from './models/toastroption.model';
 
 
 // AoT requires an exported function for factories
@@ -314,6 +315,7 @@ export function tokenGetter() {
   ],
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService,
     TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService,
+    {provide: ToastOptions, useClass: toastoption},
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
 
   bootstrap: [AppComponent],
