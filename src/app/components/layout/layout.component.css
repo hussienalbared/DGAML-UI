@@ -329,12 +329,13 @@ hr.divider {
  }
  .scrollNotification{
     height: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     /* overflow-x: hidden */
  }
  .notificationDetail{
      padding: 5px 2px;
      background-color: #f1f1f1;
+     background-color: #FFF5E5;
      margin: 2px;
  }
  .notification::after{
@@ -360,9 +361,13 @@ hr.divider {
      display: block;
      font-size: 12px;
      font-weight: 600;
-     padding: 24px 15px;
+     padding: 17px 15px;
      font-family:Roboto,"Helvetica Neue",sans-serif;
-     width:35%
+     width:35%;
+     color: #FFF;
+    font-weight: normal;
+    font-size: 13px;
+    letter-spacing: 1px;
  }
  .notit-clear-div span:hover{
      background:#f4f5f6;
@@ -371,7 +376,7 @@ hr.divider {
  .notit-clear-div{
      background: #f7f8fa;
      border: none;
-     height: 58px;
+     height: 48px;
      position: relative;
  }
  .notificationDetail{
@@ -417,3 +422,17 @@ hr.divider {
 /* .elementToAnimate{
     animation: yourAnimation 1s 1 linear;
 } */
+
+.mat-nav-list .mat-list-item{height: 44px;}
+/*noti*/
+.noti-block .notificationDetail{padding-left: 0;padding-right: 0}
+
+.main_action_details{font-family: sans-serif;font-size: 13px;}
+
+.action_user_name{font-weight: bold;color: #278ba2;font-size: 15px;font-family: monospace;}
+.what_action{font-family: unset;text-transform: capitalize;}
+
+.main_action_details{width: 354px;white-space: normal;overflow: hidden;text-overflow: ellipsis;line-height: 22px;margin-bottom: 5px;}
+.target_user{color: #287283;font-size: 14px;font-family: monospace;}
+
+.notit-clear-div{background: #2A2D63;color: #FFF;border-radius: 4px;}

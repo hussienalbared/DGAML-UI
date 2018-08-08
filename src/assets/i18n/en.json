@@ -216,5 +216,19 @@
     "Reports": "Reports",
     "SAMA_Report": "SAMA Report",
 
-    "No_Record_Found!": "No Record Found!"
+    "No_Record_Found!": "No Record Found!",
+
+    "SAMA_Properties": "SAMA Properties",
+    "SAMA_Main_Properties": "SAMA Main Properties",
+    "Reporting_Entity": "Reporting Entity",
+    "Entity_Name": "Entity Name",
+    "Entity_City": "Entity City",
+    "Entity_Phone_Number": "Entity Phone Number",
+    "Entity_Type": "Entity Type",
+    "Entity_Branch": "Entity Branch",
+    "Contact_The_Reporting": "Contact The Reporting",
+    "Reporting_Name": "Reporting Name",
+    "Reporting_Address": "Reporting Address",
+    "Reporting_Phone_Number": "Reporting Phone Number",
+    "Submit": "Submit"
 }

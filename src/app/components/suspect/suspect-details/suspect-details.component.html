@@ -32,7 +32,7 @@
                     <p>{{ 'SuspectDetail.Current_Risk_Classification' | translate }}:{{result.risk_Class}}</p>
                 
                 <p>{{ 'SuspectDetail.Dealing_with_the_bank_since_Date' | translate }}:{{result.cust_Since_Date}}</p>
-                <h6>{{ 'SuspectDetail.Related_Accounts' | translate }}</h6>
+                <h6 style="font-size: 17px;font-family: monospace;font-weight: bold;margin-top: 25px;">{{ 'SuspectDetail.Related_Accounts' | translate }}</h6>
                 <div  *ngFor="let account of result.customerAccount">
                         <a  [routerLink]="['/accountDetailSearch',account.acct_No,account.id.acct_Key]" appAddTab path="/accountDetailSearch/{{account.acct_No}}/{{account.id.acct_Key}}">{{account.acct_No}} </a>
     

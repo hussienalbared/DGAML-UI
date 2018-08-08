@@ -245,8 +245,9 @@ export class RiskComponent implements OnInit {
       return;
     }
 
-    var tindex = this.getSelectedIndex();
+    // var tindex = this.getSelectedIndex();
     this.selection.selected.forEach(element => {
+      var tindex = this.getSelectedIndex();
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);
@@ -274,8 +275,9 @@ export class RiskComponent implements OnInit {
       return;
     }
 
-    var tindex = this.getSelectedIndex();
+    // var tindex = this.getSelectedIndex();
     this.selection.selected.forEach(element => {
+      var tindex = this.getSelectedIndex();
       this.dataSource.data.splice(tindex,1);
       this.dataSource = new MatTableDataSource(this.dataSource.data);
       this.selection = new SelectionModel<risk>(true, []);

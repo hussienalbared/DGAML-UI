@@ -27,59 +27,86 @@
 
           <div class="noti-block" *ngIf="show_noti">
             <!--*ngFor="let n of notifications"-->
-            <h2 style="padding: 12px 12px 0;font-size: 15px;border-bottom: 1px solid hsla(210,3%,87%,.45);color: #29303b;background-color: #fff;position: relative;">Notifications</h2>
-            <mat-list role="list" style="background-color: white;padding: 0;" class="scrollNotification">
+            <h2 style="padding: 12px 12px 0;font-size: 15px;border-bottom: 1px solid hsla(210,3%,87%,.45);;;background-color: #E5665F;color: #FFF;;position: relative;border-radius:4px">Notifications</h2>
+            <mat-list role="list" style="background-color: white;padding: 0" class="scrollNotification">
 
               <mat-list-item *ngIf="notifications.length<=0" style="height: auto" role="listitem" class="notificationDetail">
                 <p>No Notification Available</p>
               </mat-list-item>
               <mat-list-item style="height: auto" role="listitem" (click)="sendNoti(x,index)" *ngFor="let x of notifications.slice().reverse();let index=index  "
-                class="notificationDetail">
+                class="notificationDetail" matTooltip="Mark as Read!" matTooltipPosition="left">
                 <div [ngSwitch]="x.action">
-                  <p *ngSwitchCase="'take-ownership-suspect'">
-                  {{x.create_User_Name}}{{"take-ownership-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'take-ownership-suspect'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action"> {{"take-ownership-suspect"|translate}} {{"on"|translate}}</span>
+                      <span class="target_user">{{x.alarmed_Obj_Name}}</span>
 
                   </p>
-                  <p *ngSwitchCase="'close-suspect'">
-                      {{x.create_User_Name}}{{"close-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'close-suspect'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"close-suspect"|translate}} {{"on"|translate}}</span>
+                      <span class="target_user">{{x.alarmed_Obj_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'suppress-suspect'">
-                      {{x.create_User_Name}}{{"suppress-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'suppress-suspect'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"suppress-suspect"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.alarmed_Obj_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'remove-ownership-suspect'">
-                      {{x.create_User_Name}}{{"remove-ownership-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'remove-ownership-suspect'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"remove-ownership-suspect"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.alarmed_Obj_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'Forward-suspect'">
-                {{x.create_User_Name}}{{"Forward-suspect"|translate}} {{"on"|translate}}{{x.alarmed_Obj_Name}}{{"to"|translate}}
-                {{x.target_User_Name}}
+                  <p *ngSwitchCase="'Forward-suspect'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"Forward-suspect"|translate}} {{"on"|translate}} </span>
+                       <span class="target_user">{{x.alarmed_Obj_Name}} {{"to"|translate}} {{x.target_User_Name}}</span>
 
                   </p>
-                  <p *ngSwitchCase="'add-comment-to-suspect'">
-                      {{x.create_User_Name}}{{"add-comment-to-suspect"|translate}}  {{x.comment_Decription}} {{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'add-comment-to-suspect'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"add-comment-to-suspect"|translate}}  {{x.comment_Decription}} {{"on"|translate}}</span> 
+                      <span class="target_user">{{x.alarmed_Obj_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'delete-comment-of-suspect'">
-                      {{x.create_User_Name}}{{"delete-comment-of-suspect"|translate}} {{x.comment_Decription}}{{"on"|translate}}{{x.alarmed_Obj_Name}}
+                  <p *ngSwitchCase="'delete-comment-of-suspect'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"delete-comment-of-suspect"|translate}} {{x.comment_Decription}} {{"on"|translate}}</span>
+                      <span class="target_user">{{x.alarmed_Obj_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'Suppress-alarm'">
-                      {{x.create_User_Name}}{{"Suppress-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
+                  <p *ngSwitchCase="'Suppress-alarm'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                       <span class="what_action">{{"Suppress-alarm"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.alarmed_obj_name}}</span>
                   </p>
-                  <p *ngSwitchCase="'Close-alarm'">
-                    {{x.create_User_Name}}{{"Close-alarm"|translate}}{{"on"|translate}}{{x.alarmed_obj_name}}
+                  <p *ngSwitchCase="'Close-alarm'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                       <span class="what_action">{{"Close-alarm"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.alarmed_obj_name}}</span>
                   </p>
-                  <p *ngSwitchCase="'take-ownership-risk'">
-{{x.create_User_Name}}{{"take-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
-</p>
-                  <p *ngSwitchCase="'remove-ownership-risk'">
-                    {{x.create_User_Name}}{{"remove-ownership-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  <p *ngSwitchCase="'take-ownership-risk'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                       <span class="what_action">{{"take-ownership-risk"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.cust_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'approve-risk'">
-                    {{x.create_User_Name}}{{"approve-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
+                  <p *ngSwitchCase="'remove-ownership-risk'"class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                       <span class="what_action">{{"remove-ownership-risk"|translate}} {{"on"|translate}}</span>
+                       <span class="target_user">{{x.cust_Name}}</span>
                   </p>
-                  <p *ngSwitchCase="'decline-risk'">
-                      {{x.create_User_Name}}{{"decline-risk"|translate}}{{"on"|translate}}{{x.cust_Name}}
-                    </p>
-                  <p *ngSwitchCase="'Forward-Risk'">
-                    {{x.create_User_Name}}{{"Forward-Risk"|translate}}{{"on"|translate}}{{x.cust_Name}} {{"to"|translate}} {{x.target_Name}}
+                  <p *ngSwitchCase="'approve-risk'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span> 
+                      <span class="what_action">{{"approve-risk"|translate}}</span>
+                      <span class="target_user">{{"on"|translate}}{{x.cust_Name}}</span>
+                  </p>
+                  <p *ngSwitchCase="'decline-risk'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}} </span>
+                      <span class="what_action">{{"decline-risk"|translate}}{{"on"|translate}}</span>
+                      <span class="target_user">{{x.cust_Name}}</span>
+                  </p>
+                  <p *ngSwitchCase="'Forward-Risk'" class="main_action_details">
+                      <span class="action_user_name">{{x.create_User_Name}}</span>
+                      <span class="what_action">{{"Forward-Risk"|translate}}</span>
+                      <span class="target_user">{{"on"|translate}}{{x.cust_Name}} {{"to"|translate}} {{x.target_Name}}</span>
                   </p>
 
                   
@@ -197,8 +224,14 @@
         </a>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <!--  -->
+      <mat-list-item *userHasCapability="'show-dashboard'" (click)="layoutItem($event);goTodashboard()" class="mat_item_a">
+        <a>
+          <mat-icon>dashboard</mat-icon>
+          <a  *ngIf="isOn">{{ 'right_side_bar.DashBoard' | translate }}</a>
+        </a>
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <!-- <mat-divider></mat-divider> -->
       <!--  -->
       <!-- <mat-list-item  *userHasCapability="'show-reports'" (click)="layoutItem($event);" class="mat_item_a">
         <a>
@@ -280,11 +313,19 @@
             <mat-list-item (click)="layoutItem($event);navItem('groups')" class="mat_item_a">
               <a routerLink="groups">{{ 'right_side_bar.Group_management' | translate }}</a>
             </mat-list-item>
+            <mat-divider></mat-divider>
             <mat-list-item (click)="layoutItem($event);navItem('/user')" class="mat_item_a" appAddTab path="/user">
               <a routerLink="user">
                 <span *ngIf="isOn">{{ 'right_side_bar.User' | translate }}</span>
               </a>
             </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item (click)="layoutItem($event);navItem('/sama_props')" class="mat_item_a" appAddTab path="/sama_props">
+              <a routerLink="sama_props">
+                <span *ngIf="isOn">{{ 'SAMA_Properties' | translate }}</span>
+              </a>
+            </mat-list-item>
+
             <!-- <mat-divider></mat-divider> -->
           </mat-list>
         </mat-expansion-panel>
@@ -297,7 +338,7 @@
           <span *ngIf="isOn"> Group</span>
         </a>
       </mat-list-item> -->
-      <mat-divider></mat-divider>
+      <!-- <mat-divider></mat-divider> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="main_middle_content elementToAnimate">
