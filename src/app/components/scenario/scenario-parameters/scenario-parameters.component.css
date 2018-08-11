@@ -1,0 +1,29 @@
+mat-form-field{
+    font-size: 14px !important
+}
+#scenario_form{
+    border: 1px solid #e3e2e261;
+    -webkit-box-shadow: 2px 2px 2px #d4d2d2;
+    box-shadow: 2px 2px 2px #d4d2d26b;
+    padding: 15px 10px;
+    margin-bottom: 20px
+}
+
+.scenario_content{
+    background: #FFF;
+    padding: 20px;
+    position: relative;
+    border: 1px solid #e3e2e2;
+    -webkit-box-shadow: 2px 2px 2px #d4d2d2;
+    box-shadow: 2px 2px 2px #d4d2d2;
+    margin-bottom: 20px;
+}
+.scenario_title{
+    margin-bottom: 10px
+}
+.form_div{
+    margin-bottom: 10px
+}
+mat-form-field{
+    width: 100%
+}

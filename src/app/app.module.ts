@@ -1,3 +1,4 @@
+import { ScenarioParametersComponent } from './components/scenario/scenario-parameters/scenario-parameters.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
@@ -79,6 +80,7 @@ import { EmptyComponentComponent } from './components/empty-component/empty-comp
 import { userHasCapabilityDirective } from './directives/has-capability.directive';
 import { toastoption } from './models/toastroption.model';
 import { SamaPropertiesComponent } from './components/sama-properties/sama-properties.component';
+import { ScenarioComponent } from './components/scenario/scenario.component';
 
 
 // AoT requires an exported function for factories
@@ -129,7 +131,9 @@ export function tokenGetter() {
     CommentComponent,
     EmptyComponentComponent,
     userHasCapabilityDirective,
-    SamaPropertiesComponent
+    SamaPropertiesComponent,
+    ScenarioComponent,
+    ScenarioParametersComponent
    
 
   ],
@@ -310,6 +314,9 @@ export function tokenGetter() {
         path: 'report/sama',
         component: SamaReportComponent
         , canActivate: [AuthGuardService]
+      },{
+        path: 'scenario/parameters',
+        component: ScenarioParametersComponent
       }
     ]),
     JwtModule.forRoot({
