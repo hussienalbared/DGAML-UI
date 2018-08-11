@@ -170,73 +170,73 @@
             </div>
           </mat-tab>
           <mat-tab label="AML003">
-              <div class="scenario_content">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-12">                
-                        <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
-                          <div class="container">
-                            <div class="row scenario_title">
-                              <div class="col-lg-12">
-                                <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Installments_paid_exceeding_the_limit_agreed_upon' | translate }}:</span>
-                              </div>
+            <div class="scenario_content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">                
+                      <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                        <div class="container">
+                          <div class="row scenario_title">
+                            <div class="col-lg-12">
+                              <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Installments_paid_exceeding_the_limit_agreed_upon' | translate }}:</span>
                             </div>
-                            <div class="row">
-                              <div class="col-lg-6">
-                                <div style="display: block" class="form_div">
-                                  <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
-                                  <!-- <mat-form-field> -->
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple >
+                                      <mat-option>Personal</mat-option>
+                                      <mat-option>C</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                                  <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
+                              </div>
+                              
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'm003_percentage' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                  <input type = "text" class="form-control" name="m003_percentage"  placeholder="{{ m003_percentage_placeholder }}" ngModel >
+                                <!-- </mat-form-field> -->
+                              </div>
+                              
+                            </div>
+  
+                            <div class="col-lg-6">
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
+                                <!-- <mat-form-field> -->
                                   <mat-list-item class="primary-imenu-item" role="listitem">
                                     <mat-form-field class="select-form">
-                                      <mat-select  multiple >
-                                        <mat-option>Personal</mat-option>
-                                        <mat-option>C</mat-option>
+                                      <mat-select multiple >
+                                        <mat-option>Credit</mat-option>
+                                        <mat-option>Debit</mat-option>
                                       </mat-select>
                                     </mat-form-field>
                                   </mat-list-item>
-                                    <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
-                                  <!-- </mat-form-field> -->
-                                </div>
-                                
-                                <div style="display: block" class="form_div">
-                                  <label style="font-size: 13px;color: #28607b;">{{ 'm003_percentage' | translate }}:</label>
-                                  <!-- <mat-form-field> -->
-                                    <input type = "text" class="form-control" name="m003_percentage"  placeholder="{{ m003_percentage_placeholder }}" ngModel >
-                                  <!-- </mat-form-field> -->
-                                </div>
-                                
-                              </div>
-    
-                              <div class="col-lg-6">
-                                <div style="display: block" class="form_div">
-                                  <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
-                                  <!-- <mat-form-field> -->
-                                    <mat-list-item class="primary-imenu-item" role="listitem">
-                                      <mat-form-field class="select-form">
-                                        <mat-select multiple >
-                                          <mat-option>Credit</mat-option>
-                                          <mat-option>Debit</mat-option>
-                                        </mat-select>
-                                      </mat-form-field>
-                                    </mat-list-item>
-                                    <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
-                                  <!-- </mat-form-field> -->
-                                </div>
+                                  <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
                               </div>
                             </div>
-    
-                            <div class="row" style="margin-top: 15px">
-                              <div class="col-lg-12">
-                                <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
-                              </div>
-                            </div>
-    
                           </div>
-                        </form>
-                      </div>
+  
+                          <div class="row" style="margin-top: 15px">
+                            <div class="col-lg-12">
+                              <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                            </div>
+                          </div>
+  
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
+              </div>
           </mat-tab>
           <mat-tab label="AML005">
             <div class="scenario_content">
@@ -326,14 +326,543 @@
               </div>
             </div>
           </mat-tab>
-          <mat-tab label="AML006"> Content 3 </mat-tab>
-          <mat-tab label="AML007"> Content 2 </mat-tab>
-          <mat-tab label="AML0010"> Content 3 </mat-tab>
-          <mat-tab label="AML0016"> Content 3 </mat-tab>
-          <mat-tab label="AML0020"> Content 3 </mat-tab>
-          <mat-tab label="AML0021"> Content 3 </mat-tab>
-          <mat-tab label="AML0022"> Content 3 </mat-tab>
-          <mat-tab label="AML0023"> Content 3 </mat-tab>
+          <mat-tab label="AML006">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Large_Total_Cash_Transaction_(Individuals_Organizations)' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>Personal</mat-option>
+                                    <mat-option>C</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm006_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m006_amount"  placeholder="{{ m006_amount_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm006_num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m006_num_days"  placeholder="{{ m006_num_days_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm006_transaction_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple >
+                                      <mat-option>CASH</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm006_credit_ind' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple >
+                                      <mat-option>Credit</mat-option>
+                                      <mat-option>Debit</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML007">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Early_termination_of_Loans' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm007_account_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>Personal</mat-option>
+                                    <mat-option>C</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm007_amt_single_loan' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m007_amt_single_loan"  placeholder="{{ m007_amt_single_loan_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm007_num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m007_num_days"  placeholder="{{ m007_num_days_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm007_total_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m007_total_amount"  placeholder="{{ m007_total_amount_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm007_percentage' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m007_percentage"  placeholder="{{ m007_percentage_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0010">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Excessive_Account_Close_Open_Activities' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm010_account_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>Personal</mat-option>
+                                    <mat-option>C</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm010_events_list' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple >
+                                      <mat-option>ACCOUNT_OPEN</mat-option>
+                                      <mat-option>ACCOUNT_CLOSE</mat-option>
+                                      <mat-option>CHANGE_BENEFECIARY</mat-option>
+                                      <mat-option>CHANGE_OWNERSHIP</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm010_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m010_amount"  placeholder="{{ m010_amount_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+
+                          <div class="col-lg-6">
+
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'm010_cdi_code' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                  <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                      <mat-select multiple >
+                                        <mat-option>Event</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </mat-list-item>
+                                  <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
+                              </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm010_num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m010_num_days"  placeholder="{{ m010_num_days_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm010_num_events' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m010_num_events"  placeholder="{{ m010_num_events_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0016">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Account_Open_outside_region' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm016_account_type_desc' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>Personal</mat-option>
+                                    <mat-option>C</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'm016_num_days' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                  <input type = "text" class="form-control" name="m016_num_days"  placeholder="{{ m016_num_days_placeholder }}" ngModel >
+                                <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0020">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Large_Number_of_authorizations_conduct_business' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm020_number' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m020_number"  placeholder="{{ m020_number_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'm020_auth_today' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                  <input type = "text" class="form-control" name="m020_auth_today"  placeholder="{{ m020_auth_today_placeholder }}" ngModel >
+                                <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0021">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Large_Number_of_authorizations_use_financed_assets' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm021_number' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m021_number"  placeholder="{{ m021_number_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'm021_auth_today' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                  <input type = "text" class="form-control" name="m021_auth_today"  placeholder="{{ m021_auth_today_placeholder }}" ngModel >
+                                <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0022">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Payments_by_high_risk_industry_customers' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm022_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m022_amount"  placeholder="{{ m022_amount_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm022_list_name' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m022_list_name"  placeholder="{{ m022_list_name_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm022_cdi_code' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>Credit</mat-option>
+                                    <mat-option>Debit</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm022_num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m022_num_days"  placeholder="{{ m022_num_days_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0023">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">                
+                    <form #form_="ngForm" (ngSubmit)="updateParameters(form_.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'Payments_by_pep_customers' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm023_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m023_amount"  placeholder="{{ m023_amount_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm023_pep_ind' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <mat-list-item class="primary-imenu-item" role="listitem">
+                                <mat-form-field class="select-form">
+                                  <mat-select  multiple >
+                                    <mat-option>YES</mat-option>
+                                    <mat-option>NO</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                              </mat-list-item>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'm023_num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <input type = "text" class="form-control" name="m023_num_days"  placeholder="{{ m023_num_days_placeholder }}" ngModel >
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
         </mat-tab-group>
       </div>
     </div>
