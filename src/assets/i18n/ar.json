@@ -230,5 +230,47 @@
     "Reporting_Name": "الاسم",
     "Reporting_Address": "العنوان",
     "Reporting_Phone_Number": "رقم الهاتف",
-    "Submit": "Submit"
+    "Submit": "Submit",
+
+    "Transfer_loan_from_customer_to_another": "Transfer loan from customer to another",
+    "Account_Type": "Account Type",
+    "Event_Name": "Event Name",
+    "is_parties_related": "Is Parties Related",
+    "transaction_event_ind": "Transaction Event Indicator",
+    "percentage": "Percentage",
+
+    "Installments_paid by_other_parties": "Installments Paid by Other Parties",
+    "cdi_code": "CDI Code",
+    "num_days": "Num Days",
+    "Installments_Number": "Installments Number",
+
+    "Installments_paid_exceeding_the_limit_agreed_upon": "Installments Paid Exceeding the Limit Agreed Upon",
+    "transaction_type": "Transaction Type",
+    "credit_ind": "Credit Indicator",
+
+    "Large_Total_Cash_Transaction_(Individuals_Organizations)": "Large Total Cash Transaction (Individuals / Organizations)",
+    "amount": "Amount",
+
+    "Installments_paid_in_cash": "Installments Paid In Cash",
+
+    "Early_termination_of_Loans": "Early Termination Of Loans",
+    "account_type": "Account Type",
+    "total_amount" : "Total Amount",
+    "amt_single_loan": "Amount Single Loan",
+
+    "Excessive_Account_Close_Open_Activities": "Excessive Account Close Open Activities",
+    "num_events": "Number of Events",
+    
+    "Account_Open_outside_region": "Account Open Outside Region",
+    "account_type_desc": "Account Type Description",
+
+    "Large_Number_of_authorizations_conduct_business": "Large Number of Authorizations Conduct Business",
+    "auth_today": "Number of Authorizations today",
+    "number":  "Number of Authorizations",
+
+    "Large_Number_of_authorizations_use_financed_assets": "Large Number of Authorizations Use Financed Assets",
+    "list_name": "List Name",
+
+    "Payments_by_pep_customers": "Payments By Pep_Customers",
+    "pep_ind": "Politically Indicator"
 }
