@@ -273,6 +273,20 @@
     "list_name": "List Name",
 
     "Payments_by_pep_customers": "Payments By Pep_Customers",
-    "pep_ind": "Politically Indicator"
+    "pep_ind": "Politically Indicator",
+
+
+    "aml001_desc": "Beneficiary or ownership of a loan is transferred to another customer with no known relationship",
+    "aml002_desc":  "Many installments are paid by other unrelated parties",
+    "aml003_desc": "Installments paid exceeding the limit agreed upon",
+    "aml005_desc": "Most of the installments of the customer is paid in cash",
+    "aml006_desc": "Customer pays large amount of installments in cash in short period of time",
+    "aml007_desc": "Customer terminates one or more loans early",
+    "aml0010_desc": "Customer has many account open and close events in a certain period",
+    "aml0016_desc": "The accounts is opened from a region where the customer does not live in or work in",
+    "aml0020_desc": "Large number of people are authorized to conduct business for this account",
+    "aml0021_desc": "Large number of people are authorized to use this account (car). Like drivers for example",
+    "aml0022_desc" : "Payment made by a high risk industry customer",
+    "aml0023_desc": "Payment made by a politically exposed persons"
 
 }

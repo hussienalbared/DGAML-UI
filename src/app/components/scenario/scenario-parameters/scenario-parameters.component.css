@@ -1,7 +1,7 @@
 mat-form-field{
     font-size: 14px !important
 }
-#scenario_form{
+#scenario_form , .scenario_desc{
     border: 1px solid #e3e2e261;
     -webkit-box-shadow: 2px 2px 2px #d4d2d2;
     box-shadow: 2px 2px 2px #d4d2d26b;
