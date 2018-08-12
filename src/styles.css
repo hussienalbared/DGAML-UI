@@ -388,3 +388,10 @@ mat-expansion-panel .mat-expansion-panel-body {
 /**/
 .mat-drawer-content{position: initial !important}
 
+.mat-tooltip{
+    font-size: 13px !important;
+    left: 50px;
+    border-radius: 5px;
+    background: #22546C;
+    padding: 5px 10px
+}
