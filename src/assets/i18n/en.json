@@ -290,5 +290,8 @@
     "aml0023_desc": "Payment made by a politically exposed persons",
 
     "Installments_paid_by_other_parties": "Installments Paid by Other Parties",
-    "scenario_parameters": "Scenario Parameters"
+    "scenario_parameters": "Scenario Parameters",
+
+    "AGP_Scenarios": "AGP Scenarios",
+    "Run": "Run"
 }

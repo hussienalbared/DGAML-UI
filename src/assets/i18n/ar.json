@@ -272,5 +272,8 @@
     "list_name": "List Name",
 
     "Payments_by_pep_customers": "Payments By Pep_Customers",
-    "pep_ind": "Politically Indicator"
+    "pep_ind": "Politically Indicator",
+
+    "AGP_Scenarios": "AGP Scenarios",
+    "Run": "تشغيل"
 }

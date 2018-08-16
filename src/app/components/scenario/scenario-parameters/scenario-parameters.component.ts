@@ -107,6 +107,9 @@ export class ScenarioParametersComponent implements OnInit {
    event_names: string[] = ['CHANGE BENEFICIARY','CHANGE OWNER'];
 
    cdi_code: string[] = ['Credit','Debit'] ;
+   scnarios:string[] = ['AML001','AML002'];
+
+   scnarios_n;
 
    ngOnInit() {
 
@@ -260,5 +263,13 @@ export class ScenarioParametersComponent implements OnInit {
   }
 
   m001_account_type: string;
+
+
+  runScenario(){
+    console.log("runScenario()")
+    console.log(this.scnarios_n)
+    let url = this.rootUrl+"/aml/api/agp/dgamlRun";
+    return this.http.post(url,this.scnarios_n);
+  }
 
 }
