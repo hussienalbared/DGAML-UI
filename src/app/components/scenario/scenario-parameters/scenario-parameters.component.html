@@ -69,7 +69,7 @@
                               #tooltipp2="matTooltip" (click)="tooltipp2.toggle()"
                               matTooltipPosition = "after"
                               >  
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="m001_is_parties_related" name="m001_is_parties_related">
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ngModel name="m001_is_parties_related">
                                   <option value="Y">Yes</option>
                                   <option value="N">No</option>
                                 </select>
@@ -104,7 +104,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m001_event_name" name="m001_event_name" >
+                                    <mat-select multiple ngModel name="m001_event_name" >
                                       <mat-option *ngFor="let e of event_names" [value]="e">{{e}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -122,7 +122,7 @@
                                 #tooltipp5="matTooltip" (click)="tooltipp5.toggle()"
                                 matTooltipPosition = "after"
                                 >
-                                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" [(ngModel)]="m001_transaction_event_ind" name="m001_transaction_event_ind">
+                                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ngModel name="m001_transaction_event_ind">
                                     <option value="E">Event</option>
                                   </select>
                                 </div>
@@ -173,12 +173,12 @@
                               <div matTooltip="{{ m002_account_type_desc }}" 
                               (mouseenter)="$event.stopImmediatePropagation()" 
                               (mouseleave)="$event.stopImmediatePropagation()"
-                              #tooltipp6="matTooltip" (click)="tooltipp7.toggle()"
+                              #tooltipp6="matTooltip" (click)="tooltipp6.toggle()"
                               matTooltipPosition = "after"
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple  [(ngModel)]="m002_account_type" name="m002_account_type">
+                                    <mat-select  multiple  ngModel name="m002_account_type">
                                       <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -228,7 +228,7 @@
                               >  
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m002_cdi_code" name="m002_cdi_code">
+                                    <mat-select multiple ngModel name="m002_cdi_code">
                                       <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -297,7 +297,7 @@
                                 >
                                   <mat-list-item class="primary-imenu-item" role="listitem">
                                     <mat-form-field class="select-form">
-                                      <mat-select  multiple [(ngModel)]="m003_account_type" name="m003_account_type">
+                                      <mat-select  multiple ngModel name="m003_account_type">
                                         <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                       </mat-select>
                                     </mat-form-field>
@@ -335,7 +335,7 @@
                                 >  
                                   <mat-list-item class="primary-imenu-item" role="listitem">
                                     <mat-form-field class="select-form">
-                                      <mat-select multiple [(ngModel)]="m003_credit_ind" name="m003_credit_ind">
+                                      <mat-select multiple ngModel name="m003_credit_ind">
                                         <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
                                       </mat-select>
                                     </mat-form-field>
@@ -391,7 +391,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m005_account_type" name="m005_account_type">
+                                    <mat-select  multiple ngModel name="m005_account_type">
                                       <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -442,7 +442,7 @@
                               >  
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m005_transaction_type" name="m005_transaction_type">
+                                    <mat-select multiple ngModel name="m005_transaction_type">
                                       <mat-option>CASH</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -462,7 +462,7 @@
                               >  
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m005_credit_ind" name="m005_credit_ind">
+                                    <mat-select multiple ngModel name="m005_credit_ind">
                                       <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -641,7 +641,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m007_account_type" name="m007_account_type">
+                                    <mat-select  multiple ngModel name="m007_account_type">
                                       <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -753,7 +753,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m010_account_type" name="m010_account_type">
+                                    <mat-select  multiple ngModel name="m010_account_type">
                                       <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -774,7 +774,7 @@
                               >  
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m010_events_list" name="m010_events_list">
+                                    <mat-select multiple ngModel name="m010_events_list">
                                       <mat-option>ACCOUNT_OPEN</mat-option>
                                       <mat-option>ACCOUNT_CLOSE</mat-option>
                                       <mat-option>CHANGE_BENEFECIARY</mat-option>
@@ -816,7 +816,7 @@
                                 >  
                                   <mat-list-item class="primary-imenu-item" role="listitem">
                                     <mat-form-field class="select-form">
-                                      <mat-select multiple [(ngModel)]="m010_cdi_code" name="m010_cdi_code">
+                                      <mat-select multiple ngModel name="m010_cdi_code">
                                         <mat-option>Event</mat-option>
                                       </mat-select>
                                     </mat-form-field>
@@ -846,7 +846,7 @@
                               <div matTooltip="{{ m010_num_events_desc }}" 
                               (mouseenter)="$event.stopImmediatePropagation()" 
                               (mouseleave)="$event.stopImmediatePropagation()"
-                              #tooltipp34="matTooltip" (click)="tooltipp35.toggle()"
+                              #tooltipp34="matTooltip" (click)="tooltipp34.toggle()"
                               matTooltipPosition = "after"
                               >
                                 <input type = "text" class="form-control" name="m010_num_events"  placeholder="{{ m010_num_events_placeholder }}" ngModel >
@@ -901,7 +901,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m016_account_type" name="m016_account_type">
+                                    <mat-select  multiple ngModel name="m016_account_type">
                                       <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -1135,7 +1135,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m022_cdi_code" name="m022_cdi_code">
+                                    <mat-select  multiple ngModel name="m022_cdi_code">
                                       <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
                                     </mat-select>
                                   </mat-form-field>
@@ -1221,7 +1221,7 @@
                               >
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select  multiple [(ngModel)]="m023_pep_ind" name="m023_pep_ind">
+                                    <mat-select  multiple ngModel name="m023_pep_ind">
                                       <mat-option>YES</mat-option>
                                       <mat-option>NO</mat-option>
                                     </mat-select>
@@ -1260,7 +1260,7 @@
                               >  
                                 <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
-                                    <mat-select multiple [(ngModel)]="m023_cdi_code" name="m023_cdi_code">
+                                    <mat-select multiple ngModel name="m023_cdi_code">
                                       <mat-option>Event</mat-option>
                                     </mat-select>
                                   </mat-form-field>

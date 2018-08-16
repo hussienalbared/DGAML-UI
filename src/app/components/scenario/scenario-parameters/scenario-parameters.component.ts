@@ -269,7 +269,7 @@ export class ScenarioParametersComponent implements OnInit {
     console.log("runScenario()")
     console.log(this.scnarios_n)
     let url = this.rootUrl+"/aml/api/agp/dgamlRun";
-    return this.http.post(url,this.scnarios_n);
+    return this.http.post(url,this.scnarios_n).subscribe(data=>{});
   }
 
 }

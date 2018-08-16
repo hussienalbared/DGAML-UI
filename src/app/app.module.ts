@@ -1,4 +1,5 @@
 import { ScenarioParametersComponent } from './components/scenario/scenario-parameters/scenario-parameters.component';
+import { ScenarioComponent } from './components/scenario/scenario.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
@@ -80,7 +81,7 @@ import { EmptyComponentComponent } from './components/empty-component/empty-comp
 import { userHasCapabilityDirective } from './directives/has-capability.directive';
 import { toastoption } from './models/toastroption.model';
 import { SamaPropertiesComponent } from './components/sama-properties/sama-properties.component';
-import { ScenarioComponent } from './components/scenario/scenario.component';
+
 
 
 // AoT requires an exported function for factories
@@ -322,8 +323,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: [environment.ipAddress],
-        blacklistedRoutes: [environment.ipAddress + '/aml/auth']
+        whitelistedDomains: [environment.ipAddress, environment.ipAddressWithoutHttp],
+        blacklistedRoutes: [environment.ipAddress + '/aml/auth', environment.ipAddressWithoutHttp + '/aml/auth']
       }
     }),
   ],
