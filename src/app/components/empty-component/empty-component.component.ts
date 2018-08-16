@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class EmptyComponentComponent implements OnInit {
 
-  private myTemplate: any = '';
+  public myTemplate: any = '';
   urlSafe: SafeResourceUrl;
   @Input() dashBoardUrl: string = environment.dashBoardUrl;
   constructor(private http: HttpClient, public sanitizer: DomSanitizer) {
