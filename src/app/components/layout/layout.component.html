@@ -319,6 +319,12 @@
                 <span *ngIf="isOn">{{ 'SAMA_Properties' | translate }}</span>
               </a>
             </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item (click)="layoutItem($event);navItem('/scenario/parameters')" class="mat_item_a" appAddTab path="/scenario/parameters">
+              <a routerLink="scenario/parameters">
+                <span *ngIf="isOn">{{ 'AGP_Scenarios' | translate }}</span>
+              </a>
+            </mat-list-item>
 
             <!-- <mat-divider></mat-divider> -->
           </mat-list>
