@@ -1,8 +1,8 @@
 
 export interface ScenarioParameter{
 
-    Routine_Id: number;
-    Parm_Name: String;
-    Parm_Value: String;
-    Parm_Desc: Date;
+    routine_Id?: number;
+    parm_Name: String;
+    parm_Value: String;
+    parm_Desc?: string;
 }

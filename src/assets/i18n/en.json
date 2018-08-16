@@ -287,6 +287,8 @@
     "aml0020_desc": "Large number of people are authorized to conduct business for this account",
     "aml0021_desc": "Large number of people are authorized to use this account (car). Like drivers for example",
     "aml0022_desc" : "Payment made by a high risk industry customer",
-    "aml0023_desc": "Payment made by a politically exposed persons"
+    "aml0023_desc": "Payment made by a politically exposed persons",
 
+    "Installments_paid_by_other_parties": "Installments Paid by Other Parties",
+    "scenario_parameters": "Scenario Parameters"
 }
