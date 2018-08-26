@@ -1,0 +1,1293 @@
+<div class="maincontant">
+  <div class="container-fluid" style="width: 700px">
+    <div class="row">
+      <div class="col-lg-4">
+        <button mat-raised-button style="width: 100%;display: block;background-color: #ff9c43;color: #FFF" (click)="runScenario()">
+          {{ 'Run' | translate }}</button>
+      </div>
+      <div class="col-lg-4">
+        <mat-list-item class="primary-imenu-item" role="listitem">
+          <mat-form-field class="select-form">
+            <mat-select  multiple [(ngModel)]="scnarios_n" name="scnarios_n">
+              <mat-option *ngFor="let item of scnarios" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+      </div>  
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <mat-tab-group>
+          <mat-tab label="AML001">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12"> 
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Transfer_loan_from_customer_to_another' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml001_desc' | translate }}</span>
+                      </div>
+                    </div>               
+                    <form #form001="ngForm" (ngSubmit)="updateParameters(form001.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <h5 style="font-family: inherit">{{ 'scenario_parameters' | translate }}:</h5>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m001_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp1="matTooltip" (click)="tooltipp1.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple [(ngModel)]="m001_account_type" name="m001_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'is_parties_related' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m001_is_parties_related_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp2="matTooltip" (click)="tooltipp2.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ngModel name="m001_is_parties_related">
+                                  <option value="Y">Yes</option>
+                                  <option value="N">No</option>
+                                </select>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_is_parties_related"  placeholder="{{ m001_is_parties_related_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'percentage' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m001_percentage_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp3="matTooltip" (click)="tooltipp3.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m001_percentage"  placeholder="{{ m001_percentage_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          <!-- </div> -->
+
+                          <!-- <div class="col-lg-6"> -->
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Event_Name' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m001_event_name_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp4="matTooltip" (click)="tooltipp4.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m001_event_name" >
+                                      <mat-option *ngFor="let e of event_names" [value]="e">{{e}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'transaction_event_ind' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m001_transaction_event_ind_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp5="matTooltip" (click)="tooltipp5.toggle()"
+                                matTooltipPosition = "after"
+                                >
+                                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" ngModel name="m001_transaction_event_ind">
+                                    <option value="E">Event</option>
+                                  </select>
+                                </div>
+                                
+                                <!-- <input type = "text" class="form-control" name="m001_transaction_event_ind"  placeholder="{{ m001_transaction_event_ind_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML002">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Installments_paid_by_other_parties' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml002_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form002="ngForm" (ngSubmit)="updateParameters(form002.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <h5 style="font-family: inherit" >{{ 'scenario_parameters' | translate }}:</h5>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m002_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp6="matTooltip" (click)="tooltipp6.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple  ngModel name="m002_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ mm002_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp8="matTooltip" (click)="tooltipp8.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m002_amount"  placeholder="{{ m002_amount_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Installments_Number' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m002_num_inst_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp9="matTooltip" (click)="tooltipp9.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m002_num_inst"  placeholder="{{ m002_num_inst_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m002_cdi_code_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp10="matTooltip" (click)="tooltipp10.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m002_cdi_code">
+                                      <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m002_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp11="matTooltip" (click)="tooltipp11.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m002_num_days"  placeholder="{{ m002_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML003">
+            <div class="scenario_content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12"> 
+                      <div class="row scenario_desc">
+                        <div class="col-lg-12">
+                          <h4 style="font-family: inherit">{{ 'Installments_paid_exceeding_the_limit_agreed_upon' | translate }}:</h4>
+                          <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml003_desc' | translate }}</span>
+                        </div>
+                      </div>               
+                      <form #form003="ngForm" (ngSubmit)="updateParameters(form003.value)" id="scenario_form">
+                        <div class="container">
+                          <div class="row scenario_title">
+                            <div class="col-lg-12">
+                              <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-lg-6">
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m003_account_type_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp12="matTooltip" (click)="tooltipp12.toggle()"
+                                matTooltipPosition = "after"
+                                >
+                                  <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                      <mat-select  multiple ngModel name="m003_account_type">
+                                        <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </mat-list-item>
+                                </div>  
+                                  <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
+                              </div>
+                              
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'percentage' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m003_percentage_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp13="matTooltip" (click)="tooltipp13.toggle()"
+                                matTooltipPosition = "after"
+                                >  
+                                  <input type = "text" class="form-control" name="m003_percentage"  placeholder="{{ m003_percentage_placeholder }}" ngModel >
+                                </div>
+                                  <!-- </mat-form-field> -->
+                              </div>
+                              
+                            </div>
+  
+                            <div class="col-lg-6">
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'credit_ind' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m003_credit_ind_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp14="matTooltip" (click)="tooltipp14.toggle()"
+                                matTooltipPosition = "after"
+                                >  
+                                  <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                      <mat-select multiple ngModel name="m003_credit_ind">
+                                        <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </mat-list-item>
+                                </div>
+                                  <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
+                              </div>
+                            </div>
+                          </div>
+  
+                          <div class="row" style="margin-top: 15px">
+                            <div class="col-lg-12">
+                              <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                            </div>
+                          </div>
+  
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </mat-tab>
+          <mat-tab label="AML005">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">  
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Installments_paid_in_cash' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml005_desc' | translate }}</span>
+                      </div>
+                    </div>              
+                    <form #form005="ngForm" (ngSubmit)="updateParameters(form005.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m005_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp15="matTooltip" (click)="tooltipp15.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m005_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                              </mat-list-item>
+                            </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'percentage' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m005_percentage_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp16="matTooltip" (click)="tooltipp16.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m005_percentage"  placeholder="{{ m005_percentage_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m005_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp17="matTooltip" (click)="tooltipp17.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m005_num_days"  placeholder="{{ m005_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'transaction_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m005_transaction_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp18="matTooltip" (click)="tooltipp18.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m005_transaction_type">
+                                      <mat-option>CASH</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'credit_ind' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m005_credit_ind_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp19="matTooltip" (click)="tooltipp19.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m005_credit_ind">
+                                      <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <!-- <mat-tab label="AML006">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Large_Total_Cash_Transaction_(Individuals_Organizations)' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml006_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form006="ngForm" (ngSubmit)="updateParameters(form006.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'Account_Type' | translate }}:</label>
+                               
+                              <div matTooltip="{{ m006_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp20="matTooltip" (click)="tooltipp20.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple >
+                                      <mat-option>Personal</mat-option>
+                                      <mat-option>C</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div> 
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amount' | translate }}:</label>
+                           
+                              <div matTooltip="{{ m006_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp21="matTooltip" (click)="tooltipp21.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m006_amount"  placeholder="{{ m006_amount_placeholder }}" ngModel >
+                              </div>
+                               
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                               
+                              <div matTooltip="{{ m006_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp22="matTooltip" (click)="tooltipp22.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m006_num_days"  placeholder="{{ m006_num_days_placeholder }}" ngModel >
+                              </div>
+                               
+                            </div>
+
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'transaction_type' | translate }}:</label>
+                             
+                              <div matTooltip="{{ m006_transaction_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp23="matTooltip" (click)="tooltipp23.toggle()"
+                              matTooltipPosition = "after"
+                              >   
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple >
+                                      <mat-option>CASH</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div> 
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'credit_ind' | translate }}:</label>
+                              
+                              <div matTooltip="{{ m006_credit_ind_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp24="matTooltip" (click)="tooltipp24.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple >
+                                      <mat-option>Credit</mat-option>
+                                      <mat-option>Debit</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div> 
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab> -->
+          <mat-tab label="AML007">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">   
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Early_termination_of_Loans' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml007_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form007="ngForm" (ngSubmit)="updateParameters(form007.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'account_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m007_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp25="matTooltip" (click)="tooltipp25.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m007_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amt_single_loan' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m007_amt_single_loan_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp26="matTooltip" (click)="tooltipp26.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m007_amt_single_loan"  placeholder="{{ m007_amt_single_loan_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m007_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp27="matTooltip" (click)="tooltipp27.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m007_num_days"  placeholder="{{ m007_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'total_amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m007_total_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp28="matTooltip" (click)="tooltipp28.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m007_total_amount"  placeholder="{{ m007_total_amount_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'percentage' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m007_percentage_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp29="matTooltip" (click)="tooltipp29.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m007_percentage"  placeholder="{{ m007_percentage_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0010">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">  
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Excessive_Account_Close_Open_Activities' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0010_desc' | translate }}</span>
+                      </div>
+                    </div>              
+                    <form #form010="ngForm" (ngSubmit)="updateParameters(form010.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'account_type' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m010_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp30="matTooltip" (click)="tooltipp30.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m010_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'events_list' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m010_events_list_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp31="matTooltip" (click)="tooltipp31.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m010_events_list">
+                                      <mat-option>ACCOUNT_OPEN</mat-option>
+                                      <mat-option>ACCOUNT_CLOSE</mat-option>
+                                      <mat-option>CHANGE_BENEFECIARY</mat-option>
+                                      <mat-option>CHANGE_OWNERSHIP</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m010_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp32="matTooltip" (click)="tooltipp32.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m010_amount"  placeholder="{{ m010_amount_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+
+                          <div class="col-lg-6">
+
+                              <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m010_cdi_code_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp33="matTooltip" (click)="tooltipp33.toggle()"
+                                matTooltipPosition = "after"
+                                >  
+                                  <mat-list-item class="primary-imenu-item" role="listitem">
+                                    <mat-form-field class="select-form">
+                                      <mat-select multiple ngModel name="m010_cdi_code">
+                                        <mat-option>Event</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                  </mat-list-item>
+                                </div>
+                                  <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                                <!-- </mat-form-field> -->
+                              </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m010_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp34="matTooltip" (click)="tooltipp34.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m010_num_days"  placeholder="{{ m010_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_events' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m010_num_events_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp34="matTooltip" (click)="tooltipp34.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m010_num_events"  placeholder="{{ m010_num_events_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0016">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Account_Open_outside_region' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0016_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form016="ngForm" (ngSubmit)="updateParameters(form016.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'account_type_desc' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m016_account_type_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp36="matTooltip" (click)="tooltipp36.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m016_account_type">
+                                      <mat-option *ngFor="let item of params" [value]="item.param_Value">{{item.param_Name}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m016_num_days_desc }}" 
+                                (mouseenter)="$event.stopImmediatePropagation()" 
+                                (mouseleave)="$event.stopImmediatePropagation()"
+                                #tooltipp37="matTooltip" (click)="tooltipp37.toggle()"
+                                matTooltipPosition = "after"
+                                >  
+                                  <input type = "text" class="form-control" name="m016_num_days"  placeholder="{{ m016_num_days_placeholder }}" ngModel >
+                                </div>
+                                  <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0020">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Large_Number_of_authorizations_conduct_business' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0020_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form020="ngForm" (ngSubmit)="updateParameters(form020.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'number' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m020_number_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp38="matTooltip" (click)="tooltipp38.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m020_number"  placeholder="{{ m020_number_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'auth_today' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                                <div matTooltip="{{ m020_auth_today_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp39="matTooltip" (click)="tooltipp39.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                  <input type = "text" class="form-control" name="m020_auth_today"  placeholder="{{ m020_auth_today_placeholder }}" ngModel >
+                              </div>
+                                  <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0021">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12"> 
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Large_Number_of_authorizations_use_financed_assets' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0021_desc' | translate }}</span>
+                      </div>
+                    </div>               
+                    <form #form021="ngForm" (ngSubmit)="updateParameters(form021.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'number' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m021_number_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp40="matTooltip" (click)="tooltipp40.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m021_number"  placeholder="{{ m021_number_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                                <label style="font-size: 13px;color: #28607b;">{{ 'auth_today' | translate }}:</label>
+                                <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m021_auth_today_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp41="matTooltip" (click)="tooltipp41.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                  <input type = "text" class="form-control" name="m021_auth_today"  placeholder="{{ m021_auth_today_placeholder }}" ngModel >
+                                </div>
+                                  <!-- </mat-form-field> -->
+                              </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0022">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12"> 
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Payments_by_high_risk_industry_customers' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0022_desc' | translate }}</span>
+                      </div>
+                    </div>               
+                    <form #form023="ngForm" (ngSubmit)="updateParameters(form023.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m022_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp42="matTooltip" (click)="tooltipp42.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <input type = "text" class="form-control" name="m022_amount"  placeholder="{{ m022_amount_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'list_name' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m022_list_name_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp43="matTooltip" (click)="tooltipp43.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m022_list_name"  placeholder="{{ m022_list_name_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m022_cdi_code_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp44="matTooltip" (click)="tooltipp44.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m022_cdi_code">
+                                      <mat-option *ngFor="let item of cdi_code" [value]="item">{{item}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>  
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m022_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp45="matTooltip" (click)="tooltipp45.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m022_num_days"  placeholder="{{ m022_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="AML0023">
+            <div class="scenario_content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row scenario_desc">
+                      <div class="col-lg-12">
+                        <h4 style="font-family: inherit">{{ 'Payments_by_pep_customers' | translate }}:</h4>
+                        <span style="color: #344f5d;font-size: 16px;padding-left: 10px">{{ 'aml0023_desc' | translate }}</span>
+                      </div>
+                    </div>                
+                    <form #form023="ngForm" (ngSubmit)="updateParameters(form023.value)" id="scenario_form">
+                      <div class="container">
+                        <div class="row scenario_title">
+                          <div class="col-lg-12">
+                            <span style="letter-spacing: 1px;color: #28607b;font-size: 16px;">{{ 'scenario_parameters' | translate }}:</span>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'amount' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m023_amount_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp46="matTooltip" (click)="tooltipp46.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m023_amount"  placeholder="{{ m023_amount_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'pep_ind' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m023_pep_ind_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp47="matTooltip" (click)="tooltipp47.toggle()"
+                              matTooltipPosition = "after"
+                              >
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select  multiple ngModel name="m023_pep_ind">
+                                      <mat-option>YES</mat-option>
+                                      <mat-option>NO</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+                            
+                          </div>
+
+                          <div class="col-lg-6">
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'num_days' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m023_num_days_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp48="matTooltip" (click)="tooltipp48.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <input type = "text" class="form-control" name="m023_num_days"  placeholder="{{ m023_num_days_placeholder }}" ngModel >
+                              </div>
+                                <!-- </mat-form-field> -->
+                            </div>
+
+                            <div style="display: block" class="form_div">
+                              <label style="font-size: 13px;color: #28607b;">{{ 'cdi_code' | translate }}:</label>
+                              <!-- <mat-form-field> -->
+                              <div matTooltip="{{ m023_cdi_code_desc }}" 
+                              (mouseenter)="$event.stopImmediatePropagation()" 
+                              (mouseleave)="$event.stopImmediatePropagation()"
+                              #tooltipp49="matTooltip" (click)="tooltipp49.toggle()"
+                              matTooltipPosition = "after"
+                              >  
+                                <mat-list-item class="primary-imenu-item" role="listitem">
+                                  <mat-form-field class="select-form">
+                                    <mat-select multiple ngModel name="m023_cdi_code">
+                                      <mat-option>Event</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                </mat-list-item>
+                              </div>
+                                <!-- <input type = "text" class="form-control" name="m001_event_name"  placeholder="{{ m001_event_name_placeholder }}" ngModel > -->
+                              <!-- </mat-form-field> -->
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-lg-12">
+                            <button mat-raised-button style="width: 20%;display: block;background-color: #ff9c43;color: #FFF">{{ 'Submit' | translate }}</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

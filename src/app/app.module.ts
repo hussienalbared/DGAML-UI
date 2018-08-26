@@ -1,3 +1,5 @@
+import { ScenarioParametersComponent } from './components/scenario/scenario-parameters/scenario-parameters.component';
+import { ScenarioComponent } from './components/scenario/scenario.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { NotificationService } from './services/notification.service';
 import { CommentService } from './services/comment.service';
@@ -10,7 +12,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {ToastOptions} from 'ng2-toastr';
 
 import { RouterModule } from '@angular/router';
@@ -20,8 +22,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {
-  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatRadioButton, MatRadioGroup,  MatDatepicker,  MatDatepickerToggle, MatDatepickerInput,
-  MatInputModule, MatCardModule, MatTooltipModule, MatToolbarModule, MatRadioModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule, MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule, MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule, MatTabsModule, MatIconModule
+  MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatRadioButton, MatRadioGroup,
+  MatDatepicker,  MatDatepickerToggle, MatDatepickerInput, MatInputModule, MatCardModule, MatTooltipModule,
+  MatToolbarModule, MatRadioModule, MatSnackBarModule, MatSlideToggleModule, MatSliderModule, MatSelectModule,
+  MatRippleModule, MatProgressBarModule, MatProgressSpinnerModule, MatNativeDateModule, MatGridListModule,
+  MatDatepickerModule, MatStepperModule, MatChipsModule, MatButtonToggleModule, MatAutocompleteModule, MatTabsModule, MatIconModule
 } from '@angular/material';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -65,7 +70,7 @@ import { AddTabDirective } from './directives/add-tab.directive';
 import { SamaReportComponent } from './sama-report/sama-report.component';
 import { RiskComponent } from './components/risk/risk.component';
 import { RiskForwardComponent } from './components/risk/risk-forward/risk-forward.component';
-import { NgProgressModule,NgProgressInterceptor } from 'ngx-progressbar';
+import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { UserComponent } from './components/user/user.component';
 import { AddNewUserComponent } from './components/user/add-new-user/add-new-user.component';
@@ -79,6 +84,7 @@ import { EmptyComponentComponent } from './components/empty-component/empty-comp
 import { userHasCapabilityDirective } from './directives/has-capability.directive';
 import { toastoption } from './models/toastroption.model';
 import { SamaPropertiesComponent } from './components/sama-properties/sama-properties.component';
+
 
 
 // AoT requires an exported function for factories
@@ -129,8 +135,9 @@ export function tokenGetter() {
     CommentComponent,
     EmptyComponentComponent,
     userHasCapabilityDirective,
-    SamaPropertiesComponent
-   
+    SamaPropertiesComponent,
+    ScenarioComponent,
+    ScenarioParametersComponent
 
   ],
   imports: [
@@ -305,24 +312,27 @@ export function tokenGetter() {
       {
         path: 'dashboard',
         component: EmptyComponentComponent
-      }
-      ,{
+      },
+      {
         path: 'report/sama',
         component: SamaReportComponent
         , canActivate: [AuthGuardService]
+      },
+      {
+        path: 'scenario/parameters',
+        component: ScenarioParametersComponent
       }
     ]),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [environment.ipAddress, environment.ipAddressWithoutHttp],
-        blacklistedRoutes: [environment.ipAddress + '/aml/auth',
-         environment.ipAddressWithoutHttp + '/aml/auth']
+        blacklistedRoutes: [environment.ipAddress + '/aml/auth', environment.ipAddressWithoutHttp + '/aml/auth']
       }
     }),
   ],
   providers: [AuthService, AuthGuardService, JwtHelperService, SuspectsService, AccountsService, RiskService,
-    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService,NotificationService,
+    TabsServiceService, UserService, GroupService, CommentService, WebSocketServiceService, NotificationService,
     {provide: ToastOptions, useClass: toastoption},
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }],
 

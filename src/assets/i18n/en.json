@@ -230,5 +230,68 @@
     "Reporting_Name": "Reporting Name",
     "Reporting_Address": "Reporting Address",
     "Reporting_Phone_Number": "Reporting Phone Number",
-    "Submit": "Submit"
+    "Submit": "Submit",
+
+
+    "Transfer_loan_from_customer_to_another": "Transfer loan from customer to another",
+    "Account_Type": "Account Type",
+    "Event_Name": "Event Name",
+    "is_parties_related": "Is Parties Related",
+    "transaction_event_ind": "Transaction Event Indicator",
+    "percentage": "Percentage",
+
+    "Installments_paid by_other_parties": "Installments Paid by Other Parties",
+    "cdi_code": "CDI Code",
+    "num_days": "Num Days",
+    "Installments_Number": "Installments Number",
+
+    "Installments_paid_exceeding_the_limit_agreed_upon": "Installments Paid Exceeding the Limit Agreed Upon",
+    "transaction_type": "Transaction Type",
+    "credit_ind": "Credit Indicator",
+
+    "Large_Total_Cash_Transaction_(Individuals_Organizations)": "Large Total Cash Transaction (Individuals / Organizations)",
+    "amount": "Amount",
+
+    "Installments_paid_in_cash": "Installments Paid In Cash",
+
+    "Early_termination_of_Loans": "Early Termination Of Loans",
+    "account_type": "Account Type",
+    "total_amount" : "Total Amount",
+    "amt_single_loan": "Amount Single Loan",
+
+    "Excessive_Account_Close_Open_Activities": "Excessive Account Close Open Activities",
+    "num_events": "Number of Events",
+    
+    "Account_Open_outside_region": "Account Open Outside Region",
+    "account_type_desc": "Account Type Description",
+
+    "Large_Number_of_authorizations_conduct_business": "Large Number of Authorizations Conduct Business",
+    "auth_today": "Number of Authorizations today",
+    "number":  "Number of Authorizations",
+
+    "Large_Number_of_authorizations_use_financed_assets": "Large Number of Authorizations Use Financed Assets",
+    "list_name": "List Name",
+
+    "Payments_by_pep_customers": "Payments By Pep_Customers",
+    "pep_ind": "Politically Indicator",
+
+
+    "aml001_desc": "Beneficiary or ownership of a loan is transferred to another customer with no known relationship",
+    "aml002_desc":  "Many installments are paid by other unrelated parties",
+    "aml003_desc": "Installments paid exceeding the limit agreed upon",
+    "aml005_desc": "Most of the installments of the customer is paid in cash",
+    "aml006_desc": "Customer pays large amount of installments in cash in short period of time",
+    "aml007_desc": "Customer terminates one or more loans early",
+    "aml0010_desc": "Customer has many account open and close events in a certain period",
+    "aml0016_desc": "The accounts is opened from a region where the customer does not live in or work in",
+    "aml0020_desc": "Large number of people are authorized to conduct business for this account",
+    "aml0021_desc": "Large number of people are authorized to use this account (car). Like drivers for example",
+    "aml0022_desc" : "Payment made by a high risk industry customer",
+    "aml0023_desc": "Payment made by a politically exposed persons",
+
+    "Installments_paid_by_other_parties": "Installments Paid by Other Parties",
+    "scenario_parameters": "Scenario Parameters",
+
+    "AGP_Scenarios": "AGP Scenarios",
+    "Run": "Run"
 }
