@@ -315,8 +315,9 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: [environment.ipAddress],
-        blacklistedRoutes: [environment.ipAddress + '/aml/auth']
+        whitelistedDomains: [environment.ipAddress, environment.ipAddressWithoutHttp],
+        blacklistedRoutes: [environment.ipAddress + '/aml/auth',
+         environment.ipAddressWithoutHttp + '/aml/auth']
       }
     }),
   ],
