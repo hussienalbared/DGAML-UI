@@ -29,7 +29,7 @@ export class SamaPropertiesComponent implements OnInit {
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef,private http:HttpClient,private translate:TranslateService) {
     this.toastr.setRootViewContainerRef(vcr);
 
-    this.rootUrl = environment.ipAddress;
+    this.rootUrl = environment.projectName;
    }
 
   ngOnInit() {

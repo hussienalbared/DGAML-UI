@@ -34,7 +34,7 @@ export class SamaReportComponent implements OnInit {
   }
 
   loadTransactionList(customerId: HTMLInputElement) {
-    this.http.get(environment.ipAddress + '/report/getTransactions?customerId=' + customerId.value)
+    this.http.get(environment.projectName + '/report/getTransactions?customerId=' + customerId.value)
 
       .subscribe(response => {
         this.transactionList = JSON.parse(JSON.stringify(response));
@@ -45,7 +45,7 @@ export class SamaReportComponent implements OnInit {
 
   generateSamaReport() {
     this.transactionList = null;
-    let url = environment.ipAddress + '/report/createSamaReport';
+    let url = environment.projectName + '/report/createSamaReport';
     console.log('selected transaction');
     console.log(this.selectedTransaction);
     this.http.post(url, this.selectedTransaction).subscribe(response => {
@@ -91,7 +91,7 @@ console.log('dddddddd');
 
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    let url = environment.ipAddress + '/report/saveSamaReport';
+    let url = environment.projectName + '/report/saveSamaReport';
     this.http.post(url, report, { headers: headers }).subscribe(response => {
     }, error => {
       console.log(error)
@@ -100,7 +100,7 @@ console.log('dddddddd');
   }
 
   downloadReport(lang: String) {
-    let url = environment.ipAddress + '/report/printSamaReport?transactionIds=' + this.selectedTransaction + '&lang=' + lang;
+    let url = environment.projectName + '/report/printSamaReport?transactionIds=' + this.selectedTransaction + '&lang=' + lang;
     let headers = new HttpHeaders();
     headers = headers.set('Accept', 'application/pdf');
     this.http.get(url, { headers: headers, responseType: 'blob' }).subscribe(response => {
