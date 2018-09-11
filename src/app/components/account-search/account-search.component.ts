@@ -44,7 +44,7 @@ displayedColumns = ['acct_No', 'acct_Name', 'acct_Type_Desc', 'acct_Open_Date', 
   onClickSubmit(data) {
     this.search_R = true;
     
-    let url=environment.ipAddress+"/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
+    let url=environment.projectName+"/aml/api/account/searchAccount?AccountNumber="+this.accountNumber+"&AccountName="+this.accountName+"&AccountType="+this.accountType
     +"&AccountOpenDate="+this.accountOpenDate+"&AccountCloseDate="+this.accountCloseDate
     ;
     

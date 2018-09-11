@@ -34,7 +34,7 @@ obj_key:string='';
     });
   }
   getData(number){
-    let Url=environment.ipAddress+"/aml/api/party/ByPNO?PartyNumber="+
+    let Url=environment.projectName+"/aml/api/party/ByPNO?PartyNumber="+
     number;
     this.http.get(Url).subscribe(data=>{
 

@@ -46,7 +46,7 @@ export class AlaramSearchComponent implements OnInit {
 
     this.search_R = true;
 
-    let url = environment.ipAddress+"/aml/api/alaram/allalarams?AlarmId=" + this.AlarmId + "&AlarmStatus=" + this.AlarmStatus +
+    let url = environment.projectName+"/aml/api/alaram/allalarams?AlarmId=" + this.AlarmId + "&AlarmStatus=" + this.AlarmStatus +
       "&MoneyLaunderingRisk=" + this.MoneyLaunderingRisk + "&CreateDateFrom=" + this.CreateDateFrom
       + "&CreateDateTo=" + this.CreateDateTo
       + "&RunDateFrom=" + this.RunDateFrom + "&RunDateTo=" + this.RunDateTo +"&ScenarioName=" + this.ScenarioName +

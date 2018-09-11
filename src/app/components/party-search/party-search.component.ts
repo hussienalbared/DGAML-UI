@@ -48,7 +48,7 @@ export class PartySearchComponent {
 
     this.search_R = true;
  
-    let url = environment.ipAddress+"/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
+    let url = environment.projectName+"/aml/api/party/search?PartyNumber=" + this.PartyNumber + "&PartyId=" + this.PartyId +
       "&PartyName=" + this.PartyName +
       "&PoliticallyExposedPerson=" + this.PoliticallyExposedPerson +
       "&Risk=" + this.Risk + "&PartyStatusDescription=" + this.PartyStatusDescription;
@@ -70,7 +70,7 @@ export class PartySearchComponent {
   {
   
     
-    let url=environment.ipAddress+"/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
+    let url=environment.projectName+"/aml/api/v1/getSuspetedByObjectNumber?obj_number="+partyNumber;
     
     this.http.get<any[]>(url).subscribe(data=>{
 if(data.length>0)

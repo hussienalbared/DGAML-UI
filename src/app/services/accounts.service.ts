@@ -12,7 +12,7 @@ export class AccountsService {
    }
    getAccountAlarmsInBrief(AccountKey){
 
-    let url=environment.ipAddress+"/aml/api/account/alarmInBrief?accountKey="+AccountKey;
+    let url=environment.projectName+"/aml/api/account/alarmInBrief?accountKey="+AccountKey;
     return this.http.get(url);
   }
 

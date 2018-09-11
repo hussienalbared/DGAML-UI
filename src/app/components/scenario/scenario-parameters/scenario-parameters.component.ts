@@ -97,7 +97,7 @@ export class ScenarioParametersComponent implements OnInit {
 
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef,private http:HttpClient,private translate:TranslateService) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.rootUrl = environment.ipAddress;
+    this.rootUrl = environment.projectName;
    }
 
    params: Key_ValueHelper[] =[];

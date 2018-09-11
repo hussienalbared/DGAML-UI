@@ -25,14 +25,14 @@ export class AlarmDetail1Component implements OnInit {
 
       let alarmid=params.get("alarmId")
     
-      let url=environment.ipAddress+"/aml/api/alaram/AlarmDetailSection1?alarmId="+alarmid
+      let url=environment.projectName+"/aml/api/alaram/AlarmDetailSection1?alarmId="+alarmid
       this.http.get(url).subscribe(data=>{
         this.dataSource=data;
         this.dataSource.sort = this.sort;
        
       
       })
-      let url2=environment.ipAddress+"/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
+      let url2=environment.projectName+"/aml/api/alaram/AlarmDetailSection2?alarmId="+alarmid
       this.http.get<any>(url2).subscribe(data=>{
         this.dataSource2 = new MatTableDataSource();
         this.dataSource2.data = data;

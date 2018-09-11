@@ -7,7 +7,7 @@ export class RiskService {
 
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = environment.ipAddress+"/aml/api/";
+    this.rootUrl = environment.projectName+"/aml/api/";
   }
 
   forwardrisk(Key,userName){

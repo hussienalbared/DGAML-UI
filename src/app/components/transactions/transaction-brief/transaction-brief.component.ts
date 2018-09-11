@@ -40,7 +40,7 @@ export class TransactionBriefComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   getData(number) {
-    let Url = environment.ipAddress + "/aml/api/suspectedTransaction/all?partyNumber=" + number;
+    let Url = environment.projectName + "/aml/api/suspectedTransaction/all?partyNumber=" + number;
     this.http.get<TransactionBrief[]>(Url).subscribe(data => {
       console.log('abc');
       console.log(this.dataSource);
