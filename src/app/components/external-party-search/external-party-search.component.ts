@@ -49,7 +49,7 @@ export class ExternalPartySearchComponent implements OnInit {
 
     this.search_R = true;
 
-    let url = environment.ipAddress+"/aml/api/externalParty/all?ExtPartynumber=" + this.ExtPartynumber +
+    let url = environment.projectName+"/aml/api/externalParty/all?ExtPartynumber=" + this.ExtPartynumber +
       "&ExtPartyId=" + this.ExtPartyId + "&ExtPartyFullName=" + this.ExtPartyFullName +
       "&ExtPartyIdCountryCode=" + this.ExtPartyIdCountryCode;
     this.http.get<externalParty[]>(url).subscribe(data => {

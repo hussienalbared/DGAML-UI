@@ -9,7 +9,7 @@ export class GroupService {
 
   constructor(private http:HttpClient) { }
   getAllCapabilities(){
-let url=environment.ipAddress+"/aml/api/capability/all";
+let url=environment.projectName+"/aml/api/capability/all";
 
 
 return this.http.get<capability[]>(url);
@@ -17,7 +17,7 @@ return this.http.get<capability[]>(url);
 
   }
   getRemainingCapabilities(groupId){
-    let url=`${environment.ipAddress}/aml/api/capability/all/${groupId}`;
+    let url=`${environment.projectName}/aml/api/capability/all/${groupId}`;
     
     
     return this.http.get<capability[]>(url);
@@ -25,16 +25,16 @@ return this.http.get<capability[]>(url);
     
       }
   getAllGroups(){
-    let url=environment.ipAddress+"/aml/api/group/all";
+    let url=environment.projectName+"/aml/api/group/all";
    return this.http.get<group[]>(url)
   }
   findGroup(id){
-    let url=`${environment.ipAddress}/aml/api/group/find/${id}`;
+    let url=`${environment.projectName}/aml/api/group/find/${id}`;
     return this.http.get<group>(url)
   }
   updateGroup(group:group)
   {
-let url=environment.ipAddress+"/aml/api/group/update";
+let url=environment.projectName+"/aml/api/group/update";
 return this.http.put(url,group);
   }
 

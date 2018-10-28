@@ -35,7 +35,7 @@ export class Section3Component implements OnInit {
     });
   }
   getData(number){
-    let Url=environment.ipAddress+"/aml/api/account/accountDetailSection3?accountNo="+number;
+    let Url=environment.projectName+"/aml/api/account/accountDetailSection3?accountNo="+number;
     this.http.get<TransactionBrief[]>(Url).subscribe(data=>{
 
       this.dataSource=data;

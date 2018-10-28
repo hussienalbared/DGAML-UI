@@ -11,7 +11,7 @@ export class WebSocketServiceService {
 
   // Open connection with the back-end socket
   public connect() {
-    let socket = new SockJs(`${environment.ipAddress}/socket`);
+    let socket = new SockJs(`${environment.projectName}/socket`);
 
     let stompClient = Stomp.over(socket);
 

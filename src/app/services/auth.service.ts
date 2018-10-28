@@ -21,7 +21,7 @@ export class AuthService {
 
   login(credentials) {
     // alert("login")
-    return this.http.post<UserResponse>(environment.ipAddress + '/aml/auth',
+    return this.http.post<UserResponse>(environment.projectName + '/aml/auth',
       JSON.stringify(credentials), httpOptions);
   }
 

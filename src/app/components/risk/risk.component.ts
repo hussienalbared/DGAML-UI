@@ -91,7 +91,7 @@ export class RiskComponent implements OnInit {
   }
 
   ngOnInit() {
-    const url = environment.ipAddress+'/aml/api/accountriskassigment/getObject';
+    const url = environment.projectName+'/aml/api/accountriskassigment/getObject';
     this.http.get<risk[]>(url).subscribe(data => {
       this.result = data;
       this.dataSource.data=data;
@@ -131,7 +131,7 @@ export class RiskComponent implements OnInit {
   }
 
   getDataSecondTable() {
-    const url = environment.ipAddress+'/aml/api/acriskclassifier';
+    const url = environment.projectName+'/aml/api/acriskclassifier';
     this.http.get<classifier[]>(url).subscribe(data2 => {
       this.result2 = data2;
       // this.dataSourceTable2.data=data2;

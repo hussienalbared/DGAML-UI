@@ -99,7 +99,7 @@ export class ForwardComponent implements OnInit {
 
   }
   ngOnInit() {
-    let url=environment.ipAddress+"/aml/api/user/users";
+    let url=environment.projectName+"/aml/api/user/users";
     this.http.get<string[]>(url).subscribe(data=>{
 this.users=data;
 

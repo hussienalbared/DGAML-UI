@@ -10,19 +10,19 @@ export class SuspectsService {
   constructor(private http:HttpClient,private notification:NotificationService) { }
   getAllSuspects()
   {
-    let url = environment.ipAddress+"/aml/api/v1/suspectedObject";
+    let url = environment.projectName+"/aml/api/v1/suspectedObject";
     
    return this.http.get<suspect[]>(url);
   }
   forwardSuspect(suspectKey,suspectCode,userName){
-    let url = environment.ipAddress+"/aml/api/v1/updateUser?key=" + suspectKey +
+    let url = environment.projectName+"/aml/api/v1/updateUser?key=" + suspectKey +
     "&code=" + suspectCode + "&user=" + userName;
   return this.http.put(url, []);
     
 
   }
   takeOwnerShipService(key,code,complianceUserid){
-    let url = environment.ipAddress+"/aml/api/v1/updateUser?key=" + key +
+    let url = environment.projectName+"/aml/api/v1/updateUser?key=" + key +
     "&code=" + code + "&user=" + complianceUserid;
   return this.http.put(url, [])
     // remove Owner
@@ -30,22 +30,22 @@ export class SuspectsService {
   
   }
   removeOwnerShip(key,code,complianceUserid){
-      let url = environment.ipAddress+"/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
+      let url = environment.projectName+"/aml/api/v1/removeOwnerShip?key=" + key + "&code=" + code;
       return this.http.put(url, [])
   }
   addalarmEvent(event)
   {
-    let UrlAdd = environment.ipAddress+"/aml/api/v1/alarmEvent/add";
+    let UrlAdd = environment.projectName+"/aml/api/v1/alarmEvent/add";
     return this.http.put(UrlAdd, event, { responseType: "text" })
   }
   changeAllSuspectAlarms(key,code,eventType){
-    let url = environment.ipAddress+"/aml/api/v1/closeAllSuspectAlarms?"
+    let url = environment.projectName+"/aml/api/v1/closeAllSuspectAlarms?"
     + "key=" + key + "&code=" + code+"&eventType="+eventType;
   return this.http.get(url);
 
   }
   changeAlarmStatuseById(alarmId,eventType){
-    let url = environment.ipAddress+"/aml/api/alaram/closeAlarmById?alarmId="
+    let url = environment.projectName+"/aml/api/alaram/closeAlarmById?alarmId="
     + alarmId + "&alarmStatusCode=" + eventType
   this.http.put(url, [], { responseType: "text" }).subscribe(data => {
   });

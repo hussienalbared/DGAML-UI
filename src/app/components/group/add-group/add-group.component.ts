@@ -35,7 +35,7 @@ export class AddGroupComponent implements OnInit {
       if(this.GroupsNames.find(e => e.name === 'ROLE_'+addForm.name)){
         this.toastr.error('Cannot have more than one group with same name.','Error!');
       }else{
-        let url = environment.ipAddress + "/aml/api/group/add";
+        let url = environment.projectName + "/aml/api/group/add";
         let group = {
           name: "ROLE_" + addForm.name
         }
@@ -66,7 +66,7 @@ export class AddGroupComponent implements OnInit {
   }
   deleteGroup(groupId) {
 
-    let url = `${environment.ipAddress}/aml/api/group/delete/${groupId}`;
+    let url = `${environment.projectName}/aml/api/group/delete/${groupId}`;
     this.http.delete(url).subscribe(data => {
 
       if(this.translate.getDefaultLang() == 'en')

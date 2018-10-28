@@ -31,7 +31,7 @@ export class TransactionDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let Url = environment.ipAddress + "/aml/api/Transaction_detail/transactionDeatil?ttrn=" + this.TTRN;
+    let Url = environment.projectName + "/aml/api/Transaction_detail/transactionDeatil?ttrn=" + this.TTRN;
     console.log(this.result);
     this.http.get(Url).subscribe(data => {
       this.result = data;

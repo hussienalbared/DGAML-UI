@@ -19,7 +19,7 @@ export class AccountDetailComponent implements OnInit {
       let accountNumber = params.get("accountNumber");
 
 
-      let Url = environment.ipAddress + "/aml/api/account/accountDetail?accountNumber=" + accountNumber;
+      let Url = environment.projectName + "/aml/api/account/accountDetail?accountNumber=" + accountNumber;
       this.http.get(Url).subscribe(data => {
 
         this.result = data;

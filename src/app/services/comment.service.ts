@@ -8,7 +8,7 @@ export class CommentService {
 
   rootUrl = "";
   constructor(private http:HttpClient) { 
-    this.rootUrl = environment.ipAddress+"/aml/api/";
+    this.rootUrl = environment.projectName+"/aml/api/";
   }
 
   getComments(alarmed_Obj_Key,alarmed_Obj_level_Cd)
@@ -71,7 +71,7 @@ export class CommentService {
 
   }
   deleteAttachment(id) {
-    let url  =`${environment.ipAddress}/aml/api/Attachment/delete/${id}`
+    let url  =`${environment.projectName}/aml/api/Attachment/delete/${id}`
     
     return this.http.delete(url, { responseType: "text" });
 

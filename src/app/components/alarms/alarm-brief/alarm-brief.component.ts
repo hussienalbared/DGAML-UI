@@ -69,7 +69,7 @@ export class AlarmBriefComponent implements OnInit {
 
   }
   getAlarms() {
-    let Url = environment.ipAddress + "/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
+    let Url = environment.projectName + "/aml/api/v1/alarms?key=" + this.key + "&code=" + this.code;
     this.http.get(Url).subscribe(data => {
      
       this.dataSource3.data=data["acAlarm"];
@@ -167,7 +167,7 @@ export class AlarmBriefComponent implements OnInit {
 
         //update alert count
 
-        let url = environment.ipAddress + "/aml/api/alaram/updateAlertCountApi?key="
+        let url = environment.projectName + "/aml/api/alaram/updateAlertCountApi?key="
           + this.key + "&code=" + this.code;
 
         this.http.put(url, []).subscribe(data => {

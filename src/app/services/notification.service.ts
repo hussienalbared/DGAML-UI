@@ -9,7 +9,7 @@ export class NotificationService {
 
   rootUrl='';
   constructor(private http:HttpClient) {
-    this.rootUrl = environment.ipAddress+"/aml/api/";
+    this.rootUrl = environment.projectName+"/aml/api/";
    }
 
   // suspect notification (takeowner,removeowner,close,suppress)
