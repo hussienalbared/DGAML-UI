@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   projectName: '',
-  ipAddress: 'http://192.168.1.22:8081',
-  ipAddressWithoutHttp: '192.168.1.90:8081',
+  ipAddress: 'http://localhost:8081',
+  ipAddressWithoutHttp: 'localhost:8081',
   dashBoardUrl: 'http://192.168.1.40/Reports/Pages/Report.aspx?ItemPath=%2fAML+Project%2fDASHBOARD%2fAML+Main+Dashboard'
 
 };
