@@ -1,10 +1,18 @@
 {
     "/aml/api/*": {
-        "target": "http://localhost:8080",
+        "target": "http://localhost:8081",
         "secure": false
     },
-    "/report/*" :{
-        "target": "http://localhost:8080",
+    "/aml/auth/*": {
+        "target": "http://localhost:8081",
+        "secure": false
+    },
+    "/report/*": {
+        "target": "http://localhost:8081",
+        "secure": false
+    },
+    "/socket/*": {
+        "target": "http://localhost:8081",
         "secure": false
     }
 }
