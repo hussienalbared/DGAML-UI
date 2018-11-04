@@ -7,6 +7,10 @@
         "target": "http://localhost:8081",
         "secure": false
     },
+    "/aml/*": {
+        "target": "http://localhost:8081",
+        "secure": false
+    },
     "/report/*": {
         "target": "http://localhost:8081",
         "secure": false
