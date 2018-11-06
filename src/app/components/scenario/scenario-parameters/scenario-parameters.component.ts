@@ -107,7 +107,7 @@ export class ScenarioParametersComponent implements OnInit {
    event_names: string[] = ['CHANGE BENEFICIARY','CHANGE OWNER'];
 
    cdi_code: string[] = ['Credit','Debit'] ;
-   scnarios:string[] = ['AML001','AML002'];
+   scnarios:string[] = ['AML001','AML002','AML003','AML005','AML007'];
 
    scnarios_n;
 
