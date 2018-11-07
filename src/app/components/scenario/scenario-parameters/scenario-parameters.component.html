@@ -1217,16 +1217,19 @@
                               (mouseenter)="$event.stopImmediatePropagation()" 
                               (mouseleave)="$event.stopImmediatePropagation()"
                               #tooltipp47="matTooltip" (click)="tooltipp47.toggle()"
-                              matTooltipPosition = "after"
-                              >
-                                <mat-list-item class="primary-imenu-item" role="listitem">
+                              matTooltipPosition = "after">
+                                <mat-radio-group>
+                                  <mat-radio-button value="1">Yes</mat-radio-button>
+                                  <mat-radio-button value="2">No</mat-radio-button>
+                                </mat-radio-group>
+                                <!-- <mat-list-item class="primary-imenu-item" role="listitem">
                                   <mat-form-field class="select-form">
                                     <mat-select  multiple ngModel name="m023_pep_ind">
                                       <mat-option>YES</mat-option>
                                       <mat-option>NO</mat-option>
                                     </mat-select>
                                   </mat-form-field>
-                                </mat-list-item>
+                                </mat-list-item> -->
                               </div>
                                 <!-- <input type = "text" class="form-control" name="m001_account_type"  placeholder="{{ m001_account_type_placeholder }}" ngModel > -->
                               <!-- </mat-form-field> -->
