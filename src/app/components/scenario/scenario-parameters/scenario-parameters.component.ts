@@ -90,7 +90,7 @@ export class ScenarioParametersComponent implements OnInit {
   m022_num_days_placeholder;
   m023_amount_placeholder;
   m023_num_days_placeholder;
-  m023_cdi_code_placeholder;;
+  m023_cdi_code_placeholder;
 
   rootUrl = "";
   scenario_paramets_result : ScenarioParameter[];
@@ -107,7 +107,7 @@ export class ScenarioParametersComponent implements OnInit {
    event_names: string[] = ['CHANGE BENEFICIARY','CHANGE OWNER'];
 
    cdi_code: string[] = ['Credit','Debit'] ;
-   scnarios:string[] = ['AML001','AML002','AML003','AML005','AML007','AML010','AML016'];
+   scnarios:string[] = ['AML001','AML002','AML003','AML005','AML007','AML010','AML016','AML023'];
 
    scnarios_n;
 
